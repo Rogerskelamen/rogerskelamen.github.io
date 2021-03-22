@@ -1,0 +1,804 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/rogerskelamen/mdpic/raw/master/img/img.jpg">
+  <link rel="icon" href="https://gitee.com/rogerskelamen/mdpic/raw/master/img/img.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  
+    <meta name="description" content="">
+  
+  <meta name="author" content="Rogers Kelamen">
+  <meta name="keywords" content="blog">
+  
+  <title>毛概复习笔记| RO&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.22.0/themes/prism-solarizedlight.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.22.0/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"rokelamen.top","root":"/","version":"1.8.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":"0d7560f90f7a21d6a9e7635611dac094","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"2RbCqGEaklHVj7Gj6dtd2kM4-gzGzoHsz","app_key":"kdFD4FmNeIpaTMK269nEqhxx","server_url":"https://2rbcqgea.lc-cn-n1-shared.com"}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>RO's Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://gitee.com/rogerskelamen/mdpic/raw/master/img/76510277_p0.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="毛概复习笔记">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Rogers Kelamen
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-01-01 17:38" pubdate>
+        2021年1月1日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      44
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">毛概复习笔记</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021年1月2日 下午
+                
+              </p>
+            
+            <div class="markdown-body">
+              <p>新民主主义革命的动力，新民主主义时期社会阶级构成：<br>无产阶级（工人阶级），农民阶级，城市小资产阶级（其他小资产阶级），民族资产阶级。</p>
+<hr>
+<p>新民主主义革命道路的提出：<br>更正了初期把重点放在城市，领导工人阶级开展工人运动的错误。经过毛泽东在井冈山的探索，确立了先占乡村，后去城市，最后夺取全国胜利的革命道路（农村包围城市）。</p>
+<hr>
+<p>“一化三改”：<br>社会主义工业化；<br>个体农业，手工业，资本主义工商业的社会主义改造。</p>
+<hr>
+<p>“三个主体，三个补充”：<br>国家经济和集体经济是工商业主体，个体经济为补充；<br>计划生产是工农业生产的主体，自由生产为补充；<br>国家市场是主体，自由市场是补充。</p>
+<hr>
+<p>社会主义本质：解放生产力，发展生产力，消灭剥削，消除两极分化，最终达到共同富裕。</p>
+<hr>
+<p>社会主义市场经济理论：<br>一是计划经济和市场经济不是划分社会制度的标志；<br>二是计划和市场都是经济手段，各有优势和长处，社会主义实行市场经济要把两者结合起来；<br>三是市场经济作为资源配的一种方式本身不具有制度属性。</p>
+<hr>
+<p>“和平统一，一国两制”</p>
+<hr>
+<p>理顺分配关系，调整和规范国家，企业和个体的分配关系。确立劳动，资本，技术和管理等生产要素按贡献参与分配的原则，完善按劳分配为主体，多种分配方式并存的分配制度。</p>
+<hr>
+<p>我党最大政治优势：密切联系群众；<br>执政后最大危险：脱离群众</p>
+<hr>
+<p>科学发展观内涵：</p>
+<ul>
+<li>第一要义：发展</li>
+<li>核心立场：以人为本</li>
+<li>基本要求：全面协调可持续</li>
+<li>根本方法：统筹兼顾</li>
+</ul>
+<p>科学发展观主要内容：</p>
+<ol>
+<li>加快转变经济发展方式</li>
+<li>发展社会主义民主政治</li>
+<li>推进社会主义文化强国建设</li>
+<li>构建社会主义和谐社会</li>
+<li>推进生态文明建设</li>
+<li>全面提高党的建设科学化水平</li>
+</ol>
+<hr>
+<p>我国社会主要矛盾已经转化为人民日益增长的美好生活需要和不平衡不充分的发展之间的矛盾。</p>
+<hr>
+<p>14个坚持：</p>
+<ul>
+<li>坚持全面深化改革</li>
+<li>坚持全面从严治党</li>
+<li>坚持全面依法治国</li>
+<li>坚持以人民为中心</li>
+<li>坚持人民当家作主</li>
+<li>坚持新发展理念</li>
+<li>坚持在发展中保障和改善民生</li>
+<li>坚持总体国家安全观</li>
+<li>坚持社会主义核心价值体系</li>
+<li>坚持人与自然和谐共生</li>
+<li>坚持党对人民军队的绝对领导</li>
+<li>坚持党对一切工作的领导</li>
+<li>坚持“一国两制”和推进祖国统一</li>
+<li>坚持推动构建人类命运共同体</li>
+</ul>
+<hr>
+<p>中华民族的昨天：“雄关漫道真如铁”<br>中华民族的今天：“人间正道是沧桑”<br>中华民族的明天：“长风破浪会有时”</p>
+<hr>
+<p>习近平新时代中国特色社会主义思想是：</p>
+<ul>
+<li>党和国家必须长期坚持的指导思想</li>
+<li>全党全国各族人民团结奋斗的共同思想基础</li>
+<li>决胜全面建成小康社会，建设社会主义现代化强国，实现中华民族伟大复兴中国梦的行动纲领</li>
+</ul>
+<hr>
+<p>中国梦是 <strong>家国情怀</strong>，<strong>民族情怀</strong>，<strong>人民情怀</strong>相统一的梦。</p>
+<p>中国梦的最大特点就是把国家，民族和个人作为一个命运共同体，把国家利益，民族利益和每个人的具体利益紧紧联系在一起，体现中华民族“家国天下”的情怀。</p>
+<hr>
+<p>实现中国梦必须走中国道路，弘扬中国精神，凝聚中国力量。</p>
+<p>中国精神：以爱国主义为核心的民族精神和以改革创新为核心的时代精神。</p>
+<hr>
+<p>两个一百年：</p>
+<ul>
+<li>建党一百年：基本建成小康社会</li>
+<li>建国一百年：基本实现社会主义现代化</li>
+</ul>
+<p>“两步走”战略：</p>
+<ul>
+<li>2020 ~ 2035：基本实现社会主义现代化的目标</li>
+<li>2035 ~ 本世纪中叶：建成社会主义现代化强国</li>
+</ul>
+<hr>
+<p>五大发展理念：<strong>创新，开放，协调，绿色，共享</strong>的新发展理念</p>
+<p>共享四方面：</p>
+<ol>
+<li>全民共享</li>
+<li>全面共享</li>
+<li>共建共享</li>
+<li>渐进共享</li>
+</ol>
+<hr>
+<p>全面贯彻党的宗教工作基本方针，坚持我国宗教的中国化方向，积极引导宗教与社会主义社会相适应。</p>
+<hr>
+<p>掌握意识形态工作领导权，要落实好意识形态工作责任制。</p>
+<hr>
+<p>培育和践行社会主义核心价值观，还必须发扬中国人民在长期奋斗中的<strong>伟大民族精神</strong>。</p>
+<p>习近平在十三大一次会议中的四种精神：</p>
+<ul>
+<li>伟大创造精神</li>
+<li>伟大奋斗精神</li>
+<li>伟大团结精神</li>
+<li>伟大梦想精神</li>
+</ul>
+<hr>
+<p>提高保障和改善民生水平：</p>
+<ol>
+<li>优先发展教育事业</li>
+<li>提高就业质量和人民收入水平</li>
+<li>加强社会保障体系建设</li>
+<li>坚决打赢脱贫攻坚战</li>
+<li>实施健康中国战略</li>
+</ol>
+<hr>
+<p>坚持总体国家安全观：</p>
+<ol>
+<li>完善国家安全体系</li>
+<li>健全公共安全体系</li>
+<li>推进平安中国建设</li>
+<li>加强国家安全能力建设</li>
+<li>加强国家安全教育（<strong>每年4月15日为“全民国家安全教育日”</strong>）</li>
+</ol>
+<p><em>建设社会主义和谐社会，是一项极具复杂的系统工程，需要全党全社会长期坚持不懈的努力。</em> <strong>党和政府应加强和创新对建设社会主义和谐社会各项工作的领导，把改善民生，创新社会治理和坚持总体国家安全观作为社会建设的根本任务。</strong></p>
+<hr>
+<p>树立<strong>尊重自然，顺应自然，保护自然</strong>的生态文明理念</p>
+<hr>
+<p>加快生态文明体制改革：</p>
+<ol>
+<li>推进绿色发展</li>
+<li>着力解决突出环境问题</li>
+<li>加大生态系统保护力度</li>
+<li>改革生态环境监管体制</li>
+</ol>
+<hr>
+<p>全面小康：更高标准，更丰富内涵，更全面要求，即</p>
+<ul>
+<li>经济更加发展</li>
+<li>民主更加健全</li>
+<li>科教更加进步</li>
+<li>文化更加繁荣</li>
+<li>社会更加和谐</li>
+<li>人民生活更加殷实</li>
+</ul>
+<hr>
+<p>决胜全面建成小康社会</p>
+<ol>
+<li><p>坚决打好防范化解重大风险攻坚战</p>
+</li>
+<li><p>坚决打好精准脱贫攻坚战</p>
+<p>“三位一体”扶贫格局：</p>
+<ul>
+<li>专项扶贫</li>
+<li>行业扶贫</li>
+<li>社会扶贫</li>
+</ul>
+</li>
+<li><p>坚决打好污染防止攻坚战</p>
+</li>
+<li><p>确保经济社会秩序健康发展</p>
+</li>
+</ol>
+<hr>
+<p>依法治国目标：建设特色社会主义法治体系，建设社会主义法治国家</p>
+<p>依法治国重点：</p>
+<ul>
+<li>必须坚持厉行法治</li>
+<li>推进科学立法，严格执法，公正司法，全民守法</li>
+<li>推进中国特色社会主义法治体系建设</li>
+</ul>
+<hr>
+<p>习近平在纽约联合国总部讲话指出：<br>我们要继承和弘扬联合国宪章的宗旨和原则，构建以合作共赢为核心的新型国际关系，打造人类命运共同体。</p>
+<hr>
+<p>增强党的执政本领——八个增强：</p>
+<ol>
+<li>增强学习本领</li>
+<li>增强政治领导本领</li>
+<li>增强改革创新本领</li>
+<li>增强科学发展本领</li>
+<li>增强依法执政本领</li>
+<li>增强群众工作本领</li>
+<li>增强狠抓落实本领</li>
+<li>增强驾驭风险本领</li>
+</ol>
+<hr>
+<p>五位一体总体布局：<br>经济，政治，文化，社会，生态</p>
+<hr>
+<p>六个体系，一个体制：<br>产业，市场，分配，区域，环境，全面；<br>充分发挥市场作用，更好发挥政府作用的经济体制。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/politics/">politics</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/review/">review</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/01/19/MATLAB%E5%AD%A6%E4%B9%A0/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">MATLAB学习</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/12/31/%E6%B1%87%E7%BC%96%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                        <span class="hidden-mobile">汇编复习笔记(也可作为进阶篇)</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                  
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('vcomments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "2RbCqGEaklHVj7Gj6dtd2kM4-gzGzoHsz",
+          app_key: "kdFD4FmNeIpaTMK269nEqhxx",
+          placeholder: "say something...",
+          path: window.location.pathname,
+          avatar: "mp",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          recordIP: true,
+          serverURLs: "https://2rbcqgea.lc-cn-n1-shared.com",
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments powered by Valine.</a>
+  </noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+
+  <!-- 自己设置一个记录网站运行时间的方法 -->
+  <span id="sitetime" style="font-size: 14px; font-family: Consolas;font-weight: normal; color: #aaa;"></span>
+  <script language=javascript>
+    function siteTime(){
+      window.setTimeout("siteTime()", 1000);
+      var seconds = 1000;
+      var minutes = seconds * 60;
+      var hours = minutes * 60;
+      var days = hours * 24;
+      var years = days * 365;
+      var today = new Date();
+      var todayYear = today.getFullYear();
+      var todayMonth = today.getMonth()+1;
+      var todayDate = today.getDate();
+      var todayHour = today.getHours();
+      var todayMinute = today.getMinutes();
+      var todaySecond = today.getSeconds();
+      /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+      year - 作为date对象的年份，为4位年份值
+      month - 0-11之间的整数，做为date对象的月份
+      day - 1-31之间的整数，做为date对象的天数
+      hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+      minutes - 0-59之间的整数，做为date对象的分钟数
+      seconds - 0-59之间的整数，做为date对象的秒数
+      microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+      var t1 = Date.UTC(2020,10,18,15,00,00); //北京时间2020-10-18 00:00:00
+      var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+      var diff = t2-t1;
+      var diffYears = Math.floor(diff/years);
+      var diffDays = Math.floor((diff/days)-diffYears*365);
+      var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+      var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+      var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+      document.getElementById("sitetime").innerHTML=" 小破站已勉强运行了 "+/*diffYears+" 年 "+*/diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+    }/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+    siteTime();
+  </script>
+  <!-- 自己设置一个记录网站运行时间的方法 -->
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/mermaid@8.8.3/dist/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({"theme":"default"});
+    }
+  </script>
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0d7560f90f7a21d6a9e7635611dac094";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

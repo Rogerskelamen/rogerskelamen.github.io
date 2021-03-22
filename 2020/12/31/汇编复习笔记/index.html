@@ -1,0 +1,715 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/rogerskelamen/mdpic/raw/master/img/img.jpg">
+  <link rel="icon" href="https://gitee.com/rogerskelamen/mdpic/raw/master/img/img.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  
+    <meta name="description" content="">
+  
+  <meta name="author" content="Rogers Kelamen">
+  <meta name="keywords" content="blog">
+  
+  <title>汇编复习笔记(也可作为进阶篇)| RO&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.22.0/themes/prism-solarizedlight.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.22.0/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"rokelamen.top","root":"/","version":"1.8.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":"0d7560f90f7a21d6a9e7635611dac094","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"2RbCqGEaklHVj7Gj6dtd2kM4-gzGzoHsz","app_key":"kdFD4FmNeIpaTMK269nEqhxx","server_url":"https://2rbcqgea.lc-cn-n1-shared.com"}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>RO's Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://gitee.com/rogerskelamen/mdpic/raw/master/img/76510277_p0.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="汇编复习笔记(也可作为进阶篇)">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Rogers Kelamen
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-12-31 21:23" pubdate>
+        2020年12月31日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.5k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      38
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">汇编复习笔记(也可作为进阶篇)</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021年1月1日 晚上
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="计算机中的数"><a href="#计算机中的数" class="headerlink" title="计算机中的数"></a>计算机中的数</h1><h2 id="二进制的补码"><a href="#二进制的补码" class="headerlink" title="二进制的补码"></a>二进制的补码</h2><p>对于8位的二进制来说，+0和-0的补码都是00000000（只有一种表示）</p>
+<p>但是按道理来说10000000是表示-0的，这个二进制就用来表示-128。<em>同理100000000用来表示-256</em><br><strong>所以对于8位的补码表示的数的范围为-128 ~ +127</strong></p>
+<h2 id="补码的符号扩展"><a href="#补码的符号扩展" class="headerlink" title="补码的符号扩展"></a>补码的符号扩展</h2><p>比如16位补码（一字节）扩展为32位补码（双字）：<u>正数高位补零，负数高位补一</u></p>
+<h2 id="字节，节，页"><a href="#字节，节，页" class="headerlink" title="字节，节，页"></a>字节，节，页</h2><p>256个字节 = 16个节 = 1个页</p>
+<h1 id="存储数据"><a href="#存储数据" class="headerlink" title="存储数据"></a>存储数据</h1><h2 id="存储器"><a href="#存储器" class="headerlink" title="存储器"></a>存储器</h2><p>我们除了数据存入寄存器中，其他的数据就是存在内存中的，内存中以字节为单位存储信息。<strong>内存中的数据存入方式是由低地址到高地址。</strong></p>
+<p>但是当要存储的数据由多个字节组成（如双字数据）时，我们要遵守<strong>大大小小原则</strong>，<u>即低位字节存入低地址，高位字节存入高地址</u></p>
+<h2 id="地址的分段"><a href="#地址的分段" class="headerlink" title="地址的分段"></a>地址的分段</h2><p><strong>80的地址总线宽度是20位，也就是说寻址空间正好是2²⁰ = 1M的空间大小。</strong></p>
+<p>于是我们用实模式的两种地址来表示实际的逻辑地址：<strong>段地址左移一位 + 偏移地址</strong>（<em>正好就是5位的16进制数</em>）</p>
+<h1 id="部分指令详解"><a href="#部分指令详解" class="headerlink" title="部分指令详解"></a>部分指令详解</h1><blockquote>
+<p>在指令部分，我其实已经有写过（其实是搬运）<a target="_blank" rel="noopener" href="https://docs.rogerskelamen.cn/#/study-notes/asm/instruction">一篇文章</a>来记录所有基本的指令，这里我只是挑一些进行详细解读</p>
+</blockquote>
+<h2 id="类型转换指令"><a href="#类型转换指令" class="headerlink" title="类型转换指令"></a>类型转换指令</h2><p>cbw（convert byte to word）———- 字节转字</p>
+<p>cwd（convert word to double word）———- 字转双字</p>
+<p><em>ps：</em><br><strong>cbw较为常用，其中前者默认是将AL中内容扩展到AX，</strong>后者默认是AX扩展到DX : AX中的双字（<em>所以有DX代表双字的说法</em>）</p>
+<h2 id="加减1指令"><a href="#加减1指令" class="headerlink" title="加减1指令"></a>加减1指令</h2><p>这俩指令用的很多，平时却有点记不住，特在此记下：</p>
+<p>inc（increment）——— 加一操作</p>
+<p>dec（decrement）———- 减一操作</p>
+<p><em>因为neg（求补）和dec是在一起的，也在此说明一下：</em><br>neg（negate）——— <strong>单纯就是将操作数按位求反后加一</strong></p>
+<h2 id="逻辑指令"><a href="#逻辑指令" class="headerlink" title="逻辑指令"></a>逻辑指令</h2><p>and ——— 逻辑与<br>or  ————  逻辑或<br>not  ———-  逻辑非<br>xor（exclusive or）———   异或<br>test ———  测试</p>
+<p>这些指令都是后接两个操作数，结果保存到前一个操作数，<u>除了test</u></p>
+<p><strong>test两个操作数相与的结果不保存，只根据其特征置条件码：利用ZF改变，存放结果</strong></p>
+<h2 id="移位指令"><a href="#移位指令" class="headerlink" title="移位指令"></a>移位指令</h2><p>shl（shift logical left）——-  逻辑左移<br>sal（shift arithmetic left）—— 算术左移<br>shr（shift logical right）—— 逻辑右移<br>sar（shift arithmetic right）—— 算术右移<br>rol（rotate left）———— 循环左移<br>ror（rotate right）————- 循环右移<br>rcl（rotate left through carry）——- 带进位循环左移<br>rcr（rotate right through carry）——- 带进位循环右移</p>
+<p>逻辑和算术移位都是缺位补零，进位送CF。（算术右移是将其自身填入空缺位）<br>循环移位是循环移位一次，进位给CF。</p>
+<h2 id="方向标志改变指令"><a href="#方向标志改变指令" class="headerlink" title="方向标志改变指令"></a>方向标志改变指令</h2><p>CLD（clear direction flag）——- 使DF = 0</p>
+<p>STD（set derection flag）———- 使DF = 1</p>
+<h1 id="汇编程序基本格式"><a href="#汇编程序基本格式" class="headerlink" title="汇编程序基本格式"></a>汇编程序基本格式</h1><div class="code-wrapper"><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">datas SEGMENT
+    ...
+datas ENDS
+
+stacks SEGMENT
+    db 100 dup(0)
+stacks ENDS
+
+codes SEGMENT
+    assume cs:codes,ds:datas,ss:stacks
+start:
+    mov ax,datas
+    mov ds,ax
+    ...
+    mov ah,4ch
+    int 21h
+codes ENDS
+end start<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h1 id="伪操作"><a href="#伪操作" class="headerlink" title="伪操作"></a>伪操作</h1><h2 id="assume"><a href="#assume" class="headerlink" title="assume"></a>assume</h2><p>用来明确段和段寄存器之间的关系，我们通常会这么写：</p>
+<div class="code-wrapper"><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">assume cs:codes,ds:datas,ss:stacks<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>但是如果我们要取消前面的指定可以用：</p>
+<div class="code-wrapper"><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">assume nothing<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><blockquote>
+<p>同一个变量可以具有不同的类型属性</p>
+</blockquote>
+<p>eg：</p>
+<div class="code-wrapper"><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">oper1 db 1,2
+
+mov ax,oper1+1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<p>显然这个表达是错的（会报错），oper1的类型是字节，而ax的类型是字，类型不匹配。</p>
+<h3 id="ptr"><a href="#ptr" class="headerlink" title="ptr"></a>ptr</h3><p>我们用ptr可以把oper1的类型转换成字：</p>
+<div class="code-wrapper"><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">mov ax,word ptr oper1+1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>这样就不会有类型的报错了，<strong>同时<code>word</code>这里还可以是<code>byte</code>，<code>dword</code>等多个类型</strong></p>
+<h3 id="label"><a href="#label" class="headerlink" title="label"></a>label</h3><blockquote>
+<p>除了<code>ptr</code>的转换，我们还可以用<code>label</code>(相当于是取别名)</p>
+</blockquote>
+<p>对于oper1数据我们可以在定义时：</p>
+<div class="code-wrapper"><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">oper1_word label word
+oper1 db 1,2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<p>这样我们用<code>oper1_word</code>进行字的操作，用<code>oper1</code>来进行字节的操作。<strong>但是它们指向的是同一个内存空间。</strong></p>
+<h2 id="EQU"><a href="#EQU" class="headerlink" title="EQU"></a>EQU</h2><p>可以用EQU(equal?)来给一个表达式赋予一个名字（这是一个赋值伪操作），eg：</p>
+<div class="code-wrapper"><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">data equ var+2 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p><em>ps：<code>equ</code>不允许重复定义，同时<code>equ</code>伪操作不占用内存空间</em></p>
+<p><strong>warning：<code>=</code>也可以错位赋值伪操作使用（<code>=</code>可以重复使用），但是两者不能同时使用</strong></p>
+<h2 id="地址计数器"><a href="#地址计数器" class="headerlink" title="地址计数器"></a>地址计数器</h2><p>在汇编中<script type="math/tex">`作为地址计数器使用，`</script>表示当前指令的地址（偏移地址）。</p>
+<p><strong>每处理一条指令，地址计数器就增加一个值</strong>。</p>
+<h3 id="org伪操作"><a href="#org伪操作" class="headerlink" title="org伪操作"></a>org伪操作</h3><p>此伪操作用来设置当前地址计数器的值，eg：</p>
+<div class="code-wrapper"><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">org 10 		;此时偏移地址为10<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h2 id="基数控制伪操作"><a href="#基数控制伪操作" class="headerlink" title="基数控制伪操作"></a>基数控制伪操作</h2><p><strong>warning：汇编程序默认的数为十进制数</strong></p>
+<p><code>.radix</code>伪操作可以把默认的基数改变成2 ~ 16的任何基数，eg：</p>
+<div class="code-wrapper"><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">.radix 16
+mov bx,0ff		;16进制就不用写h
+mov bx,178d		;10进制就要写d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<h2 id="数值回送操作符"><a href="#数值回送操作符" class="headerlink" title="数值回送操作符"></a>数值回送操作符</h2><h3 id="type"><a href="#type" class="headerlink" title="type"></a>type</h3><p>如果之后的表达式是一个变量，则汇编程序返回该变量的以字节数表示的类型：db为1，dw为2，dd为4。</p>
+<div class="code-wrapper"><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">array dw 1,2,3
+mov si,type array		;等同于mov si,2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<h3 id="length"><a href="#length" class="headerlink" title="length"></a>length</h3><ul>
+<li>对于变量使用<code>dup</code>的情况，程序返回分配该变量的单元数（<strong>只看第一个<code>dup</code></strong>）</li>
+<li>对于其他情况<u>一概返回</u>1</li>
+</ul>
+<div class="code-wrapper"><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">fee dw 100 dup(0)
+mov cx,length fee		;等同于mov cx,100<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<h3 id="size"><a href="#size" class="headerlink" title="size"></a>size</h3><p>程序返回伪操作之后变量的<strong>type值与length值的乘积</strong>，比如之前的fee变量：</p>
+<div class="code-wrapper"><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">mov cx,size fee
+;相当于mov cx,200<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<h3 id="seg"><a href="#seg" class="headerlink" title="seg"></a>seg</h3><p>程序会返回变量或者标号的<strong>段地址值</strong></p>
+<p>比如如果<code>datas</code>是地址为05000h的数据段段名，oper1是该段中第一个变量名：</p>
+<div class="code-wrapper"><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">mov bx,seg oper1
+;相当于是mov bx,05000h<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/review/">review</a>
+                    
+                      <a class="hover-with-bg" href="/tags/masm/">masm</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/01/01/%E6%AF%9B%E6%A6%82%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">毛概复习笔记</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/12/23/Oh-My-Zsh%E7%BE%8E%E5%8C%96%E7%BB%88%E7%AB%AF/">
+                        <span class="hidden-mobile">Oh-My-Zsh美化终端</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                  
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('vcomments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "2RbCqGEaklHVj7Gj6dtd2kM4-gzGzoHsz",
+          app_key: "kdFD4FmNeIpaTMK269nEqhxx",
+          placeholder: "say something...",
+          path: window.location.pathname,
+          avatar: "mp",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          recordIP: true,
+          serverURLs: "https://2rbcqgea.lc-cn-n1-shared.com",
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments powered by Valine.</a>
+  </noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+
+  <!-- 自己设置一个记录网站运行时间的方法 -->
+  <span id="sitetime" style="font-size: 14px; font-family: Consolas;font-weight: normal; color: #aaa;"></span>
+  <script language=javascript>
+    function siteTime(){
+      window.setTimeout("siteTime()", 1000);
+      var seconds = 1000;
+      var minutes = seconds * 60;
+      var hours = minutes * 60;
+      var days = hours * 24;
+      var years = days * 365;
+      var today = new Date();
+      var todayYear = today.getFullYear();
+      var todayMonth = today.getMonth()+1;
+      var todayDate = today.getDate();
+      var todayHour = today.getHours();
+      var todayMinute = today.getMinutes();
+      var todaySecond = today.getSeconds();
+      /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+      year - 作为date对象的年份，为4位年份值
+      month - 0-11之间的整数，做为date对象的月份
+      day - 1-31之间的整数，做为date对象的天数
+      hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+      minutes - 0-59之间的整数，做为date对象的分钟数
+      seconds - 0-59之间的整数，做为date对象的秒数
+      microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+      var t1 = Date.UTC(2020,10,18,15,00,00); //北京时间2020-10-18 00:00:00
+      var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+      var diff = t2-t1;
+      var diffYears = Math.floor(diff/years);
+      var diffDays = Math.floor((diff/days)-diffYears*365);
+      var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+      var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+      var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+      document.getElementById("sitetime").innerHTML=" 小破站已勉强运行了 "+/*diffYears+" 年 "+*/diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+    }/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+    siteTime();
+  </script>
+  <!-- 自己设置一个记录网站运行时间的方法 -->
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/mermaid@8.8.3/dist/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({"theme":"default"});
+    }
+  </script>
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0d7560f90f7a21d6a9e7635611dac094";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

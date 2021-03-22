@@ -1,0 +1,972 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/rogerskelamen/mdpic/raw/master/img/img.jpg">
+  <link rel="icon" href="https://gitee.com/rogerskelamen/mdpic/raw/master/img/img.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  
+    <meta name="description" content="">
+  
+  <meta name="author" content="Rogers Kelamen">
+  <meta name="keywords" content="blog">
+  
+  <title>汇编入门篇| RO&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.22.0/themes/prism-solarizedlight.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.22.0/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"rokelamen.top","root":"/","version":"1.8.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":"0d7560f90f7a21d6a9e7635611dac094","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"2RbCqGEaklHVj7Gj6dtd2kM4-gzGzoHsz","app_key":"kdFD4FmNeIpaTMK269nEqhxx","server_url":"https://2rbcqgea.lc-cn-n1-shared.com"}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>RO's Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://gitee.com/rogerskelamen/mdpic/raw/master/img/76510277_p0.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="汇编入门篇">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Rogers Kelamen
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-10-21 17:19" pubdate>
+        2020年10月21日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      82
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">汇编入门篇</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2020年12月3日 下午
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="汇编入门篇"><a href="#汇编入门篇" class="headerlink" title="汇编入门篇"></a>汇编入门篇</h1><blockquote>
+<p>在8086CPU中，任意时刻， <u>CPU将CS：IP所指向的内容全部当成指令来执行。</u></p>
+</blockquote>
+<p><strong><em>在内存中，指令和数据是没有区别的， <u>都是二进制信息</u>。</em></strong><br><strong><em>只有在工作中，CPU才将有的信息当作指令，有的信息当作数据，</em></strong><br><strong>硬要说的话，<font color=orange>CPU将CS:IP指向的内存单元中的内容当作指令。</font></strong></p>
+<blockquote>
+<p>在8086CPU中，所有寄存器的初始值是啥样的？<strong>AX ~ DX中的值都是0，<br>而ES、CS、SS、DS都是一个特定的基址值（好像是07CFH），其他寄存器中的值也是置为0</strong></p>
+</blockquote>
+<p><strong>DS和数据段有关，而CS和代码段有关，修改DS可以改变数据从哪里开始读（基址），修改CS可以改变指令从哪里开始读</strong></p>
+<h2 id="Debug"><a href="#Debug" class="headerlink" title="Debug"></a>Debug</h2><ul>
+<li><p><code>-r</code></p>
+<p>查看改变CPU寄存器的内容</p>
+</li>
+<li><p><code>-d</code></p>
+<p>查看内存中的内容</p>
+</li>
+<li><p><code>-e</code></p>
+<p>改变内存中的内容</p>
+</li>
+<li><p><code>-u</code></p>
+<p>将内存中的机器指令翻译成汇编指令</p>
+</li>
+<li><p><code>-a</code></p>
+<p>将汇编指令写入内存中</p>
+</li>
+<li><p><code>-t</code></p>
+<p>单行执行每一行的指令</p>
+</li>
+</ul>
+<h3 id="r指令"><a href="#r指令" class="headerlink" title="r指令"></a>r指令</h3><blockquote>
+<p>怎么改变寄存器的值？</p>
+</blockquote>
+<p>eg:<code>-r ax</code></p>
+<p><strong>之后会显示ax原本的值，然后会提示你输入新的值。</strong></p>
+<h3 id="d指令"><a href="#d指令" class="headerlink" title="d指令"></a>d指令</h3><blockquote>
+<p>查看指定的内存地址，直接在指令之后写上地址就行</p>
+</blockquote>
+<p>eg：<code>-d 0760:0000</code></p>
+<h3 id="a指令"><a href="#a指令" class="headerlink" title="a指令"></a>a指令</h3><blockquote>
+<p>a指令的话必须要先指定存入的内存地址（当然最好是cs：ip等代码段地址）</p>
+</blockquote>
+<p>eg：<code>-a 0770:0000</code></p>
+<p><strong>然后就可以输入指令的代码了，如果空着不输就直接退出了</strong></p>
+<h3 id="q指令"><a href="#q指令" class="headerlink" title="q指令"></a>q指令</h3><blockquote>
+<p>被忽视的指令，就是用来退出debug的</p>
+</blockquote>
+<p>eg：<code>-q</code></p>
+<h2 id="指令的执行过程："><a href="#指令的执行过程：" class="headerlink" title="指令的执行过程："></a>指令的执行过程：</h2><ol>
+<li>CPU从所指向的内存单元读取指令，存放到<strong>指令缓存器中</strong>。</li>
+<li>IP = IP + <strong>所读指令的长度</strong>，从而指向下一条指令</li>
+<li>执行指令缓存器中的内容，回到第一步</li>
+</ol>
+<h2 id="转移指令（jump）的底层原理"><a href="#转移指令（jump）的底层原理" class="headerlink" title="转移指令（jump）的底层原理"></a>转移指令（jump）的底层原理</h2><blockquote>
+<p>转移指令——可以通过修改CS和IP这两个寄存器，于是决定了CPU从哪里读取代码</p>
+</blockquote>
+<p>eg：</p>
+<div class="code-wrapper"><pre class="line-numbers language-ASM" data-language="ASM"><code class="language-ASM">JMP 2000:0	;这个编译器是不认识的，此处只是演示<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>于是CS被修改为2000，IP被修改为0000（<em>注意：0被自动转换为了16进制的0000</em>）</p>
+<blockquote>
+<p>于是你会问了：你傻不傻啊，为啥不直接<br>MOV CS,2000<br>MOV IP,0</p>
+</blockquote>
+<p>warning:因为这种方式是错误的（<strong>8086CPU禁止这么做</strong>）</p>
+<h3 id="误区："><a href="#误区：" class="headerlink" title="误区："></a>误区：</h3><blockquote>
+<p>你可能会这样想：当我执行JMP指令时，我IP尽管被修改了，但是还是要<br>IP = IP + 指令长度的啊！</p>
+</blockquote>
+<p>warning：<em>请你牢记指令执行的顺序——<font color=brown>是先IP自加，然后才是执行指令（即修改IP和CS的值）</font>，IP自加时指令还在指令缓存器里睡着呢！</em></p>
+<h3 id="更底层的步骤"><a href="#更底层的步骤" class="headerlink" title="更底层的步骤"></a>更底层的步骤</h3><p>在IP将指令压入指令缓冲器之后，(IP) = (IP) + 所读指令的长度，<u>而jmp就是更改了读取的指令的长度，从而实现指令跳转</u></p>
+<font color=#34b>当然，jmp这一条指令不会进行任何操作（而jz之类的可能会执行jmp这条操作）</font>
+
+
+
+<h2 id="8位寄存器的算术问题"><a href="#8位寄存器的算术问题" class="headerlink" title="8位寄存器的算术问题"></a>8位寄存器的算术问题</h2><blockquote>
+<p>我们知道，所有的<strong>8086CPU</strong>都是<strong>16位的寄存器</strong>（不包括分开来的8位），而要是涉及到<strong>8位寄存器</strong>，则可能会产生意想不到的结果</p>
+</blockquote>
+<p>eg:</p>
+<div class="code-wrapper"><pre class="line-numbers language-ASM" data-language="ASM"><code class="language-ASM">MOV AL,C5H
+ADD AL,93H<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<p><em>这时，AL会从C5H变成158H，然而我们知道AL是8位寄存器，所以158H会溢出成58H</em><br><em>有人会认为：那个进位的1跑到了AH中去了，然而我们一看AX，其值为0058H</em></p>
+<p>warning：<u>8位寄存器相加，计算机会仅仅认为是两个8位数相加了，所以AL上的溢出和其他溢出一样，不会算到AH中去。</u></p>
+<h2 id="8086CPU的设计缺陷"><a href="#8086CPU的设计缺陷" class="headerlink" title="8086CPU的设计缺陷"></a>8086CPU的设计缺陷</h2><ul>
+<li><p>不能够将立即数直接送给段寄存器</p>
+<p>eg：</p>
+<div class="code-wrapper"><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">mov ds, 1000h   ;这会报错<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<blockquote>
+<p>其实也可以理解，毕竟段地址这么重要。。</p>
+</blockquote>
+</li>
+<li><p><strong>IP是千万改不了的</strong></p>
+<blockquote>
+<p>这里的改不了是指用mov啥的指令去更改IP的地址</p>
+<p>唯一能改的是其<u>自身的自增机制和jmp类指令的跳转</u></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="与栈相关的寄存器"><a href="#与栈相关的寄存器" class="headerlink" title="与栈相关的寄存器"></a>与栈相关的寄存器</h2><blockquote>
+<p>和stack有关的寄存器有两个：SS 和 SP</p>
+</blockquote>
+<ul>
+<li><font size=5>SS</font>
+
+<p>栈段寄存器：存放栈顶的段地址</p>
+</li>
+<li><font size=5>SP</font>
+
+<p>栈顶指针寄存器：存放栈顶的偏移地址</p>
+</li>
+</ul>
+<p><strong>于是，在任何时刻，SS: SP都指向栈顶的元素，<u>栈的存入和导出数据本质上就是SS:SP的移动</u></strong></p>
+<p><em>即使是这样，我们仍然能够更改SS和SP的值，于是实现栈内存空间的转移（了解就好）</em></p>
+<h3 id="Question："><a href="#Question：" class="headerlink" title="Question："></a>Question：</h3><blockquote>
+<p>栈的push和pop都是根据栈顶指针（即SS:SP）的移动来获取和存入数据的，那我没有push数据而是直接pop数据，能否取出内存中的野数据呢？</p>
+</blockquote>
+<p><em>答案是：可以的，这就要涉及到之后要讲的栈顶超界问题。</em></p>
+<h3 id="栈顶超界问题"><a href="#栈顶超界问题" class="headerlink" title="栈顶超界问题"></a>栈顶超界问题</h3><blockquote>
+<p>栈空间默认是16个字节的空间，如果我不加限制地一直push会怎么样？</p>
+</blockquote>
+<p><strong>会超界，push的数据会覆盖掉原先的内存数据。同样，一直pop也会造成超界问题。</strong></p>
+<font size=4>**解决办法？**</font>
+
+<p>没得😂，你得自求多福（好吧，注意编程的思路就好了）</p>
+<h2 id="除了代码的那些东西"><a href="#除了代码的那些东西" class="headerlink" title="除了代码的那些东西"></a>除了代码的那些东西</h2><h3 id="段定义"><a href="#段定义" class="headerlink" title="段定义"></a>段定义</h3><blockquote>
+<p>To begin, you have to know something.</p>
+</blockquote>
+<ul>
+<li>一个汇编程序是由多个段组成的，这些个段用来存放<strong>代码</strong>，<strong>数据</strong>或<strong>当作栈空间</strong>来使用。</li>
+<li>一个程序至少一个段（<em>你至少要代码吧</em>）</li>
+<li>每个段得有名字（<em>不然谁分得清啊</em>）</li>
+<li>求你哥，千万别把这个概念和内存中段搞混了。。</li>
+</ul>
+<p>formate：</p>
+<div class="code-wrapper"><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">段名 segment
+...
+段名 ends<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<h3 id="end（不是ends）"><a href="#end（不是ends）" class="headerlink" title="end（不是ends）"></a>end（不是ends）</h3><p><strong><u>这玩意是必写的，作为程序的结束标示。</u></strong></p>
+<p>一般格式为：</p>
+<div class="code-wrapper"><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">code segment
+start:
+...
+code ends
+end start<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h3 id="assume"><a href="#assume" class="headerlink" title="assume"></a>assume</h3><p><strong>这玩意是将某一段寄存器和程序中的某个段联系到一起</strong></p>
+<p>eg:</p>
+<div class="code-wrapper"><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">assume cs:codesg	;codesg是一个段的名字<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h2 id="loop底层原理"><a href="#loop底层原理" class="headerlink" title="loop底层原理"></a>loop底层原理</h2><blockquote>
+<p>我们经常会用到loop这个指令，即循环指令，但仅仅就只是循环吗？或者说它会有其他条件来控制循环吗？</p>
+</blockquote>
+<font size=4>**原理**</font>
+
+<ol>
+<li>(CX) = (CX) - 1</li>
+<li><strong>判断CX中的值，不为零则继续循环，为零则跳出循环向下执行。</strong>（<em>也就是说它是有循环条件的</em>）</li>
+</ol>
+<p>看个东西：</p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>这个python程序不跟</p>
+<div class="code-wrapper"><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">mov cx,10
+L1: ...
+loop L1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<p>这个一样的么？</p>
+<p><strong>相信懂的都已经懂了（￣︶￣）↗</strong></p>
+<h2 id="实现大写小写字母互转"><a href="#实现大写小写字母互转" class="headerlink" title="实现大写小写字母互转"></a>实现大写小写字母互转</h2><blockquote>
+<p>原理</p>
+</blockquote>
+<p>大小写的字母其实差别就是一个20H，eg：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>字母</th>
+<th>HEX</th>
+<th>BIN</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B</td>
+<td>42H</td>
+<td>0100 0010B</td>
+</tr>
+<tr>
+<td>b</td>
+<td>62H</td>
+<td>0110 0010B</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>所以可以巧用and（与运算）<br><strong>比如说可以与上1101 1111，于是正好就可以改变第六位上的二进制</strong><br><em>或者用或，或上0010 0000</em></p>
+<h2 id="SI和DI"><a href="#SI和DI" class="headerlink" title="SI和DI"></a>SI和DI</h2><blockquote>
+<p>之前已经弄清楚了SS, CS, DS, IP, SP（几乎就是几个常用的几个寄存器），那SI和DI到底是干啥的？</p>
+</blockquote>
+<ul>
+<li><font size=4>**和地址的操作有关**</font></li>
+<li><font size=4>**和BX功能相近**</font>
+
+</li>
+</ul>
+<p>像这种：</p>
+<div class="code-wrapper"><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">mov bx,0
+mov ax,[bx]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<p>其中的BX都可以换成SI或者DI</p>
+<blockquote>
+<p>到底有什么区别？</p>
+</blockquote>
+<p><em>我们其实可以看到BX实际上是在单打独斗的，而SI和DI时常是成双出现的，这就解决了一些需要在一个逻辑中同时操作两个数据的尴尬局面（而这种局面又时常发生），比如字符串的向后复制问题</em></p>
+<blockquote>
+<p>而且我们的寻址方式又增加了（老折磨人了）</p>
+</blockquote>
+<ul>
+<li><code>[bx + si]</code>和<code>[bx + di]</code></li>
+<li><code>[bx + si + 立即数]</code>和<code>[bx + di + 立即数]</code></li>
+</ul>
+<h2 id="DUP详解"><a href="#DUP详解" class="headerlink" title="DUP详解"></a>DUP详解</h2><blockquote>
+<p>其实我们写了很多的程序之后，都知道了用dup和缓存有关<br>但是我们真正了解dup吗？</p>
+</blockquote>
+<ul>
+<li><strong>首先你得知道，dup是duplication（复制品）的缩写</strong></li>
+<li><strong>其次，它通常和db，dw，dd等伪指令相配合</strong></li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>功能</th>
+<th>相当于</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>db 3 dup(0)</td>
+<td>定义了3个字节，它们的值都是0</td>
+<td>db 0,0,0</td>
+</tr>
+<tr>
+<td>db 3 dup(0,1,2)</td>
+<td>定义了9个字节，由0，1，2重复3次构成</td>
+<td>db 0,1,2,0,1,2,0,1,2</td>
+</tr>
+<tr>
+<td>db 3 dup(‘abc’,’ABC’)</td>
+<td>定义了18个字节，构成’abcABCabcABCabcABC’</td>
+<td>db ‘abcABCabcABCabcABC’</td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p>这里声明一下</p>
+</blockquote>
+<p>db不是database，而是指字节型<br>dw是指字型数据，dd是指双子数据</p>
+<p><strong>ps：看到这里，你或许就已经知道了我们之前定义的buf其实是假的缓冲区😂，事实上，<font color=#34b>他除了名字和缓存有关，其他的实际上就是我们开辟的一个普通内存空间。</font></strong></p>
+<h2 id="lea和offset"><a href="#lea和offset" class="headerlink" title="lea和offset"></a>lea和offset</h2><blockquote>
+<p>有时候我们会用到取出变量（这里一般指的是变量名）的地址来放入寄存器中（比如ax，bx），lea和offset就经常出现了</p>
+</blockquote>
+<p>首先我们看一下这个为啥是错的：</p>
+<div class="code-wrapper"><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">mov ax,string	;这里的string是我们定义好的变量名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p><strong>肯定是错的啊，这个string不能代表任何的地址含义</strong></p>
+<p>而：</p>
+<div class="code-wrapper"><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">lea ax,string
+mov ax,offset string<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<p><strong>这两行的意思是一样的，而且都是正确的。</strong></p>
+<blockquote>
+<p>详解</p>
+</blockquote>
+<ul>
+<li><p>lea是将变量的物理地址送到前面一个寄存器中</p>
+</li>
+<li><p>offset则是一个操作符，它将取得标号的偏移地址</p>
+<p><strong>偏移地址再加上默认的段地址，他不就变成物理地址了吗</strong></p>
+</li>
+</ul>
+<h2 id="call和ret原理"><a href="#call和ret原理" class="headerlink" title="call和ret原理"></a>call和ret原理</h2><p><em>当CPU执行call指令时，会进行两步操作：</em></p>
+<ol>
+<li>将当前的IP或CS和IP压入栈中</li>
+<li>转移到标号处执行指令</li>
+</ol>
+<p>然后在遇到ret指令时，再将IP啥的pop出栈，转移到下一条指令去执行。</p>
+<p>warning：需要注意的一点是，<font color=brown>没有call指令也可以执行ret指令，这就相当于将ret指令单独执行，即将栈顶pop出数据到ip</font></p>
+<h3 id="call的段间转移"><a href="#call的段间转移" class="headerlink" title="call的段间转移"></a>call的段间转移</h3><p>指令为：call far ptr</p>
+<p><strong>这事实上是将sp-2之后先将cs压入栈中，然后再将ip压入栈，<u>其中的转移过程和jmp far ptr类似</u></strong></p>
+<h2 id="方向标志位和串传送指令"><a href="#方向标志位和串传送指令" class="headerlink" title="方向标志位和串传送指令"></a>方向标志位和串传送指令</h2><blockquote>
+<p>你是否有这样的苦恼：当你在执行操作时只能够一个一个字节的进行处理，而这种执行的效率显然是低效的，你会想有没有一种可以一次执行一串的指令呢？</p>
+</blockquote>
+<h3 id="DF（Direction-Flag）"><a href="#DF（Direction-Flag）" class="headerlink" title="DF（Direction Flag）"></a>DF（Direction Flag）</h3><p>功能：<strong>在串处理指令中，控制每次操作后SI, DI的增减。<font color=brown>（也就是说必须得配合串处理指令才会有奇效）</font></strong></p>
+<ul>
+<li>DF = 0：每次操作后si，di递增</li>
+<li>DF = 1；每次操作后si，di递减</li>
+</ul>
+<h3 id="串处理指令"><a href="#串处理指令" class="headerlink" title="串处理指令"></a>串处理指令</h3><p>串传送指令：movsb</p>
+<blockquote>
+<p>它怎能做到串（string）的传送？</p>
+</blockquote>
+<p>((es) x 16 + (di)) = ((ds) x 16 + (si))，之后si和di同时+1就行了</p>
+<p><em>这里终于用到了es（extra segment），也就是说它经常和串处理有关系（当然要和ds相互配合），然后再利用si和di这对就能完成传操作了。</em></p>
+<p>当然，还有其他的串传送指令：movsw（传送字节单位），这只需要将+1改成+2即可。</p>
+<blockquote>
+<p>通过上述描述，我们肯定知道DF有多重要了（直接决定了si和di是加是减），有没有对DF进行操作的指令？</p>
+</blockquote>
+<p>cld指令：将DF置为0（clear）<br>std指令：将DF置为1（setup）</p>
+<h3 id="rep指令"><a href="#rep指令" class="headerlink" title="rep指令"></a>rep指令</h3><blockquote>
+<p>我们的串传送指令也只是一次的执行，它也得配合loop循环使用（假的串指令？），而一直写loop也有点麻烦。</p>
+</blockquote>
+<p>rep指令能够根据cx的值，重复执行之后的指令（<u>通常和串传送指令配合</u>）</p>
+<div class="code-wrapper"><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">rep movsb<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>等同于：</p>
+<div class="code-wrapper"><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">s:  movsb
+	loop s<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<h2 id="位移指令"><a href="#位移指令" class="headerlink" title="位移指令"></a>位移指令</h2><blockquote>
+<font size=4>首先介绍一下SHL</font>
+
+</blockquote>
+<p>SHL OPR,CNT    将OPR逻辑左移CNT位</p>
+<ol>
+<li>将寄存器或内存单元中的数据向左移位</li>
+<li>将溢出的一位写入CF中</li>
+<li>最低位用0补充</li>
+</ol>
+<p><em>warning：这里有一点需要注意的是，执行shl时，如果移动的位数大于一，必须用cl来控制循环</em></p>
+<h2 id="一些坑"><a href="#一些坑" class="headerlink" title="一些坑"></a>一些坑</h2><ul>
+<li><strong>在调用9号中断（即字符串输出）时，字符串会不停的读取字符，直到碰到$</strong></li>
+<li><strong>调用2号中断（即单个字符输出）时，会自动输出一个字符（只是想说明和9号的终止符不同）</strong></li>
+<li><strong>调用10号中断（即字符串输入）时，存入的第一个字符<font color=brown>可能</font>不在变量的偏移地址处（按常识应该在的位置），而是在偏移地址向后+2字节的地址处。</strong></li>
+</ul>
+<h3 id="子程序坑"><a href="#子程序坑" class="headerlink" title="子程序坑"></a>子程序坑</h3><p><strong>想要正确调用，格式是这样的：</strong></p>
+<div class="code-wrapper"><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">codes segment
+	assume: ...
+
+start:
+main proc far
+	mov ax,datas
+	mov ds,ax
+    ;此处输入代码
+    call ...
+
+    mov ah,4ch
+    int 21h
+main ENDP
+
+... proc near
+	...
+... endp
+
+codes ends
+	end start<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h3 id="输出数组的坑"><a href="#输出数组的坑" class="headerlink" title="输出数组的坑"></a>输出数组的坑</h3><blockquote>
+<p>当你想要利用一个定义好的变量进行输入后，你可能会纠结于怎么去得到这个数组变量里的每一个值。<em>（因为一不留神就是一个报错）</em></p>
+</blockquote>
+<p>个人建议的输出方式：</p>
+<div class="code-wrapper"><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">mov dl,arr[bx+2]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p><strong><em>因为这种方法很像C语言中的指针，所以容易记忆</em></strong></p>
+<p>但是注意的是，可能有如下报错：</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">must be base or index registor<span class="token operator">!</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p><strong><em>这通常是你使用了<code>arr[cx+2]</code>等方式，这里的base registor只有两个：<code>ax</code>和<code>bx</code>！</em></strong>（index registor就不用说了吧）</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/masm/">masm</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/10/23/canvas%E7%BB%86%E8%8A%82%E8%AE%B2%E8%A7%A3/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">canvas细节讲解</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/10/18/hello-world/">
+                        <span class="hidden-mobile">Hello World</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                  
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('vcomments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "2RbCqGEaklHVj7Gj6dtd2kM4-gzGzoHsz",
+          app_key: "kdFD4FmNeIpaTMK269nEqhxx",
+          placeholder: "say something...",
+          path: window.location.pathname,
+          avatar: "mp",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          recordIP: true,
+          serverURLs: "https://2rbcqgea.lc-cn-n1-shared.com",
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments powered by Valine.</a>
+  </noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+
+  <!-- 自己设置一个记录网站运行时间的方法 -->
+  <span id="sitetime" style="font-size: 14px; font-family: Consolas;font-weight: normal; color: #aaa;"></span>
+  <script language=javascript>
+    function siteTime(){
+      window.setTimeout("siteTime()", 1000);
+      var seconds = 1000;
+      var minutes = seconds * 60;
+      var hours = minutes * 60;
+      var days = hours * 24;
+      var years = days * 365;
+      var today = new Date();
+      var todayYear = today.getFullYear();
+      var todayMonth = today.getMonth()+1;
+      var todayDate = today.getDate();
+      var todayHour = today.getHours();
+      var todayMinute = today.getMinutes();
+      var todaySecond = today.getSeconds();
+      /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+      year - 作为date对象的年份，为4位年份值
+      month - 0-11之间的整数，做为date对象的月份
+      day - 1-31之间的整数，做为date对象的天数
+      hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+      minutes - 0-59之间的整数，做为date对象的分钟数
+      seconds - 0-59之间的整数，做为date对象的秒数
+      microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+      var t1 = Date.UTC(2020,10,18,15,00,00); //北京时间2020-10-18 00:00:00
+      var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+      var diff = t2-t1;
+      var diffYears = Math.floor(diff/years);
+      var diffDays = Math.floor((diff/days)-diffYears*365);
+      var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+      var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+      var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+      document.getElementById("sitetime").innerHTML=" 小破站已勉强运行了 "+/*diffYears+" 年 "+*/diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+    }/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+    siteTime();
+  </script>
+  <!-- 自己设置一个记录网站运行时间的方法 -->
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/mermaid@8.8.3/dist/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({"theme":"default"});
+    }
+  </script>
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0d7560f90f7a21d6a9e7635611dac094";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

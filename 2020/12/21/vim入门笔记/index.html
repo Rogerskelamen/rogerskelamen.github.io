@@ -1,0 +1,1329 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/rogerskelamen/mdpic/raw/master/img/img.jpg">
+  <link rel="icon" href="https://gitee.com/rogerskelamen/mdpic/raw/master/img/img.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  
+    <meta name="description" content="">
+  
+  <meta name="author" content="Rogers Kelamen">
+  <meta name="keywords" content="blog">
+  
+  <title>Vim入门笔记| RO&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.22.0/themes/prism-solarizedlight.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.22.0/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"rokelamen.top","root":"/","version":"1.8.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":"0d7560f90f7a21d6a9e7635611dac094","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"2RbCqGEaklHVj7Gj6dtd2kM4-gzGzoHsz","app_key":"kdFD4FmNeIpaTMK269nEqhxx","server_url":"https://2rbcqgea.lc-cn-n1-shared.com"}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>RO's Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://gitee.com/rogerskelamen/mdpic/raw/master/img/nerdtree_with_tagbar.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Vim入门笔记">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Rogers Kelamen
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-12-21 22:51" pubdate>
+        2020年12月21日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.7k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      141
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Vim入门笔记</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2020年3月11日 晚上
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="Vim入门笔记"><a href="#Vim入门笔记" class="headerlink" title="Vim入门笔记"></a>Vim入门笔记</h1><blockquote>
+<p>啥都不说，献上键位表示</p>
+</blockquote>
+<p><img src="https://gitee.com/rogerskelamen/mdpic/raw/master/img/1608523318696.jpg" srcset="/img/loading.gif" alt=""></p>
+<h1 id="键位简化"><a href="#键位简化" class="headerlink" title="键位简化"></a>键位简化</h1><blockquote>
+<p>将以上复杂的键位入门化</p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>按键</th>
+<th>单词表示</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><kbd>w</kbd></td>
+<td>word</td>
+<td>向后一个词</td>
+</tr>
+<tr>
+<td><kbd>b</kbd></td>
+<td>back</td>
+<td>向前一个词</td>
+</tr>
+<tr>
+<td><kbd>a</kbd></td>
+<td>append</td>
+<td>在这个字符后写入</td>
+</tr>
+<tr>
+<td><kbd>A</kbd></td>
+<td>同上</td>
+<td>在本行末开始写入</td>
+</tr>
+<tr>
+<td><kbd>i</kbd></td>
+<td>insert</td>
+<td>在光标位置插入</td>
+</tr>
+<tr>
+<td><kbd>I</kbd></td>
+<td>同上</td>
+<td>在本行首开始写入</td>
+</tr>
+<tr>
+<td><kbd>o</kbd></td>
+<td>open</td>
+<td>创建下一空行并写入</td>
+</tr>
+<tr>
+<td><kbd>O</kbd></td>
+<td>同上</td>
+<td>创建上一空行并写入</td>
+</tr>
+<tr>
+<td><kbd>y</kbd></td>
+<td>yank</td>
+<td>复制当前字符</td>
+</tr>
+<tr>
+<td><kbd>c</kbd></td>
+<td>change</td>
+<td>删除当前字符并写入</td>
+</tr>
+<tr>
+<td><kbd>d</kbd></td>
+<td>delete</td>
+<td><u>剪切</u>当前字符</td>
+</tr>
+<tr>
+<td><kbd>p</kbd></td>
+<td>paste</td>
+<td>将剪切板上的内容粘贴</td>
+</tr>
+<tr>
+<td><kbd>f</kbd></td>
+<td>find</td>
+<td>将光标移至“f”按键之后的字符（就近原则）</td>
+</tr>
+<tr>
+<td><kbd>g</kbd></td>
+<td>go</td>
+<td>将光标移动到一个位置（动作键）</td>
+</tr>
+</tbody>
+</table>
+</div>
+<font size=4>**常用键位组合**：</font>
+
+<p><kbd>dd</kbd>：删除当前行<br><kbd>gg</kbd>：跳转到<u>文本</u>首行<br><kbd>G</kbd>：跳转到<u>文本</u>末尾行<br><kbd>ciw</kbd>：更改光标所在单词的内容（change in word）<br><kbd>ci”</kbd>：删除光标所在双引号中的内容并写入<br><kbd>yi”</kbd>：类比上面的，有复制光标所在双引号中的内容<br><kbd>zz</kbd>：使视野居中<br><kbd>df*</kbd>：找到指定字符并从光标处一直删除到那个字符（*为任意字符）<br><kbd>ggvG=</kbd>：格式化文档（对你没听错）<br><kbd>Ctrl</kbd>+<kbd>o</kbd>：回到上一次更改的位置（<u><strong>可跨文件</strong></u>）<br><kbd>Ctrl</kbd>+<kbd>i</kbd>：回到回到后上次更改的位置（<u><strong>可跨文件</strong></u>）<br><kbd>gf</kbd>：直接用vim打开光标所在的这个目录文件<br><kbd>Ctrl</kbd>+<kbd>a</kbd>：若当前字符是数字，这个数字加1<br><kbd>Ctrl</kbd>+<kbd>x</kbd>：若当前字符是数字，这个数字减1</p>
+<h1 id="vim指令"><a href="#vim指令" class="headerlink" title="vim指令"></a>vim指令</h1><blockquote>
+<p>在normal模式（普通模式）下，我们可以先输入<code>:</code>然后就可以输入vim的指令了。利用vim指令可以实现更多的操作功能。</p>
+</blockquote>
+<h2 id="保存和退出"><a href="#保存和退出" class="headerlink" title="保存和退出"></a>保存和退出</h2><p>最基本的操作，<code>w</code> for <code>write</code>，<code>q</code> for <code>quit</code>：</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token punctuation">:</span><span class="token keyword">wq</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p><em>ps：<code>:</code>之后的指令可以连在一起写多个，这里的wq就是‘写入’和‘退出’</em></p>
+<p><strong><em>按<code>!</code>之后是强制执行，如<code>q!</code>就是强制退出</em></strong></p>
+<p>这个我们配置一下后就用<kbd>S</kbd>保存，<kbd>Q</kbd>退出：</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim">map S <span class="token punctuation">:</span><span class="token keyword">w</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+map Q <span class="token punctuation">:</span><span class="token keyword">q</span><span class="token operator">&lt;</span>CR<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<h2 id="vim内打开文件"><a href="#vim内打开文件" class="headerlink" title="vim内打开文件"></a>vim内打开文件</h2><p><code>e</code> for <code>edit</code>，eg：</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token punctuation">:</span><span class="token keyword">e</span> ~<span class="token operator">/</span>program<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>然后就会出现一个分屏窗口（一个简易的文件管理UI），进行文件的选择，最后选择（按回车）后就会出现这个文件的分屏</p>
+<h2 id="vim内执行shell命令"><a href="#vim内执行shell命令" class="headerlink" title="vim内执行shell命令"></a>vim内执行shell命令</h2><p>直接上例子（用<code>!</code>来告诉vim之后的指令是shell指令）：</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token punctuation">:</span><span class="token operator">!</span> <span class="token keyword">ls</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>这样就会使终端回到shell中执行命令并可看得到结果</p>
+<p><img src="https://gitee.com/rogerskelamen/mdpic/raw/master/img/image-20201231150654053.png" srcset="/img/loading.gif" alt="image-20201231150654053"></p>
+<p><em>然后vim会提示你按回车回到vim</em></p>
+<h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><blockquote>
+<p> 你要是想要用shell执行多个命令然后回到vim，还可以这么操作：</p>
+</blockquote>
+<ol>
+<li>先按<kbd>Ctrl</kbd>+<kbd>z</kbd>然后就会退出vim来到shell，同时vim会后台程序中</li>
+<li>我们再输入我们要执行的shell指令</li>
+<li>最后用<code>fg</code>命令回到vim</li>
+</ol>
+<h1 id="本人的-vimrc配置"><a href="#本人的-vimrc配置" class="headerlink" title="本人的.vimrc配置"></a>本人的.vimrc配置</h1><h2 id="有注释版"><a href="#有注释版" class="headerlink" title="有注释版"></a>有注释版</h2><div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token comment">"------------------------------</span>
+<span class="token comment">"设置leader映射,空格为leader键</span>
+<span class="token comment">"------------------------------</span>
+<span class="token keyword">let</span> mapleader<span class="token operator">=</span><span class="token string">" "</span>
+<span class="token builtin">noremap</span> <span class="token operator">&lt;</span>LEADER<span class="token operator">></span><span class="token operator">&lt;</span>CR<span class="token operator">></span> <span class="token punctuation">:</span><span class="token keyword">nohlsearch</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+<span class="token builtin">noremap</span> <span class="token operator">&lt;</span>LEADER<span class="token operator">></span>S <span class="token punctuation">:</span><span class="token keyword">split</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+<span class="token builtin">noremap</span> <span class="token operator">&lt;</span>LEADER<span class="token operator">></span>V <span class="token punctuation">:</span><span class="token keyword">vsplit</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+<span class="token comment">" leader加上方向键控制分屏移动</span>
+map <span class="token operator">&lt;</span>LEADER<span class="token operator">></span><span class="token keyword">l</span> <span class="token operator">&lt;</span>C<span class="token operator">-</span><span class="token keyword">w</span><span class="token operator">></span><span class="token keyword">l</span>
+map <span class="token operator">&lt;</span>LEADER<span class="token operator">></span><span class="token keyword">k</span> <span class="token operator">&lt;</span>C<span class="token operator">-</span><span class="token keyword">w</span><span class="token operator">></span><span class="token keyword">k</span>
+map <span class="token operator">&lt;</span>LEADER<span class="token operator">></span><span class="token keyword">h</span> <span class="token operator">&lt;</span>C<span class="token operator">-</span><span class="token keyword">w</span><span class="token operator">></span><span class="token keyword">h</span>
+map <span class="token operator">&lt;</span>LEADER<span class="token operator">></span><span class="token keyword">j</span> <span class="token operator">&lt;</span>C<span class="token operator">-</span><span class="token keyword">w</span><span class="token operator">></span><span class="token keyword">j</span>
+<span class="token comment">"按两次空格之后跳到下一格&lt;++>然后写入 </span>
+map <span class="token operator">&lt;</span>LEADER<span class="token operator">></span><span class="token operator">&lt;</span>LEADER<span class="token operator">></span> <span class="token operator">&lt;</span>Esc<span class="token operator">></span><span class="token operator">/</span><span class="token operator">&lt;</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">></span><span class="token operator">&lt;</span>CR<span class="token operator">></span><span class="token punctuation">:</span><span class="token keyword">nohlsearch</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>c4i
+
+<span class="token comment">"----------------------------</span>
+<span class="token comment">"普通键位映射</span>
+<span class="token comment">"----------------------------</span>
+map S <span class="token punctuation">:</span><span class="token keyword">w</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+map Q <span class="token punctuation">:</span><span class="token keyword">q</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+<span class="token builtin">noremap</span> H 5h
+<span class="token builtin">noremap</span> J 5j
+<span class="token builtin">noremap</span> K 5k
+<span class="token builtin">noremap</span> L 5l
+<span class="token comment">" 方向键控制分屏大小</span>
+map <span class="token operator">&lt;</span><span class="token keyword">up</span><span class="token operator">></span> <span class="token punctuation">:</span><span class="token keyword">res</span> <span class="token operator">-</span><span class="token number">5</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+map <span class="token operator">&lt;</span>down<span class="token operator">></span> <span class="token punctuation">:</span><span class="token keyword">res</span> <span class="token operator">+</span><span class="token number">5</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+map <span class="token operator">&lt;</span><span class="token keyword">left</span><span class="token operator">></span> <span class="token punctuation">:</span><span class="token keyword">vertical</span> <span class="token keyword">resize</span><span class="token operator">-</span><span class="token number">5</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+map <span class="token operator">&lt;</span><span class="token keyword">right</span><span class="token operator">></span> <span class="token punctuation">:</span><span class="token keyword">vertical</span> <span class="token keyword">resize</span><span class="token operator">+</span><span class="token number">5</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+map <span class="token keyword">th</span> <span class="token punctuation">:</span><span class="token operator">-</span><span class="token keyword">tabnext</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+map <span class="token keyword">tl</span> <span class="token punctuation">:</span><span class="token operator">+</span><span class="token keyword">tabnext</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+map <span class="token keyword">tu</span> <span class="token punctuation">:</span><span class="token keyword">tabe</span><span class="token operator">&lt;</span>CR<span class="token operator">></span><span class="token keyword">j</span>
+<span class="token comment">" w通过s加v/j来更改分屏布局</span>
+map <span class="token keyword">sv</span> <span class="token operator">&lt;</span>C<span class="token operator">-</span><span class="token keyword">w</span><span class="token operator">></span><span class="token keyword">t</span><span class="token operator">&lt;</span>C<span class="token operator">-</span><span class="token keyword">w</span><span class="token operator">></span>H
+map <span class="token builtin">sj</span> <span class="token operator">&lt;</span>C<span class="token operator">-</span><span class="token keyword">w</span><span class="token operator">></span><span class="token keyword">t</span><span class="token operator">&lt;</span>C<span class="token operator">-</span><span class="token keyword">w</span><span class="token operator">></span>K
+<span class="token comment">"切换拼写错误的检验</span>
+map <span class="token operator">&lt;</span>LEADER<span class="token operator">></span><span class="token builtin">sc</span> <span class="token punctuation">:</span><span class="token keyword">set</span> <span class="token builtin">spell</span><span class="token operator">!</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+
+<span class="token comment">"----------------------------</span>
+<span class="token comment">"全局的部分配置</span>
+<span class="token comment">"----------------------------</span>
+<span class="token keyword">set</span> <span class="token builtin">enc</span><span class="token operator">=</span>utf8
+<span class="token keyword">set</span> <span class="token builtin">fencs</span><span class="token operator">=</span>utf8<span class="token punctuation">,</span>gbk<span class="token punctuation">,</span>gb2312<span class="token punctuation">,</span>gb1803
+<span class="token keyword">set</span> <span class="token builtin">nocompatible</span>		<span class="token comment">"设置兼容</span>
+<span class="token keyword">filetype</span> <span class="token keyword">on</span>		<span class="token comment">"以下都是相关文件类型配置</span>
+<span class="token keyword">filetype</span> indent <span class="token keyword">on</span>
+<span class="token keyword">filetype</span> plugin <span class="token keyword">on</span>
+<span class="token keyword">filetype</span> plugin indent <span class="token keyword">on</span>
+<span class="token keyword">set</span> <span class="token builtin">mouse</span><span class="token operator">=</span>a		<span class="token comment">"你可以在vim中使用鼠标</span>
+<span class="token keyword">set</span> <span class="token builtin">encoding</span><span class="token operator">=</span>utf<span class="token operator">-</span><span class="token number">8</span>
+<span class="token keyword">let</span> &amp;<span class="token builtin">t_ut</span><span class="token operator">=</span><span class="token string">''</span>
+<span class="token keyword">set</span> <span class="token builtin">scrolloff</span><span class="token operator">=</span><span class="token number">5</span>		<span class="token comment">"使得时刻可以在开头和末尾有五行显示</span>
+<span class="token keyword">set</span> <span class="token builtin">autochdir</span>		<span class="token comment">"设置当前文件目录下执行命令</span>
+<span class="token comment">" 按leader键和w清除所有的行尾空格</span>
+<span class="token builtin">noremap</span> <span class="token operator">&lt;</span>leader<span class="token operator">></span><span class="token keyword">w</span> <span class="token punctuation">:</span><span class="token operator">%</span>s<span class="token operator">/</span>\s\<span class="token operator">+</span>$<span class="token operator">/</span><span class="token operator">/</span><span class="token operator">&lt;</span><span class="token keyword">cr</span><span class="token operator">></span><span class="token punctuation">:</span><span class="token keyword">let</span> @<span class="token operator">/</span><span class="token operator">=</span><span class="token string">''</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+<span class="token comment">"记住上一次打开的光标位置</span>
+au BufReadPost <span class="token operator">*</span> <span class="token keyword">if</span> <span class="token function">line</span><span class="token punctuation">(</span><span class="token string">"'\""</span><span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">1</span> <span class="token operator">&amp;&amp;</span> <span class="token function">line</span><span class="token punctuation">(</span><span class="token string">"'\""</span><span class="token punctuation">)</span> <span class="token operator">&lt;=</span> <span class="token function">line</span><span class="token punctuation">(</span><span class="token string">"$"</span><span class="token punctuation">)</span> | exe <span class="token string">"normal! g'\""</span> | <span class="token keyword">endif</span>
+
+<span class="token comment">"------------------------------</span>
+<span class="token comment">" Vim UI</span>
+<span class="token comment">"------------------------------</span>
+<span class="token keyword">set</span> <span class="token keyword">number</span>		<span class="token comment">"显示行号</span>
+<span class="token keyword">set</span> relativenumber		<span class="token comment">"相对地显示行号</span>
+<span class="token keyword">set</span> <span class="token builtin">cursorline</span>		<span class="token comment">"展示当前行下划线</span>
+<span class="token keyword">set</span> <span class="token builtin">wrap</span>		<span class="token comment">"一行内容超出换行</span>
+<span class="token keyword">set</span> <span class="token builtin">wildmenu</span>		<span class="token comment">"在指令模式下有Tab提示</span>
+<span class="token keyword">set</span> <span class="token builtin">showcmd</span>		<span class="token comment">"显示按下的按键</span>
+
+<span class="token comment">"-------------------------------------</span>
+<span class="token comment">" text searching/matching</span>
+<span class="token comment">"-------------------------------------</span>
+<span class="token keyword">set</span> <span class="token builtin">hlsearch</span>		<span class="token comment">"搜索(/)高亮</span>
+exec <span class="token string">"nohlsearch"</span>		<span class="token comment">"进入文件后删除搜索历史</span>
+<span class="token keyword">set</span> <span class="token builtin">incsearch</span>		<span class="token comment">"实时显示搜索高亮</span>
+<span class="token keyword">set</span> <span class="token builtin">ignorecase</span>		<span class="token comment">"搜索忽略大小写</span>
+<span class="token keyword">set</span> <span class="token builtin">smartcase</span>		<span class="token comment">"开启智能大小写</span>
+<span class="token builtin">noremap</span> _ nzz		<span class="token comment">"下一个搜索匹配</span>
+<span class="token builtin">noremap</span> <span class="token operator">+</span> Nzz		<span class="token comment">"上一个搜索匹配</span>
+
+<span class="token comment">"-------------------------------------</span>
+<span class="token comment">" text formatting/layout</span>
+<span class="token comment">"-------------------------------------</span>
+<span class="token keyword">set</span> <span class="token builtin">tabstop</span><span class="token operator">=</span><span class="token number">4</span>		<span class="token comment">"tab键宽度</span>
+<span class="token keyword">set</span> <span class="token builtin">shiftwidth</span><span class="token operator">=</span><span class="token number">4</span>
+<span class="token keyword">set</span> <span class="token builtin">softtabstop</span><span class="token operator">=</span><span class="token number">4</span>
+<span class="token keyword">set</span> <span class="token builtin">expandtab</span>		<span class="token comment">"实际使用tab字符，不要用空格字符替换</span>
+<span class="token keyword">set</span> <span class="token builtin">autoindent</span>		<span class="token comment">"继承前一行的缩进方式</span>
+<span class="token keyword">set</span> <span class="token builtin">tw</span><span class="token operator">=</span><span class="token number">0</span>
+<span class="token keyword">set</span> <span class="token builtin">indentexpr</span><span class="token operator">=</span>
+<span class="token keyword">set</span> <span class="token builtin">backspace</span><span class="token operator">=</span>indent<span class="token punctuation">,</span><span class="token builtin">eol</span><span class="token punctuation">,</span>start
+<span class="token keyword">set</span> <span class="token builtin">foldmethod</span><span class="token operator">=</span>indent
+<span class="token keyword">set</span> <span class="token builtin">foldlevel</span><span class="token operator">=</span><span class="token number">99</span>
+<span class="token keyword">set</span> <span class="token keyword">list</span>		<span class="token comment">"显示行尾是否有空格，用$表示结束</span>
+<span class="token builtin">syntax</span> <span class="token keyword">on</span>		<span class="token comment">"语法高亮</span>
+
+<span class="token keyword">colorscheme</span> slate		<span class="token comment">"主题设置</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p><em>ps：leader键就相当于windows中的super键</em></p>
+<h2 id="无注释版"><a href="#无注释版" class="headerlink" title="无注释版"></a>无注释版</h2><div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token comment">"------------------------------</span>
+<span class="token comment">"设置leader映射,空格为leader键</span>
+<span class="token comment">"------------------------------</span>
+<span class="token keyword">let</span> mapleader<span class="token operator">=</span><span class="token string">" "</span>
+<span class="token builtin">noremap</span> <span class="token operator">&lt;</span>LEADER<span class="token operator">></span><span class="token operator">&lt;</span>CR<span class="token operator">></span> <span class="token punctuation">:</span><span class="token keyword">nohlsearch</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+<span class="token builtin">noremap</span> <span class="token operator">&lt;</span>LEADER<span class="token operator">></span>S <span class="token punctuation">:</span><span class="token keyword">split</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+<span class="token builtin">noremap</span> <span class="token operator">&lt;</span>LEADER<span class="token operator">></span>V <span class="token punctuation">:</span><span class="token keyword">vsplit</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+map <span class="token operator">&lt;</span>LEADER<span class="token operator">></span><span class="token keyword">l</span> <span class="token operator">&lt;</span>C<span class="token operator">-</span><span class="token keyword">w</span><span class="token operator">></span><span class="token keyword">l</span>
+map <span class="token operator">&lt;</span>LEADER<span class="token operator">></span><span class="token keyword">k</span> <span class="token operator">&lt;</span>C<span class="token operator">-</span><span class="token keyword">w</span><span class="token operator">></span><span class="token keyword">k</span>
+map <span class="token operator">&lt;</span>LEADER<span class="token operator">></span><span class="token keyword">h</span> <span class="token operator">&lt;</span>C<span class="token operator">-</span><span class="token keyword">w</span><span class="token operator">></span><span class="token keyword">h</span>
+map <span class="token operator">&lt;</span>LEADER<span class="token operator">></span><span class="token keyword">j</span> <span class="token operator">&lt;</span>C<span class="token operator">-</span><span class="token keyword">w</span><span class="token operator">></span><span class="token keyword">j</span>
+map <span class="token operator">&lt;</span>LEADER<span class="token operator">></span><span class="token operator">&lt;</span>LEADER<span class="token operator">></span> <span class="token operator">&lt;</span>Esc<span class="token operator">></span><span class="token operator">/</span><span class="token operator">&lt;</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">></span><span class="token operator">&lt;</span>CR<span class="token operator">></span><span class="token punctuation">:</span><span class="token keyword">nohlsearch</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>c4i
+
+<span class="token comment">"----------------------------</span>
+<span class="token comment">"普通键位映射</span>
+<span class="token comment">"----------------------------</span>
+map S <span class="token punctuation">:</span><span class="token keyword">w</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+map Q <span class="token punctuation">:</span><span class="token keyword">q</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+<span class="token builtin">noremap</span> H 5h
+<span class="token builtin">noremap</span> J 5j
+<span class="token builtin">noremap</span> K 5k
+<span class="token builtin">noremap</span> L 5l
+map <span class="token operator">&lt;</span><span class="token keyword">up</span><span class="token operator">></span> <span class="token punctuation">:</span><span class="token keyword">res</span> <span class="token operator">-</span><span class="token number">5</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+map <span class="token operator">&lt;</span>down<span class="token operator">></span> <span class="token punctuation">:</span><span class="token keyword">res</span> <span class="token operator">+</span><span class="token number">5</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+map <span class="token operator">&lt;</span><span class="token keyword">left</span><span class="token operator">></span> <span class="token punctuation">:</span><span class="token keyword">vertical</span> <span class="token keyword">resize</span><span class="token operator">-</span><span class="token number">5</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+map <span class="token operator">&lt;</span><span class="token keyword">right</span><span class="token operator">></span> <span class="token punctuation">:</span><span class="token keyword">vertical</span> <span class="token keyword">resize</span><span class="token operator">+</span><span class="token number">5</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+map <span class="token keyword">th</span> <span class="token punctuation">:</span><span class="token operator">-</span><span class="token keyword">tabnext</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+map <span class="token keyword">tl</span> <span class="token punctuation">:</span><span class="token operator">+</span><span class="token keyword">tabnext</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+map <span class="token keyword">tu</span> <span class="token punctuation">:</span><span class="token keyword">tabe</span><span class="token operator">&lt;</span>CR<span class="token operator">></span><span class="token keyword">j</span>
+map <span class="token keyword">sv</span> <span class="token operator">&lt;</span>C<span class="token operator">-</span><span class="token keyword">w</span><span class="token operator">></span><span class="token keyword">t</span><span class="token operator">&lt;</span>C<span class="token operator">-</span><span class="token keyword">w</span><span class="token operator">></span>H
+map <span class="token builtin">sj</span> <span class="token operator">&lt;</span>C<span class="token operator">-</span><span class="token keyword">w</span><span class="token operator">></span><span class="token keyword">t</span><span class="token operator">&lt;</span>C<span class="token operator">-</span><span class="token keyword">w</span><span class="token operator">></span>K
+map <span class="token operator">&lt;</span>LEADER<span class="token operator">></span><span class="token builtin">sc</span> <span class="token punctuation">:</span><span class="token keyword">set</span> <span class="token builtin">spell</span><span class="token operator">!</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+map <span class="token operator">&lt;</span>C<span class="token operator">-</span>z<span class="token operator">></span> <span class="token keyword">u</span>
+map <span class="token operator">&lt;</span>C<span class="token operator">-</span><span class="token keyword">y</span><span class="token operator">></span> <span class="token operator">&lt;</span>C<span class="token operator">-</span><span class="token keyword">r</span><span class="token operator">></span>
+
+<span class="token comment">"----------------------------</span>
+<span class="token comment">"全局的部分配置</span>
+<span class="token comment">"----------------------------</span>
+<span class="token keyword">set</span> <span class="token builtin">enc</span><span class="token operator">=</span>utf8
+<span class="token keyword">set</span> <span class="token builtin">fencs</span><span class="token operator">=</span>utf8<span class="token punctuation">,</span>gbk<span class="token punctuation">,</span>gb2312<span class="token punctuation">,</span>gb1803
+<span class="token keyword">set</span> <span class="token builtin">nocompatible</span>
+<span class="token keyword">filetype</span> <span class="token keyword">on</span>
+<span class="token keyword">filetype</span> indent <span class="token keyword">on</span>
+<span class="token keyword">filetype</span> plugin <span class="token keyword">on</span>
+<span class="token keyword">filetype</span> plugin indent <span class="token keyword">on</span>
+<span class="token comment">" set mouse=a</span>
+<span class="token keyword">set</span> <span class="token builtin">encoding</span><span class="token operator">=</span>utf<span class="token operator">-</span><span class="token number">8</span>
+<span class="token keyword">let</span> &amp;<span class="token builtin">t_ut</span><span class="token operator">=</span><span class="token string">''</span>
+<span class="token keyword">set</span> <span class="token builtin">scrolloff</span><span class="token operator">=</span><span class="token number">5</span>
+<span class="token keyword">set</span> <span class="token builtin">autochdir</span>
+<span class="token builtin">noremap</span> <span class="token operator">&lt;</span>leader<span class="token operator">></span><span class="token keyword">w</span> <span class="token punctuation">:</span><span class="token operator">%</span>s<span class="token operator">/</span>\s\<span class="token operator">+</span>$<span class="token operator">/</span><span class="token operator">/</span><span class="token operator">&lt;</span><span class="token keyword">cr</span><span class="token operator">></span><span class="token punctuation">:</span><span class="token keyword">let</span> @<span class="token operator">/</span><span class="token operator">=</span><span class="token string">''</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+au BufReadPost <span class="token operator">*</span> <span class="token keyword">if</span> <span class="token function">line</span><span class="token punctuation">(</span><span class="token string">"'\""</span><span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">1</span> <span class="token operator">&amp;&amp;</span> <span class="token function">line</span><span class="token punctuation">(</span><span class="token string">"'\""</span><span class="token punctuation">)</span> <span class="token operator">&lt;=</span> <span class="token function">line</span><span class="token punctuation">(</span><span class="token string">"$"</span><span class="token punctuation">)</span> | exe <span class="token string">"normal! g'\""</span> | <span class="token keyword">endif</span>
+
+<span class="token comment">"------------------------------</span>
+<span class="token comment">" Vim UI</span>
+<span class="token comment">"------------------------------</span>
+<span class="token keyword">set</span> <span class="token keyword">number</span>
+<span class="token keyword">set</span> relativenumber
+<span class="token keyword">set</span> <span class="token builtin">cursorline</span>
+<span class="token keyword">set</span> <span class="token builtin">wrap</span>
+<span class="token keyword">set</span> <span class="token builtin">wildmenu</span>
+<span class="token keyword">set</span> <span class="token builtin">showcmd</span>
+
+<span class="token comment">"-------------------------------------</span>
+<span class="token comment">" text searching/matching</span>
+<span class="token comment">"-------------------------------------</span>
+<span class="token keyword">set</span> <span class="token builtin">hlsearch</span>
+exec <span class="token string">"nohlsearch"</span>
+<span class="token keyword">set</span> <span class="token builtin">incsearch</span>
+<span class="token keyword">set</span> <span class="token builtin">ignorecase</span>
+<span class="token keyword">set</span> <span class="token builtin">smartcase</span>
+<span class="token builtin">noremap</span> _ nzz
+<span class="token builtin">noremap</span> <span class="token operator">+</span> Nzz
+
+<span class="token comment">"-------------------------------------</span>
+<span class="token comment">" text formatting/layout</span>
+<span class="token comment">"-------------------------------------</span>
+<span class="token keyword">set</span> <span class="token builtin">tabstop</span><span class="token operator">=</span><span class="token number">4</span>
+<span class="token keyword">set</span> <span class="token builtin">shiftwidth</span><span class="token operator">=</span><span class="token number">4</span>
+<span class="token keyword">set</span> <span class="token builtin">softtabstop</span><span class="token operator">=</span><span class="token number">4</span>
+<span class="token keyword">set</span> <span class="token builtin">expandtab</span>
+<span class="token keyword">set</span> <span class="token builtin">autoindent</span>
+<span class="token keyword">set</span> <span class="token builtin">tw</span><span class="token operator">=</span><span class="token number">0</span>
+<span class="token keyword">set</span> <span class="token builtin">indentexpr</span><span class="token operator">=</span>
+<span class="token keyword">set</span> <span class="token builtin">backspace</span><span class="token operator">=</span>indent<span class="token punctuation">,</span><span class="token builtin">eol</span><span class="token punctuation">,</span>start
+<span class="token keyword">set</span> <span class="token builtin">foldmethod</span><span class="token operator">=</span>indent
+<span class="token keyword">set</span> <span class="token builtin">foldlevel</span><span class="token operator">=</span><span class="token number">99</span>
+<span class="token builtin">syntax</span> <span class="token keyword">on</span>
+
+<span class="token keyword">colorscheme</span> slate
+
+<span class="token comment">" ========================</span>
+<span class="token comment">" coc配置</span>
+<span class="token comment">" ========================</span>
+<span class="token keyword">set</span> <span class="token builtin">hidden</span>
+<span class="token keyword">set</span> <span class="token builtin">updatetime</span><span class="token operator">=</span><span class="token number">100</span>
+<span class="token keyword">set</span> <span class="token builtin">shortmess</span><span class="token operator">+=</span><span class="token keyword">c</span>
+
+<span class="token keyword">if</span> <span class="token function">has</span><span class="token punctuation">(</span><span class="token string">"patch-8.1.1564"</span><span class="token punctuation">)</span>
+  <span class="token comment">" Recently vim can merge signcolumn and number column into one</span>
+  <span class="token keyword">set</span> signcolumn<span class="token operator">=</span><span class="token keyword">number</span>
+<span class="token keyword">else</span>
+  <span class="token keyword">set</span> signcolumn<span class="token operator">=</span>yes
+<span class="token keyword">endif</span>
+
+inoremap <span class="token operator">&lt;</span><span class="token keyword">silent</span><span class="token operator">></span><span class="token operator">&lt;</span>expr<span class="token operator">></span> <span class="token operator">&lt;</span>TAB<span class="token operator">></span>
+      \ <span class="token function">pumvisible</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token string">"\&lt;C-n>"</span> <span class="token punctuation">:</span>
+      \ <span class="token operator">&lt;</span>SID<span class="token operator">></span><span class="token function">check_back_space</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token string">"\&lt;TAB>"</span> <span class="token punctuation">:</span>
+      \ coc#<span class="token function">refresh</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+inoremap <span class="token operator">&lt;</span>expr<span class="token operator">></span><span class="token operator">&lt;</span>S<span class="token operator">-</span>TAB<span class="token operator">></span> <span class="token function">pumvisible</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token string">"\&lt;C-p>"</span> <span class="token punctuation">:</span> <span class="token string">"\&lt;C-h>"</span>
+
+<span class="token keyword">function</span><span class="token operator">!</span> s<span class="token punctuation">:</span><span class="token function">check_back_space</span><span class="token punctuation">(</span><span class="token punctuation">)</span> abort
+  <span class="token keyword">let</span> <span class="token keyword">col</span> <span class="token operator">=</span> <span class="token function">col</span><span class="token punctuation">(</span><span class="token string">'.'</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span>
+  <span class="token keyword">return</span> <span class="token operator">!</span><span class="token keyword">col</span> <span class="token operator">||</span> <span class="token function">getline</span><span class="token punctuation">(</span><span class="token string">'.'</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token keyword">col</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span>  <span class="token operator">=~#</span> <span class="token string">'\s'</span>
+<span class="token keyword">endfunction</span>
+
+<span class="token comment">" Make &lt;CR> auto-select the first completion item and notify coc.nvim to</span>
+<span class="token comment">" format on enter, &lt;cr> could be remapped by other vim plugin</span>
+inoremap <span class="token operator">&lt;</span><span class="token keyword">silent</span><span class="token operator">></span><span class="token operator">&lt;</span>expr<span class="token operator">></span> <span class="token operator">&lt;</span><span class="token keyword">cr</span><span class="token operator">></span> <span class="token function">pumvisible</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">?</span> coc#<span class="token function">_select_confirm</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                              \<span class="token punctuation">:</span> <span class="token string">"\&lt;C-g>u\&lt;CR>\&lt;c-r>=coc#on_enter()\&lt;CR>"</span>
+
+
+nmap <span class="token operator">&lt;</span><span class="token keyword">silent</span><span class="token operator">></span> <span class="token builtin">gd</span> <span class="token operator">&lt;</span>Plug<span class="token operator">></span><span class="token punctuation">(</span>coc<span class="token operator">-</span>definition<span class="token punctuation">)</span>
+nmap <span class="token operator">&lt;</span><span class="token keyword">silent</span><span class="token operator">></span> gy <span class="token operator">&lt;</span>Plug<span class="token operator">></span><span class="token punctuation">(</span>coc<span class="token operator">-</span>type<span class="token operator">-</span>definition<span class="token punctuation">)</span>
+nmap <span class="token operator">&lt;</span><span class="token keyword">silent</span><span class="token operator">></span> gi <span class="token operator">&lt;</span>Plug<span class="token operator">></span><span class="token punctuation">(</span>coc<span class="token operator">-</span>implementation<span class="token punctuation">)</span>
+nmap <span class="token operator">&lt;</span><span class="token keyword">silent</span><span class="token operator">></span> <span class="token keyword">gr</span> <span class="token operator">&lt;</span>Plug<span class="token operator">></span><span class="token punctuation">(</span>coc<span class="token operator">-</span>references<span class="token punctuation">)</span>
+
+<span class="token string">" nnoremap &lt;silent> &lt;LEADER>h :call &lt;SID>show_documentation()&lt;CR>  "</span> 暂时注释掉
+
+<span class="token keyword">function</span><span class="token operator">!</span> s<span class="token punctuation">:</span><span class="token function">show_documentation</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">index</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'vim'</span><span class="token punctuation">,</span><span class="token string">'help'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> &amp;<span class="token keyword">filetype</span><span class="token punctuation">)</span> <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">)</span>
+    execute <span class="token string">'h '</span><span class="token operator">.</span><span class="token function">expand</span><span class="token punctuation">(</span><span class="token string">'&lt;cword>'</span><span class="token punctuation">)</span>
+  <span class="token keyword">elseif</span> <span class="token punctuation">(</span>coc#rpc#<span class="token function">ready</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">call</span> <span class="token function">CocActionAsync</span><span class="token punctuation">(</span><span class="token string">'doHover'</span><span class="token punctuation">)</span>
+  <span class="token keyword">else</span>
+    execute <span class="token string">'!'</span> <span class="token operator">.</span> &amp;<span class="token builtin">keywordprg</span> <span class="token operator">.</span> <span class="token string">" "</span> <span class="token operator">.</span> <span class="token function">expand</span><span class="token punctuation">(</span><span class="token string">'&lt;cword>'</span><span class="token punctuation">)</span>
+  <span class="token keyword">endif</span>
+<span class="token keyword">endfunction</span>
+
+imap <span class="token operator">&lt;</span>C<span class="token operator">-</span><span class="token keyword">l</span><span class="token operator">></span> <span class="token operator">&lt;</span>Plug<span class="token operator">></span><span class="token punctuation">(</span>coc<span class="token operator">-</span>snippets<span class="token operator">-</span>expand<span class="token punctuation">)</span>
+vmap <span class="token operator">&lt;</span>C<span class="token operator">-</span><span class="token keyword">e</span><span class="token operator">></span> <span class="token operator">&lt;</span>Plug<span class="token operator">></span><span class="token punctuation">(</span>coc<span class="token operator">-</span>snippets<span class="token operator">-</span>select<span class="token punctuation">)</span>
+<span class="token keyword">let</span> g<span class="token punctuation">:</span>coc_snippet_next <span class="token operator">=</span> <span class="token string">'&lt;c-m>'</span>
+<span class="token keyword">let</span> g<span class="token punctuation">:</span>coc_snippet_prev <span class="token operator">=</span> <span class="token string">'&lt;c-n>'</span>
+    
+<span class="token comment">"========================== </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h1 id="可视模式（Visual）"><a href="#可视模式（Visual）" class="headerlink" title="可视模式（Visual）"></a>可视模式（Visual）</h1><blockquote>
+<p>可视模式又可以理解为“块模式”</p>
+</blockquote>
+<h2 id="普通可视模式"><a href="#普通可视模式" class="headerlink" title="普通可视模式"></a>普通可视模式</h2><p>相当于是鼠标按住拖动的操作（选中）</p>
+<p><strong>进入模式方式：按<kbd>v</kbd></strong>（小写）</p>
+<p><em>在这种模式中普通的动作（motion）也是生效的，eg：<kbd>d</kbd>剪切选中内容、<kbd>y</kbd>复制选中内容</em></p>
+<h2 id="可视行模式"><a href="#可视行模式" class="headerlink" title="可视行模式"></a>可视行模式</h2><p>顾名思义，一行行选中（效率很高，很快啊🐱‍🏍）</p>
+<p><strong>进入模式方式：按<kbd>V</kbd></strong>（大写）</p>
+<h2 id="可视模式下的命令"><a href="#可视模式下的命令" class="headerlink" title="可视模式下的命令"></a>可视模式下的命令</h2><blockquote>
+<p>其实上两种模式都可以进入指令模式，这里单独拎出来只因为这个太强了。</p>
+</blockquote>
+<p><strong>进入方式：在前两种状态下，按<kbd>:</kbd>，然后写入命令</strong></p>
+<p>使用：eg：</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token punctuation">:</span><span class="token string">'&lt;,'</span><span class="token operator">></span>normal Isomething<span class="token operator">-</span>I<span class="token operator">-</span><span class="token keyword">write</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<font color=#34b>**输入`normal `然后这之后的内容就会转化为我们在普通模式下的指令，你输入的啥，vim就会执行啥。**</font>
+
+<p><em>ps：<code>&#39;&lt;,&#39;&gt;</code>是我们按下冒号之后自动生成的，之后的内容才是我们想写入的</em></p>
+<h2 id="可视块模式"><a href="#可视块模式" class="headerlink" title="可视块模式"></a>可视块模式</h2><blockquote>
+<p> 这个模式是最强的。块，其实就是矩形。vim在这个模式下允许你进行矩形区域的选中，这是非常快捷方便的（操作中就能感受到）</p>
+</blockquote>
+<p><strong>进入模式方式：按下<kbd>Ctrl</kbd>+<kbd>v</kbd></strong></p>
+<p><em>更高级的玩法：</em></p>
+<font color=brown>在可视块模式下并有选中的情况下，按下任意能进入写入模式的按键（如c），然后写入并退出到普通模式，然后这些行会全部被写入。</font>
+
+<h1 id="分屏"><a href="#分屏" class="headerlink" title="分屏"></a>分屏</h1><h2 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h2><ul>
+<li><strong>先<code>:</code>指令模式，然后就是<code>split</code></strong></li>
+<li><strong>如果是按<code>vsplit</code>就是左右分屏</strong></li>
+</ul>
+<p><u><strong>分屏切换的主要按键就是<kbd>Ctrl</kbd>+<kbd>w</kbd>，然后按方向键（hjkl），或者再按一个w就可以转到下一个分屏</strong></u></p>
+<p><em>但是这显然就太麻烦了，我们可以去配置一下按键映射：</em></p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim">map <span class="token operator">&lt;</span>LEADER<span class="token operator">></span><span class="token keyword">l</span> <span class="token operator">&lt;</span>C<span class="token operator">-</span><span class="token keyword">w</span><span class="token operator">></span><span class="token keyword">l</span>
+map <span class="token operator">&lt;</span>LEADER<span class="token operator">></span><span class="token keyword">k</span> <span class="token operator">&lt;</span>C<span class="token operator">-</span><span class="token keyword">w</span><span class="token operator">></span><span class="token keyword">k</span>
+map <span class="token operator">&lt;</span>LEADER<span class="token operator">></span><span class="token keyword">h</span> <span class="token operator">&lt;</span>C<span class="token operator">-</span><span class="token keyword">w</span><span class="token operator">></span><span class="token keyword">h</span>
+map <span class="token operator">&lt;</span>LEADER<span class="token operator">></span><span class="token keyword">j</span> <span class="token operator">&lt;</span>C<span class="token operator">-</span><span class="token keyword">w</span><span class="token operator">></span><span class="token keyword">j</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h2 id="上下分屏和左右分屏的切换"><a href="#上下分屏和左右分屏的切换" class="headerlink" title="上下分屏和左右分屏的切换"></a>上下分屏和左右分屏的切换</h2><blockquote>
+<p>直接上配置</p>
+</blockquote>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim">map <span class="token keyword">sv</span> <span class="token operator">&lt;</span>C<span class="token operator">-</span><span class="token keyword">w</span><span class="token operator">></span><span class="token keyword">t</span><span class="token operator">&lt;</span>C<span class="token operator">-</span><span class="token keyword">w</span><span class="token operator">></span>H
+map <span class="token builtin">sj</span> <span class="token operator">&lt;</span>C<span class="token operator">-</span><span class="token keyword">w</span><span class="token operator">></span><span class="token keyword">t</span><span class="token operator">&lt;</span>C<span class="token operator">-</span><span class="token keyword">w</span><span class="token operator">></span>K<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<p>然后按<kbd>s</kbd>+<kbd>v</kbd>就可以改左右分屏了，同时<kbd>s</kbd>+<kbd>j</kbd>可以改上下分屏。</p>
+<h2 id="打开文件"><a href="#打开文件" class="headerlink" title="打开文件"></a>打开文件</h2><blockquote>
+<p>当你在搞一个项目时，肯定是想要多个文件在分屏中展示，然后分别编辑的，这时候就要用edit指令了</p>
+</blockquote>
+<p><code>e</code>指令：（也可以敲<code>edit</code>）</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token punctuation">:</span><span class="token keyword">e</span> ~<span class="token operator">/</span>myprogram<span class="token operator">/</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p><em>于是它就打开了myprogram这个文件夹，<u>并关闭当前窗口</u>，然后你就可以在这个简易的UI中选中你想要打开的文件。</em></p>
+<h2 id="更改分屏大小"><a href="#更改分屏大小" class="headerlink" title="更改分屏大小"></a>更改分屏大小</h2><blockquote>
+<p>使用<code>resize</code>指令</p>
+</blockquote>
+<p>eg：</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token punctuation">:</span><span class="token keyword">resize</span><span class="token operator">-</span><span class="token number">5</span>
+<span class="token punctuation">:</span><span class="token keyword">vertical</span> <span class="token keyword">resize</span><span class="token operator">-</span><span class="token number">5</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<p>第一条指令是让上下分屏减小5个单位（具体是什么单位不知道），第二条就是左右分屏了。(<code>reszie</code>可简写为<code>res</code>)</p>
+<p>当然，这样做也是贼麻烦，我们还是映射一波：</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim">map <span class="token operator">&lt;</span><span class="token keyword">up</span><span class="token operator">></span> <span class="token punctuation">:</span><span class="token keyword">res</span> <span class="token operator">-</span><span class="token number">5</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+map <span class="token operator">&lt;</span>down<span class="token operator">></span> <span class="token punctuation">:</span><span class="token keyword">res</span> <span class="token operator">+</span><span class="token number">5</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+map <span class="token operator">&lt;</span><span class="token keyword">left</span><span class="token operator">></span> <span class="token punctuation">:</span><span class="token keyword">vertical</span> <span class="token keyword">resize</span><span class="token operator">-</span><span class="token number">5</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+map <span class="token operator">&lt;</span><span class="token keyword">right</span><span class="token operator">></span> <span class="token punctuation">:</span><span class="token keyword">vertical</span> <span class="token keyword">resize</span><span class="token operator">+</span><span class="token number">5</span><span class="token operator">&lt;</span>CR<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h1 id="使用标签页"><a href="#使用标签页" class="headerlink" title="使用标签页"></a>使用标签页</h1><blockquote>
+<p>这个玩意应该熟悉，就是编辑器上面的标签选项</p>
+</blockquote>
+<h2 id="创建新的标签"><a href="#创建新的标签" class="headerlink" title="创建新的标签"></a>创建新的标签</h2><div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token punctuation">:</span><span class="token keyword">tabe</span> <span class="token punctuation">[</span>标签名<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>输入这条指令之后vim就会创建一个新的标签页并覆盖掉原有的标签页(<em>然后你就会看到第一行上出现了一个简易的标签页展示UI</em>)</p>
+<p>还是照例配置一下，免得得输入指令：</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim">map <span class="token keyword">tu</span> <span class="token punctuation">:</span><span class="token keyword">tabe</span><span class="token operator">&lt;</span>CR<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h2 id="移动标签"><a href="#移动标签" class="headerlink" title="移动标签"></a>移动标签</h2><div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token punctuation">:</span><span class="token operator">-</span><span class="token keyword">tabnext</span>
+<span class="token punctuation">:</span><span class="token operator">+</span><span class="token keyword">tabnext</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<p>第一条指令是移到左边标签，相应的<code>+</code>就是移到右边。</p>
+<p>配置：</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim">map <span class="token keyword">th</span> <span class="token punctuation">:</span><span class="token operator">-</span><span class="token keyword">tabnext</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+map <span class="token keyword">tl</span> <span class="token punctuation">:</span><span class="token operator">+</span><span class="token keyword">tabnext</span><span class="token operator">&lt;</span>CR<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<h1 id="vim-plug"><a href="#vim-plug" class="headerlink" title="vim-plug"></a>vim-plug</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/junegunn/vim-plug">vim-plug</a>是一个插件管理器，能够下载并管理vim上的插件。当然有人说还有<a target="_blank" rel="noopener" href="https://github.com/VundleVim/Vundle.vim">Vundle.vim</a>，好吧，但是这东西我觉得坑太多。</p>
+</blockquote>
+<h2 id="简单安装"><a href="#简单安装" class="headerlink" title="简单安装"></a>简单安装</h2><p><strong>咱们看到官方文档中怎么说：</strong></p>
+<ul>
+<li>Unix</li>
+</ul>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> -fLo ~/.vim/autoload/plug.vim --create-dirs <span class="token punctuation">\</span>
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<ul>
+<li>Windows(PowerShell)</li>
+</ul>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim <span class="token operator">|</span>`
+    ni <span class="token environment constant">$HOME</span>/vimfiles/autoload/plug.vim -Force<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<p><em>然后不出所料你会收到以下 报错信息：</em></p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim">Failed <span class="token keyword">to</span> connect <span class="token keyword">to</span> raw<span class="token operator">.</span>githubusercontent<span class="token operator">.</span><span class="token builtin">com</span> port <span class="token number">443</span><span class="token punctuation">:</span> Connection refused<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p><strong>可以尝试以下解决方法：</strong></p>
+<p><strong>第一种：</strong></p>
+<p><em>用RO我搭建好的文件链接再运行：</em></p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> -fLo ~/.vim/autoload/plug.vim --create-dirs <span class="token punctuation">\</span>
+    http://39.98.122.169:3000/plug.vim<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<p><strong>第二种：</strong></p>
+<ol>
+<li>打开hosts</li>
+</ol>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">vim</span> /etc/hosts<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<ol>
+<li>在hosts里面<u>添加</u>下列内容</li>
+</ol>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token number">199.232</span><span class="token operator">.</span><span class="token number">28.133</span> raw<span class="token operator">.</span>githubusercontent<span class="token operator">.</span><span class="token builtin">com</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h2 id="简单使用"><a href="#简单使用" class="headerlink" title="简单使用"></a>简单使用</h2><blockquote>
+<p>在 vim 配置文件 <code>~/.vimrc</code> 或 Neovim 配置文件 <code>~/.config/nvim/init.vim</code> 中增加 vim-plug 配置项（就是我之前展示的配置文件）</p>
+</blockquote>
+<ul>
+<li>开始部分<code>call plug#begin()</code>，括号里面写入的是vim的插件安装到哪里，因为我们安装的vim-plug是在<code>.vim</code>中，而<code>.vim</code>中有一个<code>plugged</code>文件夹就是专门存放vim插件的。</li>
+<li>结束部分<code>call plug#end()</code>。</li>
+<li>中间列出要安装的插件，都要以<code>Plug</code>开头</li>
+</ul>
+<p>结果就是这样的：</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token keyword">call</span> plug#<span class="token function">begin</span><span class="token punctuation">(</span><span class="token string">'~/.vim/plugged'</span><span class="token punctuation">)</span>
+
+Plug <span class="token string">'vim-airline/vim-airline'</span>
+Plug <span class="token string">'connorholyday/vim-snazzy'</span>
+
+<span class="token keyword">call</span> plug#<span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>然后重新打开<code>.vimrc</code>，输入命令<code>:PlugInstall</code>，就会自动加载安装插件（很快啊🐱‍🏍）</p>
+<h2 id="相关命令"><a href="#相关命令" class="headerlink" title="相关命令"></a>相关命令</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>PlugInstall [name ...] [#threads]</code></td>
+<td style="text-align:left">安装插件</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>PlugUpdate [name ...] [#threads]</code></td>
+<td style="text-align:left">安装或更新插件</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>PlugClean[!]</code></td>
+<td style="text-align:left">清除不常用目录</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>PlugUpgrade</code></td>
+<td style="text-align:left">更新 vim-plug 自身</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>PlugStatus</code></td>
+<td style="text-align:left">检查插件状态</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>PlugDiff</code></td>
+<td style="text-align:left">检查上次更新和挂起更新的修改</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>PlugSnapshot[!] [output path]</code></td>
+<td style="text-align:left">生成插件快照</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><em>每个指令都要加<code>:</code>就不用说了吧</em></p>
+<h2 id="插件按需加载"><a href="#插件按需加载" class="headerlink" title="插件按需加载"></a>插件按需加载</h2><div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token comment">" NERD tree 在 NERDTreeToggle 第一调用时加载</span>
+Plug <span class="token string">'scrooloose/nerdtree'</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span> <span class="token string">'on'</span><span class="token punctuation">:</span> <span class="token string">'NERDTreeToggle'</span> <span class="token punctuation">&#125;</span>
+
+<span class="token comment">" 多命令</span>
+Plug <span class="token string">'junegunn/vim-github-dashboard'</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span> <span class="token string">'on'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'GHDashboard'</span><span class="token punctuation">,</span> <span class="token string">'GHActivity'</span><span class="token punctuation">]</span> <span class="token punctuation">&#125;</span>
+
+<span class="token comment">" 当 clojure 文件打开时加载</span>
+Plug <span class="token string">'tpope/vim-fireplace'</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span> <span class="token string">'for'</span><span class="token punctuation">:</span> <span class="token string">'clojure'</span> <span class="token punctuation">&#125;</span>
+
+<span class="token comment">" 多文件类型</span>
+Plug <span class="token string">'kovisoft/paredit'</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span> <span class="token string">'for'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'clojure'</span><span class="token punctuation">,</span> <span class="token string">'scheme'</span><span class="token punctuation">]</span> <span class="token punctuation">&#125;</span>
+
+<span class="token comment">" 两种情况下都可以按需加载</span>
+Plug <span class="token string">'junegunn/vader.vim'</span><span class="token punctuation">,</span>  <span class="token punctuation">&#123;</span> <span class="token string">'on'</span><span class="token punctuation">:</span> <span class="token string">'Vader'</span><span class="token punctuation">,</span> <span class="token string">'for'</span><span class="token punctuation">:</span> <span class="token string">'vader'</span> <span class="token punctuation">&#125;</span>
+
+<span class="token comment">" 插件按需加载时执行代码</span>
+Plug <span class="token string">'junegunn/goyo.vim'</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span> <span class="token string">'for'</span><span class="token punctuation">:</span> <span class="token string">'markdown'</span> <span class="token punctuation">&#125;</span>
+<span class="token builtin">autocmd</span><span class="token operator">!</span> User goyo<span class="token operator">.</span><span class="token keyword">vim</span> <span class="token keyword">echom</span> <span class="token string">'Goyo is now loaded!'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p><code>for</code> 选项通常是不需要的，因为大多数特定文件类型的插件通常代码不是很多</p>
+<h2 id="推荐的插件"><a href="#推荐的插件" class="headerlink" title="推荐的插件"></a>推荐的插件</h2><h3 id="NERDTree"><a href="#NERDTree" class="headerlink" title="NERDTree"></a><font size=5><a target="_blank" rel="noopener" href="https://github.com/preservim/nerdtree">NERDTree</a></font></h3><p>可以在分屏中显示文件管理（有简易UI），在打开多个文件的情况下是非常有用的。</p>
+<p>安装方式：</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim">Plug <span class="token string">'preservim/nerdtree'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>添加的配置：</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token comment">" 设置NerdTree</span>
+map <span class="token operator">&lt;</span>F3<span class="token operator">></span> <span class="token punctuation">:</span>NERDTreeMirror<span class="token operator">&lt;</span>CR<span class="token operator">></span>
+map <span class="token operator">&lt;</span>F3<span class="token operator">></span> <span class="token punctuation">:</span>NERDTreeToggle<span class="token operator">&lt;</span>CR<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<h3 id="airline"><a href="#airline" class="headerlink" title="airline"></a><a target="_blank" rel="noopener" href="https://github.com/vim-airline/vim-airline"><font size=5>airline</font></a></h3><p>安装方式：</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim">Plug <span class="token string">'vim-airline/vim-airline'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>可以在vim下方显示状态栏的插件</p>
+<h3 id="vim-snazzy"><a href="#vim-snazzy" class="headerlink" title="vim-snazzy"></a><a target="_blank" rel="noopener" href="https://github.com/connorholyday/vim-snazzy"><font size=5>vim-snazzy</font></a></h3><p>单纯为了美化，设置一个新的主题snazzy</p>
+<p>安装方式：</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim">Plug <span class="token string">'connorholyday/vim-snazzy'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>这时就可以将之前的slate主题换成snazzy了，还可以设置背景透明（可能因为终端不同而无法显示：</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token comment">"snazzy主题的配置项</span>
+<span class="token keyword">let</span> g<span class="token punctuation">:</span>SnazzyTransparent <span class="token operator">=</span> <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<h3 id="vim-rainbow"><a href="#vim-rainbow" class="headerlink" title="vim-rainbow"></a><a target="_blank" rel="noopener" href="https://github.com/frazrepo/vim-rainbow"><font size=5>vim-rainbow</font></a></h3><p>可以将多级的大括号进行颜色区分</p>
+<p>安装方式：</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim">Plug <span class="token string">'frazrepo/vim-rainbow'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>添加的配置：</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token comment">"rainbow的配置项</span>
+<span class="token keyword">let</span> g<span class="token punctuation">:</span>rainbow_active <span class="token operator">=</span> <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<h3 id="auto-pairs"><a href="#auto-pairs" class="headerlink" title="auto-pairs"></a><a target="_blank" rel="noopener" href="https://github.com/jiangmiao/auto-pairs"><font size=5>auto-pairs</font></a></h3><p>顾名思义，就是在你写了或删了一个括号时自动同步另一个括号。</p>
+<p>安装方式：</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim">Plug <span class="token string">'jiangmiao/auto-pairs'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>添加的配置：</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token comment">"auto-pairs的配置项</span>
+au Filetype FILETYPE <span class="token keyword">let</span> <span class="token keyword">b</span><span class="token punctuation">:</span>AutoPairs <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token string">"("</span><span class="token punctuation">:</span> <span class="token string">")"</span><span class="token punctuation">&#125;</span>
+au FileType php      <span class="token keyword">let</span> <span class="token keyword">b</span><span class="token punctuation">:</span>AutoPairs <span class="token operator">=</span> <span class="token function">AutoPairsDefine</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token string">'&lt;?'</span> <span class="token punctuation">:</span> <span class="token string">'?>'</span><span class="token punctuation">,</span> <span class="token string">'&lt;?php'</span><span class="token punctuation">:</span> <span class="token string">'?>'</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<h3 id="NerdCommenter"><a href="#NerdCommenter" class="headerlink" title="NerdCommenter"></a><font size=5><a target="_blank" rel="noopener" href="https://github.com/preservim/nerdcommenter">NerdCommenter</a></font></h3><blockquote>
+<p>所有程序员编写的代码都会产生难以调试的问题，导致他们决定注释掉或撤消代码，NERD Commenter的用处就来了，选择代码，点击Leader+cc，你的代码就会被注释掉；点击Leader+cn，你的代码将被取消注释。对于大多数文件类型，NERD Commenter都能使用正确的注释字符。</p>
+</blockquote>
+<p>安装方式：</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim">Plug <span class="token string">'preservim/nerdcommenter'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h3 id="tagbar"><a href="#tagbar" class="headerlink" title="tagbar"></a><font size=5><a target="_blank" rel="noopener" href="https://github.com/preservim/tagbar">tagbar</a></font></h3><p>在右边显示函数列表</p>
+<p>安装方式：</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim">Plug <span class="token string">'preservim/tagbar'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>添加配置：</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim">nmap <span class="token operator">&lt;</span>F8<span class="token operator">></span> <span class="token punctuation">:</span>TagbarToggle<span class="token operator">&lt;</span>CR<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p><em>然后你就可以直接按<kbd>F8</kbd>来显示函数列表了。</em></p>
+<h3 id="MarkdownPreview"><a href="#MarkdownPreview" class="headerlink" title="MarkdownPreview"></a><font size=5><a target="_blank" rel="noopener" href="https://github.com/iamcco/markdown-preview.nvim">MarkdownPreview</a></font></h3><p>还是顾名思义，是可以在vim正在编辑的情况下实时查看md文档（在web浏览器中）的插件</p>
+<p>安装方式：</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim">Plug <span class="token string">'iamcco/markdown-preview.nvim'</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span> <span class="token string">'do'</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span> <span class="token operator">-</span><span class="token operator">></span> mkdp#util#<span class="token function">install</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token string">'for'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'markdown'</span><span class="token punctuation">,</span> <span class="token string">'vim-plug'</span><span class="token punctuation">]</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p><strong>命令：</strong></p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim">MarkdownPreview
+<span class="token comment">" 在打开 markdown 文件后，使用该命令可以打开预览窗口</span>
+
+MarkdownPreviewStop
+<span class="token comment">" 关闭 markdown 预览窗口，并停止开启的服务进程</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>添加配置：</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token keyword">let</span> g<span class="token punctuation">:</span>mkdp_browser <span class="token operator">=</span> <span class="token string">'chromium'</span>
+<span class="token builtin">autocmd</span> Filetype markdown <span class="token builtin">noremap</span> <span class="token punctuation">,</span>v <span class="token punctuation">:</span>MarkdownPreview<span class="token operator">&lt;</span>CR<span class="token operator">></span>
+<span class="token builtin">autocmd</span> Filetype markdown <span class="token builtin">noremap</span> <span class="token punctuation">,</span><span class="token keyword">vs</span> <span class="token punctuation">:</span>MarkdownPreviewStop<span class="token operator">&lt;</span>CR<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<ul>
+<li>上面的第一句是将预览的默认浏览器设置为 chromium (可选，如果不指定则使用系统的默认浏览器打开)</li>
+<li>后两句开始的 <code>autocmd Filetype markdown</code> 声明只有在文件类型为 markdown 时这两个快捷键才会生效</li>
+<li>第二句是将 <code>:MarkdownPreview</code> 命令绑定到 <code>,v</code> 组合键上</li>
+<li>第三句是将 <code>:MarkdownPreviewStop</code> 绑定到 <code>,vs</code> 组合键上</li>
+</ul>
+<p><strong>继续配置相应常用样式快捷键</strong>：</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token builtin">autocmd</span> Filetype markdown <span class="token builtin">noremap</span> <span class="token punctuation">,</span><span class="token keyword">b</span> i<span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">&lt;</span>Esc<span class="token operator">></span><span class="token builtin">hi</span>
+<span class="token builtin">autocmd</span> Filetype markdown <span class="token builtin">noremap</span> <span class="token punctuation">,</span>i i<span class="token operator">*</span><span class="token operator">*</span><span class="token operator">&lt;</span>Esc<span class="token operator">></span>i<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<h3 id="leaderF"><a href="#leaderF" class="headerlink" title="leaderF"></a><font size=5><a target="_blank" rel="noopener" href="https://github.com/Yggdroot/LeaderF">leaderF</a></font></h3><p>LeaderF是一个用Python写的vim插件，可以在成千上万数十万个文件中，通过模糊查找的方式，快速找到目标文件。</p>
+<p>安装：</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim">Plug <span class="token string">'Yggdroot/LeaderF'</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span> <span class="token string">'do'</span><span class="token punctuation">:</span> <span class="token string">':LeaderfInstallCExtension'</span> <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>常用指令：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>:LeaderfFile</td>
+<td>搜索当前目录下的文件</td>
+</tr>
+<tr>
+<td>:LeaderfMru</td>
+<td>搜索最近使用过的文件( most recently used files)</td>
+</tr>
+<tr>
+<td>:LeaderfLine</td>
+<td>搜索当前文件中有的某个单词</td>
+</tr>
+<tr>
+<td>:LeaderfFunction</td>
+<td>搜索当前文件的函数</td>
+</tr>
+<tr>
+<td>:LeaderfBuffer</td>
+<td>搜索当前的Buffer</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="coc-nvim"><a href="#coc-nvim" class="headerlink" title="coc.nvim"></a><font size=5><a target="_blank" rel="noopener" href="https://github.com/neoclide/coc.nvim">coc.nvim</a></font></h3><p>作为IDE，必不可少的就是代码智能补全，coc.nvim就是<u>坑比较少</u>的一种智能补全插件。</p>
+<p>安装(得先安装nodejs)：</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> -sL install-node.now.sh/lts <span class="token operator">|</span> <span class="token function">bash</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim">Plug <span class="token string">'neoclide/coc.nvim'</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span><span class="token string">'branch'</span><span class="token punctuation">:</span> <span class="token string">'release'</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>添加配置：</p>
+<p><strong><u>coc.nvim只是一个平台</u>，它能够允许你安装各种语言插件，达到不同语言的补全效果。因此我们只有安装了对应的语言插件才能实现补全。以C/C++为例：</strong></p>
+<p>通过在vim内的命令模式输入:CocConfig来配置coc.nvim的配置文件coc-settings.json</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token punctuation">&#123;</span><span class="token string">"languageserver"</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span>    <span class="token string">"clangd"</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span>      <span class="token string">"command"</span><span class="token punctuation">:</span> <span class="token string">"clangd"</span><span class="token punctuation">,</span>      <span class="token string">"rootPatterns"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"compile_flags.txt"</span><span class="token punctuation">,</span> <span class="token string">"compile_commands.json"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>      <span class="token string">"filetypes"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"c"</span><span class="token punctuation">,</span> <span class="token string">"cc"</span><span class="token punctuation">,</span> <span class="token string">"cpp"</span><span class="token punctuation">,</span> <span class="token string">"c++"</span><span class="token punctuation">,</span> <span class="token string">"objc"</span><span class="token punctuation">,</span> <span class="token string">"objcpp"</span><span class="token punctuation">]</span>    <span class="token punctuation">&#125;</span>  <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p><em>Ps: 这种配置模式下，coc主要是依赖clangd进行代码自动化补全，所以需要事先安装好clangd。</em></p>
+<blockquote>
+<p>对更多其他语言的支持可以参考: <a target="_blank" rel="noopener" href="https://github.com/neoclide/coc.nvim/wiki/Language-servers#supported-features">https://github.com/neoclide/coc.nvim/wiki/Language-servers#supported-features</a></p>
+</blockquote>
+<p>当然你要是不想要这么麻烦，coc.nvim本身作为一个平台，其自身就包含各种扩展，可通过各种指令来安装高阶的扩展插件。（之前的C补全就可以用扩展插件实现）</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>命令名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>安装命令</td>
+<td>:CocInstall 插件名</td>
+</tr>
+<tr>
+<td>移除命令</td>
+<td>:CocUninstall 插件名</td>
+</tr>
+<tr>
+<td>查看已安装</td>
+<td>:CocList extensions</td>
+</tr>
+<tr>
+<td>更新命令</td>
+<td>:CocUpdate</td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p>coc的扩展插件可参考: <a target="_blank" rel="noopener" href="https://github.com/neoclide/coc.nvim">https://github.com/neoclide/coc.nvim</a></p>
+</blockquote>
+<h1 id="杂谈"><a href="#杂谈" class="headerlink" title="杂谈"></a>杂谈</h1><h2 id="figlet"><a href="#figlet" class="headerlink" title="figlet"></a><a target="_blank" rel="noopener" href="https://github.com/cmatsuoka/figlet">figlet</a></h2><blockquote>
+<p>当我们想要生成大号字符的ascii图形时，可以用<a target="_blank" rel="noopener" href="https://github.com/cmatsuoka/figlet">figlet</a>帮助我们快速生成。(因为是用C编译的，得装gcc编译器)</p>
+</blockquote>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">wget</span> ftp://ftp.figlet.org/pub/figlet/program/unix/figlet-2.2.5.tar.gz
+x figlet-2.2.5.tar.gz
+<span class="token builtin class-name">cd</span> figlet-2.2.5
+<span class="token function">make</span> <span class="token operator">&amp;&amp;</span> <span class="token function">make</span> <span class="token function">install</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">figlet <span class="token function">vim</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>结果</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">       _
+__   _<span class="token punctuation">(</span>_<span class="token punctuation">)</span>_ __ ___
+<span class="token punctuation">\</span> <span class="token punctuation">\</span> / / <span class="token operator">|</span> '_ ` _ <span class="token punctuation">\</span>
+ <span class="token punctuation">\</span> V /<span class="token operator">|</span> <span class="token operator">|</span> <span class="token operator">|</span> <span class="token operator">|</span> <span class="token operator">|</span> <span class="token operator">|</span> <span class="token operator">|</span>
+  <span class="token punctuation">\</span>_/ <span class="token operator">|</span>_<span class="token operator">|</span>_<span class="token operator">|</span> <span class="token operator">|</span>_<span class="token operator">|</span> <span class="token operator">|</span>_<span class="token operator">|</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h3 id="自定义字体"><a href="#自定义字体" class="headerlink" title="自定义字体"></a>自定义字体</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">figlet -f smslant <span class="token function">vim</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>结果</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">       _
+ _  __<span class="token punctuation">(</span>_<span class="token punctuation">)</span>_ _
+<span class="token operator">|</span> <span class="token operator">|</span>/ / /  ' <span class="token punctuation">\</span>
+<span class="token operator">|</span>___/_/_/_/_/
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h2 id="文件类型转换"><a href="#文件类型转换" class="headerlink" title="文件类型转换"></a>文件类型转换</h2><blockquote>
+<p>我们可以利用vim来将当前文件来转化为<code>html</code>或者是<code>pdf</code></p>
+</blockquote>
+<p>转html：</p>
+<p><code>``vim
+:%TOhtml</code></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Vim/">Vim</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/geek/">geek</a>
+                    
+                      <a class="hover-with-bg" href="/tags/IDE/">IDE</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/12/23/Oh-My-Zsh%E7%BE%8E%E5%8C%96%E7%BB%88%E7%AB%AF/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Oh-My-Zsh美化终端</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/11/27/express%E5%85%A5%E9%97%A8/">
+                        <span class="hidden-mobile">express入门</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                  
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('vcomments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "2RbCqGEaklHVj7Gj6dtd2kM4-gzGzoHsz",
+          app_key: "kdFD4FmNeIpaTMK269nEqhxx",
+          placeholder: "say something...",
+          path: window.location.pathname,
+          avatar: "mp",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          recordIP: true,
+          serverURLs: "https://2rbcqgea.lc-cn-n1-shared.com",
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments powered by Valine.</a>
+  </noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+
+  <!-- 自己设置一个记录网站运行时间的方法 -->
+  <span id="sitetime" style="font-size: 14px; font-family: Consolas;font-weight: normal; color: #aaa;"></span>
+  <script language=javascript>
+    function siteTime(){
+      window.setTimeout("siteTime()", 1000);
+      var seconds = 1000;
+      var minutes = seconds * 60;
+      var hours = minutes * 60;
+      var days = hours * 24;
+      var years = days * 365;
+      var today = new Date();
+      var todayYear = today.getFullYear();
+      var todayMonth = today.getMonth()+1;
+      var todayDate = today.getDate();
+      var todayHour = today.getHours();
+      var todayMinute = today.getMinutes();
+      var todaySecond = today.getSeconds();
+      /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+      year - 作为date对象的年份，为4位年份值
+      month - 0-11之间的整数，做为date对象的月份
+      day - 1-31之间的整数，做为date对象的天数
+      hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+      minutes - 0-59之间的整数，做为date对象的分钟数
+      seconds - 0-59之间的整数，做为date对象的秒数
+      microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+      var t1 = Date.UTC(2020,10,18,15,00,00); //北京时间2020-10-18 00:00:00
+      var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+      var diff = t2-t1;
+      var diffYears = Math.floor(diff/years);
+      var diffDays = Math.floor((diff/days)-diffYears*365);
+      var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+      var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+      var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+      document.getElementById("sitetime").innerHTML=" 小破站已勉强运行了 "+/*diffYears+" 年 "+*/diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+    }/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+    siteTime();
+  </script>
+  <!-- 自己设置一个记录网站运行时间的方法 -->
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/mermaid@8.8.3/dist/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({"theme":"default"});
+    }
+  </script>
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0d7560f90f7a21d6a9e7635611dac094";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

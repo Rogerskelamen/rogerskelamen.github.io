@@ -1,0 +1,1335 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/rogerskelamen/mdpic/raw/master/img/img.jpg">
+  <link rel="icon" href="https://gitee.com/rogerskelamen/mdpic/raw/master/img/img.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  
+    <meta name="description" content="">
+  
+  <meta name="author" content="Rogers Kelamen">
+  <meta name="keywords" content="blog">
+  
+  <title>LaTeX入门| RO&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.22.0/themes/prism-solarizedlight.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.22.0/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"rokelamen.top","root":"/","version":"1.8.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":"0d7560f90f7a21d6a9e7635611dac094","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"2RbCqGEaklHVj7Gj6dtd2kM4-gzGzoHsz","app_key":"kdFD4FmNeIpaTMK269nEqhxx","server_url":"https://2rbcqgea.lc-cn-n1-shared.com"}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>RO's Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://gitee.com/rogerskelamen/mdpic/raw/master/img/76510277_p0.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="LaTeX入门">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Rogers Kelamen
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-01-22 21:53" pubdate>
+        2021年1月22日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      147
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">LaTeX入门</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021年3月13日 晚上
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="初识-LaTeX"><a href="#初识-LaTeX" class="headerlink" title="初识$\LaTeX$"></a>初识$\LaTeX$</h1><blockquote>
+<p>首先你要知道LaTeX最初是作为<strong>排版工具</strong>被发明出来的</p>
+<p>warning：<strong>标注有<code>*</code>的内容是专有的LaTeX环境，但md环境无法正确显示</strong></p>
+</blockquote>
+<h2 id="安装-LaTeX"><a href="#安装-LaTeX" class="headerlink" title="安装$\LaTeX$"></a>安装$\LaTeX$</h2><blockquote>
+<p>首先LaTeX的安装还是有些麻烦的（主要是要安装编译器和TeX）</p>
+</blockquote>
+<p>这里有一篇推荐教你如何安装的<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/56982388">知乎文章</a></p>
+<h2 id="关于md支持-LaTeX-的澄清"><a href="#关于md支持-LaTeX-的澄清" class="headerlink" title="关于md支持$\LaTeX$的澄清"></a>关于md支持$\LaTeX$的澄清</h2><p><strong>首先并不是md文本支持$\LaTeX$排版，<u>而是md内置引擎支持$\LaTeX$的数学公式。</u></strong></p>
+<font color=#34b>往细了说，就是md用`$`的书写方式制造的LaTeX其实是LaTeX的`displaymath`的环境（只是众多环境中的一种）。所以也就是说，在`displaymath`环境下能够书写的LaTeX格式，在md中就能展示（也只能展示这种环境）</font>
+
+<p>所以，打<code>*</code>的地方其实也可以理解为<code>displaymath</code>环境不支持。</p>
+<h2 id="空白距离"><a href="#空白距离" class="headerlink" title="空白距离*"></a>空白距离*</h2><p>空格和制表符等空白字符在LaTeX 中被看作相同的空白距离(space)。<strong>多个连续</strong>的空白字符等同于<strong>一个空白字符</strong>。在句首的空白距离一般会被忽略，单个空行也被认为是一个“空白距离”。</p>
+<p><em>两行文本间的空白行</em>标志着上段的结束和下段的开始。<strong>多</strong>个空白行的作用等同于<strong>一个空白行</strong>。</p>
+<p><em>PS：这里是专有的LaTeX环境下，但是md环境中的渲染引擎<u>无视一切空格</u></em></p>
+<h2 id="特殊字符"><a href="#特殊字符" class="headerlink" title="特殊字符"></a>特殊字符</h2><p>下面的这些字符是LATEX 中的<strong>保留字符</strong>(reserved characters)，它们或在LATEX 中 有特殊的意义，或不一定存在于所有字库中。</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"># $ <span class="token comment">% ^ &amp; _ &#123; &#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>在这些字符前加上反斜线，它们就可以正常的输出到文档中。(转义)</p>
+<p><em>ps：反斜线<code>\</code>不能通过在其前面加另一个反斜线得到<code>\\</code>；这是一个用来换行的命令</em></p>
+<h2 id="LaTeX命令"><a href="#LaTeX命令" class="headerlink" title="LaTeX命令"></a>LaTeX命令</h2><p>LATEX 命令(commands) 是大小写敏感的，有以下两种格式：</p>
+<ul>
+<li>以一个反斜线(backslash) \ 开始，命令名只由字母组成。命令名后的空格 符、数字或任何非字母的字符都标志着该命令的结束。</li>
+<li>由一个反斜线和非字母的字符组成。</li>
+</ul>
+<p>warning*：LATEX忽略命令之后的空白字符。如果你希望在命令后得到一个空格，可以 在命令后加上<code>&#123;&#125;</code>和一个空格，或加上一个特殊的空格命令。<code>&#123;&#125;</code> 将阻止LATEX吃掉命令后的所有空格。</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\TeX</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span> <span class="token function selector">\backslash</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<script type="math/tex; mode=display">
+\TeX{} \backslash</script><h3 id="可选参数"><a href="#可选参数" class="headerlink" title="可选参数"></a>可选参数</h3><p>有些命令需要一个参数(parameter)，该参数用花括号(curly braces) { } 括 住并写在命令的后面。一些命令支持可选参数(optional parameters)，可选参数 可用方括号(square brackets) [ ] 括住。</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\textsl</span><span class="token punctuation">&#123;</span>斜体<span class="token punctuation">&#125;</span>		<span class="token comment">% md无法显示</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>LaTeX的注释和MATLAB居然都是一样的，都是用<code>%</code>。</p>
+<p><em>符号<code>%</code>也可以用来断开不能含有空白字符或换行符的较长输入内容。</em></p>
+<h1 id="文档布局"><a href="#文档布局" class="headerlink" title="文档布局"></a>文档布局</h1><h2 id="文档类"><a href="#文档类" class="headerlink" title="文档类"></a>文档类</h2><p>当LATEX 处理源文件时，首先需要知道的就是作者所要创建的文档类型。文档类 型可由\documentclass 命令来指定。</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\documentclass</span><span class="token punctuation">[</span>options<span class="token punctuation">]</span><span class="token punctuation">&#123;</span><span class="token keyword">class</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p><strong>class 指定想要的文档类型。通过options 参数可以定制文档类的属性。</strong>eg：</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\documentclass</span><span class="token punctuation">[</span>11pt,twoside,a4paper<span class="token punctuation">]</span><span class="token punctuation">&#123;</span><span class="token keyword">article</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>这条命令会引导LATEX 使用article 格式、11 磅大小的字体来排版该文档，并得到在A4 纸上双面打印的效果。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>文档类名（class）</th>
+<th>简单描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>article</td>
+<td>排版科学期刊、演示文档、短报告、程序文档、邀请函……</td>
+</tr>
+<tr>
+<td>proc</td>
+<td>一个基于 article 的会议文集类。</td>
+</tr>
+<tr>
+<td>minimal</td>
+<td>非常小的文档类。只设置了页面尺寸和基本字体。主要用来查错。</td>
+</tr>
+<tr>
+<td>report</td>
+<td>排版多章节长报告、短篇书籍、博士论文……</td>
+</tr>
+<tr>
+<td>book</td>
+<td>排版书籍。</td>
+</tr>
+<tr>
+<td>slides</td>
+<td>排版幻灯片。该文档类使用大号 sans serif 字体。也可以选用 FoilTEXa 来得到相同的效果。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>文档类选项（option）</th>
+<th>简单描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10pt, 11pt, 12pt</td>
+<td>设置文档中所使用的字体的大小。如果该项没有指定，默认 使用10pt 字体。</td>
+</tr>
+<tr>
+<td>a4paper, letterpaper, . . .</td>
+<td>定义纸张的尺寸。缺省设置为letterpaper。此 外，还可以使用a5paper, b5paper, executivepaper 以及legalpaper。</td>
+</tr>
+<tr>
+<td>fleqn</td>
+<td>设置行间公式为左对齐，而不是居中对齐。</td>
+</tr>
+<tr>
+<td>leqno</td>
+<td>设置行间公式的编号为左对齐，而不是右对齐。</td>
+</tr>
+<tr>
+<td>titlepage, notitlepage</td>
+<td>指定是否在文档标题(document title) 后另起一 页。article 文档类缺省设置为不开始新页，report 和book 类则相反。</td>
+</tr>
+<tr>
+<td>onecolumn, twocolumn</td>
+<td>LATEX 以单栏(one column) 或双栏(two column) 的 方式来排版文档。</td>
+</tr>
+<tr>
+<td>twoside, oneside</td>
+<td>指定文档为双面或单面打印格式。article 和report 类 为单面(single sided) 格式，book 类缺省为双面(double sided) 格式。</td>
+</tr>
+<tr>
+<td>landscape</td>
+<td>将文档的打印输出布局设置为 landscape 模式。</td>
+</tr>
+<tr>
+<td>openright, openany</td>
+<td>决定新的一章仅在奇数页开始还是在下一页开始。在文 档类型为article 时该选项不起作用，因为该类中没有定义“章” (chapter)。report 类默认在下一页开始新一章而book 类的新一章总是在 奇数页开始。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="宏包"><a href="#宏包" class="headerlink" title="宏包"></a>宏包</h2><p>排版文档时，你可能会发现某些时候基本的LATEX 并不能解决你的问题。如果想 插入图形(graphics)、彩色文本(coloured text) 或源代码到你的文档中，你就需要使用宏包来增强LATEX 的功能。可使用如下命令调用宏包</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\usepackage</span><span class="token punctuation">[</span>options<span class="token punctuation">]</span><span class="token punctuation">&#123;</span><span class="token keyword">package</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>这里package 是宏包的名称，options 是用来激活宏包特殊功能的一组关键词。很 多宏包随LATEX 基本发行版一起发布（见下表）</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>宏包名（package）</th>
+<th>简单描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>doc</td>
+<td>排版LATEX 的说明文档。</td>
+</tr>
+<tr>
+<td>exscale</td>
+<td>提供了按比例伸缩的数学扩展字体。</td>
+</tr>
+<tr>
+<td>fontenc</td>
+<td>指明使用哪种LATEX 字体编码(font encoding)。</td>
+</tr>
+<tr>
+<td>ifthen</td>
+<td>提供如下形式的命令 ‘if . . . then do . . . otherwise do . . . .’</td>
+</tr>
+<tr>
+<td>latexsym</td>
+<td>提供LATEX 符号字体。</td>
+</tr>
+<tr>
+<td>makeidx</td>
+<td>提供排版索引的命令。</td>
+</tr>
+<tr>
+<td>syntonly</td>
+<td>编译文档而不生成 dvi 文件（常用于查错）。</td>
+</tr>
+<tr>
+<td>inputenc</td>
+<td>指明使用哪种输入编码，如 ASCII, ISO Latin-1, ISO Latin-2…..</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="页面样式"><a href="#页面样式" class="headerlink" title="页面样式"></a>页面样式</h2><p>LATEX 支持三种预定义的页眉/页脚(header/footer) 样式，称为页面样式(page style)。</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\pagestyle</span><span class="token punctuation">&#123;</span>style<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>页面样式名（style）</th>
+<th>简单描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>plain</td>
+<td>在页脚正中显示页码。这是页面样式的缺省设置。</td>
+</tr>
+<tr>
+<td>headings</td>
+<td>在页眉中显示章节名及页码，页脚空白。</td>
+</tr>
+<tr>
+<td>empty</td>
+<td>将页眉页脚都设为空白。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p> <em>可以通过如下命令来改变<u>当前页面</u>的页面样式：</em></p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\thispagestyle</span><span class="token punctuation">&#123;</span>style<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h2 id="LaTeX文件"><a href="#LaTeX文件" class="headerlink" title="LaTeX文件"></a>LaTeX文件</h2><p>LaTeX有着非常多的不同的扩展名：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>扩展名</th>
+<th>简单描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.tex</td>
+<td>LATEX 或TEX 源文件。可以使用latex 命令编译。</td>
+</tr>
+<tr>
+<td>.sty</td>
+<td>LATEX 宏包文件。可以使用\usepackage 命令将宏包文件载入到你的LATEX 文档中。</td>
+</tr>
+<tr>
+<td>.dtx</td>
+<td>文档化TEX 文件。这是LATEX 宏包文件的主要发布格式。如果编译.dtx 文 档，将会得到其中包含的LATEX 宏包文件的文档化宏代码。</td>
+</tr>
+<tr>
+<td>.ins</td>
+<td>对应.dtx 文件的安装文件。如果你从网上下载了一个LATEX 的宏包文件， 其中一般会包含一个.dtx 文件和一个.ins 文件。使用LATEX 处理.ins 文 件可以解开.dtx 文件。</td>
+</tr>
+<tr>
+<td>.cls</td>
+<td>定义文档外观形式的类文件，可以通过使用\documentclass 命令选取。</td>
+</tr>
+<tr>
+<td>.fd</td>
+<td>字体描述文件，可以告诉LATEX 有关新字体的信息。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>下面是LaTeX编译源文件时产生的文件和扩展名：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>扩展名</th>
+<th>简单描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.dvi</td>
+<td>设备无关文件。这是运行LATEX 编译的主要结果。你可以使用 DVI 预览器 预览其内容或使用dvips 或其他程序输出到打印机。</td>
+</tr>
+<tr>
+<td>.log</td>
+<td>记录了上次编译时的详细信息。</td>
+</tr>
+<tr>
+<td>.toc</td>
+<td>储存了所有的章节标题。下次编译时将读取该文件并生成目录。</td>
+</tr>
+<tr>
+<td>.lof</td>
+<td>和.toc 文件类似，可生成图形目录。</td>
+</tr>
+<tr>
+<td>.lot</td>
+<td>和.toc 文件类似，可生成表格目录。</td>
+</tr>
+<tr>
+<td>.aux</td>
+<td>用来向下次编译传递信息的辅助文件。主要储存交叉引用的相关信息。</td>
+</tr>
+<tr>
+<td>.idx</td>
+<td>如果文档中包含索引，LATEX 将使用该文件存储所有的索引词条。此文件 需要使用makeindex 处理</td>
+</tr>
+<tr>
+<td>.ind</td>
+<td>处理过的.idx 文件。下次编译时将读入到你的文档中。</td>
+</tr>
+<tr>
+<td>.ilg</td>
+<td>和.log 文件类似，记录了makeindex 命令运行的详细信息。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="文本排版"><a href="#文本排版" class="headerlink" title="文本排版"></a>文本排版</h1><h2 id="文本和语言结构"><a href="#文本和语言结构" class="headerlink" title="文本和语言结构"></a>文本和语言结构</h2><p>LATEX 不同于其它排版系统之处在于，你必须告诉它文本的逻辑和语义结构。然后它根据类文件和各种样式文件中给定的“规则”生成相应格式的文本。</p>
+<p>LATEX 最重要的文本单元（印刷术上的）是段落(paragraph)。我们称段落 为“文本单元”，因为段落是连续思想或者观点在排版上的反映。</p>
+<h2 id="断行和分页"><a href="#断行和分页" class="headerlink" title="断行和分页*"></a>断行和分页*</h2><h3 id="对齐段落"><a href="#对齐段落" class="headerlink" title="对齐段落"></a>对齐段落</h3><p>为了优化整个段落的内容，LATEX 在单词之间 插入必要的断行点(line break) 和间隙。如果一行的单词排不下，LATEX 也会进 行必要的断词。段落如何排版依赖于文档类别。通常，每一段的第一行有缩进， 在两段之间没有额外的间隔。</p>
+<p>在特殊情形下，有必要命令LATEX 断行:</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token comment">% 另起一行，而不另起一段:</span>
+<span class="token function selector">\\</span> or <span class="token function selector">\newline</span>
+<span class="token comment">% 在强制断行后，还禁止分页:</span>
+<span class="token function selector">\\</span>*
+<span class="token comment">% 另起一页:</span>
+<span class="token function selector">\newpage</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h3 id="断词"><a href="#断词" class="headerlink" title="断词"></a>断词</h3><p>必要时LATEX 就会断词。如果断词算法不能确定正确的断词点，可以使用如下命 令告诉TEX 如何弥补这个缺憾：</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\hyphenation</span><span class="token punctuation">&#123;</span>word list<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h2 id="内置字符串"><a href="#内置字符串" class="headerlink" title="内置字符串"></a>内置字符串</h2><p>用来排版特殊文本字符串的一些非常简单的LATEX 命令:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>显示</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>\today</code></td>
+<td>August 2, 2008(*)</td>
+</tr>
+<tr>
+<td><code>\TeX</code></td>
+<td>$\TeX$</td>
+</tr>
+<tr>
+<td><code>\LaTeX</code></td>
+<td>$\LaTeX$</td>
+</tr>
+<tr>
+<td><code>\LaTeXe</code></td>
+<td>$\LaTeX$2ε(*)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="特殊字符和符号"><a href="#特殊字符和符号" class="headerlink" title="特殊字符和符号"></a>特殊字符和符号</h2><h3 id="引号"><a href="#引号" class="headerlink" title="引号*"></a>引号*</h3><p>你不能再像在打字机上那样，把” 用作引号(quotation marks)。在印刷中有专门 的左引号和右引号。在LATEX 中，用两个`（重音）产生左引号，用两个（’ 直立引 号）产生右引号。一个‘ 和一个’ 产生一个单引号。</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex">‘‘Please press the ‘x’ key.’’<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<script type="math/tex; mode=display">
+‘‘Please press the ‘x’ key.’’</script><h3 id="破折号和连字号"><a href="#破折号和连字号" class="headerlink" title="破折号和连字号*"></a>破折号和连字号*</h3><p>LATEX 中有四种短划(dash) 标点符号。连续用不同数目的短划，可以得到其中的 三种。第四个实际不是标点符号，它是数学中的减号：</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex">daughter-in-law, X-rated<span class="token function selector">\\</span>
+pages 13--67<span class="token function selector">\\</span>
+yes---or no? <span class="token function selector">\\</span>
+<span class="token equation string">$0$</span>, <span class="token equation string">$1$</span> and <span class="token equation string">$-1$</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-text" data-language="text"><code class="language-text">daughter-in-law, X-rated
+pages 13–67
+yes——or no?
+0, 1 and −1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h3 id="波浪号-∼"><a href="#波浪号-∼" class="headerlink" title="波浪号(∼)*"></a>波浪号(∼)*</h3><p>波浪号经常和网址用在一起。它在LATEX 中，可用~ 产生，但其结果：˜ 却不是</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex">http://www.rich.edu/<span class="token function selector">\~</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>bush<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-text" data-language="text"><code class="language-text">http:&#x2F;&#x2F;www.rich.edu&#x2F;˜bush<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h3 id="度的符号-◦"><a href="#度的符号-◦" class="headerlink" title="度的符号(◦)"></a>度的符号(◦)</h3><p>下面的例子演示了在LATEX 中如何排版度的符号(degree symbol)：</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex">It’s <span class="token equation string">$-30<span class="token equation-command regex">\,</span>^&#123;<span class="token equation-command regex">\circ</span>&#125;<span class="token equation-command regex">\mathrm</span>&#123;C&#125;$</span>.<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>It’s $-30\,^{\circ}\mathrm{C}$.</p>
+<p><em>textcomp 宏包里有另外一个度的符号<code>\textcelsius</code>。</em></p>
+<h3 id="省略号"><a href="#省略号" class="headerlink" title="省略号(. . . )"></a>省略号(. . . )</h3><p>在打字机上，逗号(comma) 或句号(period) 占据的空间和其他字母相等。<strong>在书籍印刷中，这些字符仅占据一点儿空间</strong>。所以不 能只键入三个点来输出“省略号”(ellipsis)，因为间隔划分得不对。有一个专门 的命令输出省略号。它被称为:</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\ldots</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>效果：$\ldots$</p>
+<h3 id="连字"><a href="#连字" class="headerlink" title="连字*"></a>连字*</h3><p>一些字母组合不是简单键入一个个字母得到得的，而实际上用到了一些特殊符号。</p>
+<p>在两个字母之间插入一个<code>\mbox&#123;&#125;</code>，可以禁止连字。</p>
+<h3 id="注音符号和特殊字符"><a href="#注音符号和特殊字符" class="headerlink" title="注音符号和特殊字符"></a>注音符号和特殊字符</h3><p>LATEX 支持来自许多语言中的注音符号(accent) 和特殊字符(special character)。</p>
+<p><strong>在字母 i 和 j 上标一个注音符号，它的点儿必须去掉。这个可由<code>\i</code> 和<code>\j</code>做 到。</strong></p>
+<p><img src="https://gitee.com/rogerskelamen/mdpic/raw/master/img/image-20210122135744081.png" srcset="/img/loading.gif" alt=""></p>
+<h2 id="标题、章和节"><a href="#标题、章和节" class="headerlink" title="标题、章和节*"></a>标题、章和节*</h2><blockquote>
+<p>为便于读者理解，应该把文档划分为章，节和子节。LATEX 用专门的命令支持 这个工作，这些命令把节的标题作为参量。</p>
+</blockquote>
+<p>对article 风格的文档，有下列分节命令：</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\section</span><span class="token punctuation">&#123;</span><span class="token headline class-name">...</span><span class="token punctuation">&#125;</span>
+<span class="token function selector">\subsection</span><span class="token punctuation">&#123;</span><span class="token headline class-name">...</span><span class="token punctuation">&#125;</span>
+<span class="token function selector">\subsubsection</span><span class="token punctuation">&#123;</span><span class="token headline class-name">...</span><span class="token punctuation">&#125;</span>
+<span class="token function selector">\paragraph</span><span class="token punctuation">&#123;</span><span class="token headline class-name">...</span><span class="token punctuation">&#125;</span>
+<span class="token function selector">\subparagraph</span><span class="token punctuation">&#123;</span><span class="token headline class-name">...</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>如果想把文档分成几个部分而且不影响章节编号，你可以使用:</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\part</span><span class="token punctuation">&#123;</span><span class="token headline class-name">...</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>当你使用report 或者book 类的时候，可以用另外一个高层次的分节命令:</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\chapter</span><span class="token punctuation">&#123;</span><span class="token headline class-name">...</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>整篇文档的标题(title) 由命令:</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\maketitle</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>标题的内容必须在调用\maketitle 以前，由命令:</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\title</span><span class="token punctuation">&#123;</span>...<span class="token punctuation">&#125;</span>, <span class="token function selector">\author</span><span class="token punctuation">&#123;</span>...<span class="token punctuation">&#125;</span> 和可选的<span class="token function selector">\date</span><span class="token punctuation">&#123;</span>...<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h2 id="交叉引用"><a href="#交叉引用" class="headerlink" title="交叉引用*"></a>交叉引用*</h2><p>在书籍、报告和论文中，需要对图、表和文本的特殊段落进行交叉引用(crossreferences)。LATEX 提供了如下交叉引用命令:</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\label</span><span class="token punctuation">&#123;</span><span class="token keyword">marker</span><span class="token punctuation">&#125;</span>, <span class="token function selector">\ref</span><span class="token punctuation">&#123;</span><span class="token keyword">marker</span><span class="token punctuation">&#125;</span> 和<span class="token function selector">\pageref</span><span class="token punctuation">&#123;</span>marker<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p><em>其中marker 是用户选择的标识符。</em></p>
+<h2 id="脚注"><a href="#脚注" class="headerlink" title="脚注*"></a>脚注*</h2><div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\footnote</span><span class="token punctuation">&#123;</span>footnote text<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>eg：</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex">Footnotes<span class="token function selector">\footnote</span><span class="token punctuation">&#123;</span>This is a footnote.<span class="token punctuation">&#125;</span> are often used by people using <span class="token function selector">\LaTeX</span>.<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h2 id="强调"><a href="#强调" class="headerlink" title="强调*"></a>强调*</h2><p>如果文本是用打字机键入的，<u>用下划线</u>来强调重要的单词。</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\underline</span><span class="token punctuation">&#123;</span>text<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>但是在印刷的书中，用一种斜体字体排印要强调的单词。LATEX 提供命令:</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\emph</span><span class="token punctuation">&#123;</span>text<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h2 id="环境-environment"><a href="#环境-environment" class="headerlink" title="环境(environment)"></a>环境(environment)</h2><p>为了排版专用的文本，LATEX 定义了各种不同格式的环境(environment)：</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\begin</span><span class="token punctuation">&#123;</span><span class="token keyword">environment</span><span class="token punctuation">&#125;</span> text <span class="token function selector">\end</span><span class="token punctuation">&#123;</span><span class="token keyword">environment</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>其中environment 是环境的名称。只要保持调用顺序，环境可以嵌套。</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\begin</span><span class="token punctuation">&#123;</span><span class="token keyword">aaa</span><span class="token punctuation">&#125;</span>...<span class="token function selector">\begin</span><span class="token punctuation">&#123;</span><span class="token keyword">bbb</span><span class="token punctuation">&#125;</span>...<span class="token function selector">\end</span><span class="token punctuation">&#123;</span><span class="token keyword">bbb</span><span class="token punctuation">&#125;</span>...<span class="token function selector">\end</span><span class="token punctuation">&#123;</span><span class="token keyword">aaa</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h3 id="Itemize、Enumerate、Description"><a href="#Itemize、Enumerate、Description" class="headerlink" title="Itemize、Enumerate、Description*"></a>Itemize、Enumerate、Description*</h3><p>itemize 环境适用于简单的列表，enumerate 环境适用于有排列序号的列表， 而description 环境用于带描述的列表。</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\flushleft</span>
+<span class="token function selector">\begin</span><span class="token punctuation">&#123;</span><span class="token keyword">enumerate</span><span class="token punctuation">&#125;</span>
+<span class="token function selector">\item</span> You can mix the list
+environments to your taste:
+<span class="token function selector">\begin</span><span class="token punctuation">&#123;</span><span class="token keyword">itemize</span><span class="token punctuation">&#125;</span>
+<span class="token function selector">\item</span> But it might start to
+look silly.
+<span class="token function selector">\item</span><span class="token punctuation">[</span>-<span class="token punctuation">]</span> With a dash.
+<span class="token function selector">\end</span><span class="token punctuation">&#123;</span><span class="token keyword">itemize</span><span class="token punctuation">&#125;</span>
+<span class="token function selector">\item</span> Therefore remember:
+<span class="token function selector">\begin</span><span class="token punctuation">&#123;</span><span class="token keyword">description</span><span class="token punctuation">&#125;</span>
+<span class="token function selector">\item</span><span class="token punctuation">[</span>Stupid<span class="token punctuation">]</span> things will not
+become smart because they are
+in a list.
+<span class="token function selector">\item</span><span class="token punctuation">[</span>Smart<span class="token punctuation">]</span> things, though,
+can be presented beautifully
+in a list.
+<span class="token function selector">\end</span><span class="token punctuation">&#123;</span><span class="token keyword">description</span><span class="token punctuation">&#125;</span>
+<span class="token function selector">\end</span><span class="token punctuation">&#123;</span><span class="token keyword">enumerate</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>效果：</p>
+<div class="code-wrapper"><pre class="line-numbers language-text" data-language="text"><code class="language-text">1. You can mix the list environments to your taste:
+	• But it might start to look silly.
+	- With a dash.
+2. Therefore remember:
+	Stupid things will not become smart because they are 	 in a list.
+	Smart things, though, can be
+	presented beautifully in a list.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h3 id="左对齐、右对齐和居中"><a href="#左对齐、右对齐和居中" class="headerlink" title="左对齐、右对齐和居中*"></a>左对齐、右对齐和居中*</h3><p>flushleft 和flushright 环境分别产生左对齐(left-aligned) 和右对齐(rightaligned) 的段落。center 环境产生居中的文本。</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\begin</span><span class="token punctuation">&#123;</span><span class="token keyword">flushleft</span><span class="token punctuation">&#125;</span>
+This text is<span class="token function selector">\\</span> left-aligned.
+<span class="token function selector">\LaTeX</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span> is not trying to make
+each line the same length.
+<span class="token function selector">\end</span><span class="token punctuation">&#123;</span><span class="token keyword">flushleft</span><span class="token punctuation">&#125;</span>
+
+<span class="token function selector">\begin</span><span class="token punctuation">&#123;</span><span class="token keyword">flushright</span><span class="token punctuation">&#125;</span>
+This text is right-<span class="token function selector">\\</span>aligned.
+<span class="token function selector">\LaTeX</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span> is not trying to make
+each line the same length.
+<span class="token function selector">\end</span><span class="token punctuation">&#123;</span><span class="token keyword">flushright</span><span class="token punctuation">&#125;</span>
+
+<span class="token function selector">\begin</span><span class="token punctuation">&#123;</span><span class="token keyword">center</span><span class="token punctuation">&#125;</span>
+At the centre<span class="token function selector">\\</span>of the earth
+<span class="token function selector">\end</span><span class="token punctuation">&#123;</span><span class="token keyword">center</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h3 id="引用、语录和韵文"><a href="#引用、语录和韵文" class="headerlink" title="引用、语录和韵文*"></a>引用、语录和韵文*</h3><p>quote 环境可以用于引文、语录和例子:</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex">A typographical rule of thumb
+for the line length is:
+<span class="token function selector">\begin</span><span class="token punctuation">&#123;</span><span class="token keyword">quote</span><span class="token punctuation">&#125;</span>
+On average, no line should
+be longer than 66 characters.
+<span class="token function selector">\end</span><span class="token punctuation">&#123;</span><span class="token keyword">quote</span><span class="token punctuation">&#125;</span>
+This is why <span class="token function selector">\LaTeX</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span> pages have
+such large borders by default
+and also why multicolumn print
+is used in newspapers.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p><em>有两个类似的环境：quotation 和verse 环境。quotation 环境用于超过 几段的较长引用，因为它对段落进行缩进。verse 环境用于诗歌，在诗歌中断行 很重要。在一行的末尾用<code>\\</code> 断行，在每一段后留一空行。</em></p>
+<h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要*"></a>摘要*</h3><p>一般abstract 用于 article 类文档。</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\begin</span><span class="token punctuation">&#123;</span><span class="token keyword">abstract</span><span class="token punctuation">&#125;</span>
+The abstract abstract.
+<span class="token function selector">\end</span><span class="token punctuation">&#123;</span><span class="token keyword">abstract</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<h1 id="数学公式"><a href="#数学公式" class="headerlink" title="数学公式"></a>数学公式</h1><blockquote>
+<p>在这里才是$\TeX$真正强大的地方。</p>
+</blockquote>
+<p>LATEX 使用一种特有的模式来排版数学(mathematics) 公式。数学公式允许以 行间形式排版在一个段落之中，也可以以独立形式排版，此时段落可能会被拆 开。处于段内的数学文本要放在<code>\(</code> 与<code>\)</code> 之间，$ 与$ 之间，或者<code>\begin&#123;math&#125;</code>与<code>\end&#123;math&#125;</code> 之间。</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex">Add <span class="token equation string">$a$</span> squared and <span class="token equation string">$b$</span> squared
+to get <span class="token equation string">$c$</span> squared. Or, using
+a more mathematical approach:
+<span class="token equation string">$c^&#123;2&#125;=a^&#123;2&#125;+b^&#123;2&#125;$</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>Add $a$ squared and $b$ squared to get $c$ squared. Or, using a more mathematical approach: $c^{2}=a^{2}+b^{2}$</p>
+<p>当你希望把自己的一些较长的数学方程或是公式单独的放在段落之外的时 候，那么你最好显示 (display) 它们，而不要拆开此段落。为此，你可以把它们 放在<code>\[</code>与<code>\]</code>之间，或者<code>\begin&#123;displaymath&#125;</code> 与<code>\end&#123;displaymath&#125;</code> 之间。(<em><font color=brown>md默认块就是<code>displaymath</code>环境</font></em>)</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex">Add <span class="token equation string">$a$</span> squared and <span class="token equation string">$b$</span> squared
+to get <span class="token equation string">$c$</span> squared. Or, using
+a more mathematical approach:
+<span class="token function selector">\begin</span><span class="token punctuation">&#123;</span><span class="token keyword">displaymath</span><span class="token punctuation">&#125;</span>
+c^<span class="token punctuation">&#123;</span>2<span class="token punctuation">&#125;</span>=a^<span class="token punctuation">&#123;</span>2<span class="token punctuation">&#125;</span>+b^<span class="token punctuation">&#123;</span>2<span class="token punctuation">&#125;</span>
+<span class="token function selector">\end</span><span class="token punctuation">&#123;</span><span class="token keyword">displaymath</span><span class="token punctuation">&#125;</span>
+or you can type less with:
+<span class="token equation string">\[a+b=c\]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>如果你希望LATEX 给你的方程编上号，你可以使用equation 环境。然后你 就可以用\label 来给一个方程加上标签并在文中的某处用\ref 或amsmath 宏 包中的\eqref 命令来引用它。</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\begin</span><span class="token punctuation">&#123;</span><span class="token keyword">equation</span><span class="token punctuation">&#125;</span><span class="token equation string"> <span class="token equation-command regex">\label</span>&#123;eq:eps&#125;
+<span class="token equation-command regex">\epsilon</span> > 0
+</span><span class="token function selector">\end</span><span class="token punctuation">&#123;</span><span class="token keyword">equation</span><span class="token punctuation">&#125;</span>
+From (<span class="token function selector">\ref</span><span class="token punctuation">&#123;</span><span class="token keyword">eq:eps</span><span class="token punctuation">&#125;</span>), we gather
+<span class="token function selector">\ldots</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>From <span class="token function selector">\eqref</span><span class="token punctuation">&#123;</span>eq:eps<span class="token punctuation">&#125;</span> we
+do the same.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>注意一下公式排版样式的不同，<code>$</code>是行间式样，<code>\begin&#123;displaymath&#125;</code>是显示式样。</p>
+<h2 id="数学模式的群组"><a href="#数学模式的群组" class="headerlink" title="数学模式的群组"></a>数学模式的群组</h2><p>大部分数学模式的命令只对其后的一个字符有效，因此，如果你希望一个命令对 多个字符起作用，你必须把它们放在一个群组中，使用花括号：{…}.</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\begin</span><span class="token punctuation">&#123;</span><span class="token keyword">equation</span><span class="token punctuation">&#125;</span><span class="token equation string">
+a^x+y <span class="token equation-command regex">\neq</span> a^&#123;x+y&#125;
+</span><span class="token function selector">\end</span><span class="token punctuation">&#123;</span><span class="token keyword">equation</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<h2 id="数学公式的基本元素"><a href="#数学公式的基本元素" class="headerlink" title="数学公式的基本元素(!)"></a>数学公式的基本元素(!)</h2><blockquote>
+<p><strong>即将介绍数学排版中的<u>最重要的一些命令</u></strong>，也是md中最重要的</p>
+<p>你可以先记住<code>\</code>是一个神奇的符号</p>
+</blockquote>
+<p><strong>小写希腊字母</strong> (Greek letters) 的输入为<code>\alpha</code>、<code>\beta</code>、<code>\gamma</code>……，大 写字母的输入为<code>\Gamma</code>、<code>\Delta</code>…….</p>
+<p><strong>指数和下标</strong>可以能过使用<code>^</code> 和<code>_</code>两个符号来指定。</p>
+<p><strong>平方根</strong> (square root) 输入用<code>\sqrt</code>；n 次根用<code>\sqrt[n]</code> 来得到。根号的大小由LATEX自动决定。如果仅仅需要根号，可以用<code>\surd</code> 得到。</p>
+<p>命令<code>\overline</code> 和<code>\underline</code> 产生<strong>水平线</strong>，它们会被放在表达式的正上方 或是正下方。</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token equation string">$<span class="token equation-command regex">\overline</span>&#123;m+n&#125;$</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<script type="math/tex; mode=display">
+\overline{m+n}</script><p>命令<code>\overbrace</code> 和<code>\underbrace</code>可以在一个表达式的上方或下方生成<strong>水平括号</strong></p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token equation string">$<span class="token equation-command regex">\underbrace</span>&#123;a+b+<span class="token equation-command regex">\cdots</span>+z&#125;_&#123;26&#125;$</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<script type="math/tex; mode=display">
+\underbrace{a+b+\cdots+z}_{26}</script><p>为了给变量增加数学重音符号，如小箭头或是˜(tilde)，可以用之后的命令。覆盖多个字符的宽“帽子”和宽˜号，可以由<code>\widehat</code> 和<code>\widetilde</code> 得到。<code>’</code>符号则给出了一个撇号(prime)。</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\begin</span><span class="token punctuation">&#123;</span><span class="token keyword">displaymath</span><span class="token punctuation">&#125;</span>
+y=x^<span class="token punctuation">&#123;</span>2<span class="token punctuation">&#125;</span><span class="token function selector">\qquad</span> y’=2x<span class="token function selector">\qquad</span> y’’=2
+<span class="token function selector">\end</span><span class="token punctuation">&#123;</span><span class="token keyword">displaymath</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<script type="math/tex; mode=display">
+y=x^{2}\qquad y’=2x\qquad y’’=2</script><p><strong>向量</strong>可以通过在一个变量上方添加小箭头(arrow symbols) 来指定。为此， 使用<code>\vec</code> 命令即可。<code>\overrightarrow</code> 和<code>\overleftarrow</code> 这两个命令可以用来表示一个从 A 到 B 的向量。</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\begin</span><span class="token punctuation">&#123;</span><span class="token keyword">displaymath</span><span class="token punctuation">&#125;</span>
+<span class="token function selector">\vec</span> a<span class="token function selector">\quad</span><span class="token function selector">\overrightarrow</span><span class="token punctuation">&#123;</span>AB<span class="token punctuation">&#125;</span>
+<span class="token function selector">\end</span><span class="token punctuation">&#123;</span><span class="token keyword">displaymath</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<script type="math/tex; mode=display">
+\vec a\quad\overrightarrow{AB}</script><p>通常你没有必要打出一个明显的<strong>点号</strong>(用来表示乘法)来表明乘法运算；但是有时候也需要它来帮助读者分清一个公式。在这些情况下，你应该使用<code>\cdot</code> 命令。</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\begin</span><span class="token punctuation">&#123;</span><span class="token keyword">displaymath</span><span class="token punctuation">&#125;</span>
+v = <span class="token punctuation">&#123;</span><span class="token function selector">\sigma</span><span class="token punctuation">&#125;</span>_1 <span class="token function selector">\cdot</span> <span class="token punctuation">&#123;</span><span class="token function selector">\sigma</span><span class="token punctuation">&#125;</span>_2
+<span class="token punctuation">&#123;</span><span class="token function selector">\tau</span><span class="token punctuation">&#125;</span>_1 <span class="token function selector">\cdot</span> <span class="token punctuation">&#123;</span><span class="token function selector">\tau</span><span class="token punctuation">&#125;</span>_2
+<span class="token function selector">\end</span><span class="token punctuation">&#123;</span><span class="token keyword">displaymath</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
+<script type="math/tex; mode=display">
+v = {\sigma}_1 \cdot {\sigma}_2
+{\tau}_1 \cdot {\tau}_2</script><p>log 等类似的函数名通常是用直立字体，而不是如同变量一样用斜体，因 此LATEX 提供了以下的命令来排版这些最重要的函数名：</p>
+<p><img src="https://gitee.com/rogerskelamen/mdpic/raw/master/img/image-20210122202026918.png" srcset="/img/loading.gif" alt=""></p>
+<p>eg：</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\lim</span>_<span class="token punctuation">&#123;</span>x <span class="token function selector">\rightarrow</span> 0<span class="token punctuation">&#125;</span>
+<span class="token function selector">\frac</span><span class="token punctuation">&#123;</span><span class="token function selector">\sin</span> x<span class="token punctuation">&#125;</span><span class="token punctuation">&#123;</span>x<span class="token punctuation">&#125;</span>=1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<script type="math/tex; mode=display">
+\lim_{x \rightarrow 0}
+\frac{\sin x}{x}=1</script><p>对于<strong>取模函数</strong>(modulo function)，有两个命令：<code>\bmod</code> 用于二元运算“<code>a mod b</code>”，而<code>\pmod</code> 则用于表达式如“<code>x ≡ a (mod b)</code>”。</p>
+<p>一个上下的<strong>分式</strong>(fraction) 可用<code>\frac</code>{…}{…} 命令得到。而其倾斜形式如 1/2，有时是更好的选择，因为对于简短的分子分母来说，这看上去更美观。</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\begin</span><span class="token punctuation">&#123;</span><span class="token keyword">displaymath</span><span class="token punctuation">&#125;</span>
+<span class="token function selector">\frac</span><span class="token punctuation">&#123;</span> x^<span class="token punctuation">&#123;</span>2<span class="token punctuation">&#125;</span> <span class="token punctuation">&#125;</span><span class="token punctuation">&#123;</span> k+1 <span class="token punctuation">&#125;</span><span class="token function selector">\qquad</span>
+x^<span class="token punctuation">&#123;</span> <span class="token function selector">\frac</span><span class="token punctuation">&#123;</span>2<span class="token punctuation">&#125;</span><span class="token punctuation">&#123;</span>k+1<span class="token punctuation">&#125;</span> <span class="token punctuation">&#125;</span><span class="token function selector">\qquad</span>
+x^<span class="token punctuation">&#123;</span> 1/2 <span class="token punctuation">&#125;</span>
+<span class="token function selector">\end</span><span class="token punctuation">&#123;</span><span class="token keyword">displaymath</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<script type="math/tex; mode=display">
+\frac{ x^{2} }{ k+1 }\qquad
+x^{ \frac{2}{k+1} }\qquad
+x^{ 1/2 }</script><p>排版<strong>二项式系数</strong>或类似的结构，你可以使用amsmath 宏包中的<code>\binom</code> 命 令。</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\begin</span><span class="token punctuation">&#123;</span><span class="token keyword">displaymath</span><span class="token punctuation">&#125;</span>
+<span class="token function selector">\binom</span><span class="token punctuation">&#123;</span>n<span class="token punctuation">&#125;</span><span class="token punctuation">&#123;</span>k<span class="token punctuation">&#125;</span><span class="token function selector">\qquad</span><span class="token function selector">\mathrm</span><span class="token punctuation">&#123;</span>C<span class="token punctuation">&#125;</span>_n^k
+<span class="token function selector">\end</span><span class="token punctuation">&#123;</span><span class="token keyword">displaymath</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<script type="math/tex; mode=display">
+\binom{n}{k}\qquad\mathrm{C}_n^k</script><p>有时候你需要把符号互相堆积起来。<code>\stackrel</code>命令会把其第一个参数中的符号以上标大小放在第二个上面，而第二个符号则以正常的位置摆放。</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\begin</span><span class="token punctuation">&#123;</span><span class="token keyword">displaymath</span><span class="token punctuation">&#125;</span>
+<span class="token function selector">\int</span> f_N(x) <span class="token function selector">\stackrel</span><span class="token punctuation">&#123;</span>!<span class="token punctuation">&#125;</span><span class="token punctuation">&#123;</span>=<span class="token punctuation">&#125;</span> 1
+<span class="token function selector">\end</span><span class="token punctuation">&#123;</span><span class="token keyword">displaymath</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<script type="math/tex; mode=display">
+\int f_N(x) \stackrel{!}{=} 1</script><p><strong>积分号</strong> (integral operator) 可以用<code>\int</code> 产生，<strong>求和号</strong> (sum operator) 用<code>\sum</code> 命令，而<strong>乘积号</strong> (product operator) 要用<code>\prod</code> 命令。上限和下限用<code>^</code> 和<code>_</code>来指定，如同上标与下标一样</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\begin</span><span class="token punctuation">&#123;</span><span class="token keyword">displaymath</span><span class="token punctuation">&#125;</span>
+<span class="token function selector">\sum</span>_<span class="token punctuation">&#123;</span>i=1<span class="token punctuation">&#125;</span>^<span class="token punctuation">&#123;</span>n<span class="token punctuation">&#125;</span> <span class="token function selector">\qquad</span>
+<span class="token function selector">\int</span>_<span class="token punctuation">&#123;</span>0<span class="token punctuation">&#125;</span>^<span class="token punctuation">&#123;</span><span class="token function selector">\frac</span><span class="token punctuation">&#123;</span><span class="token function selector">\pi</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#123;</span>2<span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span> <span class="token function selector">\qquad</span>
+<span class="token function selector">\prod</span>_<span class="token function selector">\epsilon</span>
+<span class="token function selector">\end</span><span class="token punctuation">&#123;</span><span class="token keyword">displaymath</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<script type="math/tex; mode=display">
+\sum_{i=1}^{n} \qquad
+\int_{0}^{\frac{\pi}{2}} \qquad
+\prod_\epsilon</script><p>为了更好的控制一个复杂表达式中指标的放置，amsmath 提供了两个额外 的工具：<code>\substack</code> 命令和<code>subarray</code> 环境：</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\begin</span><span class="token punctuation">&#123;</span><span class="token keyword">displaymath</span><span class="token punctuation">&#125;</span>
+<span class="token function selector">\sum</span>_<span class="token punctuation">&#123;</span><span class="token function selector">\substack</span><span class="token punctuation">&#123;</span>0&lt;i&lt;n <span class="token function selector">\\</span> 1&lt;j&lt;m<span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span>
+P(i,j) =
+<span class="token function selector">\sum</span>_<span class="token punctuation">&#123;</span><span class="token function selector">\begin</span><span class="token punctuation">&#123;</span><span class="token keyword">subarray</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#123;</span>l<span class="token punctuation">&#125;</span>
+i<span class="token function selector">\in</span> I<span class="token function selector">\\</span>
+1&lt;j&lt;m
+<span class="token function selector">\end</span><span class="token punctuation">&#123;</span><span class="token keyword">subarray</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span> Q(i,j)
+<span class="token function selector">\end</span><span class="token punctuation">&#123;</span><span class="token keyword">displaymath</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<script type="math/tex; mode=display">
+\sum_{\substack{0<i<n \\ 1<j<m}}
+P(i,j) =
+\sum_{\begin{subarray}{l}
+i\in I\\
+1<j<m
+\end{subarray}} Q(i,j)</script><p>TEX提供了各种各样的符号来得到括号 (braces) 和其他定界符(delimiters)。<strong>圆括号和方括号可以由对应的键直接输入而花括号要用<code>\&#123;</code>，</strong>但是所有其它的定界符都要用一定的命令(如：\updownarrow) 生成。</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\begin</span><span class="token punctuation">&#123;</span><span class="token keyword">displaymath</span><span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#123;</span>a,b,c<span class="token punctuation">&#125;</span><span class="token function selector">\neq</span><span class="token function selector">\&#123;</span>a,b,c<span class="token function selector">\&#125;</span>
+<span class="token function selector">\end</span><span class="token punctuation">&#123;</span><span class="token keyword">displaymath</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<script type="math/tex; mode=display">
+{a,b,c}\neq\{a,b,c\}</script><p>如果你在某个左定界符前放一个<code>\left</code> 命令或是在某个右定界符前放一 个<code>\right</code> 命令，TEX 将会自动决定这对定界符的大小。<strong>请注意，你必须为每个<code>\left</code> 命令配对相应的<code>\right</code> 命令</strong>，而且只有在左右定界符被排版在同一行时才会获得正确的大小尺寸。</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\begin</span><span class="token punctuation">&#123;</span><span class="token keyword">displaymath</span><span class="token punctuation">&#125;</span>
+1 + <span class="token function selector">\left</span>( <span class="token function selector">\frac</span><span class="token punctuation">&#123;</span>1<span class="token punctuation">&#125;</span><span class="token punctuation">&#123;</span> 1-x^<span class="token punctuation">&#123;</span>2<span class="token punctuation">&#125;</span> <span class="token punctuation">&#125;</span> <span class="token function selector">\right</span>) ^3
+<span class="token function selector">\end</span><span class="token punctuation">&#123;</span><span class="token keyword">displaymath</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<script type="math/tex; mode=display">
+1 + \left( \frac{1}{ 1-x^{2} } \right) ^3</script><p>有些情况下，有必要手工指定一个数学定界符的正确尺寸，这可以使 用<code>\big</code>，<code>\Big</code>，<code>\bigg</code> 和<code>\Bigg</code> 命令，大多数情况下你只需把它们放在定界符 命令的前面</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token equation string">$<span class="token equation-command regex">\Big</span>( (x+1) (x-1) <span class="token equation-command regex">\Big</span>) ^&#123;2&#125;$</span><span class="token function selector">\\</span>
+<span class="token equation string">$<span class="token equation-command regex">\big</span>(<span class="token equation-command regex">\Big</span>(<span class="token equation-command regex">\bigg</span>(<span class="token equation-command regex">\Bigg</span>($</span><span class="token function selector">\quad</span>
+<span class="token equation string">$<span class="token equation-command regex">\big</span><span class="token equation-command regex">\&#125;</span><span class="token equation-command regex">\Big</span><span class="token equation-command regex">\&#125;</span><span class="token equation-command regex">\bigg</span><span class="token equation-command regex">\&#125;</span><span class="token equation-command regex">\Bigg</span><span class="token equation-command regex">\&#125;</span>$</span>
+<span class="token function selector">\quad</span>
+<span class="token equation string">$<span class="token equation-command regex">\big</span><span class="token equation-command regex">\|</span><span class="token equation-command regex">\Big</span><span class="token equation-command regex">\|</span><span class="token equation-command regex">\bigg</span><span class="token equation-command regex">\|</span><span class="token equation-command regex">\Bigg</span><span class="token equation-command regex">\|</span>$</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<script type="math/tex; mode=display">
+\Big( (x+1) (x-1) \Big) ^{2}\\
+\big(\Big(\bigg(\Bigg(\quad
+\big\}\Big\}\bigg\}\Bigg\}
+\quad
+\big\|\Big\|\bigg\|\Bigg\|</script><p>有很多命令可以实现在公式中插入<strong>三点列</strong> (three dots)。\ldots 得到在基 线上的点列而\cdots 是上下居中的点列。另外，还有\vdots 命令产生竖直的点 列，\ddots 产生对角线的点列。</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\begin</span><span class="token punctuation">&#123;</span><span class="token keyword">displaymath</span><span class="token punctuation">&#125;</span>
+x_<span class="token punctuation">&#123;</span>1<span class="token punctuation">&#125;</span>,<span class="token function selector">\ldots</span>,x_<span class="token punctuation">&#123;</span>n<span class="token punctuation">&#125;</span> <span class="token function selector">\qquad</span>
+x_<span class="token punctuation">&#123;</span>1<span class="token punctuation">&#125;</span>+<span class="token function selector">\cdots</span>+x_<span class="token punctuation">&#123;</span>n<span class="token punctuation">&#125;</span>
+<span class="token function selector">\end</span><span class="token punctuation">&#123;</span><span class="token keyword">displaymath</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
+<script type="math/tex; mode=display">
+x_{1},\ldots,x_{n} \qquad
+x_{1}+\cdots+x_{n}</script><h2 id="数学空格"><a href="#数学空格" class="headerlink" title="数学空格"></a>数学空格</h2><p>可以通过插入一些特殊的空格控制命令来调整自定义空格</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>空格大小</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>\,</code></td>
+<td>$\frac{3}{18}$ quad</td>
+</tr>
+<tr>
+<td><code>\:</code></td>
+<td>$\frac{4}{18}$ quad</td>
+</tr>
+<tr>
+<td><code>\</code></td>
+<td>中等大小</td>
+</tr>
+<tr>
+<td><code>\;</code></td>
+<td>$\frac{5}{18}$ quad</td>
+</tr>
+<tr>
+<td><code>\quad</code></td>
+<td>1 quad</td>
+</tr>
+<tr>
+<td><code>\qquad</code></td>
+<td>2 quad</td>
+</tr>
+<tr>
+<td><code>\!</code></td>
+<td>-$\frac{3}{18}$ quad</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="垂直取齐"><a href="#垂直取齐" class="headerlink" title="垂直取齐"></a>垂直取齐</h2><p>要排版数组，使用<code>array</code> 环境。它的使用与<code>tabular</code> 环境有些类似。<code>\\</code> 命令可用来断行。</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\begin</span><span class="token punctuation">&#123;</span><span class="token keyword">displaymath</span><span class="token punctuation">&#125;</span>
+<span class="token function selector">\mathbf</span><span class="token punctuation">&#123;</span>X<span class="token punctuation">&#125;</span> =
+<span class="token function selector">\left</span>( <span class="token function selector">\begin</span><span class="token punctuation">&#123;</span><span class="token keyword">array</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#123;</span>ccc<span class="token punctuation">&#125;</span>
+x_<span class="token punctuation">&#123;</span>11<span class="token punctuation">&#125;</span> <span class="token punctuation">&amp;</span> x_<span class="token punctuation">&#123;</span>12<span class="token punctuation">&#125;</span> <span class="token punctuation">&amp;</span> <span class="token function selector">\ldots</span> <span class="token function selector">\\</span>
+x_<span class="token punctuation">&#123;</span>21<span class="token punctuation">&#125;</span> <span class="token punctuation">&amp;</span> x_<span class="token punctuation">&#123;</span>22<span class="token punctuation">&#125;</span> <span class="token punctuation">&amp;</span> <span class="token function selector">\ldots</span> <span class="token function selector">\\</span>
+<span class="token function selector">\vdots</span> <span class="token punctuation">&amp;</span> <span class="token function selector">\vdots</span> <span class="token punctuation">&amp;</span> <span class="token function selector">\ddots</span>
+<span class="token function selector">\end</span><span class="token punctuation">&#123;</span><span class="token keyword">array</span><span class="token punctuation">&#125;</span> <span class="token function selector">\right</span>)
+<span class="token function selector">\end</span><span class="token punctuation">&#123;</span><span class="token keyword">displaymath</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<script type="math/tex; mode=display">
+\mathbf{X} =
+\left( \begin{array}{ccc}
+x_{11} & x_{12} & \ldots \\
+x_{21} & x_{22} & \ldots \\
+\vdots & \vdots & \ddots
+\end{array} \right)</script><p><code>array</code> 环境也可以用来排版这样的表达式，表达式中使用一个“<code>.</code>” 作为其隐 藏的<code>\right</code> 定界符。</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\begin</span><span class="token punctuation">&#123;</span><span class="token keyword">displaymath</span><span class="token punctuation">&#125;</span>
+y = <span class="token function selector">\left</span><span class="token function selector">\&#123;</span> <span class="token function selector">\begin</span><span class="token punctuation">&#123;</span><span class="token keyword">array</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#123;</span>ll<span class="token punctuation">&#125;</span>
+a <span class="token punctuation">&amp;</span> <span class="token function selector">\textrm</span><span class="token punctuation">&#123;</span>if <span class="token equation string">$d>c$</span><span class="token punctuation">&#125;</span><span class="token function selector">\\</span>
+b+x <span class="token punctuation">&amp;</span> <span class="token function selector">\textrm</span><span class="token punctuation">&#123;</span>in the morning<span class="token punctuation">&#125;</span><span class="token function selector">\\</span>
+l <span class="token punctuation">&amp;</span> <span class="token function selector">\textrm</span><span class="token punctuation">&#123;</span>all day long<span class="token punctuation">&#125;</span>
+<span class="token function selector">\end</span><span class="token punctuation">&#123;</span><span class="token keyword">array</span><span class="token punctuation">&#125;</span> <span class="token function selector">\right</span>.
+<span class="token function selector">\end</span><span class="token punctuation">&#123;</span><span class="token keyword">displaymath</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<script type="math/tex; mode=display">
+y = \left\{ \begin{array}{ll}
+a & \textrm{if $d>c$}\\
+b+x & \textrm{in the morning}\\
+l & \textrm{all day long}
+\end{array} \right.</script><h2 id="虚位"><a href="#虚位" class="headerlink" title="虚位"></a>虚位</h2><p>我们看不见虚位（phantom，也有幻影的意思），但是在许多人的头脑中它们依然 占有一定的位置。</p>
+<p>使用<code>\phantom</code> 命令你可以给不在最终输出中显示的字符保留位置。<em>理解此意的最 好方法是看下面的例子。</em></p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\begin</span><span class="token punctuation">&#123;</span><span class="token keyword">displaymath</span><span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>^<span class="token punctuation">&#123;</span>12<span class="token punctuation">&#125;</span>_<span class="token punctuation">&#123;</span><span class="token function selector">\phantom</span><span class="token punctuation">&#123;</span>1<span class="token punctuation">&#125;</span>6<span class="token punctuation">&#125;</span><span class="token function selector">\textrm</span><span class="token punctuation">&#123;</span>C<span class="token punctuation">&#125;</span>
+<span class="token function selector">\qquad</span> <span class="token function selector">\textrm</span><span class="token punctuation">&#123;</span>versus<span class="token punctuation">&#125;</span> <span class="token function selector">\qquad</span>
+<span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>^<span class="token punctuation">&#123;</span>12<span class="token punctuation">&#125;</span>_<span class="token punctuation">&#123;</span>6<span class="token punctuation">&#125;</span><span class="token function selector">\textrm</span><span class="token punctuation">&#123;</span>C<span class="token punctuation">&#125;</span>
+
+<span class="token function selector">\\</span>
+
+<span class="token function selector">\Gamma</span>_<span class="token punctuation">&#123;</span>ij<span class="token punctuation">&#125;</span>^<span class="token punctuation">&#123;</span><span class="token function selector">\phantom</span><span class="token punctuation">&#123;</span>ij<span class="token punctuation">&#125;</span>k<span class="token punctuation">&#125;</span>
+<span class="token function selector">\qquad</span> <span class="token function selector">\textrm</span><span class="token punctuation">&#123;</span>versus<span class="token punctuation">&#125;</span> <span class="token function selector">\qquad</span>
+<span class="token function selector">\Gamma</span>_<span class="token punctuation">&#123;</span>ij<span class="token punctuation">&#125;</span>^<span class="token punctuation">&#123;</span>k<span class="token punctuation">&#125;</span>
+<span class="token function selector">\end</span><span class="token punctuation">&#123;</span><span class="token keyword">displaymath</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<script type="math/tex; mode=display">
+{}^{12}_{\phantom{1}6}\textrm{C}
+\qquad \textrm{versus} \qquad
+{}^{12}_{6}\textrm{C}
+\\
+\Gamma_{ij}^{\phantom{ij}k}
+\qquad \textrm{versus} \qquad
+\Gamma_{ij}^{k}</script><h2 id="数学符号表"><a href="#数学符号表" class="headerlink" title="数学符号表"></a>数学符号表</h2><blockquote>
+<p>LaTeX中的数学符号实在太多了，所以列出表就很有必要</p>
+</blockquote>
+<p><img src="https://gitee.com/rogerskelamen/mdpic/raw/master/img/image-20210122214338604.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="https://gitee.com/rogerskelamen/mdpic/raw/master/img/image-20210122214447774.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="https://gitee.com/rogerskelamen/mdpic/raw/master/img/image-20210122214528455.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="https://gitee.com/rogerskelamen/mdpic/raw/master/img/image-20210122214600423.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="https://gitee.com/rogerskelamen/mdpic/raw/master/img/image-20210122214626029.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="https://gitee.com/rogerskelamen/mdpic/raw/master/img/image-20210122214649923.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="https://gitee.com/rogerskelamen/mdpic/raw/master/img/image-20210122214716485.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="https://gitee.com/rogerskelamen/mdpic/raw/master/img/image-20210122214737897.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="https://gitee.com/rogerskelamen/mdpic/raw/master/img/image-20210122214802646.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="https://gitee.com/rogerskelamen/mdpic/raw/master/img/image-20210122214846090.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="https://gitee.com/rogerskelamen/mdpic/raw/master/img/image-20210122214932841.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="https://gitee.com/rogerskelamen/mdpic/raw/master/img/image-20210122215008432.png" srcset="/img/loading.gif" alt=""></p>
+<h1 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h1><p>本教程基于<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1kVhKR4G1vtzDWJ1ex8GYgQ">这本书</a> (<em>提取码：2nw4</em>)</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/MCM/">MCM</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/02/27/Java%E5%86%8D%E5%AD%A6%E6%B3%A8%E6%84%8F%E7%82%B9/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Java再学注意点</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/01/19/MATLAB%E5%AD%A6%E4%B9%A0/">
+                        <span class="hidden-mobile">MATLAB学习</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                  
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('vcomments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "2RbCqGEaklHVj7Gj6dtd2kM4-gzGzoHsz",
+          app_key: "kdFD4FmNeIpaTMK269nEqhxx",
+          placeholder: "say something...",
+          path: window.location.pathname,
+          avatar: "mp",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          recordIP: true,
+          serverURLs: "https://2rbcqgea.lc-cn-n1-shared.com",
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments powered by Valine.</a>
+  </noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+
+  <!-- 自己设置一个记录网站运行时间的方法 -->
+  <span id="sitetime" style="font-size: 14px; font-family: Consolas;font-weight: normal; color: #aaa;"></span>
+  <script language=javascript>
+    function siteTime(){
+      window.setTimeout("siteTime()", 1000);
+      var seconds = 1000;
+      var minutes = seconds * 60;
+      var hours = minutes * 60;
+      var days = hours * 24;
+      var years = days * 365;
+      var today = new Date();
+      var todayYear = today.getFullYear();
+      var todayMonth = today.getMonth()+1;
+      var todayDate = today.getDate();
+      var todayHour = today.getHours();
+      var todayMinute = today.getMinutes();
+      var todaySecond = today.getSeconds();
+      /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+      year - 作为date对象的年份，为4位年份值
+      month - 0-11之间的整数，做为date对象的月份
+      day - 1-31之间的整数，做为date对象的天数
+      hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+      minutes - 0-59之间的整数，做为date对象的分钟数
+      seconds - 0-59之间的整数，做为date对象的秒数
+      microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+      var t1 = Date.UTC(2020,10,18,15,00,00); //北京时间2020-10-18 00:00:00
+      var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+      var diff = t2-t1;
+      var diffYears = Math.floor(diff/years);
+      var diffDays = Math.floor((diff/days)-diffYears*365);
+      var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+      var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+      var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+      document.getElementById("sitetime").innerHTML=" 小破站已勉强运行了 "+/*diffYears+" 年 "+*/diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+    }/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+    siteTime();
+  </script>
+  <!-- 自己设置一个记录网站运行时间的方法 -->
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/mermaid@8.8.3/dist/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({"theme":"default"});
+    }
+  </script>
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0d7560f90f7a21d6a9e7635611dac094";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

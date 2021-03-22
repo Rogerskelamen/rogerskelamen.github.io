@@ -1,0 +1,890 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/rogerskelamen/mdpic/raw/master/img/img.jpg">
+  <link rel="icon" href="https://gitee.com/rogerskelamen/mdpic/raw/master/img/img.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  
+    <meta name="description" content="">
+  
+  <meta name="author" content="Rogers Kelamen">
+  <meta name="keywords" content="blog">
+  
+  <title>docsify网站搭建| RO&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.22.0/themes/prism-solarizedlight.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.22.0/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"rokelamen.top","root":"/","version":"1.8.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":"0d7560f90f7a21d6a9e7635611dac094","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"2RbCqGEaklHVj7Gj6dtd2kM4-gzGzoHsz","app_key":"kdFD4FmNeIpaTMK269nEqhxx","server_url":"https://2rbcqgea.lc-cn-n1-shared.com"}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>RO's Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://gitee.com/rogerskelamen/mdpic/raw/master/img/76510277_p0.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="docsify网站搭建">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Rogers Kelamen
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-11-08 21:34" pubdate>
+        2020年11月8日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.9k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      103
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">docsify网站搭建</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2020年11月10日 晚上
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="docsify网站搭建教程（已完结）"><a href="#docsify网站搭建教程（已完结）" class="headerlink" title="docsify网站搭建教程（已完结）"></a>docsify网站搭建教程（已完结）</h1><h2 id="写在前头"><a href="#写在前头" class="headerlink" title="写在前头"></a>写在前头</h2><blockquote>
+<p>有人会说了：搞什么搞什么！你这个网站不是用hexo搭的么！？<br>好吧我承认这个博客是用hexo搭建的 ( •̀ ω •́ )✧，但是不得不说hexo的坑实在是太多了，我曾一度想要放弃这个hexo的网站而只去捣鼓docsify╰(<em>°▽°</em>)╯。鉴于我对docsify的经验了解（反正我对hexo的了解还很少），再加上有朋友要求我写一个docsify的教程（话说<a target="_blank" rel="noopener" href="https://docsify.js.org/#/">官方文档</a>有那么难看懂吗），于是我就写下这篇文章（可能会断更），希望帮助一些小伙伴少踩一些坑。</p>
+</blockquote>
+<p><em>ps：我这篇教程还是基于<a target="_blank" rel="noopener" href="https://docsify.js.org/#/">官方文档</a>的，所以索引顺序啥的还是会按照官方来。但是，本教程并非按官方照抄不误，有些官方的解释说明在教程中不会重复提及，本教程秉持着对于官方的补充以及对官方中一些坑的解决。当然，要是觉得我讲解的太low了，可以直接去看<a target="_blank" rel="noopener" href="https://docsify.js.org/#/">官方文档</a>。</em></p>
+<h1 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h1><blockquote>
+<p>还是先看看官方怎么介绍docsify的吧：docsify 可以快速帮你生成文档网站。不同于 GitBook、Hexo 的地方是它不会生成静态的 <code>.html</code> 文件，所有转换工作都是在运行时。如果你想要开始使用它，只需要创建一个 <code>index.html</code> 就可以开始编写文档并直接<a target="_blank" rel="noopener" href="https://docsify.js.org/#/zh-cn/deploy">部署在 GitHub Pages</a>。</p>
+</blockquote>
+<p><em>其实官网上还介绍了它的一些特性，有兴趣的可以去看看。</em></p>
+<h2 id="即刻开始"><a href="#即刻开始" class="headerlink" title="即刻开始"></a>即刻开始</h2><p>安装docsify-cli工具</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> i docsify-cli -g<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p><em>ps：</em></p>
+<ul>
+<li><em>这里使用npm安装，所以你首先要有安装node.js</em></li>
+<li><em><code>-g</code>是全局安装（推荐），你也可以在单个项目中安装docsify-cli工具</em></li>
+</ul>
+<h2 id="clone项目"><a href="#clone项目" class="headerlink" title="clone项目"></a>clone项目</h2><p><strong>从github上拉取你的用来搭网站的仓库到本地</strong></p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> clone <span class="token punctuation">..</span>.<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>然后你得到了你的本地仓库，譬如名如yourname.github.io（<font color=brown>这个仓库必须要是以.github.io结尾的</font>）的仓库，接下来就是初始化的步骤了。</p>
+<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><p>直接在这个仓库下输入初始化指令</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">docsify init ./docs<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>这样会在根目录下创建一个名为docs的文件夹，<strong>下面会自动生成一些文件（都不要删）</strong></p>
+<p>然后命令行会有如下提示<br><img src="https://gitee.com/rogerskelamen/mdpic/raw/master/img/image-20201108201507457.png" srcset="/img/loading.gif" alt=""></p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">docsify serve docs<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>这样就可以实时查看预览效果。</p>
+<h2 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h2><p>在docs文件夹下的index.html中</p>
+<div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token comment">&lt;!-- index.html --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-app</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>main<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>加载中<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript">
+    window<span class="token punctuation">.</span>$docsify <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+        el<span class="token operator">:</span> <span class="token string">'#main'</span>
+    <span class="token punctuation">&#125;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p><code>window.$docsify</code>对象就是我们将来的配置项的重要对象。</p>
+<h1 id="Write-Docs"><a href="#Write-Docs" class="headerlink" title="Write Docs"></a>Write Docs</h1><blockquote>
+<p>浅谈一下docsify的基本原理</p>
+</blockquote>
+<p>好吧也没什么高深的，就是在<code>index.html</code>的</p>
+<div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>也就是说docsify的精髓就是在这个docsify.min.js这个文件中，<u>有了这个文件docsify的强大功能和配置才能有效果。</u></p>
+<h2 id="多页文档"><a href="#多页文档" class="headerlink" title="多页文档"></a>多页文档</h2><blockquote>
+<p> 我们写出来的文档肯定必须是要有层次和结构的，即得是多页文档。<br> 如果是多页文档，那咱们就得定制一个有层级结构的侧边栏。</p>
+</blockquote>
+<p><em>其实<a target="_blank" rel="noopener" href="https://docsify.js.org/#/">官方文档</a>已经把结构讲的很详细了，即</em></p>
+<div class="code-wrapper"><pre class="line-numbers language-text" data-language="text"><code class="language-text">&#x2F;
+└── docs
+    ├── README.md
+    ├── guide.md
+    └── zh-cn
+        ├── README.md
+        └── guide.md<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>那么docs文件夹下的<code>docs/README.md</code>就是/#/展示的内容，而<code>docs/guide.md</code>就是/#/guide展示的内容，<code>docs/zh-cn/READMD.md</code>就是/#/zh-cn/展示的内容。</p>
+<p><strong>这一部分要深刻理解，因为要是没有对docsify的层级结构的清楚认识，我们就会不知道怎么将这一个个文档正确归类来形成一个清晰的结构（不管是对读者还是作者，会造成阅读困难）</strong></p>
+<p>我个人是这么安排的：<strong><font color=#34b>每个README.md就设置成这一个部分或版块的介绍页，因为点击一个版块的时候是默认跳转到READ.md文件，所以正好就可以直接跳转到这个部分的介绍或简介。</font></strong></p>
+<h2 id="定制侧边栏"><a href="#定制侧边栏" class="headerlink" title="定制侧边栏"></a>定制侧边栏</h2><p>定制侧边栏很简单，只需在同级的版块中创建一个<code>_sidebar.md</code>（<em>由此我们可以知道docsify的文件几乎就是由md文件组成</em>），然后再在<code>index.html</code>中开启</p>
+<div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript">
+  window<span class="token punctuation">.</span>$docsify <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    loadSidebar<span class="token operator">:</span> <span class="token boolean">true</span>
+  <span class="token punctuation">&#125;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p><code>_sidebar.md</code>的格式如下：</p>
+<div class="code-wrapper"><pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown"><span class="token list punctuation">*</span> <span class="token url">[<span class="token content">首页</span>](<span class="token url">/</span>)</span>
+<span class="token list punctuation">*</span> <span class="token url">[<span class="token content">指南</span>](<span class="token url">/guide</span>)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<p><strong>于是乎你点击侧边栏的首页就会跳转到<code>/zh-cn/READMD.md</code>的内容中去，点指南就会跳转到<code>/zh-cn/guide.md</code>的内容中去。（请一定要把这个关系理清楚！）</strong></p>
+<h2 id="嵌套侧边栏"><a href="#嵌套侧边栏" class="headerlink" title="嵌套侧边栏"></a>嵌套侧边栏</h2><blockquote>
+<p>说实话我都不知道官方在这部分在说啥，感觉有点没讲到点子上</p>
+</blockquote>
+<p>说到底就是你每点击一个子级版块docsify会自动跳转到这个版块的README.md（要是我的话就是这个板块的介绍页），此时侧边栏也会跳转，会变成这个版块中的<code>_sidebar.md</code>中的层级内容。</p>
+<div class="code-wrapper"><pre class="line-numbers language-text" data-language="text"><code class="language-text">&#x2F;
+└── docs
+    ├── README.md
+    ├── _sidebar.md
+    ├── guide.md
+    └── zh-cn
+        ├── README.md
+        ├── _sidebar.md
+        └── guide.md<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p><strong><font color=#34b>也就是说你点击了zh-cn所在的锚点，docsify就会跳转到/zh-cn/README.md，然后侧边栏就会改为加载/zh-cn/_sidebar.md</font></strong></p>
+<h3 id="一个坑"><a href="#一个坑" class="headerlink" title="一个坑"></a>一个坑</h3><blockquote>
+<p> 在多级的<code>_sidebar.md</code>中，我们可能会不知道怎么去设置文件中的链接（<em>反正我是踩进坑了的</em>）</p>
+</blockquote>
+<p>假如我有一个第三级的_sidebar.md，其中的内容就该这么写</p>
+<div class="code-wrapper"><pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown"><span class="token list punctuation">*</span> <span class="token url">[<span class="token content">介绍</span>](<span class="token url">/zh-cn/son</span>)</span>
+<span class="token list punctuation">*</span> <span class="token url">[<span class="token content">第一个内容</span>](<span class="token url">/zh-cn/son/content</span>)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<p><em>反正一定要把层级结构理清楚</em></p>
+<h3 id="又一个坑"><a href="#又一个坑" class="headerlink" title="又一个坑"></a>又一个坑</h3><blockquote>
+<p>当我们最开始接触<code>_sidebar.md</code>中的链接时，有可能会感到疑惑，不知道它自己的url链接规则</p>
+</blockquote>
+<p>其实docsify的url是用一个起始hash锚点来规划的，先是一个<code>#</code>，然后再是我们要写的链接，eg：</p>
+<div class="code-wrapper"><pre class="line-numbers language-text" data-language="text"><code class="language-text">(&#x2F;zh-cn&#x2F;)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>这个链接就会转到<u>yourname.github.io/#/zh-cn/</u></p>
+<h1 id="导航栏"><a href="#导航栏" class="headerlink" title="导航栏"></a>导航栏</h1><h2 id="通过HTML"><a href="#通过HTML" class="headerlink" title="通过HTML"></a>通过HTML</h2><blockquote>
+<p>也没啥多说的：就像官方给的那样增加<code>&lt;nav&gt;</code>标签</p>
+</blockquote>
+<div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token comment">&lt;!-- index.html --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nav</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>#/<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>EN<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>#/zh-cn/<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>中文<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nav</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>app<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>还是要提一嘴：<em>这里的链接和之前的都不一样，是以<code>#/</code>开头的</em></p>
+<h2 id="通过配置文件"><a href="#通过配置文件" class="headerlink" title="通过配置文件"></a>通过配置文件</h2><blockquote>
+<p>这里的配置方法官方已经讲的很详细了，我在这里就不再重复了。<br>为什么不重复（lian dei shuo）了，因为这种方法感觉效果和html差不多，但是步骤又有点麻烦了。</p>
+<p>嵌套啥的也不说了吧，反正也很简单，官方也讲的很详细了<br>这里就放个图意思意思吧。</p>
+</blockquote>
+<p><img src="https://docsify.js.org/_images/zh-cn/nested-navbar.png" srcset="/img/loading.gif" alt=""></p>
+<p><em>但是要注意的是：嵌套式的导航必须得是用配置文件配置</em></p>
+<h1 id="CoverPage"><a href="#CoverPage" class="headerlink" title="CoverPage"></a>CoverPage</h1><blockquote>
+<p>终于要讲封面了，毕竟这个docsify的美化效果基本上就是这个封面来撑场子了o(￣▽￣)ｄ</p>
+</blockquote>
+<h2 id="basic-usage"><a href="#basic-usage" class="headerlink" title="basic usage"></a>basic usage</h2><p>得先在<code>index.html</code>中设置配置项：</p>
+<div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token comment">&lt;!-- index.html --></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript">
+  window<span class="token punctuation">.</span>$docsify <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    coverpage<span class="token operator">:</span> <span class="token boolean">true</span>
+  <span class="token punctuation">&#125;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>然后就可以在<code>_coverpage.md</code>中写入你想要的内容：<br><em>这里官网已经讲的很好了，其中的代码也写得很详细，直接按照官网的样子来就好了。</em></p>
+<h1 id="主题（theme）"><a href="#主题（theme）" class="headerlink" title="主题（theme）"></a>主题（theme）</h1><blockquote>
+<p>第二个对美化有撑场子作用的东西（这里我特意更改了官方顺序）</p>
+</blockquote>
+<p><strong>怎么用咧？</strong></p>
+<div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token comment">&lt;!-- index.html --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>//cdn.jsdelivr.net/npm/docsify/themes/vue.css<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p><strong><em>这个link就是你应用的主题的地址，当你修改其中的href值就可以更换主题了。</em></strong></p>
+<p>目前<code>docsify</code>官方中列出来的所有支持主题和预览效果如下：</p>
+<p><code>Vue</code>（默认主题）：<code>&lt;link rel=&quot;stylesheet&quot; href=&quot;//cdn.jsdelivr.net/npm/docsify/themes/vue.css&quot;&gt;</code><br><img src="https://gitee.com/rogerskelamen/mdpic/raw/master/img/d-o-c-g-10.png" srcset="/img/loading.gif" alt=""><code>Buble</code>：<code>&lt;link rel=&quot;stylesheet&quot; href=&quot;//cdn.jsdelivr.net/npm/docsify/themes/buble.css&quot;&gt;</code> <img src="https://gitee.com/rogerskelamen/mdpic/raw/master/img/d-o-c-g-11.png" srcset="/img/loading.gif" alt=""></p>
+<p><code>Dark</code>：<code>&lt;link rel=&quot;stylesheet&quot; href=&quot;//cdn.jsdelivr.net/npm/docsify/themes/dark.css&quot;&gt;</code></p>
+<p><img src="https://gitee.com/rogerskelamen/mdpic/raw/master/img/d-o-c-g-12.png" srcset="/img/loading.gif" alt=""></p>
+<p><code>Pure</code>：<code>&lt;link rel=&quot;stylesheet&quot; href=&quot;//cdn.jsdelivr.net/npm/docsify/themes/pure.css&quot;&gt;</code></p>
+<p><img src="https://gitee.com/rogerskelamen/mdpic/raw/master/img/d-o-c-g-13.png" srcset="/img/loading.gif" alt=""></p>
+<p><code>Dolphin</code>：<code>&lt;link rel=&quot;stylesheet&quot; href=&quot;//cdn.jsdelivr.net/npm/docsify/themes/dolphin.css&quot;&gt;</code></p>
+<p><img src="https://gitee.com/rogerskelamen/mdpic/raw/master/img/d-o-c-g-14.png" srcset="/img/loading.gif" alt=""></p>
+<p><code>Docsify-Themeable-Default</code>：<code>&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-defaults.css&quot;&gt;</code></p>
+<p><img src="https://gitee.com/rogerskelamen/mdpic/raw/master/img/d-o-c-g-15.png" srcset="/img/loading.gif" alt=""></p>
+<p><code>Docsify-Themeable-Sample</code>：<code>&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css&quot;&gt;</code></p>
+<p><img src="https://gitee.com/rogerskelamen/mdpic/raw/master/img/d-o-c-g-16.png" srcset="/img/loading.gif" alt=""></p>
+<p><code>Docsify-Themeable-Sample-Dark</code>：<code>&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple-dark.css&quot;&gt;</code></p>
+<p><img src="https://gitee.com/rogerskelamen/mdpic/raw/master/img/d-o-c-g-17.png" srcset="/img/loading.gif" alt=""></p>
+<p><em>主题不多，且用且珍惜吧（或者你可以自己写一个）</em></p>
+<h1 id="配置项"><a href="#配置项" class="headerlink" title="配置项"></a>配置项</h1><blockquote>
+<p>还是那句话，<a target="_blank" rel="noopener" href="https://docsify.js.org/#/">官方文档</a>中的配置项写得详细且全面，建议直接去看官方的说明。我在本教程中只介绍几个我用上的配置项（个人认为比较常用的），以便缩短你的阅读时间。</p>
+</blockquote>
+<h2 id="el"><a href="#el" class="headerlink" title="el"></a><a target="_blank" rel="noopener" href="https://docsify.js.org/#/zh-cn/configuration?id=el">el</a></h2><p>docsify 初始化的挂载元素，可以是一个 CSS 选择器，默认为 <code>#app</code> 如果不存在就直接绑定在 <code>body</code> 上。</p>
+<p><em>初始化项目之后最初就会有的配置项，默认是<code>&#39;#app&#39;</code>,即绑定了<code>div#app</code>这个元素。</em></p>
+<h2 id="repo"><a href="#repo" class="headerlink" title="repo"></a><a target="_blank" rel="noopener" href="https://docsify.js.org/#/zh-cn/configuration?id=repo">repo</a></h2><p>配置仓库地址或者 <code>username/repo</code> 的字符串，会在页面右上角渲染一个 <a target="_blank" rel="noopener" href="http://tholman.com/github-corners/">GitHub Corner</a> 挂件。</p>
+<p><em>这个repo建议配置（能够美化你的docsify，配置后会在coverpage上显示Github挂件。</em></p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">window<span class="token punctuation">.</span>$docsify <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  repo<span class="token operator">:</span> <span class="token string">'docsifyjs/docsify'</span><span class="token punctuation">,</span>
+  <span class="token comment">// or</span>
+  repo<span class="token operator">:</span> <span class="token string">'https://github.com/yourname/yourrepo/'</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h2 id="maxLevel"><a href="#maxLevel" class="headerlink" title="maxLevel"></a><a target="_blank" rel="noopener" href="https://docsify.js.org/#/zh-cn/configuration?id=maxlevel">maxLevel</a></h2><p>默认情况下会抓取文档中所有标题渲染成目录，可配置最大支持渲染的标题层级。</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">window<span class="token punctuation">.</span>$docsify <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  maxLevel<span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<p><em>因为这个的<u>默认值是6</u>，所以要是不进行设置的话，可能会对侧边栏层级结构造成影响进而影响美观，设置为较小的值则对侧边栏的展开效果会更好（比如4）</em></p>
+<h2 id="relativePath"><a href="#relativePath" class="headerlink" title="relativePath"></a><a target="_blank" rel="noopener" href="https://docsify.js.org/#/zh-cn/configuration?id=relativepath">relativePath</a></h2><p>如果该选项设为 <strong>true</strong> ，那么链接会使用相对路径。</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">window<span class="token punctuation">.</span>$docsify <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  <span class="token comment">// 启用相对路径</span>
+  relativePath<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+
+  <span class="token comment">// 禁用相对路径（默认值）</span>
+  <span class="token comment">// relativePath: false,</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p><strong>将必须写成绝对路径改成允许写入相对路径并可识别，这种好处就不用多说了吧||ヽ(<em>￣▽￣</em>)ノ</strong></p>
+<p>eg：<em>我有一个三个层级的目录结构，然后我要在<code>_sidebar.md</code>中写绝对路径，可能需要这样：</em></p>
+<div class="code-wrapper"><pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown"><span class="token list punctuation">*</span> <span class="token url">[<span class="token content">爬虫</span>](<span class="token url">/zh-cn/notes/python/spider</span>)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p><em>但是我用绝对路径只需要这样：</em></p>
+<div class="code-wrapper"><pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown"><span class="token list punctuation">*</span> <span class="token url">[<span class="token content">爬虫</span>](<span class="token url">spider</span>)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p><strong>当多个层级中有多个文档时，相对路径简直不要太香。</strong></p>
+<h2 id="name"><a href="#name" class="headerlink" title="name"></a><a target="_blank" rel="noopener" href="https://docsify.js.org/#/zh-cn/configuration?id=name">name</a></h2><p>文档标题，会显示在侧边栏顶部。</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">window<span class="token punctuation">.</span>$docsify <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  name<span class="token operator">:</span> <span class="token string">'docsify'</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<p><em>这个可以用来展示你的大名，配合<code>nameLink</code>之后点击这个名字之后跳转到docsify的首页。</em></p>
+<h2 id="logo"><a href="#logo" class="headerlink" title="logo"></a><a target="_blank" rel="noopener" href="https://docsify.js.org/#/zh-cn/configuration?id=logo">logo</a></h2><blockquote>
+<p>可以和name配置项配套使用，也可以单独使用，也相当于是展示个人信息的方式</p>
+</blockquote>
+<p>在侧边栏中出现的网站图标，你可以使用<code>CSS</code>来更改大小</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">window<span class="token punctuation">.</span>$docsify <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  logo<span class="token operator">:</span> <span class="token string">'/_media/icon.svg'</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<p><em>其实我还不知道怎么用CSS更改大小，知道的大佬还请在评论区指教我一下</em></p>
+<h2 id="nameLink"><a href="#nameLink" class="headerlink" title="nameLink"></a><a target="_blank" rel="noopener" href="https://docsify.js.org/#/zh-cn/configuration?id=namelink">nameLink</a></h2><p>点击文档标题<code>name</code>后跳转的链接地址。</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">window<span class="token punctuation">.</span>$docsify <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  nameLink<span class="token operator">:</span> <span class="token string">'/'</span><span class="token punctuation">,</span>
+
+  <span class="token comment">// 按照路由切换</span>
+  nameLink<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token string">'/zh-cn/'</span><span class="token operator">:</span> <span class="token string">'/zh-cn/'</span><span class="token punctuation">,</span>
+    <span class="token string">'/'</span><span class="token operator">:</span> <span class="token string">'/'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p><em>就是和<code>name</code>配置项配合使用的。</em></p>
+<h2 id="routerMode"><a href="#routerMode" class="headerlink" title="routerMode"></a><a target="_blank" rel="noopener" href="https://docsify.js.org/#/zh-cn/configuration?id=routermode">routerMode</a></h2><p>可以用这个配置项更改url的路由模式（默认的是hash）</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">window<span class="token punctuation">.</span>$docsify <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  routerMode<span class="token operator">:</span> <span class="token string">'history'</span><span class="token punctuation">,</span> <span class="token comment">// default: 'hash'</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<p><em>其实我也不太清楚history和hash路由的原理区别，我知道的是改用history模式的话url就不会有hash路由特有的<code>#</code>，而是直接是<code>/.../...</code>这种样子。</em></p>
+<p>ps：<font color=#34b>要是改成了history，因为没有了<code>#</code>，有些在链接中写入了<code>#</code>的地方就得修改一下（去掉<code>#</code>）</font></p>
+<h2 id="notFoundPage"><a href="#notFoundPage" class="headerlink" title="notFoundPage"></a><a target="_blank" rel="noopener" href="https://docsify.js.org/#/zh-cn/configuration?id=notfoundpage">notFoundPage</a></h2><p>在找不到指定页面时加载<code>_404.md</code>:</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">window<span class="token punctuation">.</span>$docsify <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  notFoundPage<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<p>加载自定义404页面:</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">window<span class="token punctuation">.</span>$docsify <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  notFoundPage<span class="token operator">:</span> <span class="token string">'my404.md'</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<h1 id="代码高亮"><a href="#代码高亮" class="headerlink" title="代码高亮"></a>代码高亮</h1><blockquote>
+<p><strong>docsify</strong>内置的代码高亮工具是 <a target="_blank" rel="noopener" href="https://github.com/PrismJS/prism">Prism</a>。Prism 默认支持的语言基本有：markup，html，xml，svg，mathml，css，js（反正其他的我也不认识😜）。说到底，它默认支持的语言还是很有限的（python啥的后端语言都没高亮），于是我们需要额外的代码高亮。</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://prismjs.com/#supported-languages">添加额外的语法支持</a>需要通过CDN添加相应的<a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/npm/prismjs@1/components/">语法文件</a>来配置高亮显示，eg：</p>
+<div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>//cdn.jsdelivr.net/npm/prismjs@1/components/prism-php.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<p>这样我们就有了bash和php的语法高亮。</p>
+<p><em><font color=brown>ps：这些语法文件和docsify的库文件一样，都得放到body中，而不是head标签。（我反正之前有掉到坑里）</font></em></p>
+<h1 id="Plugins"><a href="#Plugins" class="headerlink" title="Plugins"></a>Plugins</h1><blockquote>
+<p>鉴于插件这个部分的安装都很简单（只需要引入文件并修改配置项就行），而且<a target="_blank" rel="noopener" href="https://docsify.js.org/#/zh-cn/plugins">官方文档</a>讲得都还不错，我在这里就不细细介绍了，就只对几个我认为比较好比较必要的插件做一个推荐。</p>
+</blockquote>
+<ul>
+<li><h2 id="全文搜索-Search"><a href="#全文搜索-Search" class="headerlink" title="全文搜索 - Search"></a><a target="_blank" rel="noopener" href="https://docsify.js.org/#/zh-cn/plugins?id=全文搜索-search">全文搜索 - Search</a></h2><p>会在侧边栏中出现一个搜索框，实现一个还不错的全局搜索功能。但是配置项还有一点麻烦。</p>
+</li>
+<li><h2 id="复制到剪贴板"><a href="#复制到剪贴板" class="headerlink" title="复制到剪贴板"></a><a target="_blank" rel="noopener" href="https://docsify.js.org/#/zh-cn/plugins?id=复制到剪贴板">复制到剪贴板</a></h2><p>顾名思义，实现复制markdown中代码的功能。</p>
+<p>详情可参考 <a target="_blank" rel="noopener" href="https://github.com/jperasmus/docsify-copy-code/blob/master/README.md">README.md</a> 。</p>
+</li>
+<li><h2 id="Pagination"><a href="#Pagination" class="headerlink" title="Pagination"></a><a target="_blank" rel="noopener" href="https://docsify.js.org/#/zh-cn/plugins?id=pagination">Pagination</a></h2><p>docsify的一个分页导航插件。</p>
+</li>
+<li><h2 id="字数统计"><a href="#字数统计" class="headerlink" title="字数统计"></a><a target="_blank" rel="noopener" href="https://docsify.js.org/#/zh-cn/plugins?id=字数统计">字数统计</a></h2><p>它提供了统计中文汉字和英文单词的功能，并且排除了一些markdown语法的特殊字符例如*、-等</p>
+<p>相关配置项可参考<a target="_blank" rel="noopener" href="https://github.com/827652549/docsify-count">document</a>。</p>
+<p><em>这个插件的阅读时长的估计感觉很离谱，目前我还没找到解决的方法。。</em></p>
+</li>
+<li><h2 id="emoji"><a href="#emoji" class="headerlink" title="emoji"></a><a target="_blank" rel="noopener" href="https://docsify.js.org/#/zh-cn/plugins?id=emoji">emoji</a></h2><p>默认是提供 emoji 解析的，​但是它不是精准的，因为没有处理非 emoji 的字符串。如果你需要正确解析 emoji 字符串，你可以引入这个插件。</p>
+</li>
+<li><h2 id="图片缩放-Zoom-image"><a href="#图片缩放-Zoom-image" class="headerlink" title="图片缩放 - Zoom image"></a><a target="_blank" rel="noopener" href="https://docsify.js.org/#/zh-cn/plugins?id=图片缩放-zoom-image">图片缩放 - Zoom image</a></h2><p>顾名思义，实现图片查看和图片缩放功能。</p>
+</li>
+<li><h2 id="Gitalk"><a href="#Gitalk" class="headerlink" title="Gitalk"></a><a target="_blank" rel="noopener" href="https://docsify.js.org/#/zh-cn/plugins?id=gitalk">Gitalk</a></h2><blockquote>
+<p>如果你想要你的docsify网站拥有评论功能，你可以安装这个插件</p>
+</blockquote>
+<p>这个插件是一个现代化的，基于Preact和Github Issue的评论系统。（相信很多人都用过Github Issue评论系统并在里面发布过评论吧）</p>
+<p><em>ps：有可能会不稳定，或者是同步不及时的情况，可以酌情考虑安装。</em></p>
+<p><em>注意：docsify还提供了<a target="_blank" rel="noopener" href="https://docsify.js.org/#/zh-cn/plugins?id=disqus">Disqus</a>评论系统。但是为什么我没有介绍呢，很简单——这玩意需要翻墙。</em></p>
+</li>
+</ul>
+<h1 id="小白向（初识git）"><a href="#小白向（初识git）" class="headerlink" title="小白向（初识git）"></a>小白向（初识git）</h1><blockquote>
+<p>如果你很熟悉git操作，那么你不用往下看了（相当于这篇教程你已经看完了）；如果你完全不知道怎么用git推代码，或者你会问我git是神马东西，你可以选择往下看了（或者在网上随便找一篇写得好的git入门文章）</p>
+</blockquote>
+<p>你可能会问了：我这都搞了这么半天了，但是还是只能在本地上看到我的文档网站，我怎么通过网络访问到我的docsify网站呢？</p>
+<p>A：使用git。</p>
+<p>步骤：</p>
+<ol>
+<li><p>在你用于编辑代码的编辑器中（不管你是vscode还是sublime还是webstorm），打开终端，进入到你的docsify仓库的根目录，然后。。</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span>
+<span class="token function">git</span> commit -m <span class="token string">'first push'</span>
+<span class="token function">git</span> push<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<p><em>这样你的docsify项目的代码就同步到了你的github云仓库中</em></p>
+</li>
+<li><p>然后登录你的github账号，进入到你的那个有docsify代码的仓库中。点击Settings</p>
+<p><img src="https://gitee.com/rogerskelamen/mdpic/raw/master/img/20201110204042.png" srcset="/img/loading.gif" alt=""></p>
+<p>然后转到GitHub Pages那一项，将Source的root目录改成docs目录</p>
+<p><img src="https://gitee.com/rogerskelamen/mdpic/raw/master/img/image-20201110204430056.png" srcset="/img/loading.gif" alt=""></p>
+<p>点击save之后就可以看到<code>Your site is published at http://yourname.github.io</code>，然后按照这个网址进行访问，就是你搭好的docsify文档网站。</p>
+</li>
+</ol>
+<h1 id="Links"><a href="#Links" class="headerlink" title="Links"></a>Links</h1><p>我的这篇教程有少部分是借鉴了<a target="_blank" rel="noopener" href="https://www.cnblogs.com/throwable/p/13605289.html">Throwable的教程</a>，在此将他的链接放出，大家要是想看那篇教程可以直接点进去（其实确实写的挺不错的）。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%BD%91%E7%AB%99/">网站</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/docsify/">docsify</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/11/27/express%E5%85%A5%E9%97%A8/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">express入门</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/10/24/Screep%E6%95%99%E7%A8%8B/">
+                        <span class="hidden-mobile">Screep教程</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                  
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('vcomments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "2RbCqGEaklHVj7Gj6dtd2kM4-gzGzoHsz",
+          app_key: "kdFD4FmNeIpaTMK269nEqhxx",
+          placeholder: "say something...",
+          path: window.location.pathname,
+          avatar: "mp",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          recordIP: true,
+          serverURLs: "https://2rbcqgea.lc-cn-n1-shared.com",
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments powered by Valine.</a>
+  </noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+
+  <!-- 自己设置一个记录网站运行时间的方法 -->
+  <span id="sitetime" style="font-size: 14px; font-family: Consolas;font-weight: normal; color: #aaa;"></span>
+  <script language=javascript>
+    function siteTime(){
+      window.setTimeout("siteTime()", 1000);
+      var seconds = 1000;
+      var minutes = seconds * 60;
+      var hours = minutes * 60;
+      var days = hours * 24;
+      var years = days * 365;
+      var today = new Date();
+      var todayYear = today.getFullYear();
+      var todayMonth = today.getMonth()+1;
+      var todayDate = today.getDate();
+      var todayHour = today.getHours();
+      var todayMinute = today.getMinutes();
+      var todaySecond = today.getSeconds();
+      /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+      year - 作为date对象的年份，为4位年份值
+      month - 0-11之间的整数，做为date对象的月份
+      day - 1-31之间的整数，做为date对象的天数
+      hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+      minutes - 0-59之间的整数，做为date对象的分钟数
+      seconds - 0-59之间的整数，做为date对象的秒数
+      microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+      var t1 = Date.UTC(2020,10,18,15,00,00); //北京时间2020-10-18 00:00:00
+      var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+      var diff = t2-t1;
+      var diffYears = Math.floor(diff/years);
+      var diffDays = Math.floor((diff/days)-diffYears*365);
+      var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+      var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+      var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+      document.getElementById("sitetime").innerHTML=" 小破站已勉强运行了 "+/*diffYears+" 年 "+*/diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+    }/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+    siteTime();
+  </script>
+  <!-- 自己设置一个记录网站运行时间的方法 -->
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/mermaid@8.8.3/dist/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({"theme":"default"});
+    }
+  </script>
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0d7560f90f7a21d6a9e7635611dac094";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
