@@ -20,9 +20,35 @@
   <meta name="author" content="Rogers Kelamen">
   <meta name="keywords" content="blog">
   
-  <title>归档| RO&#39;s Blog</title>
+  <title>linux课程笔记| RO&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.22.0/themes/prism-solarizedlight.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.22.0/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
 
 
 
@@ -50,7 +76,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -156,22 +182,60 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('https://gitee.com/rogerskelamen/mdpic/raw/master/img/LRwAMrHJ114.jpg') no-repeat center center;
+         style="background: url('https://gitee.com/rogerskelamen/mdpic/raw/master/img/76510277_p0.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Time will tell">
+            <span class="h2" id="subtitle" title="linux课程笔记">
               
             </span>
 
             
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Rogers Kelamen
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-03-22 19:34" pubdate>
+        2021年3月22日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      534 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      13
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
           </div>
 
-          
-            <div class="scroll-down-bar">
-              <i class="iconfont icon-arrowdown"></i>
-            </div>
           
         </div>
       </div>
@@ -180,103 +244,190 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">linux课程笔记</h1>
+            
+              <p class="note note-info">
                 
+                  本文最后更新于：2021年3月22日 晚上
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="linux课程笔记"><a href="#linux课程笔记" class="headerlink" title="linux课程笔记"></a>linux课程笔记</h1><h1 id="linux访问"><a href="#linux访问" class="headerlink" title="linux访问"></a>linux访问</h1><p>linux使用<code>VFS</code>来访问其他格式文件</p>
+<h2 id="linux文件系统"><a href="#linux文件系统" class="headerlink" title="linux文件系统"></a>linux文件系统</h2><ul>
+<li>bin</li>
+</ul>
+<p>二进制文件，用户命令（一般常用命令）</p>
+<ul>
+<li>sbin</li>
+</ul>
+<p>存放系统命令</p>
+<ul>
+<li>usr</li>
+</ul>
+<p>这下面也有bin和sbin，和用户有关的</p>
+<ul>
+<li>cdrom</li>
+</ul>
+<p>光驱，光盘</p>
+<ul>
+<li>dev</li>
+</ul>
+<p>用设备进行管理，所有的硬件信息</p>
+<p><em>tty是终端</em>，还有很多硬盘的信息也是在这里</p>
+<ul>
+<li>etc</li>
+</ul>
+<p>所有的配置文件</p>
+<ul>
+<li>lib</li>
+</ul>
+<p>库文件</p>
+<ul>
+<li>lost+found</li>
+</ul>
+<p>出错信息</p>
+<ul>
+<li>media</li>
+</ul>
+<p>早期是在<code>mnt</code>上挂在设备，现在是在<code>media</code>，如硬盘，u盘的挂载</p>
+<ul>
+<li>proc</li>
+</ul>
+<p>存放所有的设备的动态信息</p>
+<ul>
+<li>root</li>
+</ul>
+<p>超级用户的主目录</p>
+<ul>
+<li>usr</li>
+</ul>
+<p>第三方软件</p>
+<ul>
+<li>var</li>
+</ul>
+<p>可变的文件，比如日志文件</p>
+<h2 id="boot文件目录"><a href="#boot文件目录" class="headerlink" title="boot文件目录"></a>boot文件目录</h2><p>里面有<code>efi</code>，<code>grub</code>，<strong>其中efi中是引导程序，grub是相应的grub程序</strong></p>
+<p><strong>System.map，vmlinuz，initrd.img</strong>这三个文件是和内核有关（当然还要加上那个版本号），其中initrd.img就是根文件系统的印像（建立了虚拟的根目录文件系统，为了引入真正的文件系统）</p>
+<p>initrd.img主要是编译的模块</p>
+<p>编译内核时的配置文件就是<code>config-版本-generic</code></p>
+<h3 id="grub目录"><a href="#grub目录" class="headerlink" title="grub目录"></a>grub目录</h3><p>最开始的时候是从<code>sda*</code>文件中的boot程序，而grub.cfg可以设置默认启动项和内核参数，也就是说引导程序最先是在<code>sda*</code>上找程序，然后根据grub.cfg中的配置来进行设置</p>
+<h3 id="更改grub程序"><a href="#更改grub程序" class="headerlink" title="更改grub程序"></a>更改grub程序</h3><p>可以跑到<code>/etc/default/grub</code>这个文件中进行配置，可以看到如下文件内容(<em>只记录非注释信息</em>)</p>
+<div class="code-wrapper"><pre class="line-numbers language-text" data-language="text"><code class="language-text">GRUB_DEFAULT&#x3D;0
+GRUB_TIMEOUT_STYLE&#x3D;hidden
+GRUB_TIMEOUT&#x3D;10
+GRUB_DISTRIBUTOR&#x3D;&#96;lsb_release -i -s 2&gt; &#x2F;dev&#x2F;null || echo Debian&#96;
+GRUB_CMDLINE_LINUX_DEFAULT&#x3D;&quot;quiet splash&quot;
+GRUB_CMDLINE_LINUX&#x3D;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p><em>同时我们还可以到<code>/etc/grub.d/</code>这个文件目录下设置grub配置</em></p>
+<p>其中<code>10_linux</code>是有写入到grub.cfg的脚本(<em>其实每个文件都是一个脚本，之后会全部写到grub.cfg</em>)</p>
+<h2 id="查看磁盘情况"><a href="#查看磁盘情况" class="headerlink" title="查看磁盘情况"></a>查看磁盘情况</h2><ul>
+<li><code>df -h</code></li>
+</ul>
+<p>可以查看linux文件系统中的磁盘情况</p>
+<ul>
+<li><code>fdisk -l</code></li>
+</ul>
+<p>可以查看所有的磁盘使用情况(<em>整台电脑</em>)</p>
 
-<div class="list-group">
-  <p class="h4">共计 17 篇文章</p>
-  <hr>
-  
-  
-    
-      
-      <p class="h5">2021</p>
-    
-    <a href="/2021/03/22/linux%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">linux课程笔记</span>
-      <time style="float: right;">03-22</time>
-    </a>
-  
-    
-    <a href="/2021/03/11/Vim%E6%9D%82%E9%A1%B9%E8%AE%B0%E5%BD%95/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Vim杂项记录</span>
-      <time style="float: right;">03-11</time>
-    </a>
-  
-    
-    <a href="/2021/03/10/ubuntu%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Ubuntu使用注意事项</span>
-      <time style="float: right;">03-10</time>
-    </a>
-  
-    
-    <a href="/2021/03/03/C-%E5%9F%BA%E7%A1%80%E6%B3%A8%E6%84%8F%E7%82%B9/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">C#基础注意点</span>
-      <time style="float: right;">03-03</time>
-    </a>
-  
-    
-    <a href="/2021/02/27/Java%E5%86%8D%E5%AD%A6%E6%B3%A8%E6%84%8F%E7%82%B9/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Java再学注意点</span>
-      <time style="float: right;">02-27</time>
-    </a>
-  
-    
-    <a href="/2021/01/22/LaTeX%E5%85%A5%E9%97%A8/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">LaTeX入门</span>
-      <time style="float: right;">01-22</time>
-    </a>
-  
-    
-    <a href="/2021/01/19/MATLAB%E5%AD%A6%E4%B9%A0/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">MATLAB学习</span>
-      <time style="float: right;">01-19</time>
-    </a>
-  
-    
-    <a href="/2021/01/01/%E6%AF%9B%E6%A6%82%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">毛概复习笔记</span>
-      <time style="float: right;">01-01</time>
-    </a>
-  
-    
-      
-      <p class="h5">2020</p>
-    
-    <a href="/2020/12/31/%E6%B1%87%E7%BC%96%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">汇编复习笔记(也可作为进阶篇)</span>
-      <time style="float: right;">12-31</time>
-    </a>
-  
-    
-    <a href="/2020/12/23/Oh-My-Zsh%E7%BE%8E%E5%8C%96%E7%BB%88%E7%AB%AF/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Oh-My-Zsh美化终端</span>
-      <time style="float: right;">12-23</time>
-    </a>
-  
-</div>
-
-
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/#board">2</a><a class="extend next" rel="next" href="/archives/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
-    </span>
-  </nav>
-
-
-
-
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/03/11/Vim%E6%9D%82%E9%A1%B9%E8%AE%B0%E5%BD%95/">
+                        <span class="hidden-mobile">Vim杂项记录</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                  
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('vcomments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "2RbCqGEaklHVj7Gj6dtd2kM4-gzGzoHsz",
+          app_key: "kdFD4FmNeIpaTMK269nEqhxx",
+          placeholder: "say something...",
+          path: window.location.pathname,
+          avatar: "mp",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          recordIP: true,
+          serverURLs: "https://2rbcqgea.lc-cn-n1-shared.com",
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments powered by Valine.</a>
+  </noscript>
+
+
+              </article>
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
 
     
@@ -423,9 +574,15 @@
 
 
 
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
 
 
 
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
 
 
 
@@ -471,6 +628,13 @@
 
 
 
+
+  <script  src="https://cdn.jsdelivr.net/npm/mermaid@8.8.3/dist/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({"theme":"default"});
+    }
+  </script>
 
 
 

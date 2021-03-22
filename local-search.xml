@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>linux课程笔记</title>
+    <link href="/2021/03/22/linux%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
+    <url>/2021/03/22/linux%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/</url>
+    
+    <content type="html"><![CDATA[<h1 id="linux课程笔记"><a href="#linux课程笔记" class="headerlink" title="linux课程笔记"></a>linux课程笔记</h1><h1 id="linux访问"><a href="#linux访问" class="headerlink" title="linux访问"></a>linux访问</h1><p>linux使用<code>VFS</code>来访问其他格式文件</p><h2 id="linux文件系统"><a href="#linux文件系统" class="headerlink" title="linux文件系统"></a>linux文件系统</h2><ul><li>bin</li></ul><p>二进制文件，用户命令（一般常用命令）</p><ul><li>sbin</li></ul><p>存放系统命令</p><ul><li>usr</li></ul><p>这下面也有bin和sbin，和用户有关的</p><ul><li>cdrom</li></ul><p>光驱，光盘</p><ul><li>dev</li></ul><p>用设备进行管理，所有的硬件信息</p><p><em>tty是终端</em>，还有很多硬盘的信息也是在这里</p><ul><li>etc</li></ul><p>所有的配置文件</p><ul><li>lib</li></ul><p>库文件</p><ul><li>lost+found</li></ul><p>出错信息</p><ul><li>media</li></ul><p>早期是在<code>mnt</code>上挂在设备，现在是在<code>media</code>，如硬盘，u盘的挂载</p><ul><li>proc</li></ul><p>存放所有的设备的动态信息</p><ul><li>root</li></ul><p>超级用户的主目录</p><ul><li>usr</li></ul><p>第三方软件</p><ul><li>var</li></ul><p>可变的文件，比如日志文件</p><h2 id="boot文件目录"><a href="#boot文件目录" class="headerlink" title="boot文件目录"></a>boot文件目录</h2><p>里面有<code>efi</code>，<code>grub</code>，<strong>其中efi中是引导程序，grub是相应的grub程序</strong></p><p><strong>System.map，vmlinuz，initrd.img</strong>这三个文件是和内核有关（当然还要加上那个版本号），其中initrd.img就是根文件系统的印像（建立了虚拟的根目录文件系统，为了引入真正的文件系统）</p><p>initrd.img主要是编译的模块</p><p>编译内核时的配置文件就是<code>config-版本-generic</code></p><h3 id="grub目录"><a href="#grub目录" class="headerlink" title="grub目录"></a>grub目录</h3><p>最开始的时候是从<code>sda*</code>文件中的boot程序，而grub.cfg可以设置默认启动项和内核参数，也就是说引导程序最先是在<code>sda*</code>上找程序，然后根据grub.cfg中的配置来进行设置</p><h3 id="更改grub程序"><a href="#更改grub程序" class="headerlink" title="更改grub程序"></a>更改grub程序</h3><p>可以跑到<code>/etc/default/grub</code>这个文件中进行配置，可以看到如下文件内容(<em>只记录非注释信息</em>)</p><div class="code-wrapper"><pre class="line-numbers language-text" data-language="text"><code class="language-text">GRUB_DEFAULT&#x3D;0GRUB_TIMEOUT_STYLE&#x3D;hiddenGRUB_TIMEOUT&#x3D;10GRUB_DISTRIBUTOR&#x3D;&#96;lsb_release -i -s 2&gt; &#x2F;dev&#x2F;null || echo Debian&#96;GRUB_CMDLINE_LINUX_DEFAULT&#x3D;&quot;quiet splash&quot;GRUB_CMDLINE_LINUX&#x3D;&quot;&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><p><em>同时我们还可以到<code>/etc/grub.d/</code>这个文件目录下设置grub配置</em></p><p>其中<code>10_linux</code>是有写入到grub.cfg的脚本(<em>其实每个文件都是一个脚本，之后会全部写到grub.cfg</em>)</p><h2 id="查看磁盘情况"><a href="#查看磁盘情况" class="headerlink" title="查看磁盘情况"></a>查看磁盘情况</h2><ul><li><code>df -h</code></li></ul><p>可以查看linux文件系统中的磁盘情况</p><ul><li><code>fdisk -l</code></li></ul><p>可以查看所有的磁盘使用情况(<em>整台电脑</em>)</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Vim杂项记录</title>
     <link href="/2021/03/11/Vim%E6%9D%82%E9%A1%B9%E8%AE%B0%E5%BD%95/"/>
     <url>/2021/03/11/Vim%E6%9D%82%E9%A1%B9%E8%AE%B0%E5%BD%95/</url>
