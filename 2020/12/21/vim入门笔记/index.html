@@ -214,7 +214,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.7k 字
+      4.6k 字
     </span>
   
 
@@ -224,7 +224,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      141
+      137
        分钟
     </span>
   
@@ -490,7 +490,7 @@ map <span class="token operator">&lt;</span>LEADER<span class="token operator">>
 map <span class="token operator">&lt;</span>LEADER<span class="token operator">></span><span class="token keyword">k</span> <span class="token operator">&lt;</span>C<span class="token operator">-</span><span class="token keyword">w</span><span class="token operator">></span><span class="token keyword">k</span>
 map <span class="token operator">&lt;</span>LEADER<span class="token operator">></span><span class="token keyword">h</span> <span class="token operator">&lt;</span>C<span class="token operator">-</span><span class="token keyword">w</span><span class="token operator">></span><span class="token keyword">h</span>
 map <span class="token operator">&lt;</span>LEADER<span class="token operator">></span><span class="token keyword">j</span> <span class="token operator">&lt;</span>C<span class="token operator">-</span><span class="token keyword">w</span><span class="token operator">></span><span class="token keyword">j</span>
-map <span class="token operator">&lt;</span>LEADER<span class="token operator">></span><span class="token operator">&lt;</span>LEADER<span class="token operator">></span> <span class="token operator">&lt;</span>Esc<span class="token operator">></span><span class="token operator">/</span><span class="token operator">&lt;</span><span class="token operator">+</span><span class="token operator">+</span><span class="token operator">></span><span class="token operator">&lt;</span>CR<span class="token operator">></span><span class="token punctuation">:</span><span class="token keyword">nohlsearch</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>c4i
+<span class="token comment">" map &lt;LEADER>&lt;LEADER> &lt;Esc>/&lt;++>&lt;CR>:nohlsearch&lt;CR>c4i</span>
 
 <span class="token comment">"----------------------------</span>
 <span class="token comment">"普通键位映射</span>
@@ -511,8 +511,8 @@ map <span class="token keyword">tu</span> <span class="token punctuation">:</spa
 map <span class="token keyword">sv</span> <span class="token operator">&lt;</span>C<span class="token operator">-</span><span class="token keyword">w</span><span class="token operator">></span><span class="token keyword">t</span><span class="token operator">&lt;</span>C<span class="token operator">-</span><span class="token keyword">w</span><span class="token operator">></span>H
 map <span class="token builtin">sj</span> <span class="token operator">&lt;</span>C<span class="token operator">-</span><span class="token keyword">w</span><span class="token operator">></span><span class="token keyword">t</span><span class="token operator">&lt;</span>C<span class="token operator">-</span><span class="token keyword">w</span><span class="token operator">></span>K
 map <span class="token operator">&lt;</span>LEADER<span class="token operator">></span><span class="token builtin">sc</span> <span class="token punctuation">:</span><span class="token keyword">set</span> <span class="token builtin">spell</span><span class="token operator">!</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
-map <span class="token operator">&lt;</span>C<span class="token operator">-</span>z<span class="token operator">></span> <span class="token keyword">u</span>
 map <span class="token operator">&lt;</span>C<span class="token operator">-</span><span class="token keyword">y</span><span class="token operator">></span> <span class="token operator">&lt;</span>C<span class="token operator">-</span><span class="token keyword">r</span><span class="token operator">></span>
+map <span class="token operator">&lt;</span>C<span class="token operator">-</span><span class="token keyword">c</span><span class="token operator">></span> <span class="token string">"+y       "</span>设置复制到系统剪切板上
 
 <span class="token comment">"----------------------------</span>
 <span class="token comment">"全局的部分配置</span>
@@ -524,7 +524,7 @@ map <span class="token operator">&lt;</span>C<span class="token operator">-</spa
 <span class="token keyword">filetype</span> indent <span class="token keyword">on</span>
 <span class="token keyword">filetype</span> plugin <span class="token keyword">on</span>
 <span class="token keyword">filetype</span> plugin indent <span class="token keyword">on</span>
-<span class="token comment">" set mouse=a</span>
+<span class="token string">" set mouse=a       "</span> 设置是否可用鼠标
 <span class="token keyword">set</span> <span class="token builtin">encoding</span><span class="token operator">=</span>utf<span class="token operator">-</span><span class="token number">8</span>
 <span class="token keyword">let</span> &amp;<span class="token builtin">t_ut</span><span class="token operator">=</span><span class="token string">''</span>
 <span class="token keyword">set</span> <span class="token builtin">scrolloff</span><span class="token operator">=</span><span class="token number">5</span>
@@ -556,6 +556,7 @@ exec <span class="token string">"nohlsearch"</span>
 <span class="token comment">"-------------------------------------</span>
 <span class="token comment">" text formatting/layout</span>
 <span class="token comment">"-------------------------------------</span>
+<span class="token string">"set paste  "</span> 设置是否自动注释
 <span class="token keyword">set</span> <span class="token builtin">tabstop</span><span class="token operator">=</span><span class="token number">4</span>
 <span class="token keyword">set</span> <span class="token builtin">shiftwidth</span><span class="token operator">=</span><span class="token number">4</span>
 <span class="token keyword">set</span> <span class="token builtin">softtabstop</span><span class="token operator">=</span><span class="token number">4</span>
@@ -568,62 +569,43 @@ exec <span class="token string">"nohlsearch"</span>
 <span class="token keyword">set</span> <span class="token builtin">foldlevel</span><span class="token operator">=</span><span class="token number">99</span>
 <span class="token builtin">syntax</span> <span class="token keyword">on</span>
 
-<span class="token keyword">colorscheme</span> slate
+<span class="token comment">" 配色方案</span>
+<span class="token keyword">colorscheme</span> monokai
+<span class="token string">"set background=dark "</span> <span class="token keyword">for</span> the dark <span class="token keyword">version</span>
+<span class="token string">"set background=light "</span> <span class="token keyword">for</span> the light <span class="token keyword">version</span>
 
-<span class="token comment">" ========================</span>
-<span class="token comment">" coc配置</span>
-<span class="token comment">" ========================</span>
-<span class="token keyword">set</span> <span class="token builtin">hidden</span>
-<span class="token keyword">set</span> <span class="token builtin">updatetime</span><span class="token operator">=</span><span class="token number">100</span>
-<span class="token keyword">set</span> <span class="token builtin">shortmess</span><span class="token operator">+=</span><span class="token keyword">c</span>
 
-<span class="token keyword">if</span> <span class="token function">has</span><span class="token punctuation">(</span><span class="token string">"patch-8.1.1564"</span><span class="token punctuation">)</span>
-  <span class="token comment">" Recently vim can merge signcolumn and number column into one</span>
-  <span class="token keyword">set</span> signcolumn<span class="token operator">=</span><span class="token keyword">number</span>
-<span class="token keyword">else</span>
-  <span class="token keyword">set</span> signcolumn<span class="token operator">=</span>yes
+<span class="token comment">" 设置背景透明度</span>
+<span class="token builtin">hi</span> Normal ctermfg<span class="token operator">=</span><span class="token number">252</span> ctermbg<span class="token operator">=</span>none
+
+<span class="token comment">" =========================================</span>
+<span class="token comment">" 光标设置</span>
+<span class="token string">" "</span>Mode Settings
+
+<span class="token string">"let &amp;t_SI.="</span>\<span class="token keyword">e</span><span class="token punctuation">[</span><span class="token number">5</span> <span class="token keyword">q</span><span class="token string">" "</span>SI <span class="token operator">=</span> INSERT <span class="token keyword">mode</span>
+<span class="token string">"let &amp;t_SR.="</span>\<span class="token keyword">e</span><span class="token punctuation">[</span><span class="token number">4</span> <span class="token keyword">q</span><span class="token string">" "</span>SR <span class="token operator">=</span> REPLACE <span class="token keyword">mode</span>
+<span class="token string">"let &amp;t_EI.="</span>\<span class="token keyword">e</span><span class="token punctuation">[</span><span class="token number">1</span> <span class="token keyword">q</span><span class="token string">" "</span>EI <span class="token operator">=</span> NORMAL <span class="token keyword">mode</span> <span class="token punctuation">(</span>ELSE<span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> <span class="token function">has</span><span class="token punctuation">(</span><span class="token string">"autocmd"</span><span class="token punctuation">)</span>
+  au VimEnter<span class="token punctuation">,</span>InsertLeave <span class="token operator">*</span> <span class="token keyword">silent</span> execute <span class="token string">'!echo -ne "\e[1 q"'</span> | <span class="token keyword">redraw</span><span class="token operator">!</span>
+  au InsertEnter<span class="token punctuation">,</span>InsertChange <span class="token operator">*</span>
+    \ <span class="token keyword">if</span> v<span class="token punctuation">:</span><span class="token builtin">insertmode</span> <span class="token operator">==</span> <span class="token string">'i'</span> | 
+    \   <span class="token keyword">silent</span> execute <span class="token string">'!echo -ne "\e[5 q"'</span> | <span class="token keyword">redraw</span><span class="token operator">!</span> |
+    \ <span class="token keyword">elseif</span> v<span class="token punctuation">:</span><span class="token builtin">insertmode</span> <span class="token operator">==</span> <span class="token string">'r'</span> |
+    \   <span class="token keyword">silent</span> execute <span class="token string">'!echo -ne "\e[3 q"'</span> | <span class="token keyword">redraw</span><span class="token operator">!</span> |
+    \ <span class="token keyword">endif</span>
+  au VimLeave <span class="token operator">*</span> <span class="token keyword">silent</span> execute <span class="token string">'!echo -ne "\e[ q"'</span> | <span class="token keyword">redraw</span><span class="token operator">!</span>
 <span class="token keyword">endif</span>
 
-inoremap <span class="token operator">&lt;</span><span class="token keyword">silent</span><span class="token operator">></span><span class="token operator">&lt;</span>expr<span class="token operator">></span> <span class="token operator">&lt;</span>TAB<span class="token operator">></span>
-      \ <span class="token function">pumvisible</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token string">"\&lt;C-n>"</span> <span class="token punctuation">:</span>
-      \ <span class="token operator">&lt;</span>SID<span class="token operator">></span><span class="token function">check_back_space</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token string">"\&lt;TAB>"</span> <span class="token punctuation">:</span>
-      \ coc#<span class="token function">refresh</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-inoremap <span class="token operator">&lt;</span>expr<span class="token operator">></span><span class="token operator">&lt;</span>S<span class="token operator">-</span>TAB<span class="token operator">></span> <span class="token function">pumvisible</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token string">"\&lt;C-p>"</span> <span class="token punctuation">:</span> <span class="token string">"\&lt;C-h>"</span>
+<span class="token comment">"Cursor settings:</span>
 
-<span class="token keyword">function</span><span class="token operator">!</span> s<span class="token punctuation">:</span><span class="token function">check_back_space</span><span class="token punctuation">(</span><span class="token punctuation">)</span> abort
-  <span class="token keyword">let</span> <span class="token keyword">col</span> <span class="token operator">=</span> <span class="token function">col</span><span class="token punctuation">(</span><span class="token string">'.'</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span>
-  <span class="token keyword">return</span> <span class="token operator">!</span><span class="token keyword">col</span> <span class="token operator">||</span> <span class="token function">getline</span><span class="token punctuation">(</span><span class="token string">'.'</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token keyword">col</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span>  <span class="token operator">=~#</span> <span class="token string">'\s'</span>
-<span class="token keyword">endfunction</span>
-
-<span class="token comment">" Make &lt;CR> auto-select the first completion item and notify coc.nvim to</span>
-<span class="token comment">" format on enter, &lt;cr> could be remapped by other vim plugin</span>
-inoremap <span class="token operator">&lt;</span><span class="token keyword">silent</span><span class="token operator">></span><span class="token operator">&lt;</span>expr<span class="token operator">></span> <span class="token operator">&lt;</span><span class="token keyword">cr</span><span class="token operator">></span> <span class="token function">pumvisible</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">?</span> coc#<span class="token function">_select_confirm</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-                              \<span class="token punctuation">:</span> <span class="token string">"\&lt;C-g>u\&lt;CR>\&lt;c-r>=coc#on_enter()\&lt;CR>"</span>
-
-
-nmap <span class="token operator">&lt;</span><span class="token keyword">silent</span><span class="token operator">></span> <span class="token builtin">gd</span> <span class="token operator">&lt;</span>Plug<span class="token operator">></span><span class="token punctuation">(</span>coc<span class="token operator">-</span>definition<span class="token punctuation">)</span>
-nmap <span class="token operator">&lt;</span><span class="token keyword">silent</span><span class="token operator">></span> gy <span class="token operator">&lt;</span>Plug<span class="token operator">></span><span class="token punctuation">(</span>coc<span class="token operator">-</span>type<span class="token operator">-</span>definition<span class="token punctuation">)</span>
-nmap <span class="token operator">&lt;</span><span class="token keyword">silent</span><span class="token operator">></span> gi <span class="token operator">&lt;</span>Plug<span class="token operator">></span><span class="token punctuation">(</span>coc<span class="token operator">-</span>implementation<span class="token punctuation">)</span>
-nmap <span class="token operator">&lt;</span><span class="token keyword">silent</span><span class="token operator">></span> <span class="token keyword">gr</span> <span class="token operator">&lt;</span>Plug<span class="token operator">></span><span class="token punctuation">(</span>coc<span class="token operator">-</span>references<span class="token punctuation">)</span>
-
-<span class="token string">" nnoremap &lt;silent> &lt;LEADER>h :call &lt;SID>show_documentation()&lt;CR>  "</span> 暂时注释掉
-
-<span class="token keyword">function</span><span class="token operator">!</span> s<span class="token punctuation">:</span><span class="token function">show_documentation</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">index</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'vim'</span><span class="token punctuation">,</span><span class="token string">'help'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> &amp;<span class="token keyword">filetype</span><span class="token punctuation">)</span> <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">)</span>
-    execute <span class="token string">'h '</span><span class="token operator">.</span><span class="token function">expand</span><span class="token punctuation">(</span><span class="token string">'&lt;cword>'</span><span class="token punctuation">)</span>
-  <span class="token keyword">elseif</span> <span class="token punctuation">(</span>coc#rpc#<span class="token function">ready</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token keyword">call</span> <span class="token function">CocActionAsync</span><span class="token punctuation">(</span><span class="token string">'doHover'</span><span class="token punctuation">)</span>
-  <span class="token keyword">else</span>
-    execute <span class="token string">'!'</span> <span class="token operator">.</span> &amp;<span class="token builtin">keywordprg</span> <span class="token operator">.</span> <span class="token string">" "</span> <span class="token operator">.</span> <span class="token function">expand</span><span class="token punctuation">(</span><span class="token string">'&lt;cword>'</span><span class="token punctuation">)</span>
-  <span class="token keyword">endif</span>
-<span class="token keyword">endfunction</span>
-
-imap <span class="token operator">&lt;</span>C<span class="token operator">-</span><span class="token keyword">l</span><span class="token operator">></span> <span class="token operator">&lt;</span>Plug<span class="token operator">></span><span class="token punctuation">(</span>coc<span class="token operator">-</span>snippets<span class="token operator">-</span>expand<span class="token punctuation">)</span>
-vmap <span class="token operator">&lt;</span>C<span class="token operator">-</span><span class="token keyword">e</span><span class="token operator">></span> <span class="token operator">&lt;</span>Plug<span class="token operator">></span><span class="token punctuation">(</span>coc<span class="token operator">-</span>snippets<span class="token operator">-</span>select<span class="token punctuation">)</span>
-<span class="token keyword">let</span> g<span class="token punctuation">:</span>coc_snippet_next <span class="token operator">=</span> <span class="token string">'&lt;c-m>'</span>
-<span class="token keyword">let</span> g<span class="token punctuation">:</span>coc_snippet_prev <span class="token operator">=</span> <span class="token string">'&lt;c-n>'</span>
-    
-<span class="token comment">"========================== </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<span class="token comment">"  1 -> blinking block</span>
+<span class="token comment">"  2 -> solid block</span>
+<span class="token comment">"  3 -> blinking underscore</span>
+<span class="token comment">"  4 -> solid underscore</span>
+<span class="token comment">"  5 -> blinking vertical bar</span>
+<span class="token comment">"  6 -> solid vertical bar</span>
+<span class="token comment">"=============================================</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 <h1 id="可视模式（Visual）"><a href="#可视模式（Visual）" class="headerlink" title="可视模式（Visual）"></a>可视模式（Visual）</h1><blockquote>
 <p>可视模式又可以理解为“块模式”</p>
 </blockquote>
