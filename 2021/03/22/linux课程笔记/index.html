@@ -182,7 +182,7 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('https://gitee.com/rogerskelamen/mdpic/raw/master/img/76510277_p0.jpg') no-repeat center center;
+         style="background: url('https://gitee.com/rogerskelamen/mdpic/raw/master/img/default_bg.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -214,7 +214,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      534 字
+      1.6k 字
     </span>
   
 
@@ -224,7 +224,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      13
+      41
        分钟
     </span>
   
@@ -258,7 +258,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年3月22日 晚上
+                  本文最后更新于：2021年5月14日 上午
                 
               </p>
             
@@ -321,6 +321,15 @@
 <p><strong>System.map，vmlinuz，initrd.img</strong>这三个文件是和内核有关（当然还要加上那个版本号），其中initrd.img就是根文件系统的印像（建立了虚拟的根目录文件系统，为了引入真正的文件系统）</p>
 <p>initrd.img主要是编译的模块</p>
 <p>编译内核时的配置文件就是<code>config-版本-generic</code></p>
+<h2 id="编译内核"><a href="#编译内核" class="headerlink" title="编译内核"></a>编译内核</h2><p>UEFI -&gt; grub.cfg -&gt; vmlinuz -&gt; initrd.img</p>
+<p>需要编译的文件：vmlinuz -&gt; system.map(映射文件) -&gt; initrd.img -&gt; modules(很多硬件驱动在这里)</p>
+<p>模块(modules)的位置: <code>/lib/modules</code></p>
+<p>最后编译好了之后写<code>grub.cfg</code>(也可以直接<code>update-grub</code>)</p>
+<ul>
+<li>内核功能选项配置：</li>
+</ul>
+<p>[*] 加入到内核功能中<br>[ ] 不加入到内核中<br>[M] 加入到模块中</p>
+<p><code>-jN</code>中的N是选择使用多少个核编译进行编译</p>
 <h3 id="grub目录"><a href="#grub目录" class="headerlink" title="grub目录"></a>grub目录</h3><p>最开始的时候是从<code>sda*</code>文件中的boot程序，而grub.cfg可以设置默认启动项和内核参数，也就是说引导程序最先是在<code>sda*</code>上找程序，然后根据grub.cfg中的配置来进行设置</p>
 <h3 id="更改grub程序"><a href="#更改grub程序" class="headerlink" title="更改grub程序"></a>更改grub程序</h3><p>可以跑到<code>/etc/default/grub</code>这个文件中进行配置，可以看到如下文件内容(<em>只记录非注释信息</em>)</p>
 <div class="code-wrapper"><pre class="line-numbers language-text" data-language="text"><code class="language-text">GRUB_DEFAULT&#x3D;0
@@ -339,6 +348,114 @@ GRUB_CMDLINE_LINUX&#x3D;&quot;&quot;<span aria-hidden="true" class="line-numbers
 <li><code>fdisk -l</code></li>
 </ul>
 <p>可以查看所有的磁盘使用情况(<em>整台电脑</em>)</p>
+<h2 id="软件源地址"><a href="#软件源地址" class="headerlink" title="软件源地址"></a>软件源地址</h2><p>软件源 /etc/apt/sources.list</p>
+<h2 id="linux运行环境"><a href="#linux运行环境" class="headerlink" title="linux运行环境"></a>linux运行环境</h2><p>可使用tty4来进入真正的终端</p>
+<p>使用<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>F4</kbd></p>
+<p>使用<code>env</code>或者<code>set</code>得到环境变量（<em><code>set</code>信息更多</em>)</p>
+<h2 id="使用后台方式执行命令"><a href="#使用后台方式执行命令" class="headerlink" title="使用后台方式执行命令"></a>使用后台方式执行命令</h2><p>只需要在要执行的命令之后跟上一个<code>&amp;</code>就可以后台运行了</p>
+<h2 id="浏览文件"><a href="#浏览文件" class="headerlink" title="浏览文件"></a>浏览文件</h2><h3 id="cat和more以及less"><a href="#cat和more以及less" class="headerlink" title="cat和more以及less"></a><code>cat</code>和<code>more</code>以及<code>less</code></h3><p>个人感觉<code>less</code>的体验感最好，因为<code>less</code>的手感用起来像是vim。<br><code>less</code>可以随意地上下移动行，甚至使用<code>/</code>来进行关键字搜索。</p>
+<p><em>当然我们还有<code>head</code>和<code>tail</code></em>(可以使用<code>-n</code>参数来指定浏览行数)</p>
+<h2 id="创建文件夹"><a href="#创建文件夹" class="headerlink" title="创建文件夹"></a>创建文件夹</h2><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">mkdir</span> -p dir1/dir2<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>这样就可以在<code>dir1</code>这个文件夹不存在的情况下同时生成<code>dir1</code>和<code>dir2</code>两个文件目录</p>
+<h3 id="cp的更多用法"><a href="#cp的更多用法" class="headerlink" title="cp的更多用法"></a><code>cp</code>的更多用法</h3><p>当我们使用<code>cp</code>来进行一个文件或者是一个目录的复制的时候，很可能我们复制过来的文件的属性发生了变化（<em>比如用户组权限，创建时间等</em>），于是我么可以用<code>cp -a</code>来确保我们复制过来的文件所有的信息都不会改变。</p>
+<p><em><code>-r</code>就可以拷贝目录了。</em></p>
+<p>如果我们需要在执行<code>cp</code>操作时给予一定的响应信息的话，我们可以加上<code>-i</code>参数。(<em>即交互的意思Interactive</em>)</p>
+<h2 id="ln命令"><a href="#ln命令" class="headerlink" title="ln命令"></a><code>ln</code>命令</h2><p>使用<code>ln -S</code>产生软链接；使用<code>ln</code>产生硬链接</p>
+<h2 id="打包命令"><a href="#打包命令" class="headerlink" title="打包命令"></a>打包命令</h2><p>使用<code>tar</code>命令：</p>
+<p><code>tar -xvzf</code>解压缩并解包gz格式压缩包</p>
+<p><code>tar -cvzf</code>打包并压缩为gz格式压缩包</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">格式</th>
+<th style="text-align:left">命令参数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">gz</td>
+<td style="text-align:left">z</td>
+</tr>
+<tr>
+<td style="text-align:left">xz</td>
+<td style="text-align:left">a</td>
+</tr>
+<tr>
+<td style="text-align:left">bz</td>
+<td style="text-align:left">j</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="系统信息类命令"><a href="#系统信息类命令" class="headerlink" title="系统信息类命令"></a>系统信息类命令</h1><ul>
+<li><p><code>dmesg</code></p>
+</li>
+<li><p><code>df</code></p>
+</li>
+<li><p><code>du</code></p>
+</li>
+<li><p><code>free</code></p>
+</li>
+</ul>
+<p>可查看内存空间情况</p>
+<p>cache: 存在于cpu中，用于cpu计算空间的快速存储</p>
+<p>buffer: 和外设打交道</p>
+<ul>
+<li><p><code>date</code></p>
+</li>
+<li><p>``</p>
+</li>
+</ul>
+<h2 id="进程管理命令"><a href="#进程管理命令" class="headerlink" title="进程管理命令"></a>进程管理命令</h2><p><code>ps aux</code>: 查看所有进程情况</p>
+<p><code>1</code>号进程是所有进程的父进程，<code>2</code>号进程是所有类进程的父进程</p>
+<p><code>S</code>是等待态，<code>D</code>是不可打断的等待态，<code>Z</code>是僵尸态</p>
+<p>父进程没有回收子进程的资源，于是导致子进程变成了僵尸态（杀都杀不死）</p>
+<p>使用<code>ps -ef</code>或者使用<code>pstree</code>(更有结构)来显示进程的父子关系。</p>
+<h3 id="kill命令"><a href="#kill命令" class="headerlink" title="kill命令"></a><code>kill</code>命令</h3><p>使用<code>kill -l</code>查看可发送的所有信号。</p>
+<p>使用<C-c>是发送的第二个信号（INT），使用<C-z>是发送的第十九个信号（STOP）</p>
+<h3 id="top命令"><a href="#top命令" class="headerlink" title="top命令"></a><code>top</code>命令</h3><p>可以动态地显示进程</p>
+<h3 id="其他杂命令"><a href="#其他杂命令" class="headerlink" title="其他杂命令"></a>其他杂命令</h3><p>使用<code>bg</code>命令将任务放在后台运行。</p>
+<p>使用<code>fg</code>命令将任务放到前台运行。</p>
+<p><code>uname</code>命令展示基本的系统信息。</p>
+<p><code>uname -r</code>查看内核信息</p>
+<h2 id="文件系统和磁盘管理"><a href="#文件系统和磁盘管理" class="headerlink" title="文件系统和磁盘管理"></a>文件系统和磁盘管理</h2><p>使用<code>chmod</code>来更改权限</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">chmod</span> <span class="token number">777</span> <span class="token builtin class-name">test</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h2 id="用户的基本信息"><a href="#用户的基本信息" class="headerlink" title="用户的基本信息"></a>用户的基本信息</h2><p>在<code>/etc/passwd</code>文件中会有所有用户的信息</p>
+<p>在<code>/etc/shadow</code>文件中存储着所有用户的密码</p>
+<h2 id="切换到超级用户"><a href="#切换到超级用户" class="headerlink" title="切换到超级用户"></a>切换到超级用户</h2><p>最好使用<code>su -</code>来切换到root用户，相比于<code>su</code>这样可以将环境变量也切换过来。</p>
+<h2 id="使用ifconfig"><a href="#使用ifconfig" class="headerlink" title="使用ifconfig"></a>使用<code>ifconfig</code></h2><p>一般还是要安装一下<code>net-tools</code>，然后输入<code>ifconfig</code>就可以查看所有的网卡信息。</p>
+<p>当然在windows下，输入<code>ipconfig</code>也有一样的功能。</p>
+<h2 id="GCC开发"><a href="#GCC开发" class="headerlink" title="GCC开发"></a>GCC开发</h2><blockquote>
+<p>首先GCC和gcc是不一样的，GCC -&gt; GNU Compiler Collection， 而gcc是GCC里面的一个c语言的编译器。</p>
+</blockquote>
+<h3 id="gcc编译过程"><a href="#gcc编译过程" class="headerlink" title="gcc编译过程"></a>gcc编译过程</h3><ul>
+<li>预处理</li>
+<li>编译成汇编代码</li>
+<li>汇编成目标代码</li>
+<li>链接</li>
+</ul>
+<p><strong>使用<code>-l</code>来链接其他的库</strong></p>
+<p>eg:</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gcc -o <span class="token builtin class-name">test</span> test.c -ltest<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h2 id="使用gdb来调试程序"><a href="#使用gdb来调试程序" class="headerlink" title="使用gdb来调试程序"></a>使用gdb来调试程序</h2><p>通过直接使用<code>gdb file</code>来对编译得到的可执行文件进行调试。</p>
+<h3 id="gdb所用到的命令"><a href="#gdb所用到的命令" class="headerlink" title="gdb所用到的命令"></a><code>gdb</code>所用到的命令</h3><p>如果是输入<code>gdb</code>的话会进入到<code>gdb</code>的命令行界面。（<em>输入<code>quit</code>进行退出</em>）</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">命令名</th>
+<th style="text-align:left">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><code>gcc -g</code>来编译的时候可以使得可执行文件能够之后反编译出来。</p>
 
             </div>
             <hr>
