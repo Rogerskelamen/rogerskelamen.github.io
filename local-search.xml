@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>使用Zsh自带Git插件</title>
+    <link href="/2021/09/25/%E4%BD%BF%E7%94%A8Zsh%E8%87%AA%E5%B8%A6Git%E6%8F%92%E4%BB%B6/"/>
+    <url>/2021/09/25/%E4%BD%BF%E7%94%A8Zsh%E8%87%AA%E5%B8%A6Git%E6%8F%92%E4%BB%B6/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Git-plugin-in-Zsh"><a href="#Git-plugin-in-Zsh" class="headerlink" title="Git plugin in Zsh"></a>Git plugin in Zsh</h1><blockquote><p>Of course you can use <code>plugins = (git)</code> in <code>~/.zshrc</code> to activate the git plugin in your zsh. But do you really know how to use it elegantly?</p></blockquote><p><em>Ok, Don’t worry, here are some abbression for <code>git</code>, which are frequently used during developing</em></p><ul><li><p><code>g</code>: <code>git</code></p></li><li><p><code>gst</code>: <code>git status</code></p></li><li><p><code>ga</code>: <code>git add</code></p></li><li><p><code>gc</code>: <code>git commit</code></p></li><li><p><code>gp</code>: <code>git push</code></p></li><li><p><code>gb</code>: <code>git branch</code></p></li><li><p><code>gco</code>: <code>git checkout</code></p></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>zsh</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>shell</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Pygame使用心得</title>
     <link href="/2021/09/21/Pygame%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/"/>
     <url>/2021/09/21/Pygame%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/</url>
