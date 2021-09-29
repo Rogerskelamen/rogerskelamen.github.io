@@ -214,7 +214,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      846 字
+      963 字
     </span>
   
 
@@ -224,7 +224,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      21
+      23
        分钟
     </span>
   
@@ -291,10 +291,12 @@
 
 <h2 id="浏览器运行html文件"><a href="#浏览器运行html文件" class="headerlink" title="浏览器运行html文件"></a>浏览器运行html文件</h2><p>9月5日，我改用neovim和mac的组合了，markdown插件换成了<code>InstantMarkdown</code>但是发现使用之后html就无法用谷歌打开了(<em>当然是用<code>md_browser</code>打开的</em>)，研究了半天找到了解决办法</p>
 <p>解决办法：<u>使用<code>!open %</code>就能用默认浏览器打开html文件了</u></p>
-<h2 id="使用coc-java运行报错"><a href="#使用coc-java运行报错" class="headerlink" title="使用coc-java运行报错"></a>使用coc-java运行报错</h2><p>The error is: <code>Error: The &quot;java&quot; server crashed 5 times in the last 3 minutes. The server will not be restarted</code></p>
+<h2 id="使用coc-java运行报错"><a href="#使用coc-java运行报错" class="headerlink" title="使用coc-java运行报错"></a>使用coc-java运行报错</h2><p>9月11日，The error is: <code>Error: The &quot;java&quot; server crashed 5 times in the last 3 minutes. The server will not be restarted</code></p>
 <p>这里主要是jdt lang Server 没有好好地运行(<em>我是用内部自动安装的，所以安装出了问题</em>)</p>
 <p>解决办法：<u>直接去<a target="_blank" rel="noopener" href="https://download.eclipse.org/jdtls/milestones/0.57.0/">eclipse官网</a>去下载这个server，下载好之后手动安装到<code>~/.config/coc/extensions/coc-java-data/server</code></u></p>
 <p><a target="_blank" rel="noopener" href="https://github.com/neoclide/coc-java/issues/99">问题issue原地址</a></p>
+<h2 id="设置md文件outline预览"><a href="#设置md文件outline预览" class="headerlink" title="设置md文件outline预览"></a>设置md文件outline预览</h2><p>9月29日，现在我因为nvim换到了Mac电脑上了，所以之前设置的md文件的导航视窗预览没有了。</p>
+<p>解决办法：<u>找到了一个<a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903441630756871">掘金的帖子</a>，发现他采用的<code>tagbar</code>功能扩展还不错。但是我又发现他是从github上的<a target="_blank" rel="noopener" href="https://github.com/preservim/tagbar/issues/70"><code>tagbar#70</code></a>，于是找到了一个更好的方法，不仅显示了大纲还可以显示图片地址和链接</u></p>
 
             </div>
             <hr>
