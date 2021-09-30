@@ -214,7 +214,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      963 字
+      1k 字
     </span>
   
 
@@ -224,7 +224,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      23
+      26
        分钟
     </span>
   
@@ -258,7 +258,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年9月11日 下午
+                  本文最后更新于：2021年9月30日 上午
                 
               </p>
             
@@ -297,6 +297,8 @@
 <p><a target="_blank" rel="noopener" href="https://github.com/neoclide/coc-java/issues/99">问题issue原地址</a></p>
 <h2 id="设置md文件outline预览"><a href="#设置md文件outline预览" class="headerlink" title="设置md文件outline预览"></a>设置md文件outline预览</h2><p>9月29日，现在我因为nvim换到了Mac电脑上了，所以之前设置的md文件的导航视窗预览没有了。</p>
 <p>解决办法：<u>找到了一个<a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903441630756871">掘金的帖子</a>，发现他采用的<code>tagbar</code>功能扩展还不错。但是我又发现他是从github上的<a target="_blank" rel="noopener" href="https://github.com/preservim/tagbar/issues/70"><code>tagbar#70</code></a>，于是找到了一个更好的方法，不仅显示了大纲还可以显示图片地址和链接</u></p>
+<h2 id="fzf-vim"><a href="#fzf-vim" class="headerlink" title="fzf.vim"></a>fzf.vim</h2><p>9月30日，问题描述：<strong><code>fzf.vim</code>在使用时，输入<code>:Files</code>报错</strong>(<em>反正就是很诡异</em>)</p>
+<p>解决办法：<u>我找到了<a target="_blank" rel="noopener" href="https://github.com/junegunn/fzf.vim/issues/439">issue#439</a>，这里面说可以更改<code>fzf</code>的目录文件，即更改<code>dir</code>，于是我将<code>Plug &#39;junegunn/fzf&#39;, &#123; &#39;dir&#39;: &#39;~/.local/share/fzf&#39; &#125;</code>添加到了我的init.vim中。</u></p>
 
             </div>
             <hr>
