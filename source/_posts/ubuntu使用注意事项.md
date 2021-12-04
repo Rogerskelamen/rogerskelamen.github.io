@@ -6,7 +6,7 @@ index_img: https://gitee.com/rogerskelamen/mdpic/raw/master/img/Ubuntu-20-04-1.j
 categories:
 - Ubuntu
 tags:
-- linux
+- Linux
 ---
 
 

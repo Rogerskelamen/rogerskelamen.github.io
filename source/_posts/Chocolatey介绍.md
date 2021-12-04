@@ -84,6 +84,10 @@ tags:
 
   `choco install jdk8 -y`
 
+- 安装gcc?
+
+  `choco install mingw -y`
+
 - 安装node？
 
   `choco install node -y`
@@ -91,3 +95,23 @@ tags:
 - 安装yarn？
 
   `choco install yarn -y`
+
+## Necessary software
+
+> 除了上面所说的这些软件，choco还提供了很多的东西可以整
+
+- [winfetch](https://github.com/kiedtl/winfetch)
+
+  对比`neofetch`的展示命令
+
+- [Sudo](https://github.com/janhebnes/chocolatey-packages)
+
+  类似于Linux中的`sudo`命令
+
+- [Bat](https://github.com/sharkdp/bat)
+
+  一个很好的代替`cat`的指令
+
+- [grep](https://www.gnu.org/software/grep/)
+
+  可以在windows平台使用`grep`了
