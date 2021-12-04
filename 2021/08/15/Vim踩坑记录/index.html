@@ -214,7 +214,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1k 字
+      1.3k 字
     </span>
   
 
@@ -224,7 +224,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      26
+      32
        分钟
     </span>
   
@@ -258,7 +258,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年9月30日 上午
+                  本文最后更新于：2021年12月4日 晚上
                 
               </p>
             
@@ -299,6 +299,19 @@
 <p>解决办法：<u>找到了一个<a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903441630756871">掘金的帖子</a>，发现他采用的<code>tagbar</code>功能扩展还不错。但是我又发现他是从github上的<a target="_blank" rel="noopener" href="https://github.com/preservim/tagbar/issues/70"><code>tagbar#70</code></a>，于是找到了一个更好的方法，不仅显示了大纲还可以显示图片地址和链接</u></p>
 <h2 id="fzf-vim"><a href="#fzf-vim" class="headerlink" title="fzf.vim"></a>fzf.vim</h2><p>9月30日，问题描述：<strong><code>fzf.vim</code>在使用时，输入<code>:Files</code>报错</strong>(<em>反正就是很诡异</em>)</p>
 <p>解决办法：<u>我找到了<a target="_blank" rel="noopener" href="https://github.com/junegunn/fzf.vim/issues/439">issue#439</a>，这里面说可以更改<code>fzf</code>的目录文件，即更改<code>dir</code>，于是我将<code>Plug &#39;junegunn/fzf&#39;, &#123; &#39;dir&#39;: &#39;~/.local/share/fzf&#39; &#125;</code>添加到了我的init.vim中。</u></p>
+<h2 id="Neovim-on-Windows"><a href="#Neovim-on-Windows" class="headerlink" title="Neovim on Windows"></a>Neovim on Windows</h2><blockquote>
+<p>最近在Windows上开始折腾上了Neovim（不得不说用起来意外地舒服），当然是在Windows Terminal上玩的</p>
+<p>首先需要注意的是使用Windows的话推荐使用Windows Terminal来打开powershell来编辑，同时推荐使用Chocolatey来管理你的neovim的软件包</p>
+</blockquote>
+<p>12月3日，问题描述：<strong>在安装完Neovim后，输入指令<code>checkhealth</code>，结果是python3的依赖没有导入，对nvim会提示<code>fail to import neovim</code>，这时候就需要使用<code>pip</code>来安装<code>neovim</code>的python依赖了: <code>pip install neovim</code>，结果发现了bug。</strong></p>
+<p><strong>问题在于：你安装了neovim依赖之后还是会报错!</strong></p>
+<p>问题查明和解决方法：<u>你使用了较新版本的python，比如我就是用的<code>python 10.0.0</code>，只需要将python@10卸载之后安装python@9就好了</u></p>
+<h3 id="其他关于checkhealth问题"><a href="#其他关于checkhealth问题" class="headerlink" title="其他关于checkhealth问题"></a>其他关于<code>checkhealth</code>问题</h3><ol>
+<li><p>首先就是需要安装关于<code>node.js</code>的依赖：<code>npm install neovim -g</code></p>
+</li>
+<li><p>go和rua的依赖，你可以通过查看health详情来看一下到底怎么操作</p>
+</li>
+</ol>
 
             </div>
             <hr>
