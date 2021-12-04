@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>了解Git</title>
+    <link href="/2021/12/04/%E4%BA%86%E8%A7%A3Git/"/>
+    <url>/2021/12/04/%E4%BA%86%E8%A7%A3Git/</url>
+    
+    <content type="html"><![CDATA[<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><ul><li><p>origin</p><p>  一般我们的代码提交(commmit)之后我们可能会想要上传到远程仓库中以便我们或其他人在另一台主机上进行代码修改。而这个远程按照规定默认叫做origin</p></li></ul><h2 id="使用gitignore"><a href="#使用gitignore" class="headerlink" title="使用gitignore"></a>使用gitignore</h2><p>在<code>.gitignore</code>中写上你不想要git添加的文件名</p><p>书写注意点：<strong>你不需要写上相对路径的<code>./</code>，直接写文件或者目录名就好</strong></p><h3 id="保留你想要的文件"><a href="#保留你想要的文件" class="headerlink" title="保留你想要的文件"></a>保留你想要的文件</h3><blockquote><p>有时候你想要ignore所有的文件(即写上<code>*</code>)，但是想要保留的文件也被ignore了</p></blockquote><p>通过使用<code>!filename</code>，即可对特定文件或目录不进行ignore</p><p><em>记住：<code>.gitignore</code>是一行行顺序执行的</em></p><h2 id="停止追踪文件"><a href="#停止追踪文件" class="headerlink" title="停止追踪文件"></a>停止追踪文件</h2><p>使用<code>git rm --cache filename</code></p><h2 id="使用branch"><a href="#使用branch" class="headerlink" title="使用branch"></a>使用branch</h2><blockquote><p>总所周知，分支是git的一项有力功能，有了branch我们可以同时进行多个版本的开发。</p></blockquote><h3 id="开启分支"><a href="#开启分支" class="headerlink" title="开启分支"></a>开启分支</h3><p><code>git checkout -b branchname</code></p><p>这条命令其实是创建<code>branchname</code>然后转到这个分支上，只想要创建分支使用<code>git branch branchname</code></p><p><em>记住每次进入branch都是<code>checkout</code>指令，快捷指令为<code>gco</code></em></p><h3 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h3><blockquote><p><em>注意，你需要在主分支下(一般是master)</em></p></blockquote><p><code>git merge branchname</code></p><p><em>当然，你也可以在自己的分支下合并主分支（master），使用<code>git merge master</code></em></p><h3 id="删除分支"><a href="#删除分支" class="headerlink" title="删除分支"></a>删除分支</h3><p><code>git branch -d branchname</code></p><p><em>force delete use <code>-D</code></em></p><h3 id="上传本地分支到远程"><a href="#上传本地分支到远程" class="headerlink" title="上传本地分支到远程"></a>上传本地分支到远程</h3><p><code>git push -u origin branchname</code></p><p>这个<code>-u</code>参数是<code>--set-upstream</code>的缩写</p><p><em>这种方法其实和最开始<code>git init</code>之后将本地的master上传到远程仓库是一个原理</em></p><p><u>需要注意的是，使用<code>git branch -a</code>查看远程分支时就会看到之前没有的branchname</u></p><h3 id="分支重命名"><a href="#分支重命名" class="headerlink" title="分支重命名"></a>分支重命名</h3><p>使用指令<code>git branch -m &lt;name&gt;</code>，简写：<code>gb -m &lt;name&gt;</code></p><h3 id="设置默认初始化仓库的分支"><a href="#设置默认初始化仓库的分支" class="headerlink" title="设置默认初始化仓库的分支"></a>设置默认初始化仓库的分支</h3><blockquote><p>一般来说，你要是直接<code>git init</code>没有指定branchname，那么git会提示你:<br><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">hint: Using <span class="token string">'master'</span> as the name <span class="token keyword">for</span> the initial branch. This default branch namehint: is subject to change. To configure the initial branch name to use <span class="token keyword">in</span> allhint: of your new repositories, <span class="token function">which</span> will suppress this warning, call:hint:hint: <span class="token function">git</span> config --global init.defaultBranch <span class="token operator">&lt;</span>name<span class="token operator">></span>hint:<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></p></blockquote><p>这时候我们就可以用系统给我们的提示指定每次初始化的分支名<br><code>git config --global init.defaultBranch master</code></p><p><em>然后你的<code>.gitconfig</code>文件中会出现两行：</em></p><div class="code-wrapper"><pre class="line-numbers language-text" data-language="text"><code class="language-text">[init]defaultBranch = master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div><h2 id="远程-origin"><a href="#远程-origin" class="headerlink" title="远程(origin)"></a>远程(origin)</h2><blockquote><p>很多时候我们都没搞清楚本地仓库和远程仓库的区别，其中一个最大的区别就是：你的本地仓库的版本控制是你一个人来管理，但是远程仓库就是很多人甚至一个团队来管理版本控制。</p></blockquote><p>每次我们将一个本地仓库推送到一个刚建好的未初始化的远程仓库时，我们都需要提供以下信息：</p><ul><li><p>远程仓库地址(https://…)</p></li><li><p>远程仓库在本地的命名(origin)</p></li><li><p>此次推送在远程仓库创建的分支名(master)</p></li></ul><p><strong>所以每次我们推送空的远程仓库的命令为以下两行：</strong></p><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token function">add</span> origin <span class="token punctuation">[</span>url<span class="token punctuation">]</span><span class="token function">git</span> push -u origin <span class="token punctuation">[</span>branchname<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div><h3 id="修改远程仓库地址"><a href="#修改远程仓库地址" class="headerlink" title="修改远程仓库地址"></a>修改远程仓库地址</h3><p>首先想到的就是，修改操作永远都可以分解为删除然后重建。所以我们可以先删仓库，然后加上远程仓库。</p><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token function">rm</span> origin<span class="token function">git</span> remote <span class="token function">add</span> origin <span class="token punctuation">[</span>url<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>]]></content>
+    
+    
+    <categories>
+      
+      <category>后端</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>git</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>SpringMVC学习</title>
     <link href="/2021/12/03/SpringMVC%E5%AD%A6%E4%B9%A0/"/>
     <url>/2021/12/03/SpringMVC%E5%AD%A6%E4%B9%A0/</url>
@@ -540,7 +565,7 @@
     
     <tags>
       
-      <tag>linux</tag>
+      <tag>Linux</tag>
       
     </tags>
     
@@ -686,9 +711,9 @@
     
     <tags>
       
-      <tag>masm</tag>
-      
       <tag>review</tag>
+      
+      <tag>masm</tag>
       
     </tags>
     
