@@ -6,7 +6,7 @@
   <%- partial('_partial/beian.ejs') %>
   <% if(theme.web_analytics.cnzz) { %>
     <!-- cnzz Analytics Icon -->
-    <span id="cnzz_stat_icon_<%- theme.web_analytics.cnzz %>" style="display: none"></span>
+    <span id="cnzz_stat_icon_<%= theme.web_analytics.cnzz %>" style="display: none"></span>
   <% } %>
 
   <!-- 自己设置一个记录网站运行时间的方法 -->
@@ -51,6 +51,3 @@
   <!-- 自己设置一个记录网站运行时间的方法 -->
 
 </footer>
-
-<!-- SCRIPTS -->
-<%- partial('_partial/scripts.ejs') %>
