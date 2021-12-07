@@ -1,7 +1,7 @@
 ---
 title: Vim踩坑记录
 date: 2021-08-15 10:42:16
-updated: 2021-09-30 10:32:00
+updated: 2021-12-04 20:32:00
 author: Rogers Kelamen
 index_img: https://gitee.com/rogerskelamen/mdpic/raw/master/img/20210815110242.png
 categories:
@@ -92,3 +92,23 @@ sudo add-apt-repository ppa:jonathonf/vim
 9月30日，问题描述：**`fzf.vim`在使用时，输入`:Files`报错**(*反正就是很诡异*)
 
 解决办法：<u>我找到了[issue#439](https://github.com/junegunn/fzf.vim/issues/439)，这里面说可以更改`fzf`的目录文件，即更改`dir`，于是我将`Plug 'junegunn/fzf', { 'dir': '~/.local/share/fzf' }`添加到了我的init.vim中。</u>
+
+
+## Neovim on Windows
+
+> 最近在Windows上开始折腾上了Neovim（不得不说用起来意外地舒服），当然是在Windows Terminal上玩的
+
+> 首先需要注意的是使用Windows的话推荐使用Windows Terminal来打开powershell来编辑，同时推荐使用Chocolatey来管理你的neovim的软件包
+
+12月3日，问题描述：**在安装完Neovim后，输入指令`checkhealth`，结果是python3的依赖没有导入，对nvim会提示`fail to import neovim`，这时候就需要使用`pip`来安装`neovim`的python依赖了: `pip install neovim`，结果发现了bug。**
+
+**问题在于：你安装了neovim依赖之后还是会报错!**
+
+问题查明和解决方法：<u>你使用了较新版本的python，比如我就是用的`python 10.0.0`，只需要将python@10卸载之后安装python@9就好了</u>
+
+### 其他关于`checkhealth`问题
+
+1. 首先就是需要安装关于`node.js`的依赖：`npm install neovim -g`
+
+2. go和rua的依赖，你可以通过查看health详情来看一下到底怎么操作
+
