@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>pacman使用记录</title>
+    <link href="/2022/02/13/pacman%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/"/>
+    <url>/2022/02/13/pacman%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/</url>
+    
+    <content type="html"><![CDATA[<h1 id="pacman使用"><a href="#pacman使用" class="headerlink" title="pacman使用"></a>pacman使用</h1><h2 id="S-Synchronize"><a href="#S-Synchronize" class="headerlink" title="-S(Synchronize)"></a><code>-S</code>(Synchronize)</h2><ul><li><p>安装</p><div class="code-wrapper"><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">sudo pacman -S [package]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></li><li><p>模糊查询所有软件包</p><div class="code-wrapper"><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">sudo pacman -Ss [word]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></li><li><p>查询软件包信息</p><div class="code-wrapper"><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">sudo pacman -Si [package]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></li><li><p>更新软件源</p><div class="code-wrapper"><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">sudo pacman -Syy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></li><li><p>更新软件源并更新所有包</p><div class="code-wrapper"><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">sudo pacman -Syyu<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></li><li><p>删除所有的安装包缓存</p><div class="code-wrapper"><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">sudo pacman -Sc<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></li></ul><h2 id="R-Remove"><a href="#R-Remove" class="headerlink" title="-R(Remove)"></a><code>-R</code>(Remove)</h2><ul><li><p>删除包的全局配置文件和所有依赖包</p><div class="code-wrapper"><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">sudo pacman -Rns [package]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></li></ul><h2 id="Q-Query"><a href="#Q-Query" class="headerlink" title="-Q(Query)"></a><code>-Q</code>(Query)</h2><ul><li><p>查询可更新的包</p><div class="code-wrapper"><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">sudo pacman -Qu<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></li><li><p>查询自己安装的包(非自动安装)</p><div class="code-wrapper"><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">sudo pacman -Qe<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></li><li><p>删除孤包</p><div class="code-wrapper"><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">sudo pacman -R $(pacman -Qdtq)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>Manjaro</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>geek</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Jenkins自动化部署</title>
     <link href="/2022/02/11/Jenkins%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/"/>
     <url>/2022/02/11/Jenkins%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/</url>
@@ -746,9 +771,9 @@
     
     <tags>
       
-      <tag>aticle</tag>
-      
       <tag>MCM</tag>
+      
+      <tag>aticle</tag>
       
     </tags>
     

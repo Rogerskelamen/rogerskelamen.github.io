@@ -16,19 +16,48 @@
   <meta name="description" content="">
   <meta name="author" content="Rogers Kelamen">
   <meta name="keywords" content="blog">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="归档">
-<meta property="og:url" content="http://rokelamen.top/archives/2021/03/index.html">
+  <meta name="description" content="pacman使用-S(Synchronize) 安装 sudo pacman -S [package]  模糊查询所有软件包 sudo pacman -Ss [word]  查询软件包信息 sudo pacman -Si [package]  更新软件源 sudo pacman -Syy  更新软件源并更新所有包 sudo pacman -Syyu  删除所有的安装包缓存 sudo pacman">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pacman使用记录">
+<meta property="og:url" content="http://rokelamen.top/2022/02/13/pacman%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/index.html">
 <meta property="og:site_name" content="RO&#39;s Blog">
+<meta property="og:description" content="pacman使用-S(Synchronize) 安装 sudo pacman -S [package]  模糊查询所有软件包 sudo pacman -Ss [word]  查询软件包信息 sudo pacman -Si [package]  更新软件源 sudo pacman -Syy  更新软件源并更新所有包 sudo pacman -Syyu  删除所有的安装包缓存 sudo pacman">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-02-13T09:16:28.000Z">
+<meta property="article:modified_time" content="2022-02-13T09:19:34.344Z">
 <meta property="article:author" content="Rogers Kelamen">
-<meta property="article:tag" content="blog">
+<meta property="article:tag" content="geek">
 <meta name="twitter:card" content="summary_large_image">
   
-  <title>归档| RO&#39;s Blog</title>
+  <title>pacman使用记录| RO&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-solarizedlight.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -55,7 +84,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -163,22 +192,65 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('https://gitee.com/rogerskelamen/mdpic/raw/master/img/LRwAMrHJ114.jpg') no-repeat center center;
+         style="background: url('https://gitee.com/rogerskelamen/mdpic/raw/master/img/default_bg.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Time will tell">
+            <span class="h2" id="subtitle" title="pacman使用记录">
               
             </span>
 
             
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Rogers Kelamen
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-02-13 17:16" pubdate>
+        2022年2月13日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      307 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      1 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
           </div>
 
-          
-            <div class="scroll-down-bar">
-              <i class="iconfont icon-arrowdown"></i>
-            </div>
           
         </div>
       </div>
@@ -187,58 +259,159 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 42 篇文章</p>
-  <hr>
-  
-  
-    
       
-      <p class="h5">2021</p>
-    
-    <a href="/2021/03/22/linux%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">linux课程笔记</span>
-      <time style="float: right;">03-22</time>
-    </a>
-  
-    
-    <a href="/2021/03/11/Vim%E6%9D%82%E9%A1%B9%E8%AE%B0%E5%BD%95/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Vim杂项记录</span>
-      <time style="float: right;">03-11</time>
-    </a>
-  
-    
-    <a href="/2021/03/10/ubuntu%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Ubuntu使用注意事项</span>
-      <time style="float: right;">03-10</time>
-    </a>
-  
-    
-    <a href="/2021/03/03/C-%E5%9F%BA%E7%A1%80%E6%B3%A8%E6%84%8F%E7%82%B9/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">C#基础注意点</span>
-      <time style="float: right;">03-03</time>
-    </a>
-  
-</div>
 
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">pacman使用记录</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年2月13日 下午
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="pacman使用"><a href="#pacman使用" class="headerlink" title="pacman使用"></a>pacman使用</h1><h2 id="S-Synchronize"><a href="#S-Synchronize" class="headerlink" title="-S(Synchronize)"></a><code>-S</code>(Synchronize)</h2><ul>
+<li><p>安装</p>
+<div class="code-wrapper"><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">sudo pacman -S [package]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+</li>
+<li><p>模糊查询所有软件包</p>
+<div class="code-wrapper"><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">sudo pacman -Ss [word]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+</li>
+<li><p>查询软件包信息</p>
+<div class="code-wrapper"><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">sudo pacman -Si [package]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+</li>
+<li><p>更新软件源</p>
+<div class="code-wrapper"><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">sudo pacman -Syy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+</li>
+<li><p>更新软件源并更新所有包</p>
+<div class="code-wrapper"><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">sudo pacman -Syyu<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+</li>
+<li><p>删除所有的安装包缓存</p>
+<div class="code-wrapper"><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">sudo pacman -Sc<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+</li>
+</ul>
+<h2 id="R-Remove"><a href="#R-Remove" class="headerlink" title="-R(Remove)"></a><code>-R</code>(Remove)</h2><ul>
+<li><p>删除包的全局配置文件和所有依赖包</p>
+<div class="code-wrapper"><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">sudo pacman -Rns [package]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+</li>
+</ul>
+<h2 id="Q-Query"><a href="#Q-Query" class="headerlink" title="-Q(Query)"></a><code>-Q</code>(Query)</h2><ul>
+<li><p>查询可更新的包</p>
+<div class="code-wrapper"><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">sudo pacman -Qu<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+</li>
+<li><p>查询自己安装的包(非自动安装)</p>
+<div class="code-wrapper"><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">sudo pacman -Qe<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+</li>
+<li><p>删除孤包</p>
+<div class="code-wrapper"><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">sudo pacman -R $(pacman -Qdtq)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+</li>
+</ul>
 
-
-
-
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Manjaro/">Manjaro</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/geek/">geek</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/02/11/Jenkins%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/">
+                        <span class="hidden-mobile">Jenkins自动化部署</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"2RbCqGEaklHVj7Gj6dtd2kM4-gzGzoHsz","appKey":"kdFD4FmNeIpaTMK269nEqhxx","path":"window.location.pathname","placeholder":"say something...","avatar":"mp","meta":["nick","mail","link"],"requiredFields":["nick","mail"],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://2rbcqgea.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"2RbCqGEaklHVj7Gj6dtd2kM4-gzGzoHsz","appkey":"kdFD4FmNeIpaTMK269nEqhxx"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
 
     
@@ -391,6 +564,19 @@
 
 
 
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
 
 
 
@@ -416,6 +602,13 @@
 
 
 
+
+  <script  src="https://cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({"theme":"default"});
+    }
+  </script>
 
 
 
