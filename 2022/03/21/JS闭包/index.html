@@ -16,20 +16,20 @@
   <meta name="description" content="">
   <meta name="author" content="Rogers Kelamen">
   <meta name="keywords" content="blog">
-  <meta name="description" content="js正则首先是用&#x2F;&#x2F;包裹 let reg &#x3D; &#x2F;^1[345789]\d&amp;#123;9&amp;#125;$&#x2F;g 后缀 i  ignoreCase : 忽略大小写  g  global : 全局匹配，即匹配全部满足的（不是贪婪匹配）  m  multiline : 多行匹配 正则的方法 reg.test(str)：用来匹配字符串是否可以匹配这个正则(正则对象上的方法, 频率最高)  str.match(r">
+  <meta name="description" content="JS 闭包详解 简单来说，在一个函数中定义的函数被return保存到了外部，就会产生闭包  更为准确的一种说法是：在函数返回值值中包含另一个函数的声明(比如返回了一个对象)就可以形成闭包 function test() &amp;#123;   let arr &#x3D; []   for (let i &#x3D; 0; i &lt; 10; i++) &amp;#123;     arr[i] &#x3D; function () &amp;#">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JS正则总结">
-<meta property="og:url" content="http://rokelamen.top/2022/03/15/JS%E6%AD%A3%E5%88%99%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:title" content="JS闭包">
+<meta property="og:url" content="http://rokelamen.top/2022/03/21/JS%E9%97%AD%E5%8C%85/index.html">
 <meta property="og:site_name" content="RO&#39;s Blog">
-<meta property="og:description" content="js正则首先是用&#x2F;&#x2F;包裹 let reg &#x3D; &#x2F;^1[345789]\d&amp;#123;9&amp;#125;$&#x2F;g 后缀 i  ignoreCase : 忽略大小写  g  global : 全局匹配，即匹配全部满足的（不是贪婪匹配）  m  multiline : 多行匹配 正则的方法 reg.test(str)：用来匹配字符串是否可以匹配这个正则(正则对象上的方法, 频率最高)  str.match(r">
+<meta property="og:description" content="JS 闭包详解 简单来说，在一个函数中定义的函数被return保存到了外部，就会产生闭包  更为准确的一种说法是：在函数返回值值中包含另一个函数的声明(比如返回了一个对象)就可以形成闭包 function test() &amp;#123;   let arr &#x3D; []   for (let i &#x3D; 0; i &lt; 10; i++) &amp;#123;     arr[i] &#x3D; function () &amp;#">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-03-15T12:37:23.000Z">
-<meta property="article:modified_time" content="2022-03-15T13:14:04.053Z">
+<meta property="article:published_time" content="2022-03-21T11:24:01.000Z">
+<meta property="article:modified_time" content="2022-03-21T11:35:56.306Z">
 <meta property="article:author" content="Rogers Kelamen">
 <meta property="article:tag" content="js">
 <meta name="twitter:card" content="summary_large_image">
   
-  <title>JS正则总结| RO&#39;s Blog</title>
+  <title>JS闭包| RO&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -197,7 +197,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="JS正则总结">
+            <span class="h2" id="subtitle" title="JS闭包">
               
             </span>
 
@@ -212,8 +212,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-03-15 20:37" pubdate>
-        2022年3月15日 晚上
+      <time datetime="2022-03-21 19:24" pubdate>
+        2022年3月21日 晚上
       </time>
     </span>
   
@@ -223,7 +223,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.3k 字
+      941 字
     </span>
   
 
@@ -232,7 +232,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4 分钟
+      3 分钟
     </span>
   
 
@@ -269,140 +269,72 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">JS正则总结</h1>
+            <h1 style="display: none">JS闭包</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年3月15日 晚上
+                  本文最后更新于：2022年3月21日 晚上
                 
               </p>
             
             <div class="markdown-body">
-              <h1 id="js正则"><a href="#js正则" class="headerlink" title="js正则"></a>js正则</h1><p>首先是用<code>//</code>包裹</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">let</span> reg <span class="token operator">=</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^1[345789]\d&#123;9&#125;$</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
-<h2 id="后缀"><a href="#后缀" class="headerlink" title="后缀"></a>后缀</h2><ul>
-<li>i</li>
-</ul>
-<p>ignoreCase : 忽略大小写</p>
-<ul>
-<li>g</li>
-</ul>
-<p>global : 全局匹配，即匹配全部满足的（不是贪婪匹配）</p>
-<ul>
-<li>m</li>
-</ul>
-<p>multiline : 多行匹配</p>
-<h2 id="正则的方法"><a href="#正则的方法" class="headerlink" title="正则的方法"></a>正则的方法</h2><ol>
-<li><p><code>reg.test(str)</code>：用来匹配字符串是否可以匹配这个正则(正则对象上的方法, <strong>频率最高</strong>)</p>
-</li>
-<li><p><code>str.match(reg)</code>: 有多少个匹配成功的字符串并显示(字符串上的方法)</p>
-</li>
-<li><p><code>reg.source</code>: 正则的内容</p>
-</li>
-<li><p><code>reg.exec(str)</code>: 返回匹配到的第n个字符串</p>
-</li>
-<li><p><code>reg.lastIndex</code>: 第n个匹配字符串的索引</p>
-<p><u>注意：4, 5的函数都是基于global匹配的，因为只有可以匹配多个才能有第几个匹配</u></p>
-</li>
-<li><p><code>str.split(reg)</code>: 很多时候我们都是用字符串来分隔字符的，但是我们也可以用正则</p>
-</li>
-<li><p><code>str.replace(reg, char)</code></p>
-<p>这个js原生的replace是只能匹配第一个字符，也就是replaceFirstIndex</p>
-<p><em>如果我们使用全局的正则(g)来匹配，就能匹配替换所有了</em></p>
-</li>
-</ol>
-<h2 id="开头和结尾固定匹配"><a href="#开头和结尾固定匹配" class="headerlink" title="开头和结尾固定匹配"></a>开头和结尾固定匹配</h2><ul>
-<li><p>开头：<code>^</code></p>
-</li>
-<li><p>结尾：<code>$</code></p>
-</li>
-</ul>
-<h2 id="字符的范围"><a href="#字符的范围" class="headerlink" title="字符的范围"></a>字符的范围</h2><p>使用<code>[]</code></p>
-<p>eg:</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">let</span> reg1 <span class="token operator">=</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">[0-3]</span><span class="token regex-delimiter">/</span></span>
-<span class="token comment">// 这就是匹配出现0～3的字符串</span>
-<span class="token keyword">let</span> reg2 <span class="token operator">=</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">[ac]</span><span class="token regex-delimiter">/</span></span>
-<span class="token comment">// 匹配有a或者c出现的字符串</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
-<p><u>如果<code>^</code>在<code>[]</code>里面，代表着‘非’</u></p>
-<p>eg:</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">let</span> reg <span class="token operator">=</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">[^a]</span><span class="token regex-delimiter">/</span></span>
-<span class="token comment">// 匹配范围为不是a的所有字符</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
-<h2 id="选择性匹配"><a href="#选择性匹配" class="headerlink" title="选择性匹配"></a>选择性匹配</h2><p>使用<code>|</code></p>
-<p>eg:</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">let</span> reg <span class="token operator">=</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^(a|b|c)</span><span class="token regex-delimiter">/</span></span>
-<span class="token comment">// 匹配开头是a或者b或者c</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
-<h2 id="重复多少次"><a href="#重复多少次" class="headerlink" title="重复多少次"></a>重复多少次</h2><p>使用<code>&#123;&#125;</code></p>
-<p>eg:</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">let</span> reg1 <span class="token operator">=</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">0&#123;9&#125;</span><span class="token regex-delimiter">/</span></span>
-<span class="token comment">// 这就是匹配有9个0相邻的字符串</span>
-<span class="token keyword">let</span> reg2 <span class="token operator">=</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">0&#123;3,5&#125;</span><span class="token regex-delimiter">/</span></span>
-<span class="token comment">// 就是匹配3个到5个0</span>
-<span class="token keyword">let</span> reg3 <span class="token operator">=</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">0&#123;1,&#125;</span><span class="token regex-delimiter">/</span></span>
-<span class="token comment">// 匹配1到∞个0</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
-<p><u>默认的匹配是贪婪匹配，能多匹配就多匹配</u></p>
-<h3 id="重复次数扩展-很少用到"><a href="#重复次数扩展-很少用到" class="headerlink" title="重复次数扩展(很少用到)"></a>重复次数扩展(很少用到)</h3><ul>
-<li><p><code>+</code></p>
-<p><code>&#123;1,&#125;</code> : 匹配当前字符一次到无数次</p>
-</li>
-<li><p><code>*</code></p>
-<p><code>&#123;0,&#125;</code> : 匹配当前字符0次到无数次</p>
-</li>
-<li><p><code>?</code></p>
-<p><code>&#123;0,1&#125;</code> : 匹配当前字符零次或一次</p>
-</li>
-</ul>
-<h4 id="取消贪婪匹配"><a href="#取消贪婪匹配" class="headerlink" title="取消贪婪匹配"></a>取消贪婪匹配</h4><blockquote>
-<p>默认的重复次数匹配是贪婪的，能匹配多个就多个</p>
+              <h1 id="JS-闭包详解"><a href="#JS-闭包详解" class="headerlink" title="JS 闭包详解"></a>JS 闭包详解</h1><blockquote>
+<p><u>简单来说，在一个函数中定义的函数被return保存到了外部，就会产生闭包</u></p>
 </blockquote>
-<p>可以使用<code>?</code>来取消</p>
-<p>eg:</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">let</span> reg <span class="token operator">=</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">a&#123;1,3&#125;?</span><span class="token regex-delimiter">/</span></span>
-<span class="token comment">// 能匹配一个就不匹配两个</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
-<h2 id="常见元字符"><a href="#常见元字符" class="headerlink" title="常见元字符"></a>常见元字符</h2><blockquote>
-<p><u>只要看到大写，就是小写的取反</u></p>
+<p><strong>更为准确的一种说法是：在函数返回值值中包含另一个函数的声明(比如返回了一个对象)就可以形成闭包</strong></p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">let</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token keyword">return</span> arr
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">let</span> myArr <span class="token operator">=</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  myArr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token comment">// 结果是10个10</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>闭包的好处就是我们可以在全局访问一个内部的变量，但是坏处是<u>会造成内存泄漏</u></p>
+<h2 id="底层原理"><a href="#底层原理" class="headerlink" title="底层原理"></a>底层原理</h2><blockquote>
+<p>说到底，就是js的上下文作用域链</p>
 </blockquote>
-<ul>
-<li><p><code>.</code></p>
-<p>匹配所有单个字符，除了换行和结束符</p>
-</li>
-<li><p><code>\w</code></p>
-<p>word : 匹配字母</p>
-</li>
-<li><p><code>\d</code></p>
-<p>digit : 匹配数字</p>
-</li>
-<li><p><code>\s</code></p>
-<p>space : 匹配空白（不单指空格）</p>
-</li>
-<li><p><code>\b</code></p>
-<p>border : 匹配单词边界(前后有空格的字符)</p>
-</li>
-<li><p><code>\uxxxx</code></p>
-<p>unicode : 匹配汉字</p>
-</li>
-</ul>
-<h2 id="子表达式反向引用"><a href="#子表达式反向引用" class="headerlink" title="子表达式反向引用"></a>子表达式反向引用</h2><p>使用<code>\n</code>来代表第n个子表达的引用(即n为数字)</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">let</span> reg <span class="token operator">=</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">(\d)\1\1</span><span class="token regex-delimiter">/</span></span>
-<span class="token comment">// 可以匹配出连续三个相同的数字</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
-<h3 id="使用replace反向引用子表达式"><a href="#使用replace反向引用子表达式" class="headerlink" title="使用replace反向引用子表达式"></a>使用replace反向引用子表达式</h3><p>使用<code>$n</code>来表示第n个子表达式的引用</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">let</span> reg <span class="token operator">=</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">-(\w)</span><span class="token regex-delimiter">/</span></span>
-<span class="token keyword">let</span> str <span class="token operator">=</span> <span class="token string">'the-first-name'</span>
-str<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span>reg<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">$<span class="token punctuation">,</span> $<span class="token number">1</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
-  <span class="token keyword">return</span> $<span class="token number">1.</span>toUpperCase
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
-<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><ol>
-<li>匹配任意长度字符串?</li>
-</ol>
-<p><code>/[\d\D]*/</code></p>
-<ol>
-<li>匹配AABB型？</li>
-</ol>
-<p><code>/(.)\1/</code></p>
-<ol>
-<li>字符串去重</li>
-</ol>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">let</span> reg <span class="token operator">=</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">(\w)\1*</span><span class="token regex-delimiter">/</span></span>
-str<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span>reg<span class="token punctuation">,</span> <span class="token string">'$1'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<p>在一个函数被声明时，它会记住当前的环境并将其保存，然后调用的时候又回产生一个作用域，之前声明时的作用域环境被下移。</p>
+<p><u>由于在函数内部的函数被声明时的环境为外层函数的作用域，所以会直接继承所有外层函数的作用域，于是包含了外层函数的变量，外层函数的变量变得可访问</u></p>
+<h2 id="立即执行函数"><a href="#立即执行函数" class="headerlink" title="立即执行函数"></a>立即执行函数</h2><div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+  <span class="token operator">...</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<p>只有表达式才能被执行符号<code>()</code>执行</p>
+<p>被立即执行之后会立即销毁这个函数</p>
+<p><strong>所以，只要是表达式，就能被执行符号<u>立即执行</u></strong></p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token operator">!</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+
+<span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment">// 这种形式也是立即执行函数，因为!variable就是一种表达式</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>我们通常用立即执行函数来避免闭包的产生(如果我们不希望闭包的内存泄漏效应)</p>
+<blockquote>
+<p>让我们再次看看上面闭包的例子</p>
+</blockquote>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">let</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">j</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+      arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>j<span class="token punctuation">)</span>
+      <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token keyword">return</span> arr
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">let</span> myArr <span class="token operator">=</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  myArr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token comment">// 这下就变成了正常的0~9</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p><u>简单来说，想避免闭包效应，我们可以构造一个形参为可泄漏变量的立即执行函数，然后应用形参就可以将可泄漏变量销毁</u></p>
 
             </div>
             <hr>
@@ -437,18 +369,12 @@ str<span class="token punctuation">.</span><span class="token function">replace<
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/03/21/JS%E9%97%AD%E5%8C%85/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">JS闭包</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/03/10/Webpack%E5%85%A5%E9%97%A8/">
-                        <span class="hidden-mobile">Webpack入门</span>
+                      <a href="/2022/03/15/JS%E6%AD%A3%E5%88%99%E6%80%BB%E7%BB%93/">
+                        <span class="hidden-mobile">JS正则总结</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
