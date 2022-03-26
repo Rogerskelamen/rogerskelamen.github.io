@@ -1,0 +1,60 @@
+// --------------------------------------
+// Fluid
+// https://github.com/fluid-dev/hexo-theme-fluid
+// --------------------------------------
+
+@import "_variables/base"
+
+@import "_functions/base"
+
+@import "_mixins/base"
+
+@import "_pages/pages"
+
+/*
+***
+  滚动条美化
+**
+*/
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+::-webkit-scrollbar-button {
+  width: 0;
+  height: 0;
+}
+::-webkit-scrollbar-button:start:increment,::-webkit-scrollbar-button:end:decrement {
+  display: none;
+}
+::-webkit-scrollbar-corner {
+  display: block;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: rgba(130,130,130,.6);
+}
+::-webkit-scrollbar-thumb:hover {
+  border-radius: 10px;
+  background-color: rgba(127,184,238,.5);
+}
+::-webkit-scrollbar-track,::-webkit-scrollbar-thumb {
+  border-right: 1px solid transparent;
+  border-left: 1px solid transparent;
+}
+::-webkit-scrollbar-track {
+  background-color: rgba(30,30,30,.9)
+}
+// ::-webkit-scrollbar-track:hover {    // 按住滚动条时悬浮的样式
+//  background-color: rgba(0,0,0,.15);
+// }
+::-webkit-scrollbar-button:start {
+  width: 10px;
+  height: 10px;
+  /*background: url(../images/scrollbar_arrow.png) no-repeat 0 0;*/  /*可以添加滚动条样式*/
+}
+/*
+***
+  滚动条美化
+***
+*/
