@@ -1,0 +1,748 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s2.loli.net/2022/03/26/jEHDFtp3uUwofQr.png">
+  <link rel="icon" href="https://s2.loli.net/2022/03/26/jEHDFtp3uUwofQr.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Rogers Kelamen">
+  <meta name="keywords" content="blog">
+  <meta name="description" content="Canva的细节讲解（已断更）canva上下文 首先你得搞清楚CanvasRenderingContext2D（即上下文对象）和canvas的DOM对象是两个不一样的东西  通过canvas的getContext()方法，我们可以获取一个canvas的上下文对象（注意，我没有说是一个上下文对象） 而我们能不能再创建一个上下文对象呢？（在原有创建的基础上） warning：坑来了，每个&lt;can">
+<meta property="og:type" content="article">
+<meta property="og:title" content="canvas细节讲解">
+<meta property="og:url" content="https://rokelamen.top/2020/10/23/canvas%E7%BB%86%E8%8A%82%E8%AE%B2%E8%A7%A3/index.html">
+<meta property="og:site_name" content="RO&#39;s Blog">
+<meta property="og:description" content="Canva的细节讲解（已断更）canva上下文 首先你得搞清楚CanvasRenderingContext2D（即上下文对象）和canvas的DOM对象是两个不一样的东西  通过canvas的getContext()方法，我们可以获取一个canvas的上下文对象（注意，我没有说是一个上下文对象） 而我们能不能再创建一个上下文对象呢？（在原有创建的基础上） warning：坑来了，每个&lt;can">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2022/03/26/WOsmjbCXd7gTMlB.png">
+<meta property="article:published_time" content="2020-10-23T12:18:08.000Z">
+<meta property="article:modified_time" content="2020-10-27T13:42:00.000Z">
+<meta property="article:author" content="Rogers Kelamen">
+<meta property="article:tag" content="js">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s2.loli.net/2022/03/26/WOsmjbCXd7gTMlB.png">
+  
+  <title>canvas细节讲解| RO&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-solarizedlight.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"rokelamen.top","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"0d7560f90f7a21d6a9e7635611dac094","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"2RbCqGEaklHVj7Gj6dtd2kM4-gzGzoHsz","app_key":"kdFD4FmNeIpaTMK269nEqhxx","server_url":"https://2rbcqgea.lc-cn-n1-shared.com","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>RO&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://s2.loli.net/2022/03/26/j3r2oPYEkc5Wh8a.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="canvas细节讲解">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Rogers Kelamen
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-10-23 20:18" pubdate>
+        2020年10月23日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      6 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">canvas细节讲解</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2020年10月27日 晚上
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="Canva的细节讲解（已断更）"><a href="#Canva的细节讲解（已断更）" class="headerlink" title="Canva的细节讲解（已断更）"></a>Canva的细节讲解（已断更）</h1><h2 id="canva上下文"><a href="#canva上下文" class="headerlink" title="canva上下文"></a>canva上下文</h2><blockquote>
+<p>首先你得搞清楚CanvasRenderingContext2D（即上下文对象）和canvas的DOM对象是两个不一样的东西</p>
+</blockquote>
+<p><strong>通过canvas的<code>getContext()</code>方法，我们可以获取一个canvas的上下文对象（<font color=#34b>注意，我没有说是一个上下文对象</font>）</strong></p>
+<p><em>而我们能不能再创建一个上下文对象呢？（在原有创建的基础上）</em></p>
+<p>warning：<strong>坑来了，<font color=brown>每个<code>&lt;canvas&gt;</code>元素只有一个上下文对象</font>，我们每次调用<code>getContext()</code>方法都会返回相同的上下文对象</strong></p>
+<blockquote>
+<p>我们再来说说第二个坑：<br>canvasDOM元素和上下文对象傻傻分不清</p>
+</blockquote>
+<p>warning：<em>我们每次都是用ctx（个人取名习惯，<u>下文皆用此名</u>）去绘制图形，而<code>canvas</code>只是跟其字面意思一样——“画布”罢了</em></p>
+<hr>
+<h2 id="绘制图形三部曲（入门级）"><a href="#绘制图形三部曲（入门级）" class="headerlink" title="绘制图形三部曲（入门级）"></a>绘制图形三部曲（入门级）</h2><ol>
+<li><code>beginPath()</code>：新建路径</li>
+<li><code>moveTo()</code>：开始子路径</li>
+<li><code>lineTo()</code>：开始绘制</li>
+</ol>
+<blockquote>
+<p>嗯嗯，别忘了他们都是ctx的方法。。。</p>
+</blockquote>
+<hr>
+<h2 id="当你想要闭合图形时"><a href="#当你想要闭合图形时" class="headerlink" title="当你想要闭合图形时~"></a>当你想要闭合图形时~</h2><p>一般来说，我们可以不用刻意的去用<code>lineTo()</code>来闭合图形，<strong>因为当你使用<code>fill()</code>方法之后，图形的看上去就已经闭合上了</strong>（<em>然而轮廓没有闭合）</em></p>
+<p>但事实上，不管你用<code>lineTo()</code>还是<code>fill()</code>都是没有真正意义上闭合上的<strong>（<code>lineTo()</code>只是表现出几条线段共用了一个起点和一个终点）</strong></p>
+<p>所以：<strong><font color=#34b>当你想闭合图形时，用<code>closePath()</code>方法吧</font></strong></p>
+<hr>
+<h2 id="图形属性"><a href="#图形属性" class="headerlink" title="图形属性"></a>图形属性</h2><blockquote>
+<p>个人认为这个部分比较重要，就列出了以下的表格<br>（都是一些常用的）</p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fillStyle</td>
+<td>设置填充颜色和渐变，图案</td>
+</tr>
+<tr>
+<td>font</td>
+<td>设置文本时的CSS字体</td>
+</tr>
+<tr>
+<td>globalAlpha</td>
+<td>设置全局透明度</td>
+</tr>
+<tr>
+<td>lineWidth</td>
+<td>外框线的宽度</td>
+</tr>
+<tr>
+<td>textAlign</td>
+<td>文本水平对齐方式</td>
+</tr>
+<tr>
+<td>textBaseLine</td>
+<td>文本垂直对齐方式</td>
+</tr>
+<tr>
+<td>shadwoColor</td>
+<td>下拉阴影的颜色</td>
+</tr>
+<tr>
+<td>strokeStyle</td>
+<td>勾勒线的颜色，渐变，图案</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong><font color=brown>看清楚，这些个都是属性，而不是ctx的方法！</font></strong></p>
+<p>eg:</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">ctx<span class="token punctuation">.</span>fillStyle <span class="token operator">=</span> <span class="token string">'red'</span><span class="token punctuation">;</span>
+<span class="token comment">// 而不是</span>
+ctx<span class="token punctuation">.</span><span class="token function">fillStyle</span><span class="token punctuation">(</span><span class="token string">'red'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>	<span class="token comment">// 这锅是错滴</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<hr>
+<h2 id="圆弧的部分细节"><a href="#圆弧的部分细节" class="headerlink" title="圆弧的部分细节"></a>圆弧的部分细节</h2><h3 id="关于arc"><a href="#关于arc" class="headerlink" title="关于arc()"></a>关于<code>arc()</code></h3><p><u>六个参数：圆心x，圆心y，radius，起始弧度，结束弧度，是否顺时针（false/true）</u></p>
+<p><em>除了参数难记，很多情况下会忘记以下这点：</em></p>
+<p><strong><font color=brown>它会首先将当前点和弧形的起点用一条直线连接</font></strong>，要是不注意这点，可能会变成这样：</p>
+<p><img src="https://s2.loli.net/2022/03/26/WOsmjbCXd7gTMlB.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>所以可以直接用</p>
+<ul>
+<li><code>moveTo</code>移到起始点，或者</li>
+<li>干脆<code>beginPath</code>重开一局</li>
+</ul>
+<h3 id="弧度制？角度制？"><a href="#弧度制？角度制？" class="headerlink" title="弧度制？角度制？"></a>弧度制？角度制？</h3><blockquote>
+<p>好吧，你稍微看一下文档就知道<code>arc()</code>的第四五个参数是弧度制<br>但是我们总是钟爱角度制一样想都不想就用角度制😂</p>
+</blockquote>
+<p>所以，我们有必要整一个工具函数（<font color=#34b>极度推荐在用canvas画图时提前把这个函数写上去</font>）</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">rads</span><span class="token punctuation">(</span><span class="token parameter">x</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> Math<span class="token punctuation">.</span><span class="token constant">PI</span> <span class="token operator">*</span> x <span class="token operator">/</span> <span class="token number">180</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<p><em>之后就可以直接调用<code>rads()</code>。</em></p>
+<h3 id="rads-0-究竟在哪？"><a href="#rads-0-究竟在哪？" class="headerlink" title="rads(0)究竟在哪？"></a><code>rads(0)</code>究竟在哪？</h3><p><strong>A：<u>位于圆心x轴正方向与圆弧的交点</u></strong></p>
+<hr>
+<h2 id="矩形部分细节"><a href="#矩形部分细节" class="headerlink" title="矩形部分细节"></a>矩形部分细节</h2><blockquote>
+<p>矩形四大方法：<code>fillRect()</code>、<code>strokeRect()</code>、<code>clearRect()</code>、<code>rect()</code>(这个用到的极少)</p>
+</blockquote>
+<ul>
+<li><p><code>fillRect()</code>和<code>strokeRect()</code></p>
+<p>两者很相似，参数都是：前两个指定矩形的左顶点，后两个指定矩形的宽和高。</p>
+<p><strong>前者使用<u>当前的<code>fillStyle</code>属性来填充矩形</u>，而后者使用<u>当前的<code>strokeStyle</code>属性来勾勒外边框</u></strong></p>
+</li>
+<li><p><code>clearRect()</code></p>
+<p>参数也是一样的，但是使用<u>透明的空画布</u>来填充矩形。</p>
+</li>
+<li><p><code>rect()</code></p>
+<p>warning；<em>前几个方法都不会修改当前的路径，但是这个会改变</em></p>
+<p><em>而且它就是只有改变路径这一个功能了（你无法直观的从canvas上看出效果），着实鸡肋。</em></p>
+</li>
+</ul>
+<hr>
+<h2 id="关于背景图片"><a href="#关于背景图片" class="headerlink" title="关于背景图片"></a>关于背景图片</h2><blockquote>
+<p>要使用背景图片的图案而不是颜色来填充或勾勒（有勾勒这种操作么），可以将<code>fillStyle</code>或者<code>strokeStyle</code>属性设置成<code>CanvasPattern</code>对象，该对象可以通过调用ctx的<code>createPattern()</code>方法返回相应的值</p>
+</blockquote>
+<p>eg：</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">var</span> image <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'myimage'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ctx<span class="token punctuation">.</span>fillStyle <span class="token operator">=</span> ctx<span class="token punctuation">.</span><span class="token function">createPattern</span><span class="token punctuation">(</span>image<span class="token punctuation">,</span> <span class="token string">'repeat'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<p>注意：<strong><code>createPattern()</code>的第一个参数必须是一个<code>&lt;img&gt;</code>元素，<code>&lt;canvas&gt;</code>元素或<code>&lt;video&gt;</code>元素（<font color=#34b>或者是通过<code>Image()</code>构造出的图片元素</font>）</strong></p>
+<hr>
+<h2 id="杂谈"><a href="#杂谈" class="headerlink" title="杂谈"></a>杂谈</h2><blockquote>
+<p>如果你用的是vscode编辑器来编写的这些和canvas有关的代码，你会发现vscode默认不会提供代码补全，这里讲一个方法：</p>
+</blockquote>
+<p><strong>在获取canvas元素的前一行写上如下注释：</strong></p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">/** @type &#123;HTMLCanvasElement&#125; */</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p><em>则在之后vscode就能识别出是canvas元素并给出代码补全了</em></p>
+<hr>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/js/">js</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/10/24/Screep%E6%95%99%E7%A8%8B/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Screep教程</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/10/21/%E6%B1%87%E7%BC%96%E5%85%A5%E9%97%A8%E7%AF%87/">
+                        <span class="hidden-mobile">汇编入门篇</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"2RbCqGEaklHVj7Gj6dtd2kM4-gzGzoHsz","appKey":"kdFD4FmNeIpaTMK269nEqhxx","path":"window.location.pathname","placeholder":"say something...","avatar":"mp","meta":["nick","mail","link"],"requiredFields":["nick","mail"],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://2rbcqgea.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"2RbCqGEaklHVj7Gj6dtd2kM4-gzGzoHsz","appkey":"kdFD4FmNeIpaTMK269nEqhxx"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+
+  <!-- 自己设置一个记录网站运行时间的方法 -->
+  <span id="sitetime" style="font-size: 14px; font-family: Consolas;font-weight: normal; color: #aaa;"></span>
+  <script language=javascript>
+    function siteTime(){
+      window.setTimeout("siteTime()", 1000);
+      var seconds = 1000;
+      var minutes = seconds * 60;
+      var hours = minutes * 60;
+      var days = hours * 24;
+      var years = days * 365;
+      var today = new Date();
+      var todayYear = today.getFullYear();
+      var todayMonth = today.getMonth()+1;
+      var todayDate = today.getDate();
+      var todayHour = today.getHours();
+      var todayMinute = today.getMinutes();
+      var todaySecond = today.getSeconds();
+      /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+      year - 作为date对象的年份，为4位年份值
+      month - 0-11之间的整数，做为date对象的月份
+      day - 1-31之间的整数，做为date对象的天数
+      hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+      minutes - 0-59之间的整数，做为date对象的分钟数
+      seconds - 0-59之间的整数，做为date对象的秒数
+      microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+      var t1 = Date.UTC(2020,10,18,15,00,00); //北京时间2020-10-18 00:00:00
+      var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+      var diff = t2-t1;
+      var diffYears = Math.floor(diff/years);
+      // var diffDays = Math.floor((diff/days)-diffYears*365);
+      // 直接用日来记录，不用年了，太low啦
+      var diffDays = Math.floor((diff/days));
+      var diffHours = Math.floor((diff-(diffDays)*days)/hours);
+      var diffMinutes = Math.floor((diff-(diffDays)*days-diffHours*hours)/minutes);
+      var diffSeconds = Math.floor((diff-(diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+      document.getElementById("sitetime").innerHTML=" 小破站已勉强运行了 "+/*diffYears+" 年 "+*/diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+    }
+    siteTime();
+  </script>
+  <!-- 自己设置一个记录网站运行时间的方法 -->
+
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({"theme":"default"});
+    }
+  </script>
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0d7560f90f7a21d6a9e7635611dac094";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

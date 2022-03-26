@@ -1,0 +1,814 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s2.loli.net/2022/03/26/jEHDFtp3uUwofQr.png">
+  <link rel="icon" href="https://s2.loli.net/2022/03/26/jEHDFtp3uUwofQr.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Rogers Kelamen">
+  <meta name="keywords" content="blog">
+  <meta name="description" content="Machine LearningThe Definitionan older one:  the field of study that gives computers the ability to learn without being explicitly programmed    ——Arthur Samuel  an modern one:  A computer program is">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习">
+<meta property="og:url" content="https://rokelamen.top/2021/07/22/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="RO&#39;s Blog">
+<meta property="og:description" content="Machine LearningThe Definitionan older one:  the field of study that gives computers the ability to learn without being explicitly programmed    ——Arthur Samuel  an modern one:  A computer program is">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2022/03/26/uYFBvVQACI8cMhS.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/26/xXLQjSRwcZeToyA.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/26/Sf1sjOqZFu6I4k8.png">
+<meta property="article:published_time" content="2021-07-22T08:55:29.000Z">
+<meta property="article:modified_time" content="2022-03-26T09:14:31.052Z">
+<meta property="article:author" content="Rogers Kelamen">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s2.loli.net/2022/03/26/uYFBvVQACI8cMhS.png">
+  
+  <title>机器学习| RO&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-solarizedlight.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"rokelamen.top","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"0d7560f90f7a21d6a9e7635611dac094","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"2RbCqGEaklHVj7Gj6dtd2kM4-gzGzoHsz","app_key":"kdFD4FmNeIpaTMK269nEqhxx","server_url":"https://2rbcqgea.lc-cn-n1-shared.com","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>RO&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://s2.loli.net/2022/03/26/DZpUEW8izknQALM.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="机器学习">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Rogers Kelamen
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-07-22 16:55" pubdate>
+        2021年7月22日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.2k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      16 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">机器学习</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月26日 下午
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="Machine-Learning"><a href="#Machine-Learning" class="headerlink" title="Machine Learning"></a>Machine Learning</h1><h2 id="The-Definition"><a href="#The-Definition" class="headerlink" title="The Definition"></a>The Definition</h2><p>an older one:</p>
+<blockquote>
+<p>the field of study that gives computers the ability to learn without being explicitly programmed    ——Arthur Samuel</p>
+</blockquote>
+<p>an modern one:</p>
+<blockquote>
+<p>A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P, if its performance at tasks in T, as measured by P, improves with experience E    ——Tom Mitchell</p>
+</blockquote>
+<p>Example: playing checkers.</p>
+<ul>
+<li><p>E = the experience of playing many games of checkers</p>
+</li>
+<li><p>T = the task of playing checkers.</p>
+</li>
+<li><p>P = the probability that the program will win the next game.</p>
+</li>
+</ul>
+<p><u>So, the machine learning is said to through the task, get the experience, finally learn to achieve the ideal goal</u> (<em>solve some problem</em>)</p>
+<h2 id="Supervised-learning"><a href="#Supervised-learning" class="headerlink" title="Supervised learning"></a>Supervised learning</h2><blockquote>
+<p>We give out a <u>“right answer”</u>,(<em>more like a test data set</em>) Then the task is to generate more data that are similar to the “right answer”</p>
+</blockquote>
+<p>In supervised learning, we are given a data set and <strong>already know what our correct output should look like</strong>, having the idea that there is a relationship between the input and the output.</p>
+<p>categories:</p>
+<ul>
+<li><p>regression</p>
+<p>continuous output</p>
+</li>
+<li><p>classification</p>
+<p>discrete output</p>
+</li>
+</ul>
+<h2 id="Unsupervised-learning"><a href="#Unsupervised-learning" class="headerlink" title="Unsupervised learning"></a>Unsupervised learning</h2><blockquote>
+<p>In Unsupervised Learning, we have the same data set, but we have no idea what exactly the task is and what to do next. It seems different since there is no such concept like attribute or tag(<em>which means all the data is the same, there is no difference</em>)</p>
+</blockquote>
+<p>Unsupervised learning allows us to approach problems with little or no idea what our results should look like. We can derive structure from data where we don’t necessarily know the effect of the variables.</p>
+<p>Example:</p>
+<p>比如说今日头条上的所有新闻，它们虽然是根据一些专题进行分类，但是最开始都是一堆差不多的新闻数据。字节跳动内容算法将这些差不多的类似的新闻数据进行学习，最终得到了每个分类，但是并没有人指明这些类别应该按照什么标准进行划分，只是需要划分出来(<em>automatically</em>)。</p>
+<p>Most of time, the usual method is cluster algorithm. <u>Run that Alforithm, get the clustered result</u>. (<em>We never know the standard</em>)</p>
+<h2 id="Cost-Function"><a href="#Cost-Function" class="headerlink" title="Cost Function"></a>Cost Function</h2><p>cost function is the same meaning of loss function(<em>损失函数</em>), the cost function(<em>or loss funciton</em>) can be descibed as $L(Y, f(X)) = (Y - f(X))^2$,(compare the result L with fact value Y) this means the less the value of cost function, the better the model fits.</p>
+<p>the regular form of cost function:</p>
+<script type="math/tex; mode=display">
+J(\theta) = \frac{1}{2m}\sum_{i=1}^{m}(h_\theta(x^{(i)}) - y^{(i)})^2</script><p>所以你可以简单的理解成，<strong>J（代价函数）是一个根据$H_\theta$（假设函数）得到来的这个假设函数和现实的拟合程度</strong>，J越小，取这个$\theta$的值的时候拟合程度最好。</p>
+<p><img src="https://s2.loli.net/2022/03/26/uYFBvVQACI8cMhS.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="Hypothesis-Function"><a href="#Hypothesis-Function" class="headerlink" title="Hypothesis Function"></a>Hypothesis Function</h3><p>对于Cost Function, 我们还是需要简单讲一下hypothesis function(<em>假设函数</em>)的，因为有了一个Hypothesis function, thus the cost function has its own meaning.</p>
+<p>Hypothesis:  $h_\theta = \theta_0 + \theta_1x$</p>
+<p>Parameter:     $\theta_0, \theta_1$</p>
+<p>Cost Function:     $J(\theta<em>0,\theta_1) = \frac{1}{2m}\sum</em>{i=1}^{m}(h_\theta(x^{(i)}) - y^{(i)})^2$</p>
+<p>Goal:     $mininmize J(\theta)$</p>
+<h2 id="Gradient-Descent"><a href="#Gradient-Descent" class="headerlink" title="Gradient Descent"></a>Gradient Descent</h2><p>当我们画出J的图像的时候，我们很想方便快捷的得出J值最小的时候，就需要有一个算法得到J最小的时候，这样我们就可以反推$\theta_0, \theta_1$，最终完成Hypothesis function的求出。</p>
+<p>采用梯度下降的方法，就是将现在的观察点最为基点找到局部的最低点（在一个局部面积范围内），然后下降（Descent）之后找到另一个基点，以此类推找到最终的最低点（Global）。<em>个人认为属于一种贪心算法</em>。</p>
+<p>The size of each step is determined by the parameter α, which is called the learning rate. </p>
+<p>For example, the distance between each ‘star’ in the graph above represents a step determined by our parameter α. A smaller α would result in a smaller step and a larger α results in a larger step.</p>
+<p>The gradient descent algorithm is:</p>
+<p>repeat until convergence:</p>
+<script type="math/tex; mode=display">
+\theta_j := \theta_j - \alpha \frac{\delta}{\delta\theta_j} J(\theta_0, \theta_1)</script><h3 id="Go-Further"><a href="#Go-Further" class="headerlink" title="Go Further"></a>Go Further</h3><p>the α is also called as learning rate, it controls how much step we update that parameter $\theta_j$.</p>
+<p>当然我们也知道对应的$\theta<em>j$是根据导数的值来改变的，也就是说，但我们越来越接近局部最优解（local optima）的时候，我们的step自动就会越来越小，因为倒数是越来越小（对应斜率）的。这意味着我们越接近最优解，我们迈的步子就越小（</em>很符合收敛的概念_）</p>
+<p><img src="https://s2.loli.net/2022/03/26/xXLQjSRwcZeToyA.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>但是用这种写法就意味着我们最终只能得到局部最优（全局待解）</p>
+<script type="math/tex; mode=display">
+\theta_0 := \theta_0 - \alpha \frac{1}{m} \sum_{i=1}^m(h_\theta(x_i) - y_i) \\
+\theta_1 := \theta_1 - \alpha \frac{1}{m} \sum_{i=1}^m((h_\theta(x_i) - y_i)x_i)</script><p>不过，当我们的cost function是一个凸函数的时候，我们找到的必然就是全局最优解了。</p>
+<h2 id="Linear-Algebra-Review"><a href="#Linear-Algebra-Review" class="headerlink" title="Linear Algebra Review"></a>Linear Algebra Review</h2><p>线性代数在这里都需要单独复习了，可想而知，对于整个Machine learning来说，线性代数是有多么重要了。</p>
+<h3 id="Vector"><a href="#Vector" class="headerlink" title="Vector"></a>Vector</h3><p>vector（向量）：表示一个只有一个一列的矩阵</p>
+<p>即所有的矩阵元素都可以用$a_{1n}$来表示</p>
+<p>但是你可能会疑惑，为什么是一列呢？我们在标准的线性代数的课程中学习到的实际上是一行的矩阵也能表示一个向量，此刻且先记住这个概念：一列的结果是为了将向量放到第二个乘数的位置，这样就可以得到一个矩阵的预测结果了。可以这么理解：</p>
+<script type="math/tex; mode=display">
+DataSet \times Hypothesis = Prediction</script><h3 id="Multiplication"><a href="#Multiplication" class="headerlink" title="Multiplication"></a>Multiplication</h3><p>矩阵乘法也没有什么好说的，主要是对于结果来说，<strong>行数决定于前一个矩阵，列数决定于后一个矩阵</strong>。</p>
+<p>可以这么理解：Matrix和Vector的乘法是得到一个预测结果，但是Matrix和Matrix（Vectors）相乘就是得到多个结果并进行比较。</p>
+<h3 id="Matrix-Inverse"><a href="#Matrix-Inverse" class="headerlink" title="Matrix Inverse"></a>Matrix Inverse</h3><p>if A is an $m \times m$ matrix, it is also called an square</p>
+<p>学过线性代数都知道，一个矩阵的逆（也就是逆矩阵）和乘原矩阵就得到单位矩阵（Identity Matrix）：</p>
+<script type="math/tex; mode=display">
+A^{-1} \times A = I</script><h4 id="使用python求矩阵的逆（numpy）"><a href="#使用python求矩阵的逆（numpy）" class="headerlink" title="使用python求矩阵的逆（numpy）"></a>使用python求矩阵的逆（numpy）</h4><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+a<span class="token operator">=</span>np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">,</span><span class="token number">8</span><span class="token punctuation">,</span><span class="token number">9</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token comment"># 初始化一个非奇异矩阵(数组)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>np<span class="token punctuation">.</span>linalg<span class="token punctuation">.</span>inv<span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment"># 对应于MATLAB中 inv() 函数</span>
+
+<span class="token comment"># 当然，矩阵对象可以通过 .I 更方便的求逆</span>
+A <span class="token operator">=</span> np<span class="token punctuation">.</span>matrix<span class="token punctuation">(</span>a<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>A<span class="token punctuation">.</span>I<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h3 id="Matrix-Transpose"><a href="#Matrix-Transpose" class="headerlink" title="Matrix Transpose"></a>Matrix Transpose</h3><p>即矩阵的转置的概念，the sign is like this: $A^T$ and $A$</p>
+<p>so obviously, $A^T_{ij} = A_ji$</p>
+<h2 id="Multiple-Variables-Features"><a href="#Multiple-Variables-Features" class="headerlink" title="Multiple Variables(Features)"></a>Multiple Variables(Features)</h2><h3 id="simplify-the-fomula"><a href="#simplify-the-fomula" class="headerlink" title="simplify the fomula"></a>simplify the fomula</h3><script type="math/tex; mode=display">
+h_\theta(x) = \theta_0 + \theta_1 x_1 + \theta_2 x_2 + ... + \theta_n x_n</script><p>for convenience of notation, define $x_0 = 1$.</p>
+<p>then we have </p>
+<script type="math/tex; mode=display">
+x = 
+\left(\begin{array}{c}
+x_0 \\
+x_1 \\
+x_2 \\
+... \\
+x_n
+\end{array} \right)
+\qquad
+\theta =
+\left(\begin{array}{c}
+\theta_0 \\
+\theta_1 \\
+\theta_2 \\
+... \\
+\theta_n
+\end{array} \right)</script><p>the $h_\theta(x)$ then can be transformed into:</p>
+<script type="math/tex; mode=display">
+h_\theta(x) = \theta^T x</script><h3 id="Feature-Scaling"><a href="#Feature-Scaling" class="headerlink" title="Feature Scaling"></a>Feature Scaling</h3><p>当一个变量$x_1$的影响要远大于$x_2$的情况下，J（cost function）的图像可能非常的窄，这样就相当于我们需要大量的时间和实践来完成全局最优解的求解。此时我们部分通过缩放变量来达到变量之间影响的均衡，这就是特征缩放（Feature Scaling）。</p>
+<p><img src="https://s2.loli.net/2022/03/26/Sf1sjOqZFu6I4k8.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>Usually, the range of the variable is regular to be scaled into [-1, 1], which means you shouldn’t put the range up to 100 or down to 0.0001(for example).</p>
+<p>所以这就相当于是一种公式（而不是数据的）的预处理，当我们我们的变量的范围千差万别的时候，我们可以通过这种方式来使得变量变得范围差不多。</p>
+<h4 id="debug-and-choose-α"><a href="#debug-and-choose-α" class="headerlink" title="debug and choose α"></a>debug and choose α</h4><p>if α is too small: slow convergence.</p>
+<p>if α is too large: $J(\theta)$ may not decrease on every iteration; or may not converge.</p>
+<p>to choose α, try<br>…, 0.001, 0.003, 0.01, 0.03, 0.1, 0.3, 1, …</p>
+<h2 id="Regulation"><a href="#Regulation" class="headerlink" title="Regulation"></a>Regulation</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>mean</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>m</td>
+<td>the number of train sample</td>
+</tr>
+<tr>
+<td>x</td>
+<td>feature variable</td>
+</tr>
+<tr>
+<td>y</td>
+<td>output variable</td>
+</tr>
+<tr>
+<td>:=</td>
+<td>赋值语句</td>
+</tr>
+<tr>
+<td>n</td>
+<td>number of features</td>
+</tr>
+<tr>
+<td>$x^{(i)}$</td>
+<td>input(features) of $i^{th}$ training example(a vector)</td>
+</tr>
+<tr>
+<td>$x^{(i)}_j$</td>
+<td>value of feature j in $i^{th}$ training example</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/python/">python</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/07/25/cmus%E4%BD%BF%E7%94%A8/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">cmus使用</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/03/22/linux%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">
+                        <span class="hidden-mobile">linux课程笔记</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"2RbCqGEaklHVj7Gj6dtd2kM4-gzGzoHsz","appKey":"kdFD4FmNeIpaTMK269nEqhxx","path":"window.location.pathname","placeholder":"say something...","avatar":"mp","meta":["nick","mail","link"],"requiredFields":["nick","mail"],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://2rbcqgea.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"2RbCqGEaklHVj7Gj6dtd2kM4-gzGzoHsz","appkey":"kdFD4FmNeIpaTMK269nEqhxx"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+
+  <!-- 自己设置一个记录网站运行时间的方法 -->
+  <span id="sitetime" style="font-size: 14px; font-family: Consolas;font-weight: normal; color: #aaa;"></span>
+  <script language=javascript>
+    function siteTime(){
+      window.setTimeout("siteTime()", 1000);
+      var seconds = 1000;
+      var minutes = seconds * 60;
+      var hours = minutes * 60;
+      var days = hours * 24;
+      var years = days * 365;
+      var today = new Date();
+      var todayYear = today.getFullYear();
+      var todayMonth = today.getMonth()+1;
+      var todayDate = today.getDate();
+      var todayHour = today.getHours();
+      var todayMinute = today.getMinutes();
+      var todaySecond = today.getSeconds();
+      /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+      year - 作为date对象的年份，为4位年份值
+      month - 0-11之间的整数，做为date对象的月份
+      day - 1-31之间的整数，做为date对象的天数
+      hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+      minutes - 0-59之间的整数，做为date对象的分钟数
+      seconds - 0-59之间的整数，做为date对象的秒数
+      microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+      var t1 = Date.UTC(2020,10,18,15,00,00); //北京时间2020-10-18 00:00:00
+      var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+      var diff = t2-t1;
+      var diffYears = Math.floor(diff/years);
+      // var diffDays = Math.floor((diff/days)-diffYears*365);
+      // 直接用日来记录，不用年了，太low啦
+      var diffDays = Math.floor((diff/days));
+      var diffHours = Math.floor((diff-(diffDays)*days)/hours);
+      var diffMinutes = Math.floor((diff-(diffDays)*days-diffHours*hours)/minutes);
+      var diffSeconds = Math.floor((diff-(diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+      document.getElementById("sitetime").innerHTML=" 小破站已勉强运行了 "+/*diffYears+" 年 "+*/diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+    }
+    siteTime();
+  </script>
+  <!-- 自己设置一个记录网站运行时间的方法 -->
+
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({"theme":"default"});
+    }
+  </script>
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0d7560f90f7a21d6a9e7635611dac094";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

@@ -1,0 +1,828 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s2.loli.net/2022/03/26/jEHDFtp3uUwofQr.png">
+  <link rel="icon" href="https://s2.loli.net/2022/03/26/jEHDFtp3uUwofQr.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Rogers Kelamen">
+  <meta name="keywords" content="blog">
+  <meta name="description" content="Screeps教程（已断更） Screeps 是一款面向编程爱好者的开源 MMO RTS 沙盒游戏，其核心机制是为您的单位编写 AI。您可以通过编写 JavaScript 来控制自己的殖民地。您的代码将 24&#x2F;7 全天候不间断地运行在一个庞大世界中。不仅如此，这个世界同时也容纳了许许多多和您一样的玩家。——来自steam页面介绍原文  嗯，既然是用JS游玩，那就太符合我现阶段研究JS的需求了😁。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Screep教程">
+<meta property="og:url" content="https://rokelamen.top/2020/10/24/Screep%E6%95%99%E7%A8%8B/index.html">
+<meta property="og:site_name" content="RO&#39;s Blog">
+<meta property="og:description" content="Screeps教程（已断更） Screeps 是一款面向编程爱好者的开源 MMO RTS 沙盒游戏，其核心机制是为您的单位编写 AI。您可以通过编写 JavaScript 来控制自己的殖民地。您的代码将 24&#x2F;7 全天候不间断地运行在一个庞大世界中。不仅如此，这个世界同时也容纳了许许多多和您一样的玩家。——来自steam页面介绍原文  嗯，既然是用JS游玩，那就太符合我现阶段研究JS的需求了😁。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2022/03/26/VhplyDngN9UL7mB.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/26/c3YWlHN6i9yxTJL.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/26/3gZOVAraDBwnhTt.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/26/qxmHQaopCUJIchF.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/26/VseilorTgpHAGbU.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/26/wAizMoT9eH46Ojt.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/26/yQpN71YBT5Rnrlk.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/26/83bykhnGYxsOQju.png">
+<meta property="article:published_time" content="2020-10-24T15:05:27.000Z">
+<meta property="article:modified_time" content="2020-10-26T14:34:30.000Z">
+<meta property="article:author" content="Rogers Kelamen">
+<meta property="article:tag" content="js">
+<meta property="article:tag" content="steam">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s2.loli.net/2022/03/26/VhplyDngN9UL7mB.png">
+  
+  <title>Screep教程| RO&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-solarizedlight.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"rokelamen.top","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"0d7560f90f7a21d6a9e7635611dac094","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"2RbCqGEaklHVj7Gj6dtd2kM4-gzGzoHsz","app_key":"kdFD4FmNeIpaTMK269nEqhxx","server_url":"https://2rbcqgea.lc-cn-n1-shared.com","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>RO&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://s2.loli.net/2022/03/26/WeBHgNGtlqyCpXa.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Screep教程">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Rogers Kelamen
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-10-24 23:05" pubdate>
+        2020年10月24日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.4k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      17 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Screep教程</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2020年10月26日 晚上
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="Screeps教程（已断更）"><a href="#Screeps教程（已断更）" class="headerlink" title="Screeps教程（已断更）"></a>Screeps教程（已断更）</h1><blockquote>
+<p>Screeps 是一款面向编程爱好者的开源 MMO RTS 沙盒游戏，其核心机制是为您的单位编写 AI。您可以通过编写 JavaScript 来控制自己的殖民地。您的代码将 24/7 全天候不间断地运行在一个庞大世界中。不仅如此，这个世界同时也容纳了许许多多和您一样的玩家。<font color=#34b>——来自steam页面介绍原文</font></p>
+</blockquote>
+<p>嗯，既然是用JS游玩，那就太符合我现阶段研究JS的需求了😁。但是这个游戏有点需要记忆的东西（况且教程又是英文常规操作），于是就先写下了这篇教程（可能还能帮助到其他人吧）——说干就干。</p>
+<h1 id="GET-START"><a href="#GET-START" class="headerlink" title="GET START"></a>GET START</h1><h2 id="Concepts"><a href="#Concepts" class="headerlink" title="Concepts"></a>Concepts</h2><ul>
+<li><font size=4>Room</font>
+
+<p>这是你的大本营，你的前期开荒操作都在这里</p>
+</li>
+<li><font size=4>spawn</font>
+
+<p>你最开始产生unit（我个人理解为最初劳动力）的地方</p>
+<p><strong>每一把开局时room里就会有一个spawn，一般默认名字是Spawn1</strong></p>
+</li>
+<li><font size=4>creeps</font>
+
+<p>那些个units在游戏中被称作为”creeps”</p>
+</li>
+</ul>
+<h2 id="Create-your-first-creep"><a href="#Create-your-first-creep" class="headerlink" title="Create your first creep"></a>Create your first creep</h2><p><img src="https://s2.loli.net/2022/03/26/VhplyDngN9UL7mB.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>通过Game这个对象（全局对象？）我们可以定位到一个spawn（<strong>使用Game下的<code>spawns[]</code>方法，传入一个spawn的名字</strong>）</p>
+<p>然后我们就可以用spawn下面的<code>spawnCreep()</code>方法创建一个creep了！（这里面有点对象迭代的思想）</p>
+<p><em><code>spawnCreep()</code>中有几个参数，主要定义了这个creep的名字和它的一些属性</em></p>
+<p>比如你要是想要一个叫Harvester1的矿工work creep，你可以用以下代码：</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">Game<span class="token punctuation">.</span>spawns<span class="token punctuation">[</span><span class="token string">'Spawn1'</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">spawnCreep</span><span class="token punctuation">(</span> <span class="token punctuation">[</span><span class="token constant">WORK</span><span class="token punctuation">,</span> <span class="token constant">CARRY</span><span class="token punctuation">,</span> <span class="token constant">MOVE</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">'Harvester1'</span> <span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h2 id="View"><a href="#View" class="headerlink" title="View"></a>View</h2><p><img src="https://s2.loli.net/2022/03/26/c3YWlHN6i9yxTJL.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>在游戏窗口的最顶部，有四个可点击按钮，<strong>view（视窗模式）是初始默认选中的，在此模式下你可以查看你的spawn，creeps等的属性信息，也可以查看地形、坐标等简单信息。</strong></p>
+<p><strong><font color=#34b>通过在view下选中一个spawn或creep就可以查看这个元素的基本信息。</font></strong>（信息会出现在右边栏）</p>
+<p><img src="https://s2.loli.net/2022/03/26/3gZOVAraDBwnhTt.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h1 id="Get-Resource"><a href="#Get-Resource" class="headerlink" title="Get Resource"></a>Get Resource</h1><blockquote>
+<p>当你制造出了第一个worker creep的时候，恭喜你，你可以开始挖矿了！</p>
+</blockquote>
+<h2 id="Do-it-in-script"><a href="#Do-it-in-script" class="headerlink" title="Do it in script"></a>Do it in script</h2><p>如果你想要你的creep一直不停歇的挖矿，你要是还是用console显然是不够了的，这时候就得用上Script区域。</p>
+<p><strong>Script区域里是你写好的script代码，当你运行代码时，它就会一直运行下去。</strong></p>
+<blockquote>
+<p>正式开始了编程的旅程</p>
+</blockquote>
+<h2 id="Go-to-work！"><a href="#Go-to-work！" class="headerlink" title="Go to work！"></a>Go to work！</h2><p><img src="https://s2.loli.net/2022/03/26/qxmHQaopCUJIchF.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>使用Game对象下的<code>creeps[]</code>来定位到一个creep（通过名字定位）</p>
+<p>接着使用Room对象下的<code>find()</code>方法来找到一个资源点</p>
+<h3 id="FIND-SOURCES"><a href="#FIND-SOURCES" class="headerlink" title="FIND_SOURCES"></a><code>FIND_SOURCES</code></h3><p>这是一个查找资源的一个内置常量，和之后的<code>ERR_NOT_IN_RANGE</code>一样。</p>
+<p><strong>要是将这个常量写到<code>find()</code>方法中，则会选定到所有room中的资源<font color=#34b>（返回的是一个数组，索引值越大资源越远）</font></strong></p>
+<p>然后在module.exports.loop这个全局方法中，我们的creep会按照代码一直loop执行。</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">module<span class="token punctuation">.</span>exports<span class="token punctuation">.</span><span class="token function-variable function">loop</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">var</span> creep <span class="token operator">=</span> Game<span class="token punctuation">.</span>creeps<span class="token punctuation">[</span><span class="token string">'Harvester1'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> sources <span class="token operator">=</span> creep<span class="token punctuation">.</span>room<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token constant">FIND_SOURCES</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>creep<span class="token punctuation">.</span><span class="token function">harvest</span><span class="token punctuation">(</span>sources<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token constant">ERR_NOT_IN_RANGE</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        creep<span class="token punctuation">.</span><span class="token function">moveTo</span><span class="token punctuation">(</span>sources<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h2 id="Carry-and-come-back"><a href="#Carry-and-come-back" class="headerlink" title="Carry and come back"></a>Carry and come back</h2><p><img src="https://s2.loli.net/2022/03/26/VseilorTgpHAGbU.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>想要满载的creep返回到spawn里去，我们可以用Creep下的<code>transfer()</code>方法</p>
+<p>然后通过Creep下的<code>.store.getFreeCapacity()</code>我们可以判断它到底还能不能装下去，即用<code>.store.getFreeCapacity() &gt; 0</code>。</p>
+<p>最后我们的代码会变成这样：</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">module<span class="token punctuation">.</span>exports<span class="token punctuation">.</span><span class="token function-variable function">loop</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">var</span> creep <span class="token operator">=</span> Game<span class="token punctuation">.</span>creeps<span class="token punctuation">[</span><span class="token string">'Harvester1'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span><span class="token punctuation">(</span>creep<span class="token punctuation">.</span>store<span class="token punctuation">.</span><span class="token function">getFreeCapacity</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">var</span> sources <span class="token operator">=</span> creep<span class="token punctuation">.</span>room<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token constant">FIND_SOURCES</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>creep<span class="token punctuation">.</span><span class="token function">harvest</span><span class="token punctuation">(</span>sources<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token constant">ERR_NOT_IN_RANGE</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            creep<span class="token punctuation">.</span><span class="token function">moveTo</span><span class="token punctuation">(</span>sources<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span> creep<span class="token punctuation">.</span><span class="token function">transfer</span><span class="token punctuation">(</span>Game<span class="token punctuation">.</span>spawns<span class="token punctuation">[</span><span class="token string">'Spawn1'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token constant">RESOURCE_ENERGY</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token constant">ERR_NOT_IN_RANGE</span> <span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            creep<span class="token punctuation">.</span><span class="token function">moveTo</span><span class="token punctuation">(</span>Game<span class="token punctuation">.</span>spawns<span class="token punctuation">[</span><span class="token string">'Spawn1'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p><em>稍微提一嘴，<code>moveTo()</code>方法可以让creep移动到参数中指定的地点。</em></p>
+<blockquote>
+<p>在去每一个地点时，我们都用到了常量<code>ERR_NOT_IN_RANGE</code>，这是为了判断这个资源或地点是否就在跟前。（<u>建议每次有移动时判断一下是否在附近，不然就移动不了了</u>）</p>
+</blockquote>
+<h1 id="awsl"><a href="#awsl" class="headerlink" title="awsl"></a>awsl</h1><blockquote>
+<p>不要以为你的creep就会一直这么卖力的工作下去，它也会累死的！(ToT)/~~~</p>
+</blockquote>
+<p><strong>每个creep都有一个生命周期：1500 game ticks</strong></p>
+<h1 id="I-need-More"><a href="#I-need-More" class="headerlink" title="I need More!"></a>I need More!</h1><blockquote>
+<p>既然知道你的creep会die，那么我们只能不停地制造新的creep了</p>
+</blockquote>
+<p>还是熟悉的配方：</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">Game<span class="token punctuation">.</span>spawns<span class="token punctuation">[</span><span class="token string">'Spawn1'</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">spawnCreep</span><span class="token punctuation">(</span> <span class="token punctuation">[</span><span class="token constant">WORK</span><span class="token punctuation">,</span> <span class="token constant">CARRY</span><span class="token punctuation">,</span> <span class="token constant">MOVE</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">'Harvester2'</span> <span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>warning：<font color=brown>你得首先攒足200能量点，不然只会返回ERR_NOT_ENOUGH_ENERGY（-6）</font></p>
+<p><em>当我们的第二个creep被创造出来之后，我们的代码也要改改了</em></p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">module<span class="token punctuation">.</span>exports<span class="token punctuation">.</span><span class="token function-variable function">loop</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">var</span> name <span class="token keyword">in</span> Game<span class="token punctuation">.</span>creeps<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">var</span> creep <span class="token operator">=</span> Game<span class="token punctuation">.</span>creeps<span class="token punctuation">[</span>name<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">if</span><span class="token punctuation">(</span>creep<span class="token punctuation">.</span>store<span class="token punctuation">.</span><span class="token function">getFreeCapacity</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">var</span> sources <span class="token operator">=</span> creep<span class="token punctuation">.</span>room<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token constant">FIND_SOURCES</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>creep<span class="token punctuation">.</span><span class="token function">harvest</span><span class="token punctuation">(</span>sources<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token constant">ERR_NOT_IN_RANGE</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                creep<span class="token punctuation">.</span><span class="token function">moveTo</span><span class="token punctuation">(</span>sources<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>creep<span class="token punctuation">.</span><span class="token function">transfer</span><span class="token punctuation">(</span>Game<span class="token punctuation">.</span>spawns<span class="token punctuation">[</span><span class="token string">'Spawn1'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token constant">RESOURCE_ENERGY</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token constant">ERR_NOT_IN_RANGE</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                creep<span class="token punctuation">.</span><span class="token function">moveTo</span><span class="token punctuation">(</span>Game<span class="token punctuation">.</span>spawns<span class="token punctuation">[</span><span class="token string">'Spawn1'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<blockquote>
+<p>用for in循环实现了所有的creeps都去搬矿了</p>
+</blockquote>
+<h1 id="Improve-the-code"><a href="#Improve-the-code" class="headerlink" title="Improve the code"></a>Improve the code</h1><h2 id="Create-module"><a href="#Create-module" class="headerlink" title="Create module"></a>Create module</h2><p>首先创建一个module来分开管理我们的代码，取名为<code>roleHarvester</code>（则它在script中的模块名为role.harvester）</p>
+<p>里面有一个属性名为<code>run</code>，这个属性（其实是一个方法）可以放入入我们之前写好的代码块，之后在模块导入时我们就用这个<code>run</code>方法中的代码来执行。</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">var</span> roleHarvester <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token comment">/** @param &#123;Creep&#125; creep **/</span>
+    <span class="token function-variable function">run</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">creep</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	    <span class="token keyword">if</span><span class="token punctuation">(</span>creep<span class="token punctuation">.</span>store<span class="token punctuation">.</span><span class="token function">getFreeCapacity</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">var</span> sources <span class="token operator">=</span> creep<span class="token punctuation">.</span>room<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token constant">FIND_SOURCES</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>creep<span class="token punctuation">.</span><span class="token function">harvest</span><span class="token punctuation">(</span>sources<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token constant">ERR_NOT_IN_RANGE</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                creep<span class="token punctuation">.</span><span class="token function">moveTo</span><span class="token punctuation">(</span>sources<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>creep<span class="token punctuation">.</span><span class="token function">transfer</span><span class="token punctuation">(</span>Game<span class="token punctuation">.</span>spawns<span class="token punctuation">[</span><span class="token string">'Spawn1'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token constant">RESOURCE_ENERGY</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token constant">ERR_NOT_IN_RANGE</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                creep<span class="token punctuation">.</span><span class="token function">moveTo</span><span class="token punctuation">(</span>Game<span class="token punctuation">.</span>spawns<span class="token punctuation">[</span><span class="token string">'Spawn1'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> roleHarvester<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p><em>记住，要创建模块就要在main方法下面输入module的名字，然后在这个模块里面写上如上的代码</em></p>
+<h2 id="Use-the-Module"><a href="#Use-the-Module" class="headerlink" title="Use the Module"></a>Use the Module</h2><p><strong>在主模块（main module）之外，我们得建立一个用来引入模块的变量，用<code>require()</code>全局方法可以指明是哪个模块。</strong></p>
+<p>之后我们就可以在主模块中用这个模块变量来省去很多工作量了：</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">var</span> roleHarvester <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'role.harvester'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+module<span class="token punctuation">.</span>exports<span class="token punctuation">.</span><span class="token function-variable function">loop</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">var</span> name <span class="token keyword">in</span> Game<span class="token punctuation">.</span>creeps<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">var</span> creep <span class="token operator">=</span> Game<span class="token punctuation">.</span>creeps<span class="token punctuation">[</span>name<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        roleHarvester<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span>creep<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h1 id="Controller"><a href="#Controller" class="headerlink" title="Controller"></a>Controller</h1><blockquote>
+<p>通过controller，我们可以建造更多的建筑或工具，但是前提是你controller的level足够高。。</p>
+</blockquote>
+<h2 id="upgrade-it"><a href="#upgrade-it" class="headerlink" title="upgrade it"></a>upgrade it</h2><p><img src="https://s2.loli.net/2022/03/26/wAizMoT9eH46Ojt.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>首先咱们还是得创建一个用来升级controller的creep，就先叫做Upgrader1</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">Game<span class="token punctuation">.</span>spawns<span class="token punctuation">[</span><span class="token string">'Spawn1'</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">spawnCreep</span><span class="token punctuation">(</span> <span class="token punctuation">[</span><span class="token constant">WORK</span><span class="token punctuation">,</span> <span class="token constant">CARRY</span><span class="token punctuation">,</span> <span class="token constant">MOVE</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">'Upgrader1'</span> <span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<blockquote>
+<p>但是这个Upgrader1被产出之后，他还是做着和harvester一样的事。</p>
+</blockquote>
+<font size=4>new concept: Memory</font>
+
+<p>通过Memory，我们可以自定义每个creep的角色（role），然后使其做不同的工作。</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">Game<span class="token punctuation">.</span>creeps<span class="token punctuation">[</span><span class="token string">'Harvester1'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>memory<span class="token punctuation">.</span>role <span class="token operator">=</span> <span class="token string">'harvester'</span><span class="token punctuation">;</span>
+Game<span class="token punctuation">.</span>creeps<span class="token punctuation">[</span><span class="token string">'Upgrader1'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>memory<span class="token punctuation">.</span>role <span class="token operator">=</span> <span class="token string">'upgrader'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<p><strong>你可以在每一个creep的状态页查看memory，也可以直接在下方的Memory栏中查看</strong></p>
+<p>现在我们再定义一个module来使Upgrader1真正工作起来，发挥它本应的作用。</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">var</span> roleUpgrader <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token comment">/** @param &#123;Creep&#125; creep **/</span>
+    <span class="token function-variable function">run</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">creep</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	    <span class="token keyword">if</span><span class="token punctuation">(</span>creep<span class="token punctuation">.</span>store<span class="token punctuation">[</span><span class="token constant">RESOURCE_ENERGY</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">var</span> sources <span class="token operator">=</span> creep<span class="token punctuation">.</span>room<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token constant">FIND_SOURCES</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>creep<span class="token punctuation">.</span><span class="token function">harvest</span><span class="token punctuation">(</span>sources<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token constant">ERR_NOT_IN_RANGE</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                creep<span class="token punctuation">.</span><span class="token function">moveTo</span><span class="token punctuation">(</span>sources<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>creep<span class="token punctuation">.</span><span class="token function">upgradeController</span><span class="token punctuation">(</span>creep<span class="token punctuation">.</span>room<span class="token punctuation">.</span>controller<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token constant">ERR_NOT_IN_RANGE</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                creep<span class="token punctuation">.</span><span class="token function">moveTo</span><span class="token punctuation">(</span>creep<span class="token punctuation">.</span>room<span class="token punctuation">.</span>controller<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> roleUpgrader<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p><strong>这里我们用到了creep的<code>upgradeController</code>方法，用这个方法去升级controller</strong></p>
+<p>接着咱们把模块导入到main模块中去：</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">var</span> roleHarvester <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'role.harvester'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> roleUpgrader <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'role.upgrader'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+module<span class="token punctuation">.</span>exports<span class="token punctuation">.</span><span class="token function-variable function">loop</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">var</span> name <span class="token keyword">in</span> Game<span class="token punctuation">.</span>creeps<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">var</span> creep <span class="token operator">=</span> Game<span class="token punctuation">.</span>creeps<span class="token punctuation">[</span>name<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>creep<span class="token punctuation">.</span>memory<span class="token punctuation">.</span>role <span class="token operator">==</span> <span class="token string">'harvester'</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            roleHarvester<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span>creep<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>creep<span class="token punctuation">.</span>memory<span class="token punctuation">.</span>role <span class="token operator">==</span> <span class="token string">'upgrader'</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            roleUpgrader<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span>creep<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p><strong><font color=brown>每过20000 ticks，controller会自动掉一级，掉完到0级你的room就没了</font>，所以至少确保有一个creep进行升级工作。</strong></p>
+<h1 id="Build-Structure"><a href="#Build-Structure" class="headerlink" title="Build Structure"></a>Build Structure</h1><font size=4>new concept: Extension</font>
+
+<p>Extension是建造更大的creep的必需品，但是你得先扩展spawn，<u>不然300能量点的储量怎么够呢</u></p>
+<h2 id="create-Extension"><a href="#create-Extension" class="headerlink" title="create Extension"></a>create Extension</h2><p><img src="https://s2.loli.net/2022/03/26/yQpN71YBT5Rnrlk.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>首先，你必须要创建一个creep用来专门搞出extension，我们暂时就把这种creep叫做builder了，<strong>然后直接在产生creep的命令中写上它的memory（其实之前的creep都可以这么做）</strong></p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">Game<span class="token punctuation">.</span>spawns<span class="token punctuation">[</span><span class="token string">'Spawn1'</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">spawnCreep</span><span class="token punctuation">(</span> <span class="token punctuation">[</span><span class="token constant">WORK</span><span class="token punctuation">,</span> <span class="token constant">CARRY</span><span class="token punctuation">,</span> <span class="token constant">MOVE</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">'Builder1'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#123;</span> memory<span class="token operator">:</span> <span class="token punctuation">&#123;</span> role<span class="token operator">:</span> <span class="token string">'builder'</span> <span class="token punctuation">&#125;</span> <span class="token punctuation">&#125;</span> <span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<h2 id="Create-Builder-Role"><a href="#Create-Builder-Role" class="headerlink" title="Create Builder Role"></a>Create Builder Role</h2><p><img src="https://s2.loli.net/2022/03/26/83bykhnGYxsOQju.png" srcset="/img/loading.gif" lazyload alt=""></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/games/">games</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/js/">js</a>
+                    
+                      <a class="hover-with-bg" href="/tags/steam/">steam</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/11/08/docsify%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">docsify网站搭建</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/10/23/canvas%E7%BB%86%E8%8A%82%E8%AE%B2%E8%A7%A3/">
+                        <span class="hidden-mobile">canvas细节讲解</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"2RbCqGEaklHVj7Gj6dtd2kM4-gzGzoHsz","appKey":"kdFD4FmNeIpaTMK269nEqhxx","path":"window.location.pathname","placeholder":"say something...","avatar":"mp","meta":["nick","mail","link"],"requiredFields":["nick","mail"],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://2rbcqgea.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"2RbCqGEaklHVj7Gj6dtd2kM4-gzGzoHsz","appkey":"kdFD4FmNeIpaTMK269nEqhxx"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+
+  <!-- 自己设置一个记录网站运行时间的方法 -->
+  <span id="sitetime" style="font-size: 14px; font-family: Consolas;font-weight: normal; color: #aaa;"></span>
+  <script language=javascript>
+    function siteTime(){
+      window.setTimeout("siteTime()", 1000);
+      var seconds = 1000;
+      var minutes = seconds * 60;
+      var hours = minutes * 60;
+      var days = hours * 24;
+      var years = days * 365;
+      var today = new Date();
+      var todayYear = today.getFullYear();
+      var todayMonth = today.getMonth()+1;
+      var todayDate = today.getDate();
+      var todayHour = today.getHours();
+      var todayMinute = today.getMinutes();
+      var todaySecond = today.getSeconds();
+      /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+      year - 作为date对象的年份，为4位年份值
+      month - 0-11之间的整数，做为date对象的月份
+      day - 1-31之间的整数，做为date对象的天数
+      hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+      minutes - 0-59之间的整数，做为date对象的分钟数
+      seconds - 0-59之间的整数，做为date对象的秒数
+      microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+      var t1 = Date.UTC(2020,10,18,15,00,00); //北京时间2020-10-18 00:00:00
+      var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+      var diff = t2-t1;
+      var diffYears = Math.floor(diff/years);
+      // var diffDays = Math.floor((diff/days)-diffYears*365);
+      // 直接用日来记录，不用年了，太low啦
+      var diffDays = Math.floor((diff/days));
+      var diffHours = Math.floor((diff-(diffDays)*days)/hours);
+      var diffMinutes = Math.floor((diff-(diffDays)*days-diffHours*hours)/minutes);
+      var diffSeconds = Math.floor((diff-(diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+      document.getElementById("sitetime").innerHTML=" 小破站已勉强运行了 "+/*diffYears+" 年 "+*/diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+    }
+    siteTime();
+  </script>
+  <!-- 自己设置一个记录网站运行时间的方法 -->
+
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({"theme":"default"});
+    }
+  </script>
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0d7560f90f7a21d6a9e7635611dac094";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

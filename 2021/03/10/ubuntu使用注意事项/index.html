@@ -1,0 +1,864 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s2.loli.net/2022/03/26/jEHDFtp3uUwofQr.png">
+  <link rel="icon" href="https://s2.loli.net/2022/03/26/jEHDFtp3uUwofQr.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Rogers Kelamen">
+  <meta name="keywords" content="blog">
+  <meta name="description" content="ubuntu使用的所有注意事项软件相关删除软件 我们都知道使用apt remove apt-name可以很快地删除软件包，但是有时候软件还是会有残留。  删除所有的软件数据残留: dpkg -l |grep ^rc|awk &#39;&amp;#123;print $2&amp;#125;&#39; |sudo xargs dpkg -P 使用Deepin-Wine安装TIM 全是血泪史，这里的Deepin-Wine是深度对Wi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu使用注意事项">
+<meta property="og:url" content="https://rokelamen.top/2021/03/10/ubuntu%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/index.html">
+<meta property="og:site_name" content="RO&#39;s Blog">
+<meta property="og:description" content="ubuntu使用的所有注意事项软件相关删除软件 我们都知道使用apt remove apt-name可以很快地删除软件包，但是有时候软件还是会有残留。  删除所有的软件数据残留: dpkg -l |grep ^rc|awk &#39;&amp;#123;print $2&amp;#125;&#39; |sudo xargs dpkg -P 使用Deepin-Wine安装TIM 全是血泪史，这里的Deepin-Wine是深度对Wi">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2022/03/26/KAQFLpbXm8fRT6W.jpg">
+<meta property="og:image" content="https://s2.loli.net/2022/03/26/ng2jV8SvGtpBU17.jpg">
+<meta property="article:published_time" content="2021-03-10T08:57:22.000Z">
+<meta property="article:modified_time" content="2021-08-15T03:17:00.000Z">
+<meta property="article:author" content="Rogers Kelamen">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s2.loli.net/2022/03/26/KAQFLpbXm8fRT6W.jpg">
+  
+  <title>Ubuntu使用注意事项| RO&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-solarizedlight.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"rokelamen.top","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"0d7560f90f7a21d6a9e7635611dac094","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"2RbCqGEaklHVj7Gj6dtd2kM4-gzGzoHsz","app_key":"kdFD4FmNeIpaTMK269nEqhxx","server_url":"https://2rbcqgea.lc-cn-n1-shared.com","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>RO&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://s2.loli.net/2022/03/26/DZpUEW8izknQALM.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Ubuntu使用注意事项">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Rogers Kelamen
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-03-10 16:57" pubdate>
+        2021年3月10日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.6k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      11 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Ubuntu使用注意事项</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021年8月15日 上午
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="ubuntu使用的所有注意事项"><a href="#ubuntu使用的所有注意事项" class="headerlink" title="ubuntu使用的所有注意事项"></a>ubuntu使用的所有注意事项</h1><h2 id="软件相关"><a href="#软件相关" class="headerlink" title="软件相关"></a>软件相关</h2><h3 id="删除软件"><a href="#删除软件" class="headerlink" title="删除软件"></a>删除软件</h3><blockquote>
+<p>我们都知道使用<code>apt remove apt-name</code>可以很快地删除软件包，<br>但是有时候软件还是会有残留。</p>
+</blockquote>
+<p>删除所有的软件数据残留:</p>
+<div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">dpkg -l <span class="token operator">|</span><span class="token function">grep</span> ^rc<span class="token operator">|</span><span class="token function">awk</span> <span class="token string">'&#123;print <span class="token variable">$2</span>&#125;'</span> <span class="token operator">|</span><span class="token function">sudo</span> <span class="token function">xargs</span> dpkg -P<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h2 id="使用Deepin-Wine安装TIM"><a href="#使用Deepin-Wine安装TIM" class="headerlink" title="使用Deepin-Wine安装TIM"></a>使用Deepin-Wine安装TIM</h2><blockquote>
+<p>全是血泪史，这里的Deepin-Wine是深度对Wine的封装，想要知道更多的Wine知识，可以查看<a target="_blank" rel="noopener" href="https://www.winehq.org/">这里</a></p>
+</blockquote>
+<h3 id="安装deepin-wine"><a href="#安装deepin-wine" class="headerlink" title="安装deepin-wine"></a>安装deepin-wine</h3><blockquote>
+<p>这里的这种方法适合于有一定基础的Linux用户，你可以自己安装Deepin-Wine环境，然后下载相应的Windows软件。(<em>较为适用</em>)</p>
+</blockquote>
+<p>首先你得进入deepin-wine这个项目的<a target="_blank" rel="noopener" href="https://github.com/wszqkzqk/deepin-wine-ubuntu">地址仓库</a></p>
+<p>然后按着文档进行仓库的克隆（<em>如果太慢的话就用<a target="_blank" rel="noopener" href="https://gitee.com/wszqkzqk/deepin-wine-for-ubuntu.git">gitee的库</a></em>）</p>
+<p>安装完成之后记得在终端中运行（授予可执行权限后）：<code>./install.sh</code></p>
+<h3 id="安装TIM"><a href="#安装TIM" class="headerlink" title="安装TIM"></a>安装TIM</h3><blockquote>
+<p>如果按着仓库地址上的说明，去这个地址：<a target="_blank" rel="noopener" href="https://mirrors.aliyun.com/deepin/pool/non-free/d/">https://mirrors.aliyun.com/deepin/pool/non-free/d/</a> 那么你就会发现这个镜像中并没有你想要的linux版本QQ之类的。</p>
+</blockquote>
+<p>通过寻找我们可以发现这个镜像链接已经搬到了 <a target="_blank" rel="noopener" href="https://packages.deepin.com/deepin/pool/non-free/d/">https://packages.deepin.com/deepin/pool/non-free/d/</a></p>
+<p><strong>接下来就是通过我们下载来的deb包进行安装，完成后就能使用TIM了</strong></p>
+<h3 id="解决图像和下载文件问题"><a href="#解决图像和下载文件问题" class="headerlink" title="解决图像和下载文件问题"></a>解决图像和下载文件问题</h3><blockquote>
+<p>如果你认为这就结束了，就大错特措了。</p>
+</blockquote>
+<p>linux上的TIM因为支持了IPv6，所以下载安装好的TIM并不能下载文件，所以我们还要更改一下网络设置，禁用IPv6（<em>具体可参考<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/161392558">这篇文章</a></em>）</p>
+<p>在<code>/etc/sysctl.conf</code>中进行编辑,添加以下内容：</p>
+<div class="code-wrapper"><pre class="line-numbers language-text" data-language="text"><code class="language-text"># IPv6 disabled
+net.ipv6.conf.all.disable_ipv6 &#x3D;1
+net.ipv6.conf.default.disable_ipv6 &#x3D;1
+net.ipv6.conf.lo.disable_ipv6 &#x3D;1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h3 id="开机设置IPv6"><a href="#开机设置IPv6" class="headerlink" title="开机设置IPv6"></a>开机设置IPv6</h3><p>经过本人的测试，在一些情况下还是会有关闭了IPv6但是重启TIM之后还是无法下载文件的现象。于是我打算进行一个开机执行命令的操作，在每次开机之后就禁用IPv6。</p>
+<ol>
+<li>在/etc/init.d/ 中创建自己的开机运行脚本</li>
+</ol>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> /etc/init.d
+<span class="token function">sudo</span> <span class="token function">vim</span> /etc/init.d/mystart.sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<ol>
+<li>然后写入你想要开机执行的命令：</li>
+</ol>
+<div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token shebang important">#!/bin/bash</span>
+<span class="token comment">### BEGIN INIT INFO</span>
+<span class="token comment"># Provides:          RO</span>
+<span class="token comment"># Required-Start:    $local_fs $network</span>
+<span class="token comment"># Required-Stop:     $local_fs</span>
+<span class="token comment"># Default-Start:     2 3 4 5</span>
+<span class="token comment"># Default-Stop:      0 1 6</span>
+<span class="token comment"># Short-Description: self define auto start</span>
+<span class="token comment"># Description:       self define auto start</span>
+<span class="token comment">### END INIT INFO</span>
+<span class="token comment"># 上面的部分也必须写上，后面放上你需要开机执行的命令</span>
+<span class="token function">sudo</span> sysctl -p
+<span class="token function">sudo</span> <span class="token function">rm</span> -rf ~/.deepinwine/Deepin-TIM<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<ol>
+<li>修改脚本文件权限</li>
+</ol>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">chmod</span> <span class="token number">755</span> /etc/init.d/mystart.sh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<ol>
+<li>加入开机启动</li>
+</ol>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> update-rc.d mystart.sh defaults <span class="token number">90</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p><u>你可以把这个教程直接当作制作自定义开机脚本的教程</u></p>
+<h3 id="TIM文件的存贮"><a href="#TIM文件的存贮" class="headerlink" title="TIM文件的存贮"></a>TIM文件的存贮</h3><blockquote>
+<p>这下好了，我们可以下载文件了。心满意足之后你会想：我的文件到底下到哪里了？</p>
+</blockquote>
+<p>这里直接告诉你文件路径</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> /home/你的用户名/.deepinwine/Deepin-TIM/drive_c/users/你的用户名/My Documents/Tencent Files/你的账号/FileRecv<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>可参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_33831360/article/details/90611943">这篇文章</a></p>
+<h2 id="使用封装好的Deepin-Wine软件"><a href="#使用封装好的Deepin-Wine软件" class="headerlink" title="使用封装好的Deepin-Wine软件"></a>使用封装好的Deepin-Wine软件</h2><blockquote>
+<p>这里其实不是封装好的，其实是作者将所有的Deepin-Wine上的软件做了一个差量仓库，我们可以直接使用这个仓库(<em>加到我们的apt中</em>)，具体情况直接看这个<a target="_blank" rel="noopener" href="https://github.com/zq1997/deepin-wine">仓库</a></p>
+</blockquote>
+<font color=#34b>这种方式适合不想折腾的用户</font>
+
+<p>但是效果不太理想。</p>
+<h2 id="直接使用Wine"><a href="#直接使用Wine" class="headerlink" title="直接使用Wine"></a>直接使用Wine</h2><blockquote>
+<p>既然是Deepin对Wine的封装，那么我们完全有理由直接用Wine，就在我之前说的<a target="_blank" rel="noopener" href="https://winehq.org">官网</a></p>
+</blockquote>
+<font color=#34b>这种方式适合想折腾的玩家</font>
+
+<h2 id="ubuntu应用图标的设置"><a href="#ubuntu应用图标的设置" class="headerlink" title="ubuntu应用图标的设置"></a>ubuntu应用图标的设置</h2><blockquote>
+<p>你可能遇到这样的境遇，当我想要安装一个idea的时候，我发现安装好之后App列表竟然没有IDEA出现，咋办？</p>
+</blockquote>
+<p>咱们其实可以在<code>/usr/share/applications</code>目录下看到系统里所有的应用图标（<em>没错，你甚至可以更改系统图标的样式和属性</em>）</p>
+<p>然后我们可以新建一个文件来配置咱们IDEA的图标：</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">vim</span> intellij-idea.desktop<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p><em>然后加上相应的配置：</em></p>
+<div class="code-wrapper"><pre class="line-numbers language-text" data-language="text"><code class="language-text">[Desktop Entry]
+Name&#x3D;IntelliJ IDEA
+Comment&#x3D;IntelliJ IDEA
+Exec&#x3D;&#x2F;opt&#x2F;idea-IC-203.7148.57&#x2F;bin&#x2F;idea.sh
+Icon&#x3D;&#x2F;opt&#x2F;idea-IC-203.7148.57&#x2F;bin&#x2F;idea.png
+Terminal&#x3D;false
+Type&#x3D;Application
+Categories&#x3D;Application;Development;IDE;
+StartupWMClass&#x3D;jetbrains-idea-ce<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<font color=brown>当然，你必须要将IDEA正确的开启路径配置正确。</font>
+
+<h2 id="更改通知栏样式"><a href="#更改通知栏样式" class="headerlink" title="更改通知栏样式"></a>更改通知栏样式</h2><p><a target="_blank" rel="noopener" href="https://ubuntuqa.com/article/787.html">链接</a></p>
+<h2 id="使用PPA"><a href="#使用PPA" class="headerlink" title="使用PPA"></a>使用PPA</h2><blockquote>
+<p>首先你得知道什么是ppa</p>
+</blockquote>
+<p>ppa -&gt; Personal Package Archive, 表示个人软件包存档</p>
+<p>我们知道在Debian Linux中安装软件有多种方式：</p>
+<ul>
+<li><p>通过直接下载软件包（<code>.deb</code>文件）</p>
+</li>
+<li><p>通过自己的(Debian官方提供的)软件库来下载安装软件</p>
+</li>
+<li><p>编译源码，硬核安装（<em>大佬专属[bing bu shi]</em>）</p>
+</li>
+</ul>
+<font color="brown">当然我们要想不用源码安装，但是apt的官方仓库中也没有我们想要的软件怎么办？</font>
+
+<p>这个时候我们就需要用到<code>ppa</code>了，<strong>此时我们只需要将这个软件的ppa地址添加到我们的apt库，就能使用原有的apt指令来安装这个软件了（就像往常一样）</strong></p>
+<p><em>所以，ppa就像是一个第三方的软件库，我们需要手动添加<code>ppa</code>来使我们的默认软件库更加丰富庞大（即按需添加）。</em></p>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><p>现在我们来示范一下使用ppa的方式来安装<code>Ubuntu cleaner</code>(个人也推荐安装，对新手来说这个清理工具很友好)</p>
+<div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">sudo</span> add-apt-repository ppa:gerardpuig/ppa
+<span class="token function">sudo</span> <span class="token function">apt-get</span> update
+<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> ubuntu-cleaner<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<p><em>对，就这么简单~</em></p>
+<p>但是我们的<code>ppa</code>被存储到哪里了呢？在这个文件夹下<code>/ect/apt/sources.list</code></p>
+<h2 id="下载油管视频"><a href="#下载油管视频" class="headerlink" title="下载油管视频"></a>下载油管视频</h2><p>这就不得不说<code>youtube-dl</code>了，<a target="_blank" rel="noopener" href="https://github.com/ytdl-org/youtube-dl#installation">安装教程</a></p>
+<p>然后这里有一篇 <a target="_blank" rel="noopener" href="https://cc2.cc/youtube-dl.html">讲解</a></p>
+<h2 id="使用scrcpy控制安卓"><a href="#使用scrcpy控制安卓" class="headerlink" title="使用scrcpy控制安卓"></a>使用scrcpy控制安卓</h2><blockquote>
+<p>说控制这个词有点太过了，但是就是这么酷。你可以使用这个来对你的安卓手机进行PC端的显示和控制(<em>是电脑控制手机，yeah awesome!</em>)</p>
+</blockquote>
+<p><strong>首先咱们看看<a target="_blank" rel="noopener" href="https://github.com/Genymobile/scrcpy">地址</a></strong></p>
+<p>首先你的手机币需要开启开发者模式中的<code>USB调试</code>：一般来说需要在手机的设置中<u>点击手机版本面板7次</u>，拿我的小米手机(<del>雷总打钱</del>)为例:</p>
+<p><img src="https://s2.loli.net/2022/03/26/KAQFLpbXm8fRT6W.jpg" srcset="/img/loading.gif" lazyload alt="多次点击MIUI版本"></p>
+<p>然后就是开启开发者选项的<code>USB调试</code>了:</p>
+<p><img src="https://s2.loli.net/2022/03/26/ng2jV8SvGtpBU17.jpg" srcset="/img/loading.gif" lazyload alt="直接确定吧"></p>
+<p><strong><em>注意：如果你和我一样是小米用户，那么还要开启<code>USB调试</code>下方的<code>USB调试(安全设置)</code>!</em></strong></p>
+<p>然后就可以畅快玩耍了XD！</p>
+<p><em>ps: 配合termux是真的香</em></p>
+<blockquote>
+<p>不得不说，这个安卓模拟器真的可以，真的可以直接在Ubuntu上玩手机游戏了(<em>唯一的缺点是不能传递音频video-only, 但是真正的geek不需要音频</em>)</p>
+</blockquote>
+<h3 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>快捷键</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>全屏</td>
+<td>MOD+f</td>
+</tr>
+<tr>
+<td>向左旋转屏幕</td>
+<td>MOD+← (左箭头)</td>
+</tr>
+<tr>
+<td>向右旋转屏幕</td>
+<td>MOD+→ (右箭头)</td>
+</tr>
+<tr>
+<td>将窗口大小重置为1:1 (匹配像素)</td>
+<td>MOD+g</td>
+</tr>
+<tr>
+<td>将窗口大小重置为消除黑边</td>
+<td>MOD+w 双击¹</td>
+</tr>
+<tr>
+<td>点按 主屏幕</td>
+<td>MOD+h 鼠标中键</td>
+</tr>
+<tr>
+<td>点按 返回</td>
+<td>MOD+b 鼠标右键²</td>
+</tr>
+<tr>
+<td>点按 切换应用</td>
+<td>MOD+s</td>
+</tr>
+<tr>
+<td>点按 菜单 (解锁屏幕)</td>
+<td>MOD+m</td>
+</tr>
+<tr>
+<td>点按 音量+</td>
+<td>MOD+↑ (上箭头)</td>
+</tr>
+<tr>
+<td>点按 音量-</td>
+<td>MOD+↓ (下箭头)</td>
+</tr>
+<tr>
+<td>点按 电源</td>
+<td>MOD+p</td>
+</tr>
+<tr>
+<td>打开屏幕</td>
+<td>鼠标右键²</td>
+</tr>
+<tr>
+<td>关闭设备屏幕 (但继续在电脑上显示)</td>
+<td>MOD+o</td>
+</tr>
+<tr>
+<td>打开设备屏幕</td>
+<td>MOD+Shift+o</td>
+</tr>
+<tr>
+<td>旋转设备屏幕</td>
+<td>MOD+r</td>
+</tr>
+<tr>
+<td>展开通知面板</td>
+<td>MOD+n</td>
+</tr>
+<tr>
+<td>收起通知面板</td>
+<td>MOD+Shift+n</td>
+</tr>
+<tr>
+<td>复制到剪贴板³</td>
+<td>MOD+c</td>
+</tr>
+<tr>
+<td>剪切到剪贴板³</td>
+<td>MOD+x</td>
+</tr>
+<tr>
+<td>同步剪贴板并粘贴³</td>
+<td>MOD+v</td>
+</tr>
+<tr>
+<td>注入电脑剪贴板文本</td>
+<td>MOD+Shift+v</td>
+</tr>
+<tr>
+<td>打开/关闭FPS显示 (在 stdout)</td>
+<td>MOD+i</td>
+</tr>
+<tr>
+<td>捏拉缩放</td>
+<td>Ctrl+按住并移动鼠标</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>要想获得更多的玩法或者想要传递音频可以参考 <a target="_blank" rel="noopener" href="https://github.com/Genymobile/scrcpy/blob/master/README.zh-Hans.md">文档</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Ubuntu/">Ubuntu</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Linux/">Linux</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/03/11/Vim%E6%9D%82%E9%A1%B9%E8%AE%B0%E5%BD%95/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Vim杂项记录</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/03/03/C-%E5%9F%BA%E7%A1%80%E6%B3%A8%E6%84%8F%E7%82%B9/">
+                        <span class="hidden-mobile">C#基础注意点</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"2RbCqGEaklHVj7Gj6dtd2kM4-gzGzoHsz","appKey":"kdFD4FmNeIpaTMK269nEqhxx","path":"window.location.pathname","placeholder":"say something...","avatar":"mp","meta":["nick","mail","link"],"requiredFields":["nick","mail"],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://2rbcqgea.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"2RbCqGEaklHVj7Gj6dtd2kM4-gzGzoHsz","appkey":"kdFD4FmNeIpaTMK269nEqhxx"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+
+  <!-- 自己设置一个记录网站运行时间的方法 -->
+  <span id="sitetime" style="font-size: 14px; font-family: Consolas;font-weight: normal; color: #aaa;"></span>
+  <script language=javascript>
+    function siteTime(){
+      window.setTimeout("siteTime()", 1000);
+      var seconds = 1000;
+      var minutes = seconds * 60;
+      var hours = minutes * 60;
+      var days = hours * 24;
+      var years = days * 365;
+      var today = new Date();
+      var todayYear = today.getFullYear();
+      var todayMonth = today.getMonth()+1;
+      var todayDate = today.getDate();
+      var todayHour = today.getHours();
+      var todayMinute = today.getMinutes();
+      var todaySecond = today.getSeconds();
+      /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+      year - 作为date对象的年份，为4位年份值
+      month - 0-11之间的整数，做为date对象的月份
+      day - 1-31之间的整数，做为date对象的天数
+      hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+      minutes - 0-59之间的整数，做为date对象的分钟数
+      seconds - 0-59之间的整数，做为date对象的秒数
+      microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+      var t1 = Date.UTC(2020,10,18,15,00,00); //北京时间2020-10-18 00:00:00
+      var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+      var diff = t2-t1;
+      var diffYears = Math.floor(diff/years);
+      // var diffDays = Math.floor((diff/days)-diffYears*365);
+      // 直接用日来记录，不用年了，太low啦
+      var diffDays = Math.floor((diff/days));
+      var diffHours = Math.floor((diff-(diffDays)*days)/hours);
+      var diffMinutes = Math.floor((diff-(diffDays)*days-diffHours*hours)/minutes);
+      var diffSeconds = Math.floor((diff-(diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+      document.getElementById("sitetime").innerHTML=" 小破站已勉强运行了 "+/*diffYears+" 年 "+*/diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+    }
+    siteTime();
+  </script>
+  <!-- 自己设置一个记录网站运行时间的方法 -->
+
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({"theme":"default"});
+    }
+  </script>
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0d7560f90f7a21d6a9e7635611dac094";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

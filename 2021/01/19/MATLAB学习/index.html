@@ -1,0 +1,843 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s2.loli.net/2022/03/26/jEHDFtp3uUwofQr.png">
+  <link rel="icon" href="https://s2.loli.net/2022/03/26/jEHDFtp3uUwofQr.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Rogers Kelamen">
+  <meta name="keywords" content="blog">
+  <meta name="description" content="MATLAB学习先来软件的操作界面首先分为几个区域：  当前文件夹：显示当前的文件目录，及根目录下的文件和目录。 编辑器：初始时没有这个界面，用于编辑matlab文件（.m文件），如果没有打开任何脚本文件就不会出现这个界面。有点击一个脚本才会显示。 命令行窗口：用来执行一些快捷的指令，可看成脚本的指令化。 工作区：主要显示变量和对应值（基本运算后会自动生成ans变量）。  清除历史和注释清除的两种">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MATLAB学习">
+<meta property="og:url" content="https://rokelamen.top/2021/01/19/MATLAB%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="RO&#39;s Blog">
+<meta property="og:description" content="MATLAB学习先来软件的操作界面首先分为几个区域：  当前文件夹：显示当前的文件目录，及根目录下的文件和目录。 编辑器：初始时没有这个界面，用于编辑matlab文件（.m文件），如果没有打开任何脚本文件就不会出现这个界面。有点击一个脚本才会显示。 命令行窗口：用来执行一些快捷的指令，可看成脚本的指令化。 工作区：主要显示变量和对应值（基本运算后会自动生成ans变量）。  清除历史和注释清除的两种">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2022/03/26/ObW8TXQslADLpk7.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/26/gBwe8PH1aqY2hbD.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/26/UHJi3IgeORjG7ur.png">
+<meta property="article:published_time" content="2021-01-19T08:23:59.000Z">
+<meta property="article:modified_time" content="2021-08-01T08:35:00.000Z">
+<meta property="article:author" content="Rogers Kelamen">
+<meta property="article:tag" content="MCM">
+<meta property="article:tag" content="aticle">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s2.loli.net/2022/03/26/ObW8TXQslADLpk7.png">
+  
+  <title>MATLAB学习| RO&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-solarizedlight.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"rokelamen.top","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"0d7560f90f7a21d6a9e7635611dac094","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"2RbCqGEaklHVj7Gj6dtd2kM4-gzGzoHsz","app_key":"kdFD4FmNeIpaTMK269nEqhxx","server_url":"https://2rbcqgea.lc-cn-n1-shared.com","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>RO&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://s2.loli.net/2022/03/26/DZpUEW8izknQALM.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="MATLAB学习">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Rogers Kelamen
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-01-19 16:23" pubdate>
+        2021年1月19日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.1k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      13 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">MATLAB学习</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021年8月1日 下午
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="MATLAB学习"><a href="#MATLAB学习" class="headerlink" title="MATLAB学习"></a>MATLAB学习</h1><h2 id="先来软件的操作界面"><a href="#先来软件的操作界面" class="headerlink" title="先来软件的操作界面"></a>先来软件的操作界面</h2><p>首先分为几个区域：</p>
+<ul>
+<li>当前文件夹：显示当前的文件目录，及根目录下的文件和目录。</li>
+<li>编辑器：初始时没有这个界面，用于编辑matlab文件（<code>.m</code>文件），如果没有打开任何脚本文件就不会出现这个界面。有点击一个脚本才会显示。</li>
+<li>命令行窗口：用来执行一些快捷的指令，可看成脚本的指令化。</li>
+<li>工作区：主要显示变量和对应值（<em>基本运算后会自动生成<code>ans</code>变量</em>）。</li>
+</ul>
+<h2 id="清除历史和注释"><a href="#清除历史和注释" class="headerlink" title="清除历史和注释"></a>清除历史和注释</h2><p><strong>清除的两种方式：</strong></p>
+<ul>
+<li><strong>用<code>clc</code>命令可清除命令行窗口的历史记录</strong></li>
+<li><strong>用<code>clear all</code>指令可以清空工作区中的所有变量（但没有<code>clc</code>的功能）</strong></li>
+</ul>
+<p>注释一般出现在脚本中：</p>
+<p>​        <strong>用<code>%</code>之后可写注释行</strong></p>
+<p>​        <strong>用<code>%%</code><u>可隔开代码段</u></strong></p>
+<div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab">clear all  <span class="token comment">% 清除workspace中的所有变量</span>
+clc  <span class="token comment">%清除Command Window中所有命令</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<h2 id="变量类型"><a href="#变量类型" class="headerlink" title="变量类型"></a>变量类型</h2><blockquote>
+<p>数字，字符串，矩阵</p>
+</blockquote>
+<p><strong><code>class()</code>函数可以查询到变量的类型，类似于python中的<code>type()</code></strong></p>
+<h3 id="数字和字符串"><a href="#数字和字符串" class="headerlink" title="数字和字符串"></a>数字和字符串</h3><p>和python类似，还是直接赋值，eg：</p>
+<div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab">age <span class="token operator">=</span> <span class="token number">12</span>
+gender <span class="token operator">=</span> <span class="token string">'male'</span>
+<span class="token function">abs</span><span class="token punctuation">(</span><span class="token string">'s'</span><span class="token punctuation">)</span>		<span class="token comment">% abs()是指绝对值函数没问题，但是它同时还可以转化字符为ascii码</span>
+<span class="token function">char</span><span class="token punctuation">(</span><span class="token number">97</span><span class="token punctuation">)</span>		<span class="token comment">% 转化数字为对应ascii码的字符</span>
+<span class="token function">num2str</span><span class="token punctuation">(</span><span class="token number">65</span><span class="token punctuation">)</span>		<span class="token comment">% 转化数字为字符串</span>
+
+describ <span class="token operator">=</span> <span class="token string">'I Love MATLAB'</span>
+<span class="token function">length</span><span class="token punctuation">(</span>describ<span class="token punctuation">)</span>		<span class="token comment">% 计算字符串的字符个数</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h3 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h3><blockquote>
+<p>矩阵在matlab中的赋值非常的简单，类似于python中的列表和元组的复合</p>
+</blockquote>
+<p>基本矩阵建立：</p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token operator">>></span> A <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">;</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">;</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">]</span>
+
+A <span class="token operator">=</span>
+
+     <span class="token number">1</span>     <span class="token number">2</span>     <span class="token number">3</span>
+     <span class="token number">4</span>     <span class="token number">5</span>     <span class="token number">6</span>
+     <span class="token number">7</span>     <span class="token number">8</span>     <span class="token number">9</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>很容易看出矩阵的每个元素是用<code>,</code>来分隔的（<em>你可以只用<code>,</code>或空格</em>），每一行是用<code>;</code>分隔的。</p>
+<h4 id="矩阵的变换和运算"><a href="#矩阵的变换和运算" class="headerlink" title="矩阵的变换和运算"></a>矩阵的变换和运算</h4><div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab">B <span class="token operator">=</span> A<span class="token operator">'</span>		<span class="token comment">% B变成A的转置矩阵</span>
+C <span class="token operator">=</span> <span class="token function">A</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">)</span>	<span class="token comment">% 将矩阵A拉伸为一列（按列拉）</span>
+D <span class="token operator">=</span> <span class="token function">inv</span><span class="token punctuation">(</span>A<span class="token punctuation">)</span>	<span class="token comment">% 求逆矩阵（注意需要是方阵）</span>
+E <span class="token operator">=</span> <span class="token function">eye</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>	<span class="token comment">% 生成一个3*3的单位矩阵</span>
+F <span class="token operator">=</span> <span class="token function">magic</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>	<span class="token comment">% 生成一个5阶幻方</span>
+
+<span class="token comment">%%</span>
+E <span class="token operator">=</span> <span class="token function">zeros</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>		<span class="token comment">% 创建一个共3个维度的10行5列的零矩阵</span>
+<span class="token comment">% 每个维度可以这样表示或得到</span>
+<span class="token function">E</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>		<span class="token comment">% 这是一维，以此类推</span>
+<span class="token function">E</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+<span class="token function">E</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h2 id="重要函数"><a href="#重要函数" class="headerlink" title="重要函数"></a>重要函数</h2><h3 id="生成随机数"><a href="#生成随机数" class="headerlink" title="生成随机数"></a>生成随机数</h3><p><code>rand()</code>生成<u>均匀分布</u>的伪随机数，分布在<strong>（0 ~ 1）之间</strong>，eg：</p>
+<div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token function">rand</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span>		<span class="token comment">% 生成10行5列的均匀分布的伪随机数矩阵</span>
+<span class="token function">rand</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token string">'double'</span><span class="token punctuation">)</span>	<span class="token comment">% 'double'这里是指令的精度类型（双精度），可选值还有'single'</span>
+<span class="token function">rand</span><span class="token punctuation">(</span>RandStream<span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span>	<span class="token comment">% RandStream是随机种子</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<p><code>randn()</code>生成<strong>标准正态分布</strong>的伪随机数（均值μ为0， 方差σ为1），用法和<code>rand()</code>类似</p>
+<p><code>randi()</code>生成的是<strong>伪随机<u>整数</u></strong>，eg：</p>
+<div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token function">randi</span><span class="token punctuation">(</span>iMax<span class="token punctuation">,</span> m<span class="token punctuation">,</span> n<span class="token punctuation">)</span>	<span class="token comment">% 在区间(0, iMax)生成随机矩阵</span>
+<span class="token function">randi</span><span class="token punctuation">(</span><span class="token punctuation">[</span>iMin<span class="token punctuation">,</span> iMax<span class="token punctuation">]</span><span class="token punctuation">,</span> m<span class="token punctuation">,</span> n<span class="token punctuation">)</span> 	<span class="token comment">% 在区间(iMin, iMax)生成随机矩阵</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<p><em>ps：这三个函数都可以单独使用，调用后生成一个随机数。</em></p>
+<h2 id="特殊类型"><a href="#特殊类型" class="headerlink" title="特殊类型"></a>特殊类型</h2><h3 id="元胞数组"><a href="#元胞数组" class="headerlink" title="元胞数组"></a>元胞数组</h3><blockquote>
+<p>元胞数组是matlab中特有的一种数据类型，是数组的一种。内部可以是属于不同数据类型的数据，有点类似于C的结构体或者python的字典。<br>它的特性给人一种查询数据的感觉，可以一直追踪到所有变量都被翻译成基本的数据信息。其<code>class()</code>返回值为<code>cell</code>。</p>
+</blockquote>
+<p>建立类型：</p>
+<div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab">A <span class="token operator">=</span> <span class="token function">cell</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span>		<span class="token comment">% 建立一个1行6列的元胞数组</span>
+A<span class="token punctuation">&#123;</span><span class="token number">2</span><span class="token punctuation">&#125;</span>		<span class="token comment">% 获取到元胞数组中的第二个元素，和其他语言数组不一样(用[])</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<h3 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h3><blockquote>
+<p>matlab的结构体并不是C中的结构体，而更像是python中的字典类型</p>
+</blockquote>
+<p>举个栗子：</p>
+<div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab">books <span class="token operator">=</span> <span class="token function">struct</span><span class="token punctuation">(</span><span class="token string">'name'</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span><span class="token string">'Vue Framework'</span><span class="token punctuation">,</span> <span class="token string">'Big Data'</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token string">'price'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">30</span><span class="token punctuation">,</span> <span class="token number">40</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token comment">% 就是一个键值对</span>
+books<span class="token punctuation">.</span>name		<span class="token comment">% 这就得到了books的name属性</span>
+books<span class="token punctuation">.</span><span class="token function">name</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>	<span class="token comment">% 这里取出name的第一个</span>
+books<span class="token punctuation">.</span>name<span class="token punctuation">&#123;</span><span class="token number">1</span><span class="token punctuation">&#125;</span>	<span class="token comment">% 注意()取出的是cell，&#123;&#125;取出的才是值</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p><strong><font color=#34b>你会注意到这里的键值对全是用<code>,</code>隔开的，而且字符串用<code>&#123;&#125;</code>，数字用<code>[]</code></font></strong></p>
+<h2 id="矩阵扩展"><a href="#矩阵扩展" class="headerlink" title="矩阵扩展"></a>矩阵扩展</h2><p>先前已经说过矩阵可以用<code>[]</code>来构造，然后还有其他构造方法：</p>
+<div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token operator">></span><span class="token operator">></span> A <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">2</span><span class="token operator">:</span><span class="token number">9</span><span class="token punctuation">]</span>A <span class="token operator">=</span>     <span class="token number">1</span>     <span class="token number">3</span>     <span class="token number">5</span>     <span class="token number">7</span>     <span class="token number">9</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>这样我们生成一个一行矩阵，这一行中范围是1 ~ 9，步长是2。</p>
+<div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token operator">></span><span class="token operator">></span> B <span class="token operator">=</span> <span class="token function">repmat</span><span class="token punctuation">(</span>A<span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>B <span class="token operator">=</span>     <span class="token number">1</span>     <span class="token number">3</span>     <span class="token number">5</span>     <span class="token number">7</span>     <span class="token number">9</span>     <span class="token number">1</span>     <span class="token number">3</span>     <span class="token number">5</span>     <span class="token number">7</span>     <span class="token number">9</span>     <span class="token number">1</span>     <span class="token number">3</span>     <span class="token number">5</span>     <span class="token number">7</span>     <span class="token number">9</span>     <span class="token operator">></span><span class="token operator">></span> C <span class="token operator">=</span> <span class="token function">repmat</span><span class="token punctuation">(</span>A<span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>C <span class="token operator">=</span>     <span class="token number">1</span>     <span class="token number">3</span>     <span class="token number">5</span>     <span class="token number">7</span>     <span class="token number">9</span>     <span class="token number">1</span>     <span class="token number">3</span>     <span class="token number">5</span>     <span class="token number">7</span>     <span class="token number">9</span>     <span class="token number">1</span>     <span class="token number">3</span>     <span class="token number">5</span>     <span class="token number">7</span>     <span class="token number">9</span>     <span class="token number">1</span>     <span class="token number">3</span>     <span class="token number">5</span>     <span class="token number">7</span>     <span class="token number">9</span>     <span class="token number">1</span>     <span class="token number">3</span>     <span class="token number">5</span>     <span class="token number">7</span>     <span class="token number">9</span>     <span class="token number">1</span>     <span class="token number">3</span>     <span class="token number">5</span>     <span class="token number">7</span>     <span class="token number">9</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p><code>repmat()</code>函数显而易见是一个重复构造的函数，重复构造m行n列</p>
+<div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token operator">></span><span class="token operator">></span> D <span class="token operator">=</span> <span class="token function">ones</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span>D <span class="token operator">=</span>     <span class="token number">1</span>     <span class="token number">1</span>     <span class="token number">1</span>     <span class="token number">1</span>     <span class="token number">1</span>     <span class="token number">1</span>     <span class="token number">1</span>     <span class="token number">1</span>     <span class="token number">1</span>     <span class="token number">1</span>     <span class="token number">1</span>     <span class="token number">1</span>     <span class="token number">1</span>     <span class="token number">1</span>     <span class="token number">1</span>     <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p><code>ones()</code>即生成m行n列的全一矩阵</p>
+<h3 id="矩阵四则运算"><a href="#矩阵四则运算" class="headerlink" title="矩阵四则运算"></a>矩阵四则运算</h3><div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab">A <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">4</span><span class="token punctuation">;</span> <span class="token number">5</span> <span class="token number">6</span> <span class="token number">7</span> <span class="token number">8</span><span class="token punctuation">]</span>B <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">2</span><span class="token punctuation">;</span> <span class="token number">2</span> <span class="token number">2</span> <span class="token number">1</span> <span class="token number">1</span><span class="token punctuation">]</span>C <span class="token operator">=</span> A <span class="token operator">+</span> B 	<span class="token comment">% 矩阵的加法D = A - B 	% 矩阵的减法E = A * B'	% 乘法，注意这里需要转置F = A .* B 	% 对应项相乘，不是矩阵乘法(.都是代表对应项)G = A / B 	% 这相当于A * inv(B)H = A ./B 	% 对应项相除</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h3 id="矩阵下标"><a href="#矩阵下标" class="headerlink" title="矩阵下标"></a>矩阵下标</h3><div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab">A <span class="token operator">=</span> <span class="token function">magic</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>B <span class="token operator">=</span> <span class="token function">A</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>		<span class="token comment">% 取到2行3列的元素C = A (3, :)	% 取出第3行所有元素(即取出第三行)[m, n] = find(A > 20)	% 这里是找到的元素的索引值放到m和n中</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h2 id="循环和分支结构"><a href="#循环和分支结构" class="headerlink" title="循环和分支结构"></a>循环和分支结构</h2><h3 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h3><p>直接看例子：</p>
+<div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token comment">%% 求1到5的平方和sum = 0;for n = 1:5sum = sum + n ^ 2;endsum</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>这里<code>n = 1:5</code>是从1循环到5，中间默认步长为1（也就是说还可以写一个<code>1:1:5</code>）不管是哪种结构，都是要写<code>end</code>的。<strong>注意在脚本中一个语句还是要写<code>;</code></strong></p>
+<p>再来一个嵌套结构：</p>
+<div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token comment">%% 实现1到5的阶乘和sum = 0;for i = 1:5	p = 1;		for j = 1:i			p = p * j;		end	sum = sum + p;endsum</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>注意这里嵌套之后出现了类似python的缩进结构，这是matlab在嵌套结构中必须具备的（否则出错），<u>但是建议没有嵌套时还是保持缩进结构</u>（良好的规范）</p>
+<h3 id="while"><a href="#while" class="headerlink" title="while"></a>while</h3><div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token comment">%% 1到10的求和s = 0;n = 1;while n &lt;= 10	s = s + n;	n = n + 1;end</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h3 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h3><p>老规矩，直接上代码：</p>
+<div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">if</span> a <span class="token operator">></span> b	<span class="token string">'成立语句'</span><span class="token punctuation">;</span><span class="token keyword">elseif</span> a <span class="token operator">&lt;</span> b	<span class="token string">'成立语句'</span><span class="token punctuation">;</span><span class="token keyword">else</span>	<span class="token string">'不成立语句'</span><span class="token punctuation">;</span>endswitch 表达式<span class="token punctuation">(</span>数值或字符串<span class="token punctuation">)</span>	<span class="token keyword">case</span> 数值或字符串		语句<span class="token number">1</span><span class="token punctuation">;</span>	<span class="token keyword">case</span> 数值或字符串		语句<span class="token number">2</span><span class="token punctuation">;</span>	<span class="token keyword">otherwise</span>		语句n<span class="token punctuation">;</span><span class="token keyword">end</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h2 id="二维平面绘图"><a href="#二维平面绘图" class="headerlink" title="二维平面绘图"></a>二维平面绘图</h2><blockquote>
+<p>对于matlab的绘图，既然matlab是科学计算软件，则肯定是根据函数来画图。于是就要先有函数：f(x)</p>
+</blockquote>
+<div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab">x <span class="token operator">=</span> <span class="token number">0</span><span class="token operator">:</span> <span class="token number">0.01</span><span class="token operator">:</span> <span class="token number">2</span> <span class="token operator">*</span> <span class="token keyword">pi</span>		<span class="token comment">% 很明显这里的x是离散型的y = sin(x)		% 建立了函数figure			% 建立一个幕布（就理解成canvas算了）plot(x, y)		% 绘制图形，类似python中的matplotlib用法title('y = sin(x)')		% 给图加个标题xlabel('x')		% 指定x轴标示ylabel('sin(x)')	% 指定y轴标示xlim([0 2*pi])		% 限定x定义域范围为(0, 2Π)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>颜色选项表</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>颜色</th>
+<th>字符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>红</td>
+<td>r</td>
+</tr>
+<tr>
+<td>绿</td>
+<td>g</td>
+</tr>
+<tr>
+<td>蓝</td>
+<td>b</td>
+</tr>
+<tr>
+<td>黄</td>
+<td>y</td>
+</tr>
+<tr>
+<td>粉红</td>
+<td>m</td>
+</tr>
+<tr>
+<td>青</td>
+<td>c</td>
+</tr>
+<tr>
+<td>白</td>
+<td>w</td>
+</tr>
+<tr>
+<td>黑</td>
+<td>k</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>线型选项表</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>线型</th>
+<th>符号</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>实线</td>
+<td>-</td>
+</tr>
+<tr>
+<td>虚线</td>
+<td>—</td>
+</tr>
+<tr>
+<td>冒号线</td>
+<td>:</td>
+</tr>
+<tr>
+<td>点画线</td>
+<td>-.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="https://s2.loli.net/2022/03/26/ObW8TXQslADLpk7.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="绘图高级"><a href="#绘图高级" class="headerlink" title="绘图高级"></a>绘图高级</h3><div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab">x <span class="token operator">=</span> <span class="token number">0</span><span class="token operator">:</span> <span class="token number">0.01</span><span class="token operator">:</span> <span class="token number">20</span><span class="token punctuation">;</span>y1 <span class="token operator">=</span> <span class="token number">200</span> <span class="token operator">*</span> <span class="token function">exp</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">0.05</span> <span class="token operator">*</span> x<span class="token punctuation">)</span> <span class="token operator">.*</span> <span class="token function">sin</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>y2 <span class="token operator">=</span> <span class="token number">0.8</span> <span class="token operator">*</span> <span class="token function">exp</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">0.5</span> <span class="token operator">*</span> x<span class="token punctuation">)</span> <span class="token operator">.*</span> <span class="token function">sin</span><span class="token punctuation">(</span><span class="token number">10</span> <span class="token operator">*</span> x<span class="token punctuation">)</span><span class="token punctuation">;</span>figure<span class="token punctuation">[</span>AX<span class="token punctuation">,</span> H1<span class="token punctuation">,</span> H2<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">plotyy</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y1<span class="token punctuation">,</span> x<span class="token punctuation">,</span> y2<span class="token punctuation">,</span> <span class="token string">'plot'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">% 这里的plogyy是表示两个函数y1,y2共用一个坐标系，然后画出图形% 画图的类型为'plot'set(get(AX(1), 'Ylabel'), 'String', 'Slow Decay')set(get(AX(2), 'Ylabel'), 'String', 'Fast Decay')% 这两句是设置每个函数的因变量名xlabel('Time (\musec)')title('Multiple Decay Rates')% 下面两句就是对两个函数线型的设置set(H1, 'LineStyle', '--')set(H2, 'LineStyle', ':')</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p><img src="https://s2.loli.net/2022/03/26/gBwe8PH1aqY2hbD.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><em>使用<code>figure</code>打开画布，使用<code>close</code>关闭画布</em></p>
+<h3 id="多图绘制"><a href="#多图绘制" class="headerlink" title="多图绘制"></a>多图绘制</h3><p>使用<code>subplot()</code>来绘制，参数解释：</p>
+<ul>
+<li>第一个参数定义行数</li>
+<li>第二个定义列数</li>
+<li>第三个表示这张图对应的位置</li>
+</ul>
+<p>比如<code>subplot(2,2,1)</code>就是两行两列共四个区域的第一个位置，<code>subplot(2,1,2)</code>就是两行一列两块区域的第二个位置（<em>需要在每次定义<code>subplot()</code>之后重新定义图形</em>）</p>
+<h2 id="三维立体绘图"><a href="#三维立体绘图" class="headerlink" title="三维立体绘图"></a>三维立体绘图</h2><div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab">t <span class="token operator">=</span> <span class="token number">0</span><span class="token operator">:</span> <span class="token keyword">pi</span><span class="token operator">/</span><span class="token number">50</span><span class="token operator">:</span> <span class="token number">10</span><span class="token operator">*</span><span class="token keyword">pi</span><span class="token punctuation">;</span><span class="token comment">% 记住二维绘图是plot，三维就是plot3plot3(sin(t), cos(t), t)xlabel('sin(t)')ylabel('cos(t)')zlabel('t')grid on		% 在图像中加入网格线axis square		% 将网格变成正方形</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>如果要暂时保存图形，继续绘制就用<code>hold on</code></p>
+<div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab">hold on<span class="token punctuation">...</span>		<span class="token comment">% 其他图形代码hold off 	% 关闭图形的hold on状态</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h3 id="稍微引入双峰函数"><a href="#稍微引入双峰函数" class="headerlink" title="稍微引入双峰函数"></a>稍微引入双峰函数</h3><div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token punctuation">[</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> z<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">peaks</span><span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">mesh</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> z<span class="token punctuation">)</span>
+grid<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<p>可以给论文平添一点高大上。</p>
+<p><img src="https://s2.loli.net/2022/03/26/UHJi3IgeORjG7ur.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h2 id="函数求解"><a href="#函数求解" class="headerlink" title="函数求解"></a>函数求解</h2><blockquote>
+<p>首先是数据拟合，这里有很多好用的函数</p>
+</blockquote>
+<ul>
+<li><code>y = polyval(p, x)</code>：求多项式p在x处的值y，x可以是一个点或者多个点。</li>
+<li><code>p3 = conv(p1, p2)</code>：返回这两个多项式的乘积</li>
+<li><code>[p2,r] = deconv(p1, p2)</code>：p3返回多项式p1除以p2的商，r返回余项</li>
+<li><code>x = roots(p)</code>：用来求p的根</li>
+<li><code>p = polyfit(x, y, k)</code>：用k次多项式拟合向量数据(x, y)，返回多项式的降幂系数</li>
+</ul>
+<p>进行函数拟合的步骤（多项式函数拟合）：</p>
+<ol>
+<li>求出函数参数p，使用<code>p = polyfit()</code></li>
+<li>求出拟合后的yfit值，使用<code>yfit = polyval()</code></li>
+<li>对两者进行画图比较</li>
+</ol>
+<h3 id="使用最小二乘法进行拟合"><a href="#使用最小二乘法进行拟合" class="headerlink" title="使用最小二乘法进行拟合"></a>使用最小二乘法进行拟合</h3><p><code>[c, Q] = lsqcurvefit(Fun, c0, x, y, lb, ub)</code></p>
+<h3 id="求极值"><a href="#求极值" class="headerlink" title="求极值"></a>求极值</h3><p><code>x = fzero(Fun, x0)</code>：返回一元函数Fun的一个零点</p>
+<p><code>[x, f, h] = fsolve(Fun, x0)</code>：</p>
+<ul>
+<li>x返回多元函数Fun，在x0附近的一个零点</li>
+<li>f返回Fun在x的函数值</li>
+<li>h如果大于零，结果可靠</li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/MCM/">MCM</a>
+                    
+                      <a class="hover-with-bg" href="/tags/aticle/">aticle</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/01/22/LaTeX%E5%85%A5%E9%97%A8/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">LaTeX入门</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/01/01/%E6%AF%9B%E6%A6%82%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                        <span class="hidden-mobile">毛概复习笔记</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"2RbCqGEaklHVj7Gj6dtd2kM4-gzGzoHsz","appKey":"kdFD4FmNeIpaTMK269nEqhxx","path":"window.location.pathname","placeholder":"say something...","avatar":"mp","meta":["nick","mail","link"],"requiredFields":["nick","mail"],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://2rbcqgea.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"2RbCqGEaklHVj7Gj6dtd2kM4-gzGzoHsz","appkey":"kdFD4FmNeIpaTMK269nEqhxx"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+
+  <!-- 自己设置一个记录网站运行时间的方法 -->
+  <span id="sitetime" style="font-size: 14px; font-family: Consolas;font-weight: normal; color: #aaa;"></span>
+  <script language=javascript>
+    function siteTime(){
+      window.setTimeout("siteTime()", 1000);
+      var seconds = 1000;
+      var minutes = seconds * 60;
+      var hours = minutes * 60;
+      var days = hours * 24;
+      var years = days * 365;
+      var today = new Date();
+      var todayYear = today.getFullYear();
+      var todayMonth = today.getMonth()+1;
+      var todayDate = today.getDate();
+      var todayHour = today.getHours();
+      var todayMinute = today.getMinutes();
+      var todaySecond = today.getSeconds();
+      /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+      year - 作为date对象的年份，为4位年份值
+      month - 0-11之间的整数，做为date对象的月份
+      day - 1-31之间的整数，做为date对象的天数
+      hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+      minutes - 0-59之间的整数，做为date对象的分钟数
+      seconds - 0-59之间的整数，做为date对象的秒数
+      microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+      var t1 = Date.UTC(2020,10,18,15,00,00); //北京时间2020-10-18 00:00:00
+      var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+      var diff = t2-t1;
+      var diffYears = Math.floor(diff/years);
+      // var diffDays = Math.floor((diff/days)-diffYears*365);
+      // 直接用日来记录，不用年了，太low啦
+      var diffDays = Math.floor((diff/days));
+      var diffHours = Math.floor((diff-(diffDays)*days)/hours);
+      var diffMinutes = Math.floor((diff-(diffDays)*days-diffHours*hours)/minutes);
+      var diffSeconds = Math.floor((diff-(diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+      document.getElementById("sitetime").innerHTML=" 小破站已勉强运行了 "+/*diffYears+" 年 "+*/diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+    }
+    siteTime();
+  </script>
+  <!-- 自己设置一个记录网站运行时间的方法 -->
+
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({"theme":"default"});
+    }
+  </script>
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0d7560f90f7a21d6a9e7635611dac094";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
