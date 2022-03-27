@@ -1,8 +1,8 @@
 ---
 title: Vim入门笔记
 date: 2020-12-21 22:51:10
-index_img: https://s2.loli.net/2022/03/26/fcAbOgr26muqdZR.gif
-banner_img: https://s2.loli.net/2022/03/26/PbLQNHevgtacxyr.png
+index_img: https://s2.loli.net/2022/03/27/NyTDUXWFqjLuM9r.png
+banner_img: https://s2.loli.net/2022/03/27/ptrzIUA62G74w1e.png
 author: Rogers Kelamen
 tags:
 - geek

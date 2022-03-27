@@ -149,7 +149,7 @@ public class HelloController implements Controller {
 
 ### 404报错?
 
-![](https://s2.loli.net/2022/03/26/Md8jShmO2JcIN4s.png)
+![](https://s2.loli.net/2022/03/27/IAb9Gr58jURncLk.png)
 
 看一下tomcat下面有没有这个lib，如果没有的话就需要手动来来创建文件夹导入所有的依赖
 
