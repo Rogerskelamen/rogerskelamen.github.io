@@ -16,12 +16,12 @@
   <meta name="description" content="">
   <meta name="author" content="Rogers Kelamen">
   <meta name="keywords" content="blog">
-  <meta name="description" content="Grub 进入Windows 因为双系统删除了Ubuntu，果不其然出现了grub启动残留，导致每次不是直接进入Windows而是进入grub，对这种情况，还可以直接使用Grub挂载引导项(命令行大法好)  可参考链接🔗 Steps 首先设置(install)相应的模块:  insmod chain insmod ntfs  然后设置进入boot的默认root：  set root&#x3D;(">
+  <meta name="description" content="Grub 进入Windows 因为双系统删除了Ubuntu，果不其然出现了grub启动残留，导致每次不是直接进入Windows而是进入grub，对这种情况，还可以直接使用Grub挂载引导项(命令行大法好)  可参考链接🔗 Steps 首先设置(install)相应的模块:  insmod chain insmod ntfs  然后设置进入boot的默认root：  set root&#x3D;(hd0,0">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Grub引导进入Windows系统">
 <meta property="og:url" content="https://rokelamen.top/2021/10/22/Grub%E5%BC%95%E5%AF%BC%E8%BF%9B%E5%85%A5Windows%E7%B3%BB%E7%BB%9F/index.html">
 <meta property="og:site_name" content="RO&#39;s Blog">
-<meta property="og:description" content="Grub 进入Windows 因为双系统删除了Ubuntu，果不其然出现了grub启动残留，导致每次不是直接进入Windows而是进入grub，对这种情况，还可以直接使用Grub挂载引导项(命令行大法好)  可参考链接🔗 Steps 首先设置(install)相应的模块:  insmod chain insmod ntfs  然后设置进入boot的默认root：  set root&#x3D;(">
+<meta property="og:description" content="Grub 进入Windows 因为双系统删除了Ubuntu，果不其然出现了grub启动残留，导致每次不是直接进入Windows而是进入grub，对这种情况，还可以直接使用Grub挂载引导项(命令行大法好)  可参考链接🔗 Steps 首先设置(install)相应的模块:  insmod chain insmod ntfs  然后设置进入boot的默认root：  set root&#x3D;(hd0,0">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-10-22T02:12:08.000Z">
 <meta property="article:modified_time" content="2021-10-22T02:13:32.723Z">
@@ -223,7 +223,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      718 字
+      688 字
     </span>
   
 
@@ -290,7 +290,7 @@ insmod ntfs<span aria-hidden="true" class="line-numbers-rows"><span></span><span
 <ol>
 <li>然后设置进入boot的默认root：</li>
 </ol>
-<div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">set root&#x3D;(hd0,0)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token builtin class-name">set</span> <span class="token assign-left variable">root</span><span class="token operator">=</span><span class="token punctuation">(</span>hd0,0<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
 <p><em>记住逗号之间没有空格!</em></p>
 <p>这里可以直接使用<code>Tab</code>补全</p>
 <blockquote>
@@ -304,18 +304,18 @@ insmod ntfs<span aria-hidden="true" class="line-numbers-rows"><span></span><span
 <div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">chainloader +1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
 <p><em>当你出现Invalid EFI file path错误的时候，使用下面的一条，因为适用于Windows的GRUB条目适用于BIOS模式引导，但不适用于EFI模式引导。这是一个GRUB错误。</em></p>
 <p><em>就是说这条命令只适合BIOS安装的系统，但是我是EFI+GPT安装的双系统，所以会出错。</em></p>
-<div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">chainloader &#x2F;EFI&#x2F;Microsoft&#x2F;Boot&#x2F;bootmgfw.efi<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">chainloader /EFI/Microsoft/Boot/bootmgfw.efi<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
 <ol>
 <li>最后boot</li>
 </ol>
 <div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">boot<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
 <h2 id="diskpart"><a href="#diskpart" class="headerlink" title="diskpart"></a><code>diskpart</code></h2><p><code>diskpart</code>是Windows操作系统中提供的一个磁盘管理的命令行服务。(<em>在Windows下显得还有点良心</em>)</p>
-<div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">list disk   # 查看磁盘
-select disk 0 # 选择0号磁盘
-list partition # 查看所选磁盘的分区
-select partition 1 # 选择1号分区
-delete partition override # 删除所选分区
-assign letter &#x3D; p # 给所选分区设置盘符取名为p<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">list disk   <span class="token comment"># 查看磁盘</span>
+<span class="token keyword">select</span> disk <span class="token number">0</span> <span class="token comment"># 选择0号磁盘</span>
+list partition <span class="token comment"># 查看所选磁盘的分区</span>
+<span class="token keyword">select</span> partition <span class="token number">1</span> <span class="token comment"># 选择1号分区</span>
+delete partition override <span class="token comment"># 删除所选分区</span>
+assign letter <span class="token operator">=</span> p <span class="token comment"># 给所选分区设置盘符取名为p</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 
             </div>
             <hr>
