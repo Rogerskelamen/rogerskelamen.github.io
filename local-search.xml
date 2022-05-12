@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>白话机器学习</title>
+    <link href="/2022/05/12/%E7%99%BD%E8%AF%9D%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    <url>/2022/05/12/%E7%99%BD%E8%AF%9D%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</url>
+    
+    <content type="html"><![CDATA[<h1 id="代价函数-Cost-Function"><a href="#代价函数-Cost-Function" class="headerlink" title="代价函数(Cost Function)"></a>代价函数(Cost Function)</h1><script type="math/tex; mode=display">e = \frac{1}{m} \sum_{i=0}^{m} ({x_i}^2 * w^2 + (-2x_iy_i) + {y_i}^2)</script><p>这里的$e$是均方误差，作为因变量，$w$是原线性神经网络的参数，作为自变量(因为又是用方差作为代价函数的指标，所以又称为方差代价函数)</p><p><strong>我们要求的就是$e$最小，也就是误差最小的时候。这个时候的$w$取值，就是拟合程度最好的时候，我们就求出来了$w$最优参数值</strong></p><p><em>因为上面是所有数据的误差，这里还是给出单个数据样本的预测误差计算:</em></p><script type="math/tex; mode=display">e_0 = {x_0}^2 w^2 + (-2x_0y_0)w + {y_0}^2</script><p>这个时候如果我们想要求最低点，即最优解的时候，可以直接将所有数据一次性带入公式求出</p><p>因为代价函数说到底还是一个一元二次函数，所以有:</p><script type="math/tex; mode=display">optimum = -\frac{b}{2a}</script><p><em>根据上面的代价公式再次变形可以得到：</em></p><script type="math/tex; mode=display">w_{optimum} = \frac{\sum\limits_{i=0}^{m}(x_iy_i)}{\sum\limits_{i=0}^{m}{x_i}^2}</script><p><u>这种方式是采用一次性将所有数据带入求解，即普通的正规方程求解</u></p><h1 id="梯度下降-Gradient-Descent"><a href="#梯度下降-Gradient-Descent" class="headerlink" title="梯度下降(Gradient Descent)"></a>梯度下降(Gradient Descent)</h1><blockquote><p>但是在大部分情况下，我们没有这么充裕的计算量来计算上千万的数据量，所以有梯度下降的思路</p></blockquote><p>整体思路就是，我们每次慢慢地调整$w$，直到其达到最优解</p><p><em>方式是：计算出当前$w$取值的斜率$k$，然后让$w=w - \alpha k$</em></p><ol><li><p>斜率k可以通过求导得出</p></li><li><p>$\alpha$用来调整下降过程</p></li><li><p>在最优解左边k小于零，在最优解右边k大于零，所以可以逐渐逼近最优解</p></li></ol><p><em>这里给出线性神经网络函数的斜率公式，加深理解:</em></p><script type="math/tex; mode=display">k = (2x^2)w + (-2xy)</script><h2 id="批量梯度下降"><a href="#批量梯度下降" class="headerlink" title="批量梯度下降"></a>批量梯度下降</h2><blockquote><p>将所有的数据拟合成一个函数求斜率$k$，然后逐渐误差下降求得最优解</p></blockquote><p>在计算量上，没有比正规方程一次性求解降低多少，所以一般不考虑而采用下面这一种</p><h2 id="随机梯度下降"><a href="#随机梯度下降" class="headerlink" title="随机梯度下降"></a>随机梯度下降</h2><blockquote><p>每次根据一个数据来求出一个斜率，然后逐渐下降得到最优解</p></blockquote><p>震荡实在太大，最后还不知道离全局最优解有多远</p><h2 id="迷你批量梯度下降"><a href="#迷你批量梯度下降" class="headerlink" title="迷你批量梯度下降"></a>迷你批量梯度下降</h2><blockquote><p>结合结合以上两种梯度下降方式，每次取一批（上百个）数据来求出一个斜率，慢慢下降得到最优解</p></blockquote><p>较为折中的方式，中和了两种的优点</p><h1 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h1><blockquote><p>比较符合我们常识的是在脑中声建立一种思维，用来判断一个东西是否属于一个类别，而不是通过数学建模的方式在脑中得到一个函数。<strong>于是我们有了激活函数来进行分类</strong></p></blockquote><h2 id="Sigmoid函数"><a href="#Sigmoid函数" class="headerlink" title="Sigmoid函数"></a>Sigmoid函数</h2><p>我们所说的sigmoid函数是一类可以将数据样本分成0和1两类的函数，而我们比较常说的sigmoid函数如果不加说明，就是标准logistic函数：</p><script type="math/tex; mode=display">y = \frac{1}{1 + e^{-z}}</script><p>这个时候我们拟合的就是一个复合函数，而图像就是一个logistic函数的图像，我们还是可以通过分别求出w和b的偏导得到梯度下降的向量来进行梯度下降</p><h1 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h1><blockquote><p>在这之前，我们都是用一个神经元，也就是一个函数来完成预测。如果一个需要拟合的函数不再单调，这时候就需要引入更多的神经元，也就是<strong>形成了神经网络</strong>。</p></blockquote><h2 id="隐藏层"><a href="#隐藏层" class="headerlink" title="隐藏层"></a>隐藏层</h2><p>那些新添加的神经元节点就是隐藏层，每一个隐藏层不只有一个神经元，而通常是多个。这些隐藏层多个叠加到一起形成深度神经网络</p><p><strong>用线性函数组合，用激活函数输出，用代价函数评估，用梯度下降优化</strong></p><h1 id="输入和输出通道"><a href="#输入和输出通道" class="headerlink" title="输入和输出通道"></a>输入和输出通道</h1><blockquote><p>在图像的卷积操作上，基本上数据都是三维的($x_1<em>x_2</em>3$)，比如rgb图片，所以我们就有了输入和输出通道</p></blockquote><p><strong>首先需要理解的一点是：<u>卷积核也可以是多维度的</u></strong></p><p>比如一个$6<em>6</em>3$的输入数据矩阵，我们就需要一个3维的卷积核，比方说取一个$3<em>3</em>3$的卷积核，卷完之后会得到一个$6<em>6</em>1$的矩阵（每次卷的时候会将三层上的所有数据相加)</p><p><em>那么如果想要保持3维数据的特征，就必须要再加上2个卷积核进行卷积</em></p><p>这样想下来，input_channel就是输入数据的通道数（第三维的数值），而output_channel则是当前</p><h1 id="pytorch使用要点"><a href="#pytorch使用要点" class="headerlink" title="pytorch使用要点"></a>pytorch使用要点</h1><h2 id="卷积需要记住的公式"><a href="#卷积需要记住的公式" class="headerlink" title="卷积需要记住的公式"></a>卷积需要记住的公式</h2><p>首先是卷积模型必备函数</p><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">nn<span class="token punctuation">.</span>Conv2d<span class="token punctuation">(</span>input_channel<span class="token punctuation">,</span> ouput_channel<span class="token punctuation">,</span> kernel_size<span class="token punctuation">,</span> stride<span class="token punctuation">,</span> padding<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token comment"># 通常之后会加上一个激活函数ReLU</span>nn<span class="token punctuation">.</span>ReLU<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div><p><em>以下都是以stride为1作为默认(默认每次移动一格)</em></p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">input_size - kernel_size + 1 + 2*padding &#x3D; ouput_size<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div><p>如果有输入大小和输出大小相等的情况：</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">padding &#x3D; (kernel_size - 1) &#x2F; 2<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div><p>这部分解释了为什么卷积核需要用3，5这样的奇数</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>机器学习</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>python</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>JS使用注意点</title>
     <link href="/2022/04/08/JS%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E7%82%B9/"/>
     <url>/2022/04/08/JS%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E7%82%B9/</url>
@@ -940,9 +965,9 @@
     
     <tags>
       
-      <tag>aticle</tag>
-      
       <tag>MCM</tag>
+      
+      <tag>aticle</tag>
       
     </tags>
     
@@ -992,9 +1017,9 @@
     
     <tags>
       
-      <tag>masm</tag>
-      
       <tag>review</tag>
+      
+      <tag>masm</tag>
       
     </tags>
     

@@ -16,20 +16,20 @@
   <meta name="description" content="">
   <meta name="author" content="Rogers Kelamen">
   <meta name="keywords" content="blog">
-  <meta name="description" content="JS使用技巧map,filter,forEach 我们想要更改某个数组的值的话会采取遍历的方式，但是这几种方式那种才最为适合当前情况？  eg: const arr &#x3D; [-1, -4, 0, 3, 6]  &#x2F;&#x2F; 将每个元素乘二 const mapArr &#x3D; arr.map(item &#x3D;&gt; item * 2)  &#x2F;&#x2F; 筛选出为偶数的元素 const filterArr &#x3D; arr.filter(i">
+  <meta name="description" content="代价函数(Cost Function) e &#x3D; \frac{1}{m} \sum_{i&#x3D;0}^{m} ({x_i}^2 * w^2 + (-2x_iy_i) + {y_i}^2)这里的$e$是均方误差，作为因变量，$w$是原线性神经网络的参数，作为自变量(因为又是用方差作为代价函数的指标，所以又称为方差代价函数) 我们要求的就是$e$最小，也就是误差最小的时候。这个时候的$w$取值，就是拟合程度最">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JS使用注意点">
-<meta property="og:url" content="https://rokelamen.top/2022/04/08/JS%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E7%82%B9/index.html">
+<meta property="og:title" content="白话机器学习">
+<meta property="og:url" content="https://rokelamen.top/2022/05/12/%E7%99%BD%E8%AF%9D%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/index.html">
 <meta property="og:site_name" content="RO&#39;s Blog">
-<meta property="og:description" content="JS使用技巧map,filter,forEach 我们想要更改某个数组的值的话会采取遍历的方式，但是这几种方式那种才最为适合当前情况？  eg: const arr &#x3D; [-1, -4, 0, 3, 6]  &#x2F;&#x2F; 将每个元素乘二 const mapArr &#x3D; arr.map(item &#x3D;&gt; item * 2)  &#x2F;&#x2F; 筛选出为偶数的元素 const filterArr &#x3D; arr.filter(i">
+<meta property="og:description" content="代价函数(Cost Function) e &#x3D; \frac{1}{m} \sum_{i&#x3D;0}^{m} ({x_i}^2 * w^2 + (-2x_iy_i) + {y_i}^2)这里的$e$是均方误差，作为因变量，$w$是原线性神经网络的参数，作为自变量(因为又是用方差作为代价函数的指标，所以又称为方差代价函数) 我们要求的就是$e$最小，也就是误差最小的时候。这个时候的$w$取值，就是拟合程度最">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-04-08T11:49:01.000Z">
-<meta property="article:modified_time" content="2022-04-11T14:20:00.000Z">
+<meta property="article:published_time" content="2022-05-12T08:49:30.000Z">
+<meta property="article:modified_time" content="2022-05-12T08:55:23.623Z">
 <meta property="article:author" content="Rogers Kelamen">
-<meta property="article:tag" content="js">
+<meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary_large_image">
   
-  <title>JS使用注意点| RO&#39;s Blog</title>
+  <title>白话机器学习| RO&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -197,7 +197,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="JS使用注意点">
+            <span class="h2" id="subtitle" title="白话机器学习">
               
             </span>
 
@@ -212,8 +212,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-04-08 19:49" pubdate>
-        2022年4月8日 晚上
+      <time datetime="2022-05-12 16:49" pubdate>
+        2022年5月12日 下午
       </time>
     </span>
   
@@ -269,116 +269,80 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">JS使用注意点</h1>
+            <h1 style="display: none">白话机器学习</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年4月11日 晚上
+                  本文最后更新于：2022年5月12日 下午
                 
               </p>
             
             <div class="markdown-body">
-              <h1 id="JS使用技巧"><a href="#JS使用技巧" class="headerlink" title="JS使用技巧"></a>JS使用技巧</h1><h2 id="map-filter-forEach"><a href="#map-filter-forEach" class="headerlink" title="map,filter,forEach"></a><code>map</code>,<code>filter</code>,<code>forEach</code></h2><blockquote>
-<p>我们想要更改某个数组的值的话会采取遍历的方式，但是这几种方式那种才最为适合当前情况？</p>
+              <h1 id="代价函数-Cost-Function"><a href="#代价函数-Cost-Function" class="headerlink" title="代价函数(Cost Function)"></a>代价函数(Cost Function)</h1><script type="math/tex; mode=display">
+e = \frac{1}{m} \sum_{i=0}^{m} ({x_i}^2 * w^2 + (-2x_iy_i) + {y_i}^2)</script><p>这里的$e$是均方误差，作为因变量，$w$是原线性神经网络的参数，作为自变量(因为又是用方差作为代价函数的指标，所以又称为方差代价函数)</p>
+<p><strong>我们要求的就是$e$最小，也就是误差最小的时候。这个时候的$w$取值，就是拟合程度最好的时候，我们就求出来了$w$最优参数值</strong></p>
+<p><em>因为上面是所有数据的误差，这里还是给出单个数据样本的预测误差计算:</em></p>
+<script type="math/tex; mode=display">
+e_0 = {x_0}^2 w^2 + (-2x_0y_0)w + {y_0}^2</script><p>这个时候如果我们想要求最低点，即最优解的时候，可以直接将所有数据一次性带入公式求出</p>
+<p>因为代价函数说到底还是一个一元二次函数，所以有:</p>
+<script type="math/tex; mode=display">
+optimum = -\frac{b}{2a}</script><p><em>根据上面的代价公式再次变形可以得到：</em></p>
+<script type="math/tex; mode=display">
+w_{optimum} = \frac{\sum\limits_{i=0}^{m}(x_iy_i)}{\sum\limits_{i=0}^{m}{x_i}^2}</script><p><u>这种方式是采用一次性将所有数据带入求解，即普通的正规方程求解</u></p>
+<h1 id="梯度下降-Gradient-Descent"><a href="#梯度下降-Gradient-Descent" class="headerlink" title="梯度下降(Gradient Descent)"></a>梯度下降(Gradient Descent)</h1><blockquote>
+<p>但是在大部分情况下，我们没有这么充裕的计算量来计算上千万的数据量，所以有梯度下降的思路</p>
 </blockquote>
-<p>eg:</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">const</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span>
-
-<span class="token comment">// 将每个元素乘二</span>
-<span class="token keyword">const</span> mapArr <span class="token operator">=</span> arr<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">item</span> <span class="token operator">=></span> item <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">)</span>
-
-<span class="token comment">// 筛选出为偶数的元素</span>
-<span class="token keyword">const</span> filterArr <span class="token operator">=</span> arr<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token parameter">item</span> <span class="token operator">=></span> item <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">)</span>
-
-<span class="token comment">// 这里看上去是将mapArr还原为arr，实际mapArr值没有变化</span>
-mapArr<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">item</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
-  item <span class="token operator">=</span> item <span class="token operator">/</span> <span class="token number">2</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
-<p><em>可以看到mapArr并没有修改，那<code>forEach</code>只关心元素值吗</em></p>
-<p><u>其实使用<code>forEach</code>方法，无法修改元素，但是可以修改元素引用下的属性值(因为元素的指针确实没有改变)</u></p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">const</span> objArr <span class="token operator">=</span> <span class="token punctuation">[</span>
-  <span class="token punctuation">&#123;</span> a<span class="token operator">:</span> <span class="token number">1</span> <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-  <span class="token punctuation">&#123;</span> a<span class="token operator">:</span> <span class="token number">2</span> <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-  <span class="token punctuation">&#123;</span> a<span class="token operator">:</span> <span class="token number">3</span> <span class="token punctuation">&#125;</span>
-<span class="token punctuation">]</span>
-
-objArr<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">item</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
-  item<span class="token punctuation">.</span>a <span class="token operator">=</span> <span class="token number">0</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-
-<span class="token comment">// 可以看到objArr的所有属性a的值都被修改了</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>objArr<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
-<p><u>综上所述，最好还是采用<code>map</code>来更改数组，而如果是遍历来查看的话可以考虑<code>forEach</code></u></p>
-<h2 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h2><blockquote>
-<p>箭头函数咱们都知道，一对括号一个等号一个大于号一对大括号，ES6用来简化函数声明的新特性</p>
-</blockquote>
-<p><u>但是不建议在较为复杂的数据处理逻辑中使用箭头函数</u></p>
-<p>咱们看看MDN官方的解释：</p>
-<blockquote>
-<p>箭头函数表达式的语法比函数表达式更简洁，并且没有自己的this，arguments，super或new.target。箭头函数表达式更适用于那些本来需要匿名函数的地方，并且它不能用作构造函数。</p>
-</blockquote>
-<p>也就是说，如果我们在一个对象的回调方法中使用了箭头函数，this指代的并不是对象本身，而是全局的对象(如<code>document</code>)</p>
-<p>eg.</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'.option'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">click</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-  $options<span class="token punctuation">.</span><span class="token function">removeClass</span><span class="token punctuation">(</span><span class="token string">'active'</span><span class="token punctuation">)</span>
-  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span> <span class="token comment">// 这里的this才是对象本身</span>
-  <span class="token keyword">const</span> optionDom <span class="token operator">=</span> e<span class="token punctuation">.</span>target
-  <span class="token function">$</span><span class="token punctuation">(</span>optionDom<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addClass</span><span class="token punctuation">(</span><span class="token string">'active'</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
-<p><u>所以我们最好在有this等逻辑比较复杂的代码中使用原生，而不是使用箭头函数</u></p>
-<h2 id="var不var"><a href="#var不var" class="headerlink" title="var不var?"></a><code>var</code>不<code>var</code>?</h2><p>首先看一下这个代码：</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-b <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
-<p>这两行哪个是对的？</p>
-<p><strong><em>答案是都正确</em></strong></p>
-<p>如果我们正常的使用<code>var</code>，那么就是简单的申明变量语句；但是我们不加上<code>var</code>，就相当于是给全局变量window加了一个属性和值</p>
-<p>但是我们肯定不想每次声明一个变量<code>window</code>都多一个属性，所以最好还是用<code>var</code></p>
-<blockquote>
-<p>How about <code>let</code>, <code>const</code>?</p>
-</blockquote>
-<p>只需要记住一句话就行：<u><code>let</code>用于基本类型，<code>const</code>用于引用类型(<em>确保指针值不变</em>)</u></p>
-<h2 id="原生还是jQuery"><a href="#原生还是jQuery" class="headerlink" title="原生还是jQuery?"></a>原生还是<code>jQuery</code>?</h2><blockquote>
-<p>这里其实并不是要比较什么时候用原生好，什么时候用jQuery好。我只是想列出我每次使用难以记住的几个常用操作(<em>总是原生和jQuery用法傻傻分不清</em>)</p>
-</blockquote>
+<p>整体思路就是，我们每次慢慢地调整$w$，直到其达到最优解</p>
+<p><em>方式是：计算出当前$w$取值的斜率$k$，然后让$w=w - \alpha k$</em></p>
 <ol>
-<li>设置html的class</li>
+<li><p>斜率k可以通过求导得出</p>
+</li>
+<li><p>$\alpha$用来调整下降过程</p>
+</li>
+<li><p>在最优解左边k小于零，在最优解右边k大于零，所以可以逐渐逼近最优解</p>
+</li>
 </ol>
-<ul>
-<li><p>jQuery</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">$element<span class="token punctuation">.</span><span class="token function">removeClass</span><span class="token punctuation">(</span><span class="token string">'disactive'</span><span class="token punctuation">)</span>
-$element<span class="token punctuation">.</span><span class="token function">addClass</span><span class="token punctuation">(</span><span class="token string">'active'</span><span class="token punctuation">)</span>
-$element<span class="token punctuation">.</span><span class="token function">toggleClass</span><span class="token punctuation">(</span><span class="token string">'active'</span><span class="token punctuation">)</span>
-$element<span class="token punctuation">.</span><span class="token function">attr</span><span class="token punctuation">(</span><span class="token string">'id'</span><span class="token punctuation">,</span> <span class="token string">'main'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
-<p><code>attr</code>和<code>setAttribute</code>都是操作原有的html属性</p>
-</li>
-<li><p>原生js</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">elementDom<span class="token punctuation">.</span>className <span class="token operator">=</span> <span class="token string">'active'</span>
-elementDom<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">'id'</span><span class="token punctuation">,</span> <span class="token string">'main'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
-<p>记住，因为我们的js中<code>class</code>是保留字，所以js是很忌讳使用<code>class</code>来当作名字的。一般用来代替的是<code>className</code>(如getElementsByClassName)</p>
-</li>
-</ul>
-<ol>
-<li>设置内容</li>
-</ol>
-<ul>
-<li><p>jQuery</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">$element<span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token string">'val'</span><span class="token punctuation">)</span>
-$element<span class="token punctuation">.</span><span class="token function">html</span><span class="token punctuation">(</span><span class="token string">'val'</span><span class="token punctuation">)</span>
-$element<span class="token punctuation">.</span><span class="token function">val</span><span class="token punctuation">(</span><span class="token string">'val'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
-</li>
-<li><p>原生js</p>
-<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">elementDom<span class="token punctuation">.</span>innerText <span class="token operator">=</span> <span class="token string">'val'</span>
-elementDom<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">'val'</span> <span class="token comment">// html全部大写!</span>
-elementDom<span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token string">'val'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
-</li>
-</ul>
-<h2 id="删除数组指定元素"><a href="#删除数组指定元素" class="headerlink" title="删除数组指定元素?"></a>删除数组指定元素?</h2><blockquote>
-<p>这个问题起因于蓝桥杯的web组的第8题，<em>有点小遗憾</em></p>
+<p><em>这里给出线性神经网络函数的斜率公式，加深理解:</em></p>
+<script type="math/tex; mode=display">
+k = (2x^2)w + (-2xy)</script><h2 id="批量梯度下降"><a href="#批量梯度下降" class="headerlink" title="批量梯度下降"></a>批量梯度下降</h2><blockquote>
+<p>将所有的数据拟合成一个函数求斜率$k$，然后逐渐误差下降求得最优解</p>
 </blockquote>
-<p>我们都知道添加数组元素很容易(<code>arr.push()</code>)，但是怎么删除一个元素呢？难道是<code>arr.pop()</code>?</p>
-<p><code>arr.pop()</code>是删除的最后一个数组元素，但是并不能删除指定的元素(<em>别指望括号里面可以传递索引</em>)</p>
-<p>其实稍微想一下就知道：使用<code>arr.splice(index, num)</code></p>
-<p><u>我们只需要传入index，然后将num置为一就可以了</u></p>
+<p>在计算量上，没有比正规方程一次性求解降低多少，所以一般不考虑而采用下面这一种</p>
+<h2 id="随机梯度下降"><a href="#随机梯度下降" class="headerlink" title="随机梯度下降"></a>随机梯度下降</h2><blockquote>
+<p>每次根据一个数据来求出一个斜率，然后逐渐下降得到最优解</p>
+</blockquote>
+<p>震荡实在太大，最后还不知道离全局最优解有多远</p>
+<h2 id="迷你批量梯度下降"><a href="#迷你批量梯度下降" class="headerlink" title="迷你批量梯度下降"></a>迷你批量梯度下降</h2><blockquote>
+<p>结合结合以上两种梯度下降方式，每次取一批（上百个）数据来求出一个斜率，慢慢下降得到最优解</p>
+</blockquote>
+<p>较为折中的方式，中和了两种的优点</p>
+<h1 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h1><blockquote>
+<p>比较符合我们常识的是在脑中声建立一种思维，用来判断一个东西是否属于一个类别，而不是通过数学建模的方式在脑中得到一个函数。<strong>于是我们有了激活函数来进行分类</strong></p>
+</blockquote>
+<h2 id="Sigmoid函数"><a href="#Sigmoid函数" class="headerlink" title="Sigmoid函数"></a>Sigmoid函数</h2><p>我们所说的sigmoid函数是一类可以将数据样本分成0和1两类的函数，而我们比较常说的sigmoid函数如果不加说明，就是标准logistic函数：</p>
+<script type="math/tex; mode=display">
+y = \frac{1}{1 + e^{-z}}</script><p>这个时候我们拟合的就是一个复合函数，而图像就是一个logistic函数的图像，我们还是可以通过分别求出w和b的偏导得到梯度下降的向量来进行梯度下降</p>
+<h1 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h1><blockquote>
+<p>在这之前，我们都是用一个神经元，也就是一个函数来完成预测。如果一个需要拟合的函数不再单调，这时候就需要引入更多的神经元，也就是<strong>形成了神经网络</strong>。</p>
+</blockquote>
+<h2 id="隐藏层"><a href="#隐藏层" class="headerlink" title="隐藏层"></a>隐藏层</h2><p>那些新添加的神经元节点就是隐藏层，每一个隐藏层不只有一个神经元，而通常是多个。这些隐藏层多个叠加到一起形成深度神经网络</p>
+<p><strong>用线性函数组合，用激活函数输出，用代价函数评估，用梯度下降优化</strong></p>
+<h1 id="输入和输出通道"><a href="#输入和输出通道" class="headerlink" title="输入和输出通道"></a>输入和输出通道</h1><blockquote>
+<p>在图像的卷积操作上，基本上数据都是三维的($x_1<em>x_2</em>3$)，比如rgb图片，所以我们就有了输入和输出通道</p>
+</blockquote>
+<p><strong>首先需要理解的一点是：<u>卷积核也可以是多维度的</u></strong></p>
+<p>比如一个$6<em>6</em>3$的输入数据矩阵，我们就需要一个3维的卷积核，比方说取一个$3<em>3</em>3$的卷积核，卷完之后会得到一个$6<em>6</em>1$的矩阵（每次卷的时候会将三层上的所有数据相加)</p>
+<p><em>那么如果想要保持3维数据的特征，就必须要再加上2个卷积核进行卷积</em></p>
+<p>这样想下来，input_channel就是输入数据的通道数（第三维的数值），而output_channel则是当前</p>
+<h1 id="pytorch使用要点"><a href="#pytorch使用要点" class="headerlink" title="pytorch使用要点"></a>pytorch使用要点</h1><h2 id="卷积需要记住的公式"><a href="#卷积需要记住的公式" class="headerlink" title="卷积需要记住的公式"></a>卷积需要记住的公式</h2><p>首先是卷积模型必备函数</p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">nn<span class="token punctuation">.</span>Conv2d<span class="token punctuation">(</span>input_channel<span class="token punctuation">,</span> ouput_channel<span class="token punctuation">,</span> kernel_size<span class="token punctuation">,</span> stride<span class="token punctuation">,</span> padding<span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token comment"># 通常之后会加上一个激活函数ReLU</span>
+nn<span class="token punctuation">.</span>ReLU<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<p><em>以下都是以stride为1作为默认(默认每次移动一格)</em></p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">input_size - kernel_size + 1 + 2*padding &#x3D; ouput_size<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>如果有输入大小和输出大小相等的情况：</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">padding &#x3D; (kernel_size - 1) &#x2F; 2<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>这部分解释了为什么卷积核需要用3，5这样的奇数</p>
 
             </div>
             <hr>
@@ -388,7 +352,7 @@ elementDom<span class="token punctuation">.</span>value <span class="token opera
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+                      <a class="hover-with-bg" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
                     
                   </div>
                 
@@ -396,7 +360,7 @@ elementDom<span class="token punctuation">.</span>value <span class="token opera
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/js/">js</a>
+                      <a class="hover-with-bg" href="/tags/python/">python</a>
                     
                   </div>
                 
@@ -413,18 +377,12 @@ elementDom<span class="token punctuation">.</span>value <span class="token opera
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/05/12/%E7%99%BD%E8%AF%9D%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">白话机器学习</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/04/08/Echarts%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/">
-                        <span class="hidden-mobile">Echarts使用记录</span>
+                      <a href="/2022/04/08/JS%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E7%82%B9/">
+                        <span class="hidden-mobile">JS使用注意点</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
