@@ -16,20 +16,23 @@
   <meta name="description" content="">
   <meta name="author" content="Rogers Kelamen">
   <meta name="keywords" content="blog">
-  <meta name="description" content="代价函数(Cost Function) e &#x3D; \frac{1}{m} \sum_{i&#x3D;0}^{m} ({x_i}^2 * w^2 + (-2x_iy_i) + {y_i}^2)这里的$e$是均方误差，作为因变量，$w$是原线性神经网络的参数，作为自变量(因为又是用方差作为代价函数的指标，所以又称为方差代价函数) 我们要求的就是$e$最小，也就是误差最小的时候。这个时候的$w$取值，就是拟合程度最">
+  <meta name="description" content="格外怪异的VimL 本文主要讲解VimL(Vim Language)，即vim脚本语言语法的怪异之处(即使是相较于其他脚本语言也很怪异)  Key Word 主要分为这样9类(像shell脚本一样，如果想要输出某变量则使用echo)   let call (unlet)  if for while function try (endif, endfor, end…)  break continue">
 <meta property="og:type" content="article">
-<meta property="og:title" content="白话机器学习">
-<meta property="og:url" content="https://rokelamen.top/2022/05/12/%E7%99%BD%E8%AF%9D%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:title" content="格外怪异的VimL语法">
+<meta property="og:url" content="https://rokelamen.top/2022/06/09/%E6%A0%BC%E5%A4%96%E6%80%AA%E5%BC%82%E7%9A%84VimL%E8%AF%AD%E6%B3%95/index.html">
 <meta property="og:site_name" content="RO&#39;s Blog">
-<meta property="og:description" content="代价函数(Cost Function) e &#x3D; \frac{1}{m} \sum_{i&#x3D;0}^{m} ({x_i}^2 * w^2 + (-2x_iy_i) + {y_i}^2)这里的$e$是均方误差，作为因变量，$w$是原线性神经网络的参数，作为自变量(因为又是用方差作为代价函数的指标，所以又称为方差代价函数) 我们要求的就是$e$最小，也就是误差最小的时候。这个时候的$w$取值，就是拟合程度最">
+<meta property="og:description" content="格外怪异的VimL 本文主要讲解VimL(Vim Language)，即vim脚本语言语法的怪异之处(即使是相较于其他脚本语言也很怪异)  Key Word 主要分为这样9类(像shell脚本一样，如果想要输出某变量则使用echo)   let call (unlet)  if for while function try (endif, endfor, end…)  break continue">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-05-12T08:49:30.000Z">
-<meta property="article:modified_time" content="2022-05-12T09:04:58.719Z">
+<meta property="og:image" content="https://s2.loli.net/2022/06/09/tMCWasZdvEVRFDj.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/09/dqgJ8hNcC6pBP5H.png">
+<meta property="article:published_time" content="2022-06-09T06:23:01.000Z">
+<meta property="article:modified_time" content="2022-06-09T06:29:07.253Z">
 <meta property="article:author" content="Rogers Kelamen">
-<meta property="article:tag" content="python">
+<meta property="article:tag" content="geek">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s2.loli.net/2022/06/09/tMCWasZdvEVRFDj.png">
   
-  <title>白话机器学习| RO&#39;s Blog</title>
+  <title>格外怪异的VimL语法| RO&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -192,12 +195,12 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('https://s2.loli.net/2022/05/12/PWwFiS71CvguKTc.png') no-repeat center center;
+         style="background: url('https://s2.loli.net/2022/03/26/DZpUEW8izknQALM.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="白话机器学习">
+            <span class="h2" id="subtitle" title="格外怪异的VimL语法">
               
             </span>
 
@@ -212,8 +215,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-05-12 16:49" pubdate>
-        2022年5月12日 下午
+      <time datetime="2022-06-09 14:23" pubdate>
+        2022年6月9日 下午
       </time>
     </span>
   
@@ -223,7 +226,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.9k 字
+      1.1k 字
     </span>
   
 
@@ -232,7 +235,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6 分钟
+      3 分钟
     </span>
   
 
@@ -269,80 +272,81 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">白话机器学习</h1>
+            <h1 style="display: none">格外怪异的VimL语法</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年5月12日 下午
+                  本文最后更新于：2022年6月9日 下午
                 
               </p>
             
             <div class="markdown-body">
-              <h1 id="代价函数-Cost-Function"><a href="#代价函数-Cost-Function" class="headerlink" title="代价函数(Cost Function)"></a>代价函数(Cost Function)</h1><script type="math/tex; mode=display">
-e = \frac{1}{m} \sum_{i=0}^{m} ({x_i}^2 * w^2 + (-2x_iy_i) + {y_i}^2)</script><p>这里的$e$是均方误差，作为因变量，$w$是原线性神经网络的参数，作为自变量(因为又是用方差作为代价函数的指标，所以又称为方差代价函数)</p>
-<p><strong>我们要求的就是$e$最小，也就是误差最小的时候。这个时候的$w$取值，就是拟合程度最好的时候，我们就求出来了$w$最优参数值</strong></p>
-<p><em>因为上面是所有数据的误差，这里还是给出单个数据样本的预测误差计算:</em></p>
-<script type="math/tex; mode=display">
-e_0 = {x_0}^2 w^2 + (-2x_0y_0)w + {y_0}^2</script><p>这个时候如果我们想要求最低点，即最优解的时候，可以直接将所有数据一次性带入公式求出</p>
-<p>因为代价函数说到底还是一个一元二次函数，所以有:</p>
-<script type="math/tex; mode=display">
-optimum = -\frac{b}{2a}</script><p><em>根据上面的代价公式再次变形可以得到：</em></p>
-<script type="math/tex; mode=display">
-w_{optimum} = \frac{\sum\limits_{i=0}^{m}(x_iy_i)}{\sum\limits_{i=0}^{m}{x_i}^2}</script><p><u>这种方式是采用一次性将所有数据带入求解，即普通的正规方程求解</u></p>
-<h1 id="梯度下降-Gradient-Descent"><a href="#梯度下降-Gradient-Descent" class="headerlink" title="梯度下降(Gradient Descent)"></a>梯度下降(Gradient Descent)</h1><blockquote>
-<p>但是在大部分情况下，我们没有这么充裕的计算量来计算上千万的数据量，所以有梯度下降的思路</p>
+              <h1 id="格外怪异的VimL"><a href="#格外怪异的VimL" class="headerlink" title="格外怪异的VimL"></a>格外怪异的VimL</h1><blockquote>
+<p>本文主要讲解VimL(Vim Language)，即vim脚本语言语法的怪异之处(<em>即使是相较于其他脚本语言也很怪异</em>)</p>
 </blockquote>
-<p>整体思路就是，我们每次慢慢地调整$w$，直到其达到最优解</p>
-<p><em>方式是：计算出当前$w$取值的斜率$k$，然后让$w=w - \alpha k$</em></p>
+<h2 id="Key-Word"><a href="#Key-Word" class="headerlink" title="Key Word"></a>Key Word</h2><blockquote>
+<p>主要分为这样9类(像shell脚本一样，如果想要输出某变量则使用<code>echo</code>)</p>
+</blockquote>
 <ol>
-<li><p>斜率k可以通过求导得出</p>
+<li><p>let call (unlet)</p>
 </li>
-<li><p>$\alpha$用来调整下降过程</p>
+<li><p>if for while function try (endif, endfor, end…)</p>
 </li>
-<li><p>在最优解左边k小于零，在最优解右边k大于零，所以可以逐渐逼近最优解</p>
+<li><p>break continue return finish</p>
+</li>
+<li><p>echo echomsg echoerr</p>
+</li>
+<li><p>execute normal source</p>
+</li>
+<li><p>set map command</p>
+</li>
+<li><p>augroup autocmd</p>
+</li>
+<li><p>wincmd tabnext</p>
+</li>
+<li><p>其他着重于编辑功能的命令</p>
 </li>
 </ol>
-<p><em>这里给出线性神经网络函数的斜率公式，加深理解:</em></p>
-<script type="math/tex; mode=display">
-k = (2x^2)w + (-2xy)</script><h2 id="批量梯度下降"><a href="#批量梯度下降" class="headerlink" title="批量梯度下降"></a>批量梯度下降</h2><blockquote>
-<p>将所有的数据拟合成一个函数求斜率$k$，然后逐渐误差下降求得最优解</p>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p>在VimL中有几种不同的变量:</p>
+<ol>
+<li><p>以<code>g:</code>, <code>l:</code>, <code>s:</code>等前缀开头的vim脚本变量</p>
+<p>需要注意的是<code>v:</code>是VimL中内置的变量，一般不要修改</p>
+</li>
+<li><p>以<code>$</code>开头的环境变量</p>
+<p>如<code>$HOME</code>, <code>$MYVIMRC</code></p>
+</li>
+<li><p>以<code>&amp;</code>开头的选项值变量</p>
+<p>如<code>&amp;filetype</code>, <code>&amp;number</code></p>
+</li>
+</ol>
+<h3 id="变量类型"><a href="#变量类型" class="headerlink" title="变量类型"></a>变量类型</h3><blockquote>
+<p>身为脚本语言，其变量类型还是类似于python那几种</p>
 </blockquote>
-<p>在计算量上，没有比正规方程一次性求解降低多少，所以一般不考虑而采用下面这一种</p>
-<h2 id="随机梯度下降"><a href="#随机梯度下降" class="headerlink" title="随机梯度下降"></a>随机梯度下降</h2><blockquote>
-<p>每次根据一个数据来求出一个斜率，然后逐渐下降得到最优解</p>
-</blockquote>
-<p>震荡实在太大，最后还不知道离全局最优解有多远</p>
-<h2 id="迷你批量梯度下降"><a href="#迷你批量梯度下降" class="headerlink" title="迷你批量梯度下降"></a>迷你批量梯度下降</h2><blockquote>
-<p>结合结合以上两种梯度下降方式，每次取一批（上百个）数据来求出一个斜率，慢慢下降得到最优解</p>
-</blockquote>
-<p>较为折中的方式，中和了两种的优点</p>
-<h1 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h1><blockquote>
-<p>比较符合我们常识的是在脑中声建立一种思维，用来判断一个东西是否属于一个类别，而不是通过数学建模的方式在脑中得到一个函数。<strong>于是我们有了激活函数来进行分类</strong></p>
-</blockquote>
-<h2 id="Sigmoid函数"><a href="#Sigmoid函数" class="headerlink" title="Sigmoid函数"></a>Sigmoid函数</h2><p>我们所说的sigmoid函数是一类可以将数据样本分成0和1两类的函数，而我们比较常说的sigmoid函数如果不加说明，就是标准logistic函数：</p>
-<script type="math/tex; mode=display">
-y = \frac{1}{1 + e^{-z}}</script><p>这个时候我们拟合的就是一个复合函数，而图像就是一个logistic函数的图像，我们还是可以通过分别求出w和b的偏导得到梯度下降的向量来进行梯度下降</p>
-<h1 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h1><blockquote>
-<p>在这之前，我们都是用一个神经元，也就是一个函数来完成预测。如果一个需要拟合的函数不再单调，这时候就需要引入更多的神经元，也就是<strong>形成了神经网络</strong>。</p>
-</blockquote>
-<h2 id="隐藏层"><a href="#隐藏层" class="headerlink" title="隐藏层"></a>隐藏层</h2><p>那些新添加的神经元节点就是隐藏层，每一个隐藏层不只有一个神经元，而通常是多个。这些隐藏层多个叠加到一起形成深度神经网络</p>
-<p><strong>用线性函数组合，用激活函数输出，用代价函数评估，用梯度下降优化</strong></p>
-<h1 id="输入和输出通道"><a href="#输入和输出通道" class="headerlink" title="输入和输出通道"></a>输入和输出通道</h1><blockquote>
-<p>在图像的卷积操作上，基本上数据都是三维的($x_1<em>x_2</em>3$)，比如rgb图片，所以我们就有了输入和输出通道</p>
-</blockquote>
-<p><strong>首先需要理解的一点是：<u>卷积核也可以是多维度的</u></strong></p>
-<p>比如一个$6<em>6</em>3$的输入数据矩阵，我们就需要一个3维的卷积核，比方说取一个$3<em>3</em>3$的卷积核，卷完之后会得到一个$6<em>6</em>1$的矩阵（每次卷的时候会将三层上的所有数据相加)</p>
-<p><em>那么如果想要保持3维数据的特征，就必须要再加上2个卷积核进行卷积</em></p>
-<p>这样想下来，input_channel就是输入数据的通道数（第三维的数值），而output_channel则是当前</p>
-<h1 id="pytorch使用要点"><a href="#pytorch使用要点" class="headerlink" title="pytorch使用要点"></a>pytorch使用要点</h1><h2 id="卷积需要记住的公式"><a href="#卷积需要记住的公式" class="headerlink" title="卷积需要记住的公式"></a>卷积需要记住的公式</h2><p>首先是卷积模型必备函数</p>
-<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">nn<span class="token punctuation">.</span>Conv2d<span class="token punctuation">(</span>input_channel<span class="token punctuation">,</span> ouput_channel<span class="token punctuation">,</span> kernel_size<span class="token punctuation">,</span> stride<span class="token punctuation">,</span> padding<span class="token punctuation">)</span><span class="token punctuation">,</span>
-<span class="token comment"># 通常之后会加上一个激活函数ReLU</span>
-nn<span class="token punctuation">.</span>ReLU<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
-<p><em>以下都是以stride为1作为默认(默认每次移动一格)</em></p>
-<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">input_size - kernel_size + 1 + 2*padding &#x3D; ouput_size<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
-<p>如果有输入大小和输出大小相等的情况：</p>
-<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">padding &#x3D; (kernel_size - 1) &#x2F; 2<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
-<p>这部分解释了为什么卷积核需要用3，5这样的奇数</p>
+<p><img src="https://s2.loli.net/2022/06/09/tMCWasZdvEVRFDj.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>最为常用的还是<code>number</code>, <code>string</code>, <code>list</code>, <code>dict</code></p>
+<h3 id="字符串连接"><a href="#字符串连接" class="headerlink" title="字符串连接"></a>字符串连接</h3><p>所有脚本字符串连接都是<code>+</code>，而VimL是<code>.</code></p>
+<h3 id="前缀变量解释"><a href="#前缀变量解释" class="headerlink" title="前缀变量解释"></a>前缀变量解释</h3><p>实际上VimL对前缀变量的存储方式是每一个不同作用域的变量存储在一个同一个字典dict中</p>
+<p>如<code>g:</code>就是一个字典</p>
+<p><img src="https://s2.loli.net/2022/06/09/dqgJ8hNcC6pBP5H.png" srcset="/img/loading.gif" lazyload alt="let g:a = 1之后查看g:"></p>
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>首先使用<code>&quot;</code>是作为行注释没有问题，但是我们要是写注释最好就使用<code>|&quot;</code></p>
+<p>原因: <strong>VimL中，每一行就是一条ex执行语句，那么注释最好就是在一条ex执行语句中，也就是单独成行。如果需要在执行语句之后写注释，那么最好就加上<code>|</code>用来分别语句</strong></p>
+<p>简答结论：<u>行尾注释使用<code>|&quot;</code></u></p>
+<h2 id="多行执行单行语句"><a href="#多行执行单行语句" class="headerlink" title="多行执行单行语句"></a>多行执行单行语句</h2><p>普通的脚本语言都是在当前行尾使用<code>\</code>对换行进行转义，但是VimL都是一行一行执行语句，没有换行符的概念，所以多行执行就需要在下一行行首加上<code>/</code>进行说明，连接上一行语句</p>
+<h2 id="比较运算符"><a href="#比较运算符" class="headerlink" title="比较运算符"></a>比较运算符</h2><p>在字符串的比较过程中，我们一般采用<code>==</code>和<code>!=</code>来对两边字符串是否相等进行比较。</p>
+<p>但是如果用户有自定义设置<code>set ignorecase</code>这种大小写敏感的话，我们就需要注意进一步使用比较运算符：</p>
+<ol>
+<li><p><code>==#</code>: 不管用户配置，始终以大小写敏感来比较</p>
+</li>
+<li><p><code>==?</code>: 不管用户配置，始终以大小写不敏感来比较</p>
+</li>
+</ol>
+<p>简单总结：<u>使用<code>==#</code>或者<code>!=#</code>进行字符串的比较</u></p>
+<h2 id="函数Function"><a href="#函数Function" class="headerlink" title="函数Function"></a>函数Function</h2><h3 id="覆盖同名函数"><a href="#覆盖同名函数" class="headerlink" title="覆盖同名函数"></a>覆盖同名函数</h3><p>注意使用<code>!</code>来覆盖之前可能出现同名的函数，如：</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token keyword">function</span><span class="token operator">!</span> <span class="token function">Sum</span><span class="token punctuation">(</span><span class="token keyword">x</span><span class="token punctuation">,</span> <span class="token keyword">y</span><span class="token punctuation">)</span>
+  <span class="token keyword">return</span> a<span class="token punctuation">:</span><span class="token keyword">x</span> <span class="token operator">+</span> a<span class="token punctuation">:</span><span class="token keyword">y</span>
+<span class="token keyword">endfunction</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<h3 id="函数命名规范"><a href="#函数命名规范" class="headerlink" title="函数命名规范"></a>函数命名规范</h3><p>如果要声明一个新的函数，一定要用首字母大写来命名函数</p>
+<p><u>因为Vim内置的函数全部都是用小写命名函数，所以使用首字母大写以示区分</u></p>
 
             </div>
             <hr>
@@ -352,7 +356,7 @@ nn<span class="token punctuation">.</span>ReLU<span class="token punctuation">(<
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
+                      <a class="hover-with-bg" href="/categories/Vim/">Vim</a>
                     
                   </div>
                 
@@ -360,7 +364,7 @@ nn<span class="token punctuation">.</span>ReLU<span class="token punctuation">(<
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/python/">python</a>
+                      <a class="hover-with-bg" href="/tags/geek/">geek</a>
                     
                   </div>
                 
@@ -377,18 +381,12 @@ nn<span class="token punctuation">.</span>ReLU<span class="token punctuation">(<
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/09/%E6%A0%BC%E5%A4%96%E6%80%AA%E5%BC%82%E7%9A%84VimL%E8%AF%AD%E6%B3%95/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">格外怪异的VimL语法</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/04/08/JS%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E7%82%B9/">
-                        <span class="hidden-mobile">JS使用注意点</span>
+                      <a href="/2022/05/12/%E7%99%BD%E8%AF%9D%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+                        <span class="hidden-mobile">白话机器学习</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -633,48 +631,6 @@ nn<span class="token punctuation">.</span>ReLU<span class="token punctuation">(<
 
 
 
-
-  
-
-  
-    <!-- MathJax -->
-    <script>
-      MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']]
-        },
-        loader: {
-          load: ['ui/lazy']
-        },
-        options: {
-          renderActions: {
-            findScript: [10, doc => {
-              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-                const display = !!node.type.match(/; *mode=display/);
-                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-                const text = document.createTextNode('');
-                node.parentNode.replaceChild(text, node);
-                math.start = { node: text, delim: '', n: 0 };
-                math.end = { node: text, delim: '', n: 0 };
-                doc.math.push(math);
-              });
-            }, '', false],
-            insertedScript: [200, () => {
-              document.querySelectorAll('mjx-container').forEach(node => {
-                let target = node.parentNode;
-                if (target.nodeName.toLowerCase() === 'li') {
-                  target.parentNode.classList.add('has-jax');
-                }
-              });
-            }, '', false]
-          }
-        }
-      };
-    </script>
-
-    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
-
-  
 
 
 
