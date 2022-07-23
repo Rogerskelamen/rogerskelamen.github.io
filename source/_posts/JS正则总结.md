@@ -37,17 +37,19 @@ multiline : 多行匹配
 
 2. `str.match(reg)`: 有多少个匹配成功的字符串并显示(字符串上的方法)
 
-3. `reg.source`: 正则的内容
+3. `reg.search(str)`: 返回匹配到的第一个字符的位置
 
-4. `reg.exec(str)`: 返回匹配到的第n个字符串
+4. `reg.source`: 正则的内容
 
-5. `reg.lastIndex`: 第n个匹配字符串的索引
+5. `reg.exec(str)`: 返回匹配到的第n个字符串
+
+6. `reg.lastIndex`: 第n个匹配字符串的索引
 
   <u>注意：4, 5的函数都是基于global匹配的，因为只有可以匹配多个才能有第几个匹配</u>
 
-6. `str.split(reg)`: 很多时候我们都是用字符串来分隔字符的，但是我们也可以用正则
+7. `str.split(reg)`: 很多时候我们都是用字符串来分隔字符的，但是我们也可以用正则
 
-7. `str.replace(reg, char)`
+8. `str.replace(reg, char)`
 
   这个js原生的replace是只能匹配第一个字符，也就是replaceFirstIndex
 
