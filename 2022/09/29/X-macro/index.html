@@ -16,20 +16,20 @@
   <meta name="description" content="">
   <meta name="author" content="Rogers Kelamen">
   <meta name="keywords" content="blog">
-  <meta name="description" content="深入理解汇编 汇编对于软工人来说已不在陌生，但是如果仅限于将汇编理解成一种更底层的编程语言未免太过肤浅。很多时候，我们需要探究计算机底层的机制，比如操作系统和计算机架构这类比较深层的东西时，我们总觉得自己的汇编还是不够看。我们似乎将汇编脱离出了计算机底层，而汇编（assembly）本就是底层知识树的纷繁分枝之一。所以，对于汇编，我们有必要再深入了解一下，补充一些我们可能会遗漏的东西🧐  0. 写">
+  <meta name="description" content="X-macro 首先需要明确的是，X-macro是一种可以让我们的C语言编写更加便捷高效的编程技巧，它由宏的语法演化出来。而并不是一种编程语法  1. 使用宏的函数在我们学习C语言语法时，我们接触到宏无非就是进行变量定义，如： #define macro value 除此之外宏还可以定义简单的函数： #define macro(X) X_process 2. 使用换行我们知道，宏本质来说就是简单的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="深入理解汇编">
-<meta property="og:url" content="https://rokelamen.top/2022/07/21/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E6%B1%87%E7%BC%96/index.html">
+<meta property="og:title" content="X-macro">
+<meta property="og:url" content="https://rokelamen.top/2022/09/29/X-macro/index.html">
 <meta property="og:site_name" content="RO&#39;s Blog">
-<meta property="og:description" content="深入理解汇编 汇编对于软工人来说已不在陌生，但是如果仅限于将汇编理解成一种更底层的编程语言未免太过肤浅。很多时候，我们需要探究计算机底层的机制，比如操作系统和计算机架构这类比较深层的东西时，我们总觉得自己的汇编还是不够看。我们似乎将汇编脱离出了计算机底层，而汇编（assembly）本就是底层知识树的纷繁分枝之一。所以，对于汇编，我们有必要再深入了解一下，补充一些我们可能会遗漏的东西🧐  0. 写">
+<meta property="og:description" content="X-macro 首先需要明确的是，X-macro是一种可以让我们的C语言编写更加便捷高效的编程技巧，它由宏的语法演化出来。而并不是一种编程语法  1. 使用宏的函数在我们学习C语言语法时，我们接触到宏无非就是进行变量定义，如： #define macro value 除此之外宏还可以定义简单的函数： #define macro(X) X_process 2. 使用换行我们知道，宏本质来说就是简单的">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-07-21T07:29:08.000Z">
-<meta property="article:modified_time" content="2022-07-22T09:12:00.000Z">
+<meta property="article:published_time" content="2022-09-29T06:55:13.000Z">
+<meta property="article:modified_time" content="2022-09-29T07:13:22.751Z">
 <meta property="article:author" content="Rogers Kelamen">
-<meta property="article:tag" content="masm">
+<meta property="article:tag" content="c">
 <meta name="twitter:card" content="summary_large_image">
   
-  <title>深入理解汇编| RO&#39;s Blog</title>
+  <title>X-macro| RO&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -192,12 +192,12 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('https://s2.loli.net/2022/07/21/Fw7mO3Qj9l6GRBd.png') no-repeat center center;
+         style="background: url('https://s2.loli.net/2022/09/29/VdahBKX4FZPMRQ8.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="深入理解汇编">
+            <span class="h2" id="subtitle" title="X-macro">
               
             </span>
 
@@ -212,8 +212,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-07-21 15:29" pubdate>
-        2022年7月21日 下午
+      <time datetime="2022-09-29 14:55" pubdate>
+        2022年9月29日 下午
       </time>
     </span>
   
@@ -223,7 +223,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.5k 字
+      466 字
     </span>
   
 
@@ -232,7 +232,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5 分钟
+      1 分钟
     </span>
   
 
@@ -269,58 +269,39 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">深入理解汇编</h1>
+            <h1 style="display: none">X-macro</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年7月22日 下午
+                  本文最后更新于：2022年9月29日 下午
                 
               </p>
             
             <div class="markdown-body">
-              <h1 id="深入理解汇编"><a href="#深入理解汇编" class="headerlink" title="深入理解汇编"></a>深入理解汇编</h1><blockquote>
-<p>汇编对于软工人来说已不在陌生，但是如果仅限于将汇编理解成一种更底层的编程语言未免太过肤浅。很多时候，我们需要探究计算机底层的机制，比如操作系统和计算机架构这类比较深层的东西时，我们总觉得自己的汇编还是不够看。我们似乎将汇编脱离出了计算机底层，而汇编（assembly）本就是底层知识树的纷繁分枝之一。所以，对于汇编，我们有必要再深入了解一下，补充一些我们可能会遗漏的东西🧐</p>
+              <h1 id="X-macro"><a href="#X-macro" class="headerlink" title="X-macro"></a>X-macro</h1><blockquote>
+<p>首先需要明确的是，X-macro是一种可以让我们的C语言编写更加便捷高效的编程技巧，它由宏的语法演化出来。<u>而并不是一种编程语法</u></p>
 </blockquote>
-<h2 id="0-写在前头"><a href="#0-写在前头" class="headerlink" title="0. 写在前头"></a>0. 写在前头</h2><ol>
-<li><p><strong>本文的汇编基于intel的处理器</strong>，简单来说就是默认采用x86架构的处理器运行汇编（ARM架构的处理器就别想了，对，说的就是你Apple Silicon！）</p>
+<h2 id="1-使用宏的函数"><a href="#1-使用宏的函数" class="headerlink" title="1. 使用宏的函数"></a>1. 使用宏的函数</h2><p>在我们学习C语言语法时，我们接触到宏无非就是进行变量定义，如：</p>
+<div class="code-wrapper"><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">macro</span> <span class="token expression">value</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>除此之外宏还可以定义简单的函数：</p>
+<div class="code-wrapper"><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name function">macro</span><span class="token expression"><span class="token punctuation">(</span>X<span class="token punctuation">)</span> X_process</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h2 id="2-使用换行"><a href="#2-使用换行" class="headerlink" title="2. 使用换行"></a>2. 使用换行</h2><p>我们知道，宏本质来说就是简单的字符串替换，我们的宏定义是一行行的，如果我们想要换行，接着上次的定义写，就需要这样：</p>
+<div class="code-wrapper"><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">macro</span> <span class="token expression">process1 </span><span class="token punctuation">\</span>
+              <span class="token expression">process2</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<p><u>定义行尾加上<code>\</code>即可</u></p>
+<h2 id="3-使用原字符和字符拼接"><a href="#3-使用原字符和字符拼接" class="headerlink" title="3. 使用原字符和字符拼接"></a>3. 使用原字符和字符拼接</h2><blockquote>
+<p>在函数形式的宏定义中，我们的参数在运行中被转化成了实参，不再是简单的字符串替换了。如果我们需要的就是这个字符而不是参数怎么办呢？</p>
+</blockquote>
+<ol>
+<li><p>使用<code>#</code>代表原字符</p>
+<div class="code-wrapper"><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name function">macro</span><span class="token expression"><span class="token punctuation">(</span>X<span class="token punctuation">)</span> <span class="token function">printf</span><span class="token punctuation">(</span>#X </span><span class="token string">" = %d "</span><span class="token expression"><span class="token punctuation">,</span> X<span class="token punctuation">)</span><span class="token punctuation">;</span></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>这个函数将运行<code>printf(&quot;X = %d &quot;, X);</code></p>
 </li>
-<li><p><strong>本文全篇使用AT&amp;T风格的assembly</strong>，当然，大多数人在学校课程中接触到的汇编基本上是Intel风格的assembly（毕竟是<a target="_blank" rel="noopener" href="https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html">intel官方手册</a>的风格）。</p>
-<p>如果你想了解两种风格的主要区别，可以看一下这篇知乎文章——<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/527208939">AT&amp;T 和 Intel 风格的区别</a></p>
-</li>
-<li><p><strong>本文使用C语言作为汇编前置高级语言，gcc作为编译器</strong>。因为C语言其较为偏底层的特性，用来配合assembly很好用，而gcc编译器本身就是支持AT&amp;T风格的鼻祖</p>
+<li><p>使用<code>##</code>进行字符拼接</p>
+<div class="code-wrapper"><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name function">macro</span><span class="token expression"><span class="token punctuation">(</span>X<span class="token punctuation">)</span> <span class="token keyword">int</span> X<span class="token punctuation">,</span> X</span><span class="token punctuation">##</span><span class="token expression"><span class="token number">1</span><span class="token punctuation">;</span></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>这里就是声明定义了<code>X</code>和<code>X1</code></p>
 </li>
 </ol>
-<blockquote>
-<p>一句话总结：<u>本文环境为x86处理器和Unix-like操作系统</u></p>
-</blockquote>
-<h2 id="1-mov和lea的区别？"><a href="#1-mov和lea的区别？" class="headerlink" title="1. mov和lea的区别？"></a>1. mov和lea的区别？</h2><blockquote>
-<p>小白开始学习assembly的时候总是觉得mov和lea不是差不多的嘛，两种指令的使用场景到底有什么不同？我现在才解决了这个困惑。</p>
-</blockquote>
-<p>首先两种指令的格式：</p>
-<div class="code-wrapper"><pre class="line-numbers language-assembly" data-language="assembly"><code class="language-assembly">mov S, D
-lea S, D<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
-<p>乍一看确实没有区别，都是将源地址数据传入到目的地址。</p>
-<p>一般的mov用法：</p>
-<div class="code-wrapper"><pre class="line-numbers language-assembly" data-language="assembly"><code class="language-assembly">movq $1, %rax
-movq %rax, 8(%rsp)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
-<p>一般的lea用法：</p>
-<div class="code-wrapper"><pre class="line-numbers language-assembly" data-language="assembly"><code class="language-assembly">leaq (%rdi,%rsi,4), %rax
-leaq 7(%rdx,%rdx,4), %rax<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
-<p>x86有一个限制——<strong>传送指令的两个操作数不能都指向内存位置</strong>。所以mov不会出现第一个操作数是一个地址，只会是立即数或者是寄存器值。<u>lea确实按照这个规矩来了，但是它是将地址当作数来传入</u></p>
-<p>有点绕，我们看看lea的定义，load effective address，形式是从内存读取数据到寄存器，<strong><em>但该指令并不是从指定的位置读入数据，而是将有效地址写入到目的操作数</em></strong>。</p>
-<p><u>也就是说<code>(%rdi,%rsi,4)</code>在lea这里并不是内存地址中存入的一个数据，而就是这个内存地址！</u></p>
-<p>所以我们明白了：</p>
-<p><strong>在mov中，寻址操作只要涉及到内存的就是需要找到内存地址中的那个值，但是lea，只需要计算出内存地址就行，<u>地址即为值</u></strong></p>
-<h2 id="2-浅谈大小端"><a href="#2-浅谈大小端" class="headerlink" title="2. 浅谈大小端"></a>2. 浅谈大小端</h2><blockquote>
-<p>就像粽子的咸甜之争一样，在计算机的数据内存存储格式这个问题也有使用“大端”还是“小端”的争议。我先在此声明，本人是小端派的😜</p>
-</blockquote>
-<p><em>那么啥是大端，啥是小端？</em></p>
-<p>简单来说一个数，如0x1234，想要在内存中存储下来，就得划分片区，到底是12在低地址区域，34在高地址区域（这就是大端），还是34在低地址区域，12在高地址区域（这就是小端）</p>
-<p>比如（0x101）=12，（0x102）=34，这就是大端，反之是小端</p>
-<p><em>那么为啥我更推崇小端？</em></p>
-<p><strong>因为小端更符合计算的哲学</strong>。如果要分个类的话，我认为大端更适合读数，即语言的习惯。因为我们的语言是先读高位数字，再读低位数字，比如一百一十一；而小端更适合计算，因为计算的时候都是从低位数字开始，然后依次向高位进位计算。我们的数据是给机器计算的，不是给人类来读的，所以从低位开始存入低地址（也就是小端）更符合计算机的哲学。</p>
-<p><u>那么有人想过为啥读数是从高位开始的？</u></p>
-<p>我觉得那是因为人的语言重点在于信息的获取效率，数字对于人的重要信息就是这个数的数量级，可以快速得到这个数的概念。</p>
 
             </div>
             <hr>
@@ -338,7 +319,7 @@ leaq 7(%rdx,%rdx,4), %rax<span aria-hidden="true" class="line-numbers-rows"><spa
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/masm/">masm</a>
+                      <a class="hover-with-bg" href="/tags/c/">c</a>
                     
                   </div>
                 
@@ -355,18 +336,12 @@ leaq 7(%rdx,%rdx,4), %rax<span aria-hidden="true" class="line-numbers-rows"><spa
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/09/29/X-macro/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">X-macro</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/06/09/%E6%A0%BC%E5%A4%96%E6%80%AA%E5%BC%82%E7%9A%84VimL%E8%AF%AD%E6%B3%95/">
-                        <span class="hidden-mobile">格外怪异的VimL语法</span>
+                      <a href="/2022/07/21/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E6%B1%87%E7%BC%96/">
+                        <span class="hidden-mobile">深入理解汇编</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

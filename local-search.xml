@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>X-macro</title>
+    <link href="/2022/09/29/X-macro/"/>
+    <url>/2022/09/29/X-macro/</url>
+    
+    <content type="html"><![CDATA[<h1 id="X-macro"><a href="#X-macro" class="headerlink" title="X-macro"></a>X-macro</h1><blockquote><p>首先需要明确的是，X-macro是一种可以让我们的C语言编写更加便捷高效的编程技巧，它由宏的语法演化出来。<u>而并不是一种编程语法</u></p></blockquote><h2 id="1-使用宏的函数"><a href="#1-使用宏的函数" class="headerlink" title="1. 使用宏的函数"></a>1. 使用宏的函数</h2><p>在我们学习C语言语法时，我们接触到宏无非就是进行变量定义，如：</p><div class="code-wrapper"><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">macro</span> <span class="token expression">value</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div><p>除此之外宏还可以定义简单的函数：</p><div class="code-wrapper"><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name function">macro</span><span class="token expression"><span class="token punctuation">(</span>X<span class="token punctuation">)</span> X_process</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div><h2 id="2-使用换行"><a href="#2-使用换行" class="headerlink" title="2. 使用换行"></a>2. 使用换行</h2><p>我们知道，宏本质来说就是简单的字符串替换，我们的宏定义是一行行的，如果我们想要换行，接着上次的定义写，就需要这样：</p><div class="code-wrapper"><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">macro</span> <span class="token expression">process1 </span><span class="token punctuation">\</span>              <span class="token expression">process2</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div><p><u>定义行尾加上<code>\</code>即可</u></p><h2 id="3-使用原字符和字符拼接"><a href="#3-使用原字符和字符拼接" class="headerlink" title="3. 使用原字符和字符拼接"></a>3. 使用原字符和字符拼接</h2><blockquote><p>在函数形式的宏定义中，我们的参数在运行中被转化成了实参，不再是简单的字符串替换了。如果我们需要的就是这个字符而不是参数怎么办呢？</p></blockquote><ol><li><p>使用<code>#</code>代表原字符</p><div class="code-wrapper"><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name function">macro</span><span class="token expression"><span class="token punctuation">(</span>X<span class="token punctuation">)</span> <span class="token function">printf</span><span class="token punctuation">(</span>#X </span><span class="token string">" = %d "</span><span class="token expression"><span class="token punctuation">,</span> X<span class="token punctuation">)</span><span class="token punctuation">;</span></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div><p>这个函数将运行<code>printf(&quot;X = %d &quot;, X);</code></p></li><li><p>使用<code>##</code>进行字符拼接</p><div class="code-wrapper"><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name function">macro</span><span class="token expression"><span class="token punctuation">(</span>X<span class="token punctuation">)</span> <span class="token keyword">int</span> X<span class="token punctuation">,</span> X</span><span class="token punctuation">##</span><span class="token expression"><span class="token number">1</span><span class="token punctuation">;</span></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div><p>这里就是声明定义了<code>X</code>和<code>X1</code></p></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>编程语言</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>c</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>深入理解汇编</title>
     <link href="/2022/07/21/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E6%B1%87%E7%BC%96/"/>
     <url>/2022/07/21/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E6%B1%87%E7%BC%96/</url>
@@ -1015,9 +1040,9 @@
     
     <tags>
       
-      <tag>MCM</tag>
-      
       <tag>aticle</tag>
+      
+      <tag>MCM</tag>
       
     </tags>
     
