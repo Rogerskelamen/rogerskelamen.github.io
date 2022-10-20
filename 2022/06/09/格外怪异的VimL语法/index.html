@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://s2.loli.net/2022/06/09/tMCWasZdvEVRFDj.png">
 <meta property="og:image" content="https://s2.loli.net/2022/06/09/dqgJ8hNcC6pBP5H.png">
 <meta property="article:published_time" content="2022-06-09T06:23:01.000Z">
-<meta property="article:modified_time" content="2022-10-19T03:55:00.000Z">
+<meta property="article:modified_time" content="2022-10-20T11:29:00.000Z">
 <meta property="article:author" content="Rogers Kelamen">
 <meta property="article:tag" content="geek">
 <meta name="twitter:card" content="summary_large_image">
@@ -226,7 +226,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.7k 字
+      2.1k 字
     </span>
   
 
@@ -235,7 +235,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5 分钟
+      7 分钟
     </span>
   
 
@@ -276,7 +276,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年10月19日 中午
+                  本文最后更新于：2022年10月20日 晚上
                 
               </p>
             
@@ -352,6 +352,29 @@
   <span class="token operator">.</span><span class="token operator">.</span><span class="token operator">.</span>
 <span class="token keyword">endfunction</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
 <p><em>如果我们不想函数向不可预估的后果上发展，最好就都加上<code>abort</code></em></p>
+<h2 id="自定义命令"><a href="#自定义命令" class="headerlink" title="自定义命令"></a>自定义命令</h2><p>使用<code>command</code>命令来自定义属于你的命令</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim">command <span class="token punctuation">&#123;</span>cmd<span class="token punctuation">&#125;</span> <span class="token punctuation">&#123;</span>rep<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p><em>使用<code>command!</code>将之前同名的指令覆盖</em></p>
+<h3 id="命令属性"><a href="#命令属性" class="headerlink" title="命令属性"></a>命令属性</h3><p>主要介绍一下参数个数</p>
+<ul>
+<li>-nargs=1 仅接受一个参数</li>
+<li>-nargs=* 接受 0 或多个参数</li>
+<li>-nargs=? 接受 0 或 1 个参数</li>
+<li>-nargs=+ 接受 1 或多个参数</li>
+</ul>
+<h2 id="execute-和-normal"><a href="#execute-和-normal" class="headerlink" title="execute 和 normal"></a>execute 和 normal</h2><ul>
+<li><code>execute</code>顾名思义，就是执行某个指令</li>
+</ul>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim">execute <span class="token punctuation">&#123;</span>exp<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>比如<code>:execute &#39;map x y&#39;</code>相当于直接执行命令<code>:map x y</code></p>
+<p><em>execute的作用在于，它可以识别变量，于是我们就可以动态地执行命令了</em></p>
+<ul>
+<li><code>normal</code>代表用户在普通模式下按下的键位来执行的命令</li>
+</ul>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim">normal <span class="token punctuation">&#123;</span>command<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>需要注意的是，normal之后不能写表达式，它代表的意义仅仅是我在普通模式下按下了哪些键位</p>
+<p><em>注意：使用<code>normal!</code>来指明之后的指令不受映射的影响(所以你最好都加上<code>!</code>)</em></p>
+<p><u>当然，你完全可以把execute和normal联合起来用</u></p>
 <h2 id="autocmd指令"><a href="#autocmd指令" class="headerlink" title="autocmd指令"></a>autocmd指令</h2><p><code>autocmd</code>顾名思义，就是自动化指令，可以使用这个关键字来完成自动化指令的定义。</p>
 <p>如果你看过一些关于vim的教程，可以看到以下autocmd格式：</p>
 <div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token builtin">autocmd</span> <span class="token punctuation">[</span>group<span class="token punctuation">]</span> event pattern <span class="token punctuation">[</span>nested<span class="token punctuation">]</span> command<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
