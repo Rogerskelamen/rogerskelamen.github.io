@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://s2.loli.net/2022/06/09/tMCWasZdvEVRFDj.png">
 <meta property="og:image" content="https://s2.loli.net/2022/06/09/dqgJ8hNcC6pBP5H.png">
 <meta property="article:published_time" content="2022-06-09T06:23:01.000Z">
-<meta property="article:modified_time" content="2022-10-20T11:29:00.000Z">
+<meta property="article:modified_time" content="2022-10-27T08:04:00.000Z">
 <meta property="article:author" content="Rogers Kelamen">
 <meta property="article:tag" content="geek">
 <meta name="twitter:card" content="summary_large_image">
@@ -226,7 +226,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.1k 字
+      3.3k 字
     </span>
   
 
@@ -235,7 +235,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      7 分钟
+      10 分钟
     </span>
   
 
@@ -276,7 +276,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年10月20日 晚上
+                  本文最后更新于：2022年10月27日 下午
                 
               </p>
             
@@ -323,9 +323,33 @@
 <p>身为脚本语言，其变量类型还是类似于python那几种</p>
 </blockquote>
 <p><img src="https://s2.loli.net/2022/06/09/tMCWasZdvEVRFDj.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><code>type()</code>函数可以返回变量的类型</p>
 <p>最为常用的还是<code>number</code>, <code>string</code>, <code>list</code>, <code>dict</code></p>
+<h3 id="创建变量"><a href="#创建变量" class="headerlink" title="创建变量"></a>创建变量</h3><p>因为是脚本语言，所以声明变量统统用<code>let</code>:</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token keyword">let</span> num <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token keyword">let</span> str <span class="token operator">=</span> <span class="token string">'hello, world'</span>
+<span class="token keyword">let</span> <span class="token keyword">list</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span>
+<span class="token keyword">let</span> <span class="token builtin">dict</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token string">'x'</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'y'</span><span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">'z'</span><span class="token punctuation">:</span> <span class="token number">3</span><span class="token punctuation">,</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p><em>Note: 和javascript类似，dict可以使用[‘key’]和.key的方式访问和更改value</em></p>
+<h4 id="删除变量"><a href="#删除变量" class="headerlink" title="删除变量"></a>删除变量</h4><p>在vimL中，因为语言服务于编辑器，所以存在”删除变量”这一说法。</p>
+<p>需要使用<code>unlet</code>删除：</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token keyword">unlet</span> <span class="token keyword">list</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> | echo <span class="token keyword">list</span>
+<span class="token keyword">unlet</span> <span class="token keyword">list</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> | echo <span class="token keyword">list</span>
+<span class="token keyword">unlet</span> <span class="token builtin">dict</span><span class="token punctuation">[</span><span class="token string">'u'</span><span class="token punctuation">]</span> | echo <span class="token builtin">dict</span>
+<span class="token keyword">unlet</span> <span class="token builtin">dict</span><span class="token operator">.</span>v | echo <span class="token builtin">dict</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
 <h3 id="字符串连接"><a href="#字符串连接" class="headerlink" title="字符串连接"></a>字符串连接</h3><p>所有脚本字符串连接都是<code>+</code>，而VimL是<code>.</code></p>
-<h3 id="前缀变量解释"><a href="#前缀变量解释" class="headerlink" title="前缀变量解释"></a>前缀变量解释</h3><p>实际上VimL对前缀变量的存储方式是每一个不同作用域的变量存储在一个同一个字典dict中</p>
+<h3 id="前缀变量解释"><a href="#前缀变量解释" class="headerlink" title="前缀变量解释"></a>前缀变量解释</h3><p>常见作用域前缀介绍：</p>
+<ol>
+<li><p>g: 全局作用域。全局变量就是在当前 vim 会话环境中，在任何脚本，任何 ex 命令行中都可以引用的变量。所有在函数之外的命令语句，都默认是全局变量。</p>
+</li>
+<li><p>l: 局部作用域。只可在当前执行的函数体内使用的变量，在函数体内的变量默认为局部变量，l: 局部变量也只能在函数体内使用。</p>
+</li>
+<li><p>s: 脚本作用域。只有当前脚本内可引用的变量，包括该脚本的函数体内。</p>
+</li>
+<li><p>a: 参数作用域。特指函数的参数，在函数体内，要引用传入的实参，就得加上 a:前缀，但定义函数时的形参，不能加 a: 前缀。a: 还隐含一个限定是只读性，即不能在函数体内修改参数</p>
+</li>
+</ol>
+<p>实际上VimL对前缀变量的存储方式是每一个不同作用域的变量存储在一个同一个字典dict中</p>
 <p>如<code>g:</code>就是一个字典</p>
 <p><img src="https://s2.loli.net/2022/06/09/dqgJ8hNcC6pBP5H.png" srcset="/img/loading.gif" lazyload alt="let g:a = 1之后查看g:"></p>
 <h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>首先使用<code>&quot;</code>是作为行注释没有问题，但是我们要是写注释最好就使用<code>|&quot;</code></p>
@@ -341,6 +365,32 @@
 </li>
 </ol>
 <p>简单总结：<u>使用<code>==#</code>或者<code>!=#</code>进行字符串的比较</u></p>
+<h3 id="使用empty函数"><a href="#使用empty函数" class="headerlink" title="使用empty函数"></a>使用empty函数</h3><p>在很多时候，我们需要判断一个变量是否为空，由于vimL的特性，导致很多烧脑的逻辑，所以直接使用<code>empty()</code>来进行判空即可(当变量是空时为true)</p>
+<h2 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h2><p>在遍历这一节，vimL显得不那么怪异了，它和大部分脚本语言一样：</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token comment">" for list</span>
+<span class="token keyword">for</span> item <span class="token keyword">in</span> <span class="token keyword">list</span>
+  echo item
+<span class="token keyword">endfor</span>
+<span class="token comment">" for dict</span>
+<span class="token keyword">for</span> <span class="token punctuation">[</span><span class="token builtin">key</span><span class="token punctuation">,</span> val<span class="token punctuation">]</span> <span class="token keyword">in</span> <span class="token function">items</span><span class="token punctuation">(</span><span class="token builtin">dict</span><span class="token punctuation">)</span>
+  echo <span class="token builtin">key</span> <span class="token operator">.</span> <span class="token string">'=>'</span> <span class="token operator">.</span> val
+<span class="token keyword">endfor</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p><em>需要注意的是，dict变量需要使用<code>items()</code>来获取键值对列表，当然也可以只获取keys和vals:</em></p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token keyword">for</span> <span class="token builtin">key</span> <span class="token keyword">in</span> <span class="token function">keys</span><span class="token punctuation">(</span><span class="token builtin">dict</span><span class="token punctuation">)</span>
+  echo <span class="token builtin">key</span> <span class="token operator">.</span> <span class="token string">'=>'</span> <span class="token operator">.</span> <span class="token builtin">dict</span><span class="token punctuation">[</span><span class="token builtin">key</span><span class="token punctuation">]</span>
+<span class="token keyword">endfor</span>
+<span class="token keyword">for</span> val <span class="token keyword">in</span> <span class="token function">values</span><span class="token punctuation">(</span><span class="token builtin">dict</span><span class="token punctuation">)</span>
+  echo val
+<span class="token keyword">endfor</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>你也可以先对键排个序：</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token keyword">for</span> <span class="token builtin">key</span> <span class="token keyword">in</span> <span class="token function">sort</span><span class="token punctuation">(</span><span class="token function">keys</span><span class="token punctuation">(</span><span class="token builtin">dict</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  echo <span class="token builtin">key</span> <span class="token operator">.</span> <span class="token string">'=>'</span> <span class="token operator">.</span> <span class="token builtin">dict</span><span class="token punctuation">[</span><span class="token builtin">key</span><span class="token punctuation">]</span>
+<span class="token keyword">endfor</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<h3 id="固定循环次数"><a href="#固定循环次数" class="headerlink" title="固定循环次数"></a>固定循环次数</h3><p>在这里vimL和python很像，都是使用<code>range()</code>:</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token function">range</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>
+  echo <span class="token string">'Hello World!'</span>
+<span class="token keyword">endfor</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
 <h2 id="函数Function"><a href="#函数Function" class="headerlink" title="函数Function"></a>函数Function</h2><h3 id="覆盖同名函数"><a href="#覆盖同名函数" class="headerlink" title="覆盖同名函数"></a>覆盖同名函数</h3><p>注意使用<code>!</code>来覆盖之前可能出现同名的函数，如：</p>
 <div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token keyword">function</span><span class="token operator">!</span> <span class="token function">Sum</span><span class="token punctuation">(</span><span class="token keyword">x</span><span class="token punctuation">,</span> <span class="token keyword">y</span><span class="token punctuation">)</span>
   <span class="token keyword">return</span> a<span class="token punctuation">:</span><span class="token keyword">x</span> <span class="token operator">+</span> a<span class="token punctuation">:</span><span class="token keyword">y</span>
@@ -393,6 +443,15 @@
 <p>如果在使用vim的特定时间点，我们要删除一个自动化指令怎么办？</p>
 <div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token builtin">autocmd</span><span class="token operator">!</span> <span class="token punctuation">[</span>group<span class="token punctuation">]</span> <span class="token punctuation">[</span>event<span class="token punctuation">]</span> <span class="token punctuation">[</span>pattern<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
 <p>就可以根据组，事件，或者文件进行删除了</p>
+<h2 id="特殊代替符号"><a href="#特殊代替符号" class="headerlink" title="特殊代替符号"></a>特殊代替符号</h2><p>老实说我也不知道这些symbol应该叫什么名字，这些特殊的symbol主要有(你可能会看到的):</p>
+<ul>
+<li><p><code>&lt;cword&gt;</code>: 代表着当前光标下的单词</p>
+</li>
+<li><p><code>&lt;cWORD&gt;</code>: 代表着当前光标下的字符串(打破了不是单词的局限)</p>
+</li>
+<li><p><code>&lt;cfile&gt;</code>: 当前光标下的路径名</p>
+</li>
+</ul>
 
             </div>
             <hr>
