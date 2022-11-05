@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://s2.loli.net/2022/06/09/tMCWasZdvEVRFDj.png">
 <meta property="og:image" content="https://s2.loli.net/2022/06/09/dqgJ8hNcC6pBP5H.png">
 <meta property="article:published_time" content="2022-06-09T06:23:01.000Z">
-<meta property="article:modified_time" content="2022-10-27T08:04:00.000Z">
+<meta property="article:modified_time" content="2022-11-05T06:48:00.000Z">
 <meta property="article:author" content="Rogers Kelamen">
 <meta property="article:tag" content="geek">
 <meta name="twitter:card" content="summary_large_image">
@@ -226,7 +226,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.3k 字
+      7.1k 字
     </span>
   
 
@@ -235,7 +235,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      10 分钟
+      22 分钟
     </span>
   
 
@@ -276,7 +276,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年10月27日 下午
+                  本文最后更新于：2022年11月5日 下午
                 
               </p>
             
@@ -365,6 +365,7 @@
 </li>
 </ol>
 <p>简单总结：<u>使用<code>==#</code>或者<code>!=#</code>进行字符串的比较</u></p>
+<p><em>我们还看到过<code>=~#</code>和<code>!~#</code>这个意思就是进行正则匹配是否成功</em></p>
 <h3 id="使用empty函数"><a href="#使用empty函数" class="headerlink" title="使用empty函数"></a>使用empty函数</h3><p>在很多时候，我们需要判断一个变量是否为空，由于vimL的特性，导致很多烧脑的逻辑，所以直接使用<code>empty()</code>来进行判空即可(当变量是空时为true)</p>
 <h2 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h2><p>在遍历这一节，vimL显得不那么怪异了，它和大部分脚本语言一样：</p>
 <div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token comment">" for list</span>
@@ -395,6 +396,9 @@
 <div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token keyword">function</span><span class="token operator">!</span> <span class="token function">Sum</span><span class="token punctuation">(</span><span class="token keyword">x</span><span class="token punctuation">,</span> <span class="token keyword">y</span><span class="token punctuation">)</span>
   <span class="token keyword">return</span> a<span class="token punctuation">:</span><span class="token keyword">x</span> <span class="token operator">+</span> a<span class="token punctuation">:</span><span class="token keyword">y</span>
 <span class="token keyword">endfunction</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<h3 id="使用不定长的参数"><a href="#使用不定长的参数" class="headerlink" title="使用不定长的参数"></a>使用不定长的参数</h3><p>有时候你会看见类似于Funcname(arg1, arg2, …)的函数定义</p>
+<p>这里的<code>...</code>其实就是我们通常的不定长参数，我们可以使用很多的参数追加到参数表中，并在函数体中使用<code>a:&#123;index&#125;</code>的方式来指代不定长参数</p>
+<p><em>a:1 表示 … 部分的第一个参数，a:2 表示第二个，如此类推，a:0 用来表示 … 部分共有多少参数</em></p>
 <h3 id="函数命名规范"><a href="#函数命名规范" class="headerlink" title="函数命名规范"></a>函数命名规范</h3><p>如果要声明一个新的函数，一定要用首字母大写来命名函数</p>
 <p><u>因为Vim内置的函数全部都是用小写命名函数，所以使用首字母大写以示区分</u></p>
 <h3 id="函数统一规范"><a href="#函数统一规范" class="headerlink" title="函数统一规范"></a>函数统一规范</h3><p>如果我们想让我们定义的函数出错后自动停止执行，需要加上<code>abort</code>函数属性</p>
@@ -402,6 +406,11 @@
   <span class="token operator">.</span><span class="token operator">.</span><span class="token operator">.</span>
 <span class="token keyword">endfunction</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
 <p><em>如果我们不想函数向不可预估的后果上发展，最好就都加上<code>abort</code></em></p>
+<h4 id="使用autoload"><a href="#使用autoload" class="headerlink" title="使用autoload"></a>使用autoload</h4><p>在VimL的函数命名规范中，如果我们想要vim在加载中自动载入我们的一个函数，那么我们这个函数的命名就需要如下规范：</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token keyword">function</span><span class="token operator">!</span> filename#<span class="token function">funcname</span><span class="token punctuation">(</span><span class="token punctuation">)</span> abort<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>Vim 在 ‘runtimepath’ 里的 “autoload” 目录搜索<br>脚本文件 “filename.vim”。例如 “~/.vim/autoload/filename.vim”。</p>
+<p>文件名和函数的 # 之前的名字必须完全匹配，而定义的函数名也必须和调用时使用的形式完全一致。</p>
+<p><u>使用<code>:h autoload</code>来了解更多</u></p>
 <h2 id="自定义命令"><a href="#自定义命令" class="headerlink" title="自定义命令"></a>自定义命令</h2><p>使用<code>command</code>命令来自定义属于你的命令</p>
 <div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim">command <span class="token punctuation">&#123;</span>cmd<span class="token punctuation">&#125;</span> <span class="token punctuation">&#123;</span>rep<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
 <p><em>使用<code>command!</code>将之前同名的指令覆盖</em></p>
@@ -450,6 +459,141 @@
 <li><p><code>&lt;cWORD&gt;</code>: 代表着当前光标下的字符串(打破了不是单词的局限)</p>
 </li>
 <li><p><code>&lt;cfile&gt;</code>: 当前光标下的路径名</p>
+</li>
+</ul>
+<h2 id="常用VimL特殊变量-v"><a href="#常用VimL特殊变量-v" class="headerlink" title="常用VimL特殊变量(v:)"></a>常用VimL特殊变量(v:)</h2><blockquote>
+<p>使用<code>echo v:</code>就可以查看到有哪些vim内置变量了(是一个dict类型)</p>
+</blockquote>
+<p>现在介绍几个可能用到的变量:</p>
+<ul>
+<li><p>v:insertmode</p>
+<p>用于InsertEnter和InsertChange自动命令事件。取值:</p>
+<ul>
+<li>i    插入模式</li>
+<li>r    替换模式</li>
+<li>v    虚拟替换模式</li>
+</ul>
+</li>
+</ul>
+<h2 id="常用VimL函数"><a href="#常用VimL函数" class="headerlink" title="常用VimL函数"></a>常用VimL函数</h2><blockquote>
+<p>这些函数在你编写VimL脚本的时候很有用，或者你在看别人的vim脚本的时候这些函数也很常见。</p>
+</blockquote>
+<ul>
+<li><p>get()</p>
+<p>这个函数有很多的重载，可以对list，blob，dict操作，我们简单看看对list和dict的操作：</p>
+<p>get({list}, {idx} [, {default}])</p>
+<p>获取 {list} 的第 {idx} 个项目。如果不存在此项目，返回 {default}。如果省略 {default}，返回零。</p>
+<p>get({dict}, {key} [, {default}])</p>
+<p>获取 {dict} 键为 {key} 的项目。如果不存在此项目，<br>返回 {default}。如果省略 {default}，返回零。有用的例子: </p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token keyword">let</span> val <span class="token operator">=</span> <span class="token function">get</span><span class="token punctuation">(</span>g<span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token string">'var_name'</span><span class="token punctuation">,</span> <span class="token string">'default'</span><span class="token punctuation">)</span>
+<span class="token comment">" 由于`g:`本身就是一个dict，所以就是查看全局是否有`var_name`存在</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<p>如果 g:var_name 存在，返回它的值，如果不存在返回 ‘default’。</p>
+</li>
+<li><p>has({feature} [, {check}])</p>
+<p>如果 {check} 省略或为零: 返回数值，如果支持特性 {feature} 则为1，不然为零。{feature} 参数是大小写忽略的字符串。</p>
+<p>主要有三种类型的特性：</p>
+<ol>
+<li>只有在 Vim 编译时加入才会支持的特性 +feature-list</li>
+<li>只有特定条件满足才会支持的特性，如has(“gui_running”)是查看是否正在运行gvim</li>
+<li>特定版本之后或在特定版本上并包含了特定补丁。”patch-7.4.248” 特性意味着 Vim版本是 7.5 或之后，或 7.4 并包含了补丁 248</li>
+</ol>
+</li>
+<li><p>add({object}, {expr})</p>
+<p>在 List 或 Blob {object} 最后附加项目 {expr}。返回新产生的List 或 Blob。如：</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token punctuation">:</span><span class="token keyword">let</span> alist <span class="token operator">=</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span> item<span class="token punctuation">)</span>
+<span class="token punctuation">:</span><span class="token keyword">call</span> <span class="token function">add</span><span class="token punctuation">(</span>mylist<span class="token punctuation">,</span> <span class="token string">"woodstock"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+</li>
+<li><p>bufnr([{buf} [, {create}]])</p>
+<p>返回缓冲区的编号，如同 “:ls” 命令显示的那样。<br>如果 {buf} 省略使用当前缓冲区。<br>如果 {buf} 参数是数值，指定缓冲区号。数值零代表当前窗口的轮换缓冲区。<br>如果 {buf} 参数是字符串，它用作 |file-pattern| 来匹配缓冲区名字。这里总假设置位 ‘magic’ 而 ‘cpoptions’ 为空。如果有超过一个匹配，返回空字符串。</p>
+<p>如果不存在符合的缓冲区，返回 -1。或者，如果提供了 {create} 参数而且为 TRUE，建立一个新的列表外缓冲区，并返回其编号。例如:</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token keyword">let</span> newbuf <span class="token operator">=</span> <span class="token function">bufnr</span><span class="token punctuation">(</span><span class="token string">'Scratch001'</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>特别的，bufnr(“$”) 是最后一个缓冲区:</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token punctuation">:</span><span class="token keyword">let</span> last_buffer <span class="token operator">=</span> <span class="token function">bufnr</span><span class="token punctuation">(</span><span class="token string">"$"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p><em>“” 或 “%” 可用来指定当前缓冲区，”#” 指定轮换缓冲区。</em></p>
+</li>
+<li><p>winnr([{arg}])</p>
+<p>返回数值，当前窗口的编号。最上面的窗口的编号为 1。弹出窗口返回零。</p>
+<p>可选参数 {arg} 支持以下值:</p>
+<ul>
+<li><code>$</code>    返回最后一个窗口的编号 (即窗口的总数)。</li>
+<li><code>#</code>    返回最近访问的窗口号 (CTRL-W_p 到的地方)。如果没有上次窗口或它在另一个标签页中，返回 0。</li>
+<li><code>&#123;N&#125;j</code>    当前窗口之下第 N 个窗口的窗口号 (CTRL-W_j 到的地方)。</li>
+<li><code>&#123;N&#125;k</code>    当前窗口之上第 N 个窗口的窗口号 (CTRL-W_k 到的地方)。</li>
+<li><code>&#123;N&#125;h</code>    当前窗口之左第 N 个窗口的窗口号 (CTRL-W_h 到的地方)。</li>
+<li><code>&#123;N&#125;l</code>    当前窗口之右第 N 个窗口的窗口号 (CTRL-W_l 到的地方)</li>
+</ul>
+</li>
+<li><p>nr2char({expr} [, {utf8}])</p>
+<p>返回单个字符组成的字符串，该字符的数值为 {expr}。例如:</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token function">nr2char</span><span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">)</span>	返回 <span class="token string">"@"</span>
+<span class="token function">nr2char</span><span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">)</span>	返回 <span class="token string">" "</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<p>如果 {utf8} 省略或为零，使用当前的 ‘encoding’</p>
+</li>
+<li><p>expand({string} [, {nosuf} [, {list}]])</p>
+<p>扩展 {string} 里的通配符和下列特殊关键字。<br>如果扩展失败，返回空字符串。如果 {string} 以 ‘%’，’#’ 或 ‘&lt;’开始，不返回不存在的文件名<br>如果 {string} 以 ‘%’、’#’ 或 ‘&lt;’ 开始，以类似于cmdline-special变量的方式扩展，包括相关的修饰符。这里是一个简短的小结:</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token operator">%</span>		当前文件名
+#		轮换文件名
+#<span class="token keyword">n</span>		轮换文件名 <span class="token keyword">n</span>
+<span class="token operator">&lt;</span><span class="token keyword">cfile</span><span class="token operator">></span>		光标所在的文件名
+<span class="token operator">&lt;</span>afile<span class="token operator">></span>		自动命令文件名
+<span class="token operator">&lt;</span>abuf<span class="token operator">></span>		自动命令缓冲区号 <span class="token punctuation">(</span>以字符串形式出现！<span class="token punctuation">)</span>
+<span class="token operator">&lt;</span>amatch<span class="token operator">></span>	自动命令匹配的名字
+<span class="token operator">&lt;</span><span class="token keyword">cexpr</span><span class="token operator">></span>		光标所在的 C 表达式
+<span class="token operator">&lt;</span>sfile<span class="token operator">></span>		载入的脚本文件或函数名
+<span class="token operator">&lt;</span>slnum<span class="token operator">></span>		载入脚本文件行号或函数行号
+<span class="token operator">&lt;</span>sflnum<span class="token operator">></span>	脚本文件行号，即使在函数中亦然
+<span class="token operator">&lt;</span>SID<span class="token operator">></span>		<span class="token string">"&lt;SNR>123_"</span>  其中 <span class="token string">"123"</span> 是当前脚本ID <span class="token operator">&lt;</span>SID<span class="token operator">></span>
+<span class="token operator">&lt;</span>script<span class="token operator">></span>	执行中的脚本文件，或当前函数定义所在的脚本文件
+<span class="token operator">&lt;</span>stack<span class="token operator">></span>		调用栈
+<span class="token operator">&lt;</span>cword<span class="token operator">></span>		光标所在的单词
+<span class="token operator">&lt;</span>cWORD<span class="token operator">></span>		光标所在的字串 <span class="token punctuation">(</span>WORD<span class="token punctuation">)</span>
+<span class="token operator">&lt;</span>client<span class="token operator">></span>	最近收到的消息的 <span class="token punctuation">&#123;</span>clientid<span class="token punctuation">&#125;</span> <span class="token function">server2client</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>修饰符:</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token punctuation">:</span><span class="token keyword">p</span>		扩展为完整的路径
+<span class="token punctuation">:</span><span class="token keyword">h</span>		头部 <span class="token punctuation">(</span>去掉最后一个部分<span class="token punctuation">)</span>
+<span class="token punctuation">:</span><span class="token keyword">t</span>		尾部 <span class="token punctuation">(</span>只保留最后一个部分<span class="token punctuation">)</span>
+<span class="token punctuation">:</span><span class="token keyword">r</span>		根部 <span class="token punctuation">(</span>去掉一个扩展名<span class="token punctuation">)</span>
+<span class="token punctuation">:</span><span class="token keyword">e</span>		只有扩展名<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>例如:</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token punctuation">:</span><span class="token keyword">let</span> &amp;<span class="token keyword">tags</span> <span class="token operator">=</span> <span class="token function">expand</span><span class="token punctuation">(</span><span class="token string">"%:p:h"</span><span class="token punctuation">)</span> <span class="token operator">.</span><span class="token operator">.</span> <span class="token string">"/tags"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+</li>
+<li><p>filter({expr1}, {expr2})</p>
+<p>{expr1} 必须是 List 、String、Blob 或者 Dictionary。对 {expr1} 里的每个项目计算 {expr2}，如果结果为零或假值，从该List 或 Dictionary 里删除该项目。</p>
+<p>如果 {expr2} 是 string，{expr2} 内的 v:val 包含当前项目的值。Dictionary 中 v:key 包含当前项目的键。List 中v:key 包含当前项目的索引。</p>
+<p>eg.</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token keyword">call</span> <span class="token function">filter</span><span class="token punctuation">(</span>mylist<span class="token punctuation">,</span> <span class="token string">'v:val !~ "OLD"'</span><span class="token punctuation">)</span>
+<span class="token string">" 删除所有出现 "</span>OLD<span class="token comment">" 的项目</span>
+<span class="token keyword">call</span> <span class="token function">filter</span><span class="token punctuation">(</span>mydict<span class="token punctuation">,</span> <span class="token string">'v:key >= 8'</span><span class="token punctuation">)</span>
+<span class="token comment">" 删除所有键小于 8 的值</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
+</li>
+<li><p>index({object}, {expr} [, {start} [, {ic}]])</p>
+<p>寻找 {object} 中的 {expr}，并返回其索引。</p>
+</li>
+<li><p>values({dict})</p>
+<p>返回{dict} 的所有值(list形式)</p>
+</li>
+<li><p>keys({dict})</p>
+<p>返回{dict} 的所有键(list形式)</p>
+</li>
+<li><p>items({dict})</p>
+<p>返回{dict} 的所有键-值组对(list形式)</p>
+</li>
+<li><p>fnamemodify({fname}, {mods})</p>
+<p>根据 {mods} 修改文件名 {fname}。{mods} 是一个字符序列组成的字符串，就像命令行上使用的文件名那样。详见filename-modifiers。例如:</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token punctuation">:</span>echo <span class="token function">fnamemodify</span><span class="token punctuation">(</span><span class="token string">"main.c"</span><span class="token punctuation">,</span> <span class="token string">":p:h"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>返回:/home/user/vim/vim/src</p>
+</li>
+<li><p>jobstart({cmd} [, {opts}])</p>
+<p>使用{cmd}来产生一个任务，如果{cmd}是一个String就直接在shell上运行{cmd}。</p>
+</li>
+<li><p>match({expr}, {pat} [, {start} [, {count}]])</p>
+<p>如果 {expr} 是 List，返回匹配 {pat} 的第一个项目的索引。否则，{expr} 用作字符串。返回数值，给出 {expr} 里 {pat} 匹配的(字节计算的偏移量) 位置。</p>
+<p>在第一个字符或 List 项目上的匹配返回零。若无匹配，返回 -1。</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token punctuation">:</span>echo <span class="token function">match</span><span class="token punctuation">(</span><span class="token string">"testing"</span><span class="token punctuation">,</span> <span class="token string">"ing"</span><span class="token punctuation">)</span> <span class="token comment">" 返回 4</span>
+<span class="token punctuation">:</span>echo <span class="token function">match</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'x'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">'\a'</span><span class="token punctuation">)</span>   <span class="token comment">" 返回 1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+</li>
+<li><p>count({comp}, {expr} [, {ic} [, {start}]])</p>
+<p>返回String、List 或 Dictionary {comp} 里值为 {expr} 的项目出现的次数。</p>
 </li>
 </ul>
 
