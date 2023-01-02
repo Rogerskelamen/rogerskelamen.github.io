@@ -24,7 +24,7 @@
 <meta property="og:description" content="前言 使用Vim的历史就是人类不断折腾的赞歌 Fuck the Vim  airline-weather8月7日，weather的icon还是不尽人意，不是nerd font的错误(每一个nerd font的weather图标都很小)，应该直接从unicode编码的图形入手 可能解决办法：去windows系统中把unicode图标敲出来，然后写到文件里面直接复制到Ubuntu  8月8日，上述方法">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-08-15T02:42:16.000Z">
-<meta property="article:modified_time" content="2021-12-04T12:32:00.000Z">
+<meta property="article:modified_time" content="2023-01-02T09:48:00.000Z">
 <meta property="article:author" content="Rogers Kelamen">
 <meta property="article:tag" content="geek">
 <meta name="twitter:card" content="summary_large_image">
@@ -223,7 +223,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.3k 字
+      4.4k 字
     </span>
   
 
@@ -232,7 +232,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      7 分钟
+      14 分钟
     </span>
   
 
@@ -273,7 +273,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年12月4日 晚上
+                  本文最后更新于：2023年1月2日 下午
                 
               </p>
             
@@ -327,6 +327,58 @@
 <li><p>go和rua的依赖，你可以通过查看health详情来看一下到底怎么操作</p>
 </li>
 </ol>
+<h2 id="Vim-on-Mac-OS"><a href="#Vim-on-Mac-OS" class="headerlink" title="Vim on Mac OS"></a>Vim on Mac OS</h2><p>2023年1月2日，更新了Mac OS到12.6.2，于是自动更新了终端上的Vim，水果将其更新为了vim@9.0 (听说支持vimscript9，速度会有飞跃式提升)。</p>
+<p>于是就打算重新配置一下Vim（毕竟我一直都在使用NeoVim，好久没有使用原生Vim了），但是这个Vim我满怀欣悦试着去从零开始配置，结果慢慢发现它相较于NeoVim好多feature都没有。真是头疼啊</p>
+<p>其version如下：</p>
+<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim">VIM <span class="token operator">-</span> Vi IMproved <span class="token number">9.0</span> <span class="token punctuation">(</span><span class="token number">2022</span> Jun <span class="token number">28</span><span class="token punctuation">,</span> compiled Nov <span class="token number">13</span> <span class="token number">2022</span> <span class="token number">20</span><span class="token punctuation">:</span><span class="token number">35</span><span class="token punctuation">:</span><span class="token number">12</span><span class="token punctuation">)</span>
+macOS <span class="token keyword">version</span> <span class="token operator">-</span> arm64
+Included patches<span class="token punctuation">:</span> <span class="token number">1</span><span class="token operator">-</span><span class="token number">639</span>
+Compiled by root@apple<span class="token operator">.</span><span class="token builtin">com</span>
+Normal <span class="token keyword">version</span> without GUI<span class="token operator">.</span>  Features included <span class="token punctuation">(</span><span class="token operator">+</span><span class="token punctuation">)</span> or not <span class="token punctuation">(</span><span class="token operator">-</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token operator">+</span>acl               <span class="token operator">+</span>file_in_path      <span class="token operator">-</span>mouse_urxvt       <span class="token operator">-</span>tag_any_white
+<span class="token operator">-</span><span class="token builtin">arabic</span>            <span class="token operator">+</span>find_in_path      <span class="token operator">+</span>mouse_xterm       <span class="token operator">-</span><span class="token keyword">tcl</span>
+<span class="token operator">+</span><span class="token builtin">autocmd</span>           <span class="token operator">+</span>float             <span class="token operator">+</span>multi_byte        <span class="token operator">-</span>termguicolors
+<span class="token operator">+</span><span class="token builtin">autochdir</span>         <span class="token operator">+</span>folding           <span class="token operator">+</span>multi_lang        <span class="token operator">+</span>terminal
+<span class="token operator">-</span>autoservername    <span class="token operator">-</span>footer            <span class="token operator">-</span><span class="token keyword">mzscheme</span>          <span class="token operator">+</span>terminfo
+<span class="token operator">-</span>balloon_eval      <span class="token operator">+</span><span class="token function">fork</span><span class="token punctuation">(</span><span class="token punctuation">)</span>            <span class="token operator">+</span>netbeans_intg     <span class="token operator">+</span>termresponse
+<span class="token operator">-</span>balloon_eval_term <span class="token operator">-</span>gettext           <span class="token operator">+</span>num64             <span class="token operator">+</span>textobjects
+<span class="token operator">-</span><span class="token keyword">browse</span>            <span class="token operator">-</span>hangul_input      <span class="token operator">+</span>packages          <span class="token operator">+</span>textprop
+<span class="token operator">+</span><span class="token operator">+</span>builtin_terms    <span class="token operator">+</span>iconv             <span class="token operator">+</span>path_extra        <span class="token operator">+</span>timers
+<span class="token operator">+</span>byte_offset       <span class="token operator">+</span>insert_expand     <span class="token operator">-</span><span class="token keyword">perl</span>              <span class="token operator">+</span><span class="token builtin">title</span>
+<span class="token operator">+</span>channel           <span class="token operator">+</span>ipv6              <span class="token operator">+</span>persistent_undo   <span class="token operator">-</span><span class="token builtin">toolbar</span>
+<span class="token operator">+</span><span class="token builtin">cindent</span>           <span class="token operator">+</span>job               <span class="token operator">+</span>popupwin          <span class="token operator">+</span>user_commands
+<span class="token operator">-</span>clientserver      <span class="token operator">+</span>jumplist          <span class="token operator">+</span>postscript        <span class="token operator">-</span>vartabs
+<span class="token operator">+</span><span class="token builtin">clipboard</span>         <span class="token operator">-</span><span class="token builtin">keymap</span>            <span class="token operator">+</span>printer           <span class="token operator">+</span>vertsplit
+<span class="token operator">+</span>cmdline_compl     <span class="token operator">+</span>lambda            <span class="token operator">-</span><span class="token keyword">profile</span>           <span class="token operator">+</span>vim9script
+<span class="token operator">+</span>cmdline_hist      <span class="token operator">-</span><span class="token builtin">langmap</span>           <span class="token operator">-</span><span class="token keyword">python</span>            <span class="token operator">+</span><span class="token builtin">viminfo</span>
+<span class="token operator">+</span>cmdline_info      <span class="token operator">+</span>libcall           <span class="token operator">-</span>python3           <span class="token operator">+</span><span class="token builtin">virtualedit</span>
+<span class="token operator">+</span><span class="token builtin">comments</span>          <span class="token operator">+</span><span class="token builtin">linebreak</span>         <span class="token operator">+</span>quickfix          <span class="token operator">+</span><span class="token keyword">visual</span>
+<span class="token operator">-</span>conceal           <span class="token operator">+</span>lispindent        <span class="token operator">+</span>reltime           <span class="token operator">+</span>visualextra
+<span class="token operator">+</span>cryptv            <span class="token operator">+</span>listcmds          <span class="token operator">-</span><span class="token builtin">rightleft</span>         <span class="token operator">+</span>vreplace
+<span class="token operator">+</span>cscope            <span class="token operator">+</span>localmap          <span class="token operator">+</span><span class="token keyword">ruby</span><span class="token operator">/</span>dyn          <span class="token operator">+</span><span class="token builtin">wildignore</span>
+<span class="token operator">+</span>cursorbind        <span class="token operator">-</span>lua               <span class="token operator">+</span><span class="token builtin">scrollbind</span>        <span class="token operator">+</span><span class="token builtin">wildmenu</span>
+<span class="token operator">+</span>cursorshape       <span class="token operator">+</span>menu              <span class="token operator">+</span>signs             <span class="token operator">+</span>windows
+<span class="token operator">+</span>dialog_con        <span class="token operator">+</span><span class="token keyword">mksession</span>         <span class="token operator">+</span><span class="token builtin">smartindent</span>       <span class="token operator">+</span><span class="token builtin">writebackup</span>
+<span class="token operator">+</span><span class="token builtin">diff</span>              <span class="token operator">+</span>modify_fname      <span class="token operator">-</span>sodium            <span class="token operator">-</span>X11
+<span class="token operator">+</span><span class="token keyword">digraphs</span>          <span class="token operator">+</span><span class="token builtin">mouse</span>             <span class="token operator">-</span>sound             <span class="token operator">-</span>xfontset
+<span class="token operator">-</span>dnd               <span class="token operator">-</span><span class="token builtin">mouseshape</span>        <span class="token operator">+</span><span class="token builtin">spell</span>             <span class="token operator">-</span>xim
+<span class="token operator">-</span>ebcdic            <span class="token operator">-</span>mouse_dec         <span class="token operator">+</span>startuptime       <span class="token operator">-</span>xpm
+<span class="token operator">-</span>emacs_tags        <span class="token operator">-</span>mouse_gpm         <span class="token operator">+</span><span class="token builtin">statusline</span>        <span class="token operator">-</span>xsmp
+<span class="token operator">+</span>eval              <span class="token operator">-</span>mouse_jsbterm     <span class="token operator">-</span>sun_workshop      <span class="token operator">-</span>xterm_clipboard
+<span class="token operator">+</span>ex_extra          <span class="token operator">-</span>mouse_netterm     <span class="token operator">+</span><span class="token builtin">syntax</span>            <span class="token operator">-</span>xterm_save
+<span class="token operator">+</span>extra_search      <span class="token operator">+</span>mouse_sgr         <span class="token operator">+</span>tag_binary
+<span class="token operator">-</span>farsi             <span class="token operator">-</span>mouse_sysmouse    <span class="token operator">-</span>tag_old_static
+   system vimrc <span class="token keyword">file</span><span class="token punctuation">:</span> <span class="token string">"$VIM/vimrc"</span>
+     user vimrc <span class="token keyword">file</span><span class="token punctuation">:</span> <span class="token string">"$HOME/.vimrc"</span>
+ 2nd user vimrc <span class="token keyword">file</span><span class="token punctuation">:</span> <span class="token string">"~/.vim/vimrc"</span>
+      user <span class="token builtin">exrc</span> <span class="token keyword">file</span><span class="token punctuation">:</span> <span class="token string">"$HOME/.exrc"</span>
+       defaults <span class="token keyword">file</span><span class="token punctuation">:</span> <span class="token string">"$VIMRUNTIME/defaults.vim"</span>
+  fall<span class="token operator">-</span>back <span class="token keyword">for</span> $VIM<span class="token punctuation">:</span> <span class="token string">"/usr/share/vim"</span>
+Compilation<span class="token punctuation">:</span> gcc <span class="token operator">-</span><span class="token keyword">c</span> <span class="token operator">-</span>I<span class="token operator">.</span> <span class="token operator">-</span>Iproto <span class="token operator">-</span>DHAVE_CONFIG_H   <span class="token operator">-</span>DMACOS_X_UNIX  <span class="token operator">-</span>g <span class="token operator">-</span>O2 <span class="token operator">-</span>U_FORTIFY_SOUR
+CE <span class="token operator">-</span>D_FORTIFY_SOURCE<span class="token operator">=</span><span class="token number">1</span>
+Linking<span class="token punctuation">:</span>
+gcc   <span class="token operator">-</span>L<span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span>lib <span class="token operator">-</span><span class="token keyword">o</span> <span class="token keyword">vim</span>        <span class="token operator">-</span><span class="token keyword">lm</span> <span class="token operator">-</span>lncurses  <span class="token operator">-</span>liconv <span class="token operator">-</span>framework Cocoa<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>使用<code>has(&#39;termguicolors&#39;)</code>和<code>has(&#39;unnamedplus&#39;)</code>查看一下结果两个都是0，也就是说Mac最新的Vim连斜体字和共享系统剪切板的功能都没有，真是欲哭无泪啊。不过还是可以体验一把最原始的Vim Style，试着配完吧🧐。</p>
 
             </div>
             <hr>
