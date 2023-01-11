@@ -16,21 +16,20 @@
   <meta name="description" content="">
   <meta name="author" content="Rogers Kelamen">
   <meta name="keywords" content="blog">
-  <meta name="description" content="计算机中的数二进制的补码对于8位的二进制来说，+0和-0的补码都是00000000（只有一种表示） 但是按道理来说10000000是表示-0的，这个二进制就用来表示-128。同理100000000用来表示-256所以对于8位的补码表示的数的范围为-128 ~ +127 补码的符号扩展比如16位补码（一字节）扩展为32位补码（双字）：正数高位补零，负数高位补一 字节，节，页256个字节 &#x3D; 16个节">
+  <meta name="description" content="Arm汇编指令汇总本指令汇总主要由此文章总结得出，故若有对指令细节不理解的地方，可将文章作为参考。 需要说明的是，和AT&amp;T风格的x86汇编相比，arm汇编的源操作数在右边，目的操作数在左边，而且运算指令基本上是需要指定目的地址的。(本文使用的是GUN风格的arm汇编，除此之外还有armasm风格的) 寄存器汇总 在AArch64架构下，有31个通用寄存器。这些通用寄存器可以作为大部分指令">
 <meta property="og:type" content="article">
-<meta property="og:title" content="汇编复习笔记(也可作为进阶篇)">
-<meta property="og:url" content="https://rokelamen.top/2020/12/31/%E6%B1%87%E7%BC%96%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:title" content="Arm汇编汇总">
+<meta property="og:url" content="https://rokelamen.top/2023/01/11/Arm%E6%B1%87%E7%BC%96%E6%B1%87%E6%80%BB/index.html">
 <meta property="og:site_name" content="RO&#39;s Blog">
-<meta property="og:description" content="计算机中的数二进制的补码对于8位的二进制来说，+0和-0的补码都是00000000（只有一种表示） 但是按道理来说10000000是表示-0的，这个二进制就用来表示-128。同理100000000用来表示-256所以对于8位的补码表示的数的范围为-128 ~ +127 补码的符号扩展比如16位补码（一字节）扩展为32位补码（双字）：正数高位补零，负数高位补一 字节，节，页256个字节 &#x3D; 16个节">
+<meta property="og:description" content="Arm汇编指令汇总本指令汇总主要由此文章总结得出，故若有对指令细节不理解的地方，可将文章作为参考。 需要说明的是，和AT&amp;T风格的x86汇编相比，arm汇编的源操作数在右边，目的操作数在左边，而且运算指令基本上是需要指定目的地址的。(本文使用的是GUN风格的arm汇编，除此之外还有armasm风格的) 寄存器汇总 在AArch64架构下，有31个通用寄存器。这些通用寄存器可以作为大部分指令">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-12-31T13:23:33.000Z">
-<meta property="article:modified_time" content="2021-01-01T13:20:00.000Z">
+<meta property="article:published_time" content="2023-01-11T07:12:16.000Z">
+<meta property="article:modified_time" content="2023-01-11T07:24:58.627Z">
 <meta property="article:author" content="Rogers Kelamen">
 <meta property="article:tag" content="asm">
-<meta property="article:tag" content="review">
 <meta name="twitter:card" content="summary_large_image">
   
-  <title>汇编复习笔记(也可作为进阶篇)| RO&#39;s Blog</title>
+  <title>Arm汇编汇总| RO&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -198,7 +197,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="汇编复习笔记(也可作为进阶篇)">
+            <span class="h2" id="subtitle" title="Arm汇编汇总">
               
             </span>
 
@@ -213,8 +212,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-12-31 21:23" pubdate>
-        2020年12月31日 晚上
+      <time datetime="2023-01-11 15:12" pubdate>
+        2023年1月11日 下午
       </time>
     </span>
   
@@ -224,7 +223,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.5k 字
+      2.7k 字
     </span>
   
 
@@ -233,7 +232,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      8 分钟
+      9 分钟
     </span>
   
 
@@ -270,109 +269,393 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">汇编复习笔记(也可作为进阶篇)</h1>
+            <h1 style="display: none">Arm汇编汇总</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年1月1日 晚上
+                  本文最后更新于：2023年1月11日 下午
                 
               </p>
             
             <div class="markdown-body">
-              <h1 id="计算机中的数"><a href="#计算机中的数" class="headerlink" title="计算机中的数"></a>计算机中的数</h1><h2 id="二进制的补码"><a href="#二进制的补码" class="headerlink" title="二进制的补码"></a>二进制的补码</h2><p>对于8位的二进制来说，+0和-0的补码都是00000000（只有一种表示）</p>
-<p>但是按道理来说10000000是表示-0的，这个二进制就用来表示-128。<em>同理100000000用来表示-256</em><br><strong>所以对于8位的补码表示的数的范围为-128 ~ +127</strong></p>
-<h2 id="补码的符号扩展"><a href="#补码的符号扩展" class="headerlink" title="补码的符号扩展"></a>补码的符号扩展</h2><p>比如16位补码（一字节）扩展为32位补码（双字）：<u>正数高位补零，负数高位补一</u></p>
-<h2 id="字节，节，页"><a href="#字节，节，页" class="headerlink" title="字节，节，页"></a>字节，节，页</h2><p>256个字节 = 16个节 = 1个页</p>
-<h1 id="存储数据"><a href="#存储数据" class="headerlink" title="存储数据"></a>存储数据</h1><h2 id="存储器"><a href="#存储器" class="headerlink" title="存储器"></a>存储器</h2><p>我们除了数据存入寄存器中，其他的数据就是存在内存中的，内存中以字节为单位存储信息。<strong>内存中的数据存入方式是由低地址到高地址。</strong></p>
-<p>但是当要存储的数据由多个字节组成（如双字数据）时，我们要遵守<strong>大大小小原则</strong>，<u>即低位字节存入低地址，高位字节存入高地址</u></p>
-<h2 id="地址的分段"><a href="#地址的分段" class="headerlink" title="地址的分段"></a>地址的分段</h2><p><strong>80的地址总线宽度是20位，也就是说寻址空间正好是2²⁰ = 1M的空间大小。</strong></p>
-<p>于是我们用实模式的两种地址来表示实际的逻辑地址：<strong>段地址左移一位 + 偏移地址</strong>（<em>正好就是5位的16进制数</em>）</p>
-<h1 id="部分指令详解"><a href="#部分指令详解" class="headerlink" title="部分指令详解"></a>部分指令详解</h1><blockquote>
-<p>在指令部分，我其实已经有写过（其实是搬运）<a href="https://rokelamen.top/docs.github.io/#/study-notes/asm/instruction">一篇文章</a>来记录所有基本的指令，这里我只是挑一些进行详细解读</p>
+              <h1 id="Arm汇编指令汇总"><a href="#Arm汇编指令汇总" class="headerlink" title="Arm汇编指令汇总"></a>Arm汇编指令汇总</h1><p>本指令汇总主要由<a target="_blank" rel="noopener" href="https://evian-zhang.github.io/learn-assembly-on-Apple-Silicon-Mac/index.html">此文章</a>总结得出，故若有对指令细节不理解的地方，可将文章作为参考。</p>
+<p><em>需要说明的是，和AT&amp;T风格的x86汇编相比，arm汇编的源操作数在右边，目的操作数在左边，而且运算指令基本上是需要指定目的地址的。(本文使用的是GUN风格的arm汇编，除此之外还有armasm风格的)</em></p>
+<h2 id="寄存器汇总"><a href="#寄存器汇总" class="headerlink" title="寄存器汇总"></a>寄存器汇总</h2><blockquote>
+<p>在AArch64架构下，有31个通用寄存器。这些通用寄存器可以作为大部分指令的操作数参与运算。</p>
 </blockquote>
-<h2 id="类型转换指令"><a href="#类型转换指令" class="headerlink" title="类型转换指令"></a>类型转换指令</h2><p>cbw（convert byte to word）———- 字节转字</p>
-<p>cwd（convert word to double word）———- 字转双字</p>
-<p><em>ps：</em><br><strong>cbw较为常用，其中前者默认是将AL中内容扩展到AX，</strong>后者默认是AX扩展到DX : AX中的双字（<em>所以有DX代表双字的说法</em>）</p>
-<h2 id="加减1指令"><a href="#加减1指令" class="headerlink" title="加减1指令"></a>加减1指令</h2><p>这俩指令用的很多，平时却有点记不住，特在此记下：</p>
-<p>inc（increment）——— 加一操作</p>
-<p>dec（decrement）———- 减一操作</p>
-<p><em>因为neg（求补）和dec是在一起的，也在此说明一下：</em><br>neg（negate）——— <strong>单纯就是将操作数按位求反后加一</strong></p>
-<h2 id="逻辑指令"><a href="#逻辑指令" class="headerlink" title="逻辑指令"></a>逻辑指令</h2><p>and ——— 逻辑与<br>or  ————  逻辑或<br>not  ———-  逻辑非<br>xor（exclusive or）———   异或<br>test ———  测试</p>
-<p>这些指令都是后接两个操作数，结果保存到前一个操作数，<u>除了test</u></p>
-<p><strong>test两个操作数相与的结果不保存，只根据其特征置条件码：利用ZF改变，存放结果</strong></p>
-<h2 id="移位指令"><a href="#移位指令" class="headerlink" title="移位指令"></a>移位指令</h2><p>shl（shift logical left）——-  逻辑左移<br>sal（shift arithmetic left）—— 算术左移<br>shr（shift logical right）—— 逻辑右移<br>sar（shift arithmetic right）—— 算术右移<br>rol（rotate left）———— 循环左移<br>ror（rotate right）————- 循环右移<br>rcl（rotate left through carry）——- 带进位循环左移<br>rcr（rotate right through carry）——- 带进位循环右移</p>
-<p>逻辑和算术移位都是缺位补零，进位送CF。（算术右移是将其自身填入空缺位）<br>循环移位是循环移位一次，进位给CF。</p>
-<h2 id="方向标志改变指令"><a href="#方向标志改变指令" class="headerlink" title="方向标志改变指令"></a>方向标志改变指令</h2><p>CLD（clear direction flag）——- 使DF = 0</p>
-<p>STD（set derection flag）———- 使DF = 1</p>
-<h1 id="汇编程序基本格式"><a href="#汇编程序基本格式" class="headerlink" title="汇编程序基本格式"></a>汇编程序基本格式</h1><div class="code-wrapper"><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">datas SEGMENT
-    ...
-datas ENDS
+<p>r0 ~ r7 : 传递参数或者返回值(第一个参数/返回值对应于r0，以此类推)</p>
+<p>r8 : 用来存储多于的参数/返回值，并将其立即存入栈中</p>
+<p>r16 : 用来存储系统调用编号(MacOS特有)</p>
+<p>r18 : 平台保留的寄存器(Apple Silicon规定，我们不应该使用)</p>
+<p>r19 ~ r28 : 被调用者保留的寄存器</p>
+<p>r29 : FP寄存器</p>
+<p>r30 : LR寄存器</p>
+<h2 id="赋值指令"><a href="#赋值指令" class="headerlink" title="赋值指令"></a>赋值指令</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>指令名</th>
+<th>英文联想</th>
+<th>指令作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mov</td>
+<td>move</td>
+<td>将后一个变量值赋值给前一个</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="内存交互指令"><a href="#内存交互指令" class="headerlink" title="内存交互指令"></a>内存交互指令</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>指令名</th>
+<th>英文联想</th>
+<th>指令作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ldr</td>
+<td>load register</td>
+<td>将源地址中的值存储到目的寄存器中</td>
+</tr>
+<tr>
+<td>str</td>
+<td>store register</td>
+<td>将寄存器中的值赋值给指定地址中</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="扩展指令"><a href="#扩展指令" class="headerlink" title="扩展指令"></a>扩展指令</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>指令名</th>
+<th>英文联想</th>
+<th>指令作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sxtb</td>
+<td>signed extense with byte</td>
+<td>有符号扩展一字节</td>
+</tr>
+<tr>
+<td>sxth</td>
+<td>signed extense with halfword</td>
+<td>有符号扩展两字节</td>
+</tr>
+<tr>
+<td>sxtw</td>
+<td>signed extense with word</td>
+<td>有符号扩展四个字节</td>
+</tr>
+<tr>
+<td>uxtb</td>
+<td>unsigned extense with byte</td>
+<td>无符号扩展一字节</td>
+</tr>
+<tr>
+<td>uxth</td>
+<td>unsigned extense with halfword</td>
+<td>无符号扩展两字节</td>
+</tr>
+<tr>
+<td>uxtw</td>
+<td>unsigned extense with word</td>
+<td>无符号扩展四个字节</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="运算指令"><a href="#运算指令" class="headerlink" title="运算指令"></a>运算指令</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>指令名</th>
+<th>英文联想</th>
+<th>指令作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>add</td>
+<td>add</td>
+<td>将第一个源操作数的值加上第二个源操作数的值返回给目的操作数</td>
+</tr>
+<tr>
+<td>sub</td>
+<td>substract</td>
+<td>将第一个源操作数的值减去第二个源操作数的值返回给目的操作数</td>
+</tr>
+<tr>
+<td>and</td>
+<td>and</td>
+<td>将第一个源操作数的值与上第二个源操作数的值返回给目的操作数</td>
+</tr>
+<tr>
+<td>orr</td>
+<td>or</td>
+<td>将第一个源操作数的值或上第二个源操作数的值返回给目的操作数</td>
+</tr>
+<tr>
+<td>mvn</td>
+<td>move not</td>
+<td>将源操作数的值取非返回给目的操作数</td>
+</tr>
+<tr>
+<td>eor</td>
+<td>exclusive or</td>
+<td>将第一个源操作数的值异或第二个源操作数的值返回给目的操作数</td>
+</tr>
+<tr>
+<td>mul</td>
+<td>multiply</td>
+<td>将第一个源操作数的值乘上第二个源操作数的值返回给目的操作数</td>
+</tr>
+<tr>
+<td>smull</td>
+<td>signed multiply</td>
+<td>将第一个源操作数的值乘上第二个源操作数的值返回给目的操作数(有符号)</td>
+</tr>
+<tr>
+<td>umull</td>
+<td>unsigned multiply</td>
+<td>将第一个源操作数的值乘上第二个源操作数的值返回给目的操作数(无符号)</td>
+</tr>
+<tr>
+<td>sdiv</td>
+<td>signed divide</td>
+<td>将第一个源操作数的值除以第二个源操作数的值返回给目的操作数(有符号)</td>
+</tr>
+<tr>
+<td>udiv</td>
+<td>unsigned divide</td>
+<td>将第一个源操作数的值除以第二个源操作数的值返回给目的操作数(无符号)</td>
+</tr>
+<tr>
+<td>lsl</td>
+<td>logical shift left</td>
+<td>将第一个源操作数的值左移第二个源寄存器的值返回给目的寄存器</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="比较指令"><a href="#比较指令" class="headerlink" title="比较指令"></a>比较指令</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>指令名</th>
+<th>英文联想</th>
+<th>指令作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cmp</td>
+<td>compare</td>
+<td>将两数相减，并设置PSTATE</td>
+</tr>
+<tr>
+<td>tst</td>
+<td>test</td>
+<td>将两数相与，并设置PSTATE</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="跳转指令"><a href="#跳转指令" class="headerlink" title="跳转指令"></a>跳转指令</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>指令名</th>
+<th>英文联想</th>
+<th>指令作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>b</td>
+<td>branch</td>
+<td>跳转到指定标签处</td>
+</tr>
+<tr>
+<td>br</td>
+<td>branch refer to register</td>
+<td>跳转到寄存器内的地址处</td>
+</tr>
+<tr>
+<td>b.eq</td>
+<td>branch if equal</td>
+<td>如果相等则跳转</td>
+</tr>
+<tr>
+<td>b.ne</td>
+<td>branch if not equal</td>
+<td>如果不相等则跳转</td>
+</tr>
+<tr>
+<td>b.hi</td>
+<td>branch if higher</td>
+<td>如果大于则跳转(无符号比较)</td>
+</tr>
+<tr>
+<td>b.hs</td>
+<td>branch if higher or same</td>
+<td>如果大于等于则跳转(无符号比较)</td>
+</tr>
+<tr>
+<td>b.lo</td>
+<td>branch if lower</td>
+<td>如果小于则跳转(无符号比较)</td>
+</tr>
+<tr>
+<td>b.ls</td>
+<td>branch if lower or same</td>
+<td>如果小于等于则跳转(无符号比较)</td>
+</tr>
+<tr>
+<td>b.gt</td>
+<td>branch if greater</td>
+<td>如果大于则跳转(有符号比较)</td>
+</tr>
+<tr>
+<td>b.ge</td>
+<td>branch if greater or equal</td>
+<td>如果大于等于则跳转(有符号比较)</td>
+</tr>
+<tr>
+<td>b.lt</td>
+<td>branch if less</td>
+<td>如果小于则跳转(有符号比较)</td>
+</tr>
+<tr>
+<td>b.le</td>
+<td>branch if less or equal</td>
+<td>如果小于等于则跳转(有符号比较)</td>
+</tr>
+<tr>
+<td>bl</td>
+<td>branch and link</td>
+<td>跳转至指定函数并将其返回地址写入r30</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="条件选择指令"><a href="#条件选择指令" class="headerlink" title="条件选择指令"></a>条件选择指令</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>指令名</th>
+<th>英文联想</th>
+<th>指令作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>csel</td>
+<td>conditional select</td>
+<td>根据condition将两个源操作数比较，以此来选择哪个原操作数给到目的操作数</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="LR、FP寄存器与栈交互"><a href="#LR、FP寄存器与栈交互" class="headerlink" title="LR、FP寄存器与栈交互"></a>LR、FP寄存器与栈交互</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>指令名</th>
+<th>英文联想</th>
+<th>指令作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>stp</td>
+<td>store pair of registers</td>
+<td>比如<code>stp  x29, x30, [sp]</code>表示将x29存储到sp，x30存储到<code>sp + 8</code></td>
+</tr>
+<tr>
+<td>ldp</td>
+<td>load pair of registers</td>
+<td>比如<code>ldp  x29, x30, [sp]</code>表示将sp读取8字节至x29，<code>sp + 8</code>读取8字节至x30</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="系统调用指令"><a href="#系统调用指令" class="headerlink" title="系统调用指令"></a>系统调用指令</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>指令名</th>
+<th>英文联想</th>
+<th>指令作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>svc</td>
+<td>supervisor call</td>
+<td>调用系统调用</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h2><p>Fibonacci function:</p>
+<div class="code-wrapper"><pre class="line-numbers language-armasm" data-language="armasm"><code class="language-armasm">    .p2align    2
+fibonacci:
+    sub    sp, sp, #32
+    stp    x29, x30, [sp, #16]
+    add    x29, sp, #16
+    str    w0, [x29, #-4]
+    cmp    w0, #2
+    b.lt   init_val
+    sub    w0, w0, #1
+    bl     fibonacci
+    str    w0, [x29, #-8]
+    ldr    w0, [x29, #-4]
+    sub    w0, w0, #2
+    bl     fibonacci
+    ldr    w1, [x29, #-8]
+    add    w0, w0, w1
+    ldp    x29, x30, [sp, #16]
+    add    sp, sp, #32
+    ret
+init_val:
+    mov    w0, #1
+    ldp    x29, x30, [sp, #16]
+    add    sp, sp, #32
+    ret<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-armasm" data-language="armasm"><code class="language-armasm"># hello.s
+    .section    __TEXT,__text
+    .globl  _main
+    .p2align    2
+_main:
+    sub     sp, sp, #16
+    stp     x29, x30, [sp]
 
-stacks SEGMENT
-    db 100 dup(0)
-stacks ENDS
+    mov     w0, #0                  ; fd: STDOUT
+    adrp    x1, _hello@PAGE
+    add     x1, x1, _hello@PAGEOFF  ; cbuf: &quot;hello, world&quot;
+    mov     w2, #13                 ; nbyte: 13
+    mov     w16, #4                 ; Syscall number: write
+    svc     #0x80                   ; write(STDOUT_FILENO, &quot;hello, world&quot;, 13);
 
-codes SEGMENT
-    assume cs:codes,ds:datas,ss:stacks
-start:
-    mov ax,datas
-    mov ds,ax
-    ...
-    mov ah,4ch
-    int 21h
-codes ENDS
-end start<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
-<h1 id="伪操作"><a href="#伪操作" class="headerlink" title="伪操作"></a>伪操作</h1><h2 id="assume"><a href="#assume" class="headerlink" title="assume"></a>assume</h2><p>用来明确段和段寄存器之间的关系，我们通常会这么写：</p>
-<div class="code-wrapper"><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">assume cs:codes,ds:datas,ss:stacks<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
-<p>但是如果我们要取消前面的指定可以用：</p>
-<div class="code-wrapper"><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">assume nothing<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
-<h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><blockquote>
-<p>同一个变量可以具有不同的类型属性</p>
-</blockquote>
-<p>eg：</p>
-<div class="code-wrapper"><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">oper1 db 1,2
+    ldp     x29, x30, [sp]
+    add     sp, sp, #16
+    ret
 
-mov ax,oper1+1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
-<p>显然这个表达是错的（会报错），oper1的类型是字节，而ax的类型是字，类型不匹配。</p>
-<h3 id="ptr"><a href="#ptr" class="headerlink" title="ptr"></a>ptr</h3><p>我们用ptr可以把oper1的类型转换成字：</p>
-<div class="code-wrapper"><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">mov ax,word ptr oper1+1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
-<p>这样就不会有类型的报错了，<strong>同时<code>word</code>这里还可以是<code>byte</code>，<code>dword</code>等多个类型</strong></p>
-<h3 id="label"><a href="#label" class="headerlink" title="label"></a>label</h3><blockquote>
-<p>除了<code>ptr</code>的转换，我们还可以用<code>label</code>(相当于是取别名)</p>
-</blockquote>
-<p>对于oper1数据我们可以在定义时：</p>
-<div class="code-wrapper"><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">oper1_word label word
-oper1 db 1,2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
-<p>这样我们用<code>oper1_word</code>进行字的操作，用<code>oper1</code>来进行字节的操作。<strong>但是它们指向的是同一个内存空间。</strong></p>
-<h2 id="EQU"><a href="#EQU" class="headerlink" title="EQU"></a>EQU</h2><p>可以用EQU(equal?)来给一个表达式赋予一个名字（这是一个赋值伪操作），eg：</p>
-<div class="code-wrapper"><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">data equ var+2 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
-<p><em>ps：<code>equ</code>不允许重复定义，同时<code>equ</code>伪操作不占用内存空间</em></p>
-<p><strong>warning：<code>=</code>也可以错位赋值伪操作使用（<code>=</code>可以重复使用），但是两者不能同时使用</strong></p>
-<h2 id="地址计数器"><a href="#地址计数器" class="headerlink" title="地址计数器"></a>地址计数器</h2><p>在汇编中<script type="math/tex">`作为地址计数器使用，`</script>表示当前指令的地址（偏移地址）。</p>
-<p><strong>每处理一条指令，地址计数器就增加一个值</strong>。</p>
-<h3 id="org伪操作"><a href="#org伪操作" class="headerlink" title="org伪操作"></a>org伪操作</h3><p>此伪操作用来设置当前地址计数器的值，eg：</p>
-<div class="code-wrapper"><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">org 10 		;此时偏移地址为10<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
-<h2 id="基数控制伪操作"><a href="#基数控制伪操作" class="headerlink" title="基数控制伪操作"></a>基数控制伪操作</h2><p><strong>warning：汇编程序默认的数为十进制数</strong></p>
-<p><code>.radix</code>伪操作可以把默认的基数改变成2 ~ 16的任何基数，eg：</p>
-<div class="code-wrapper"><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">.radix 16
-mov bx,0ff		;16进制就不用写h
-mov bx,178d		;10进制就要写d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
-<h2 id="数值回送操作符"><a href="#数值回送操作符" class="headerlink" title="数值回送操作符"></a>数值回送操作符</h2><h3 id="type"><a href="#type" class="headerlink" title="type"></a>type</h3><p>如果之后的表达式是一个变量，则汇编程序返回该变量的以字节数表示的类型：db为1，dw为2，dd为4。</p>
-<div class="code-wrapper"><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">array dw 1,2,3
-mov si,type array		;等同于mov si,2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
-<h3 id="length"><a href="#length" class="headerlink" title="length"></a>length</h3><ul>
-<li>对于变量使用<code>dup</code>的情况，程序返回分配该变量的单元数（<strong>只看第一个<code>dup</code></strong>）</li>
-<li>对于其他情况<u>一概返回</u>1</li>
-</ul>
-<div class="code-wrapper"><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">fee dw 100 dup(0)
-mov cx,length fee		;等同于mov cx,100<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
-<h3 id="size"><a href="#size" class="headerlink" title="size"></a>size</h3><p>程序返回伪操作之后变量的<strong>type值与length值的乘积</strong>，比如之前的fee变量：</p>
-<div class="code-wrapper"><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">mov cx,size fee
-;相当于mov cx,200<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
-<h3 id="seg"><a href="#seg" class="headerlink" title="seg"></a>seg</h3><p>程序会返回变量或者标号的<strong>段地址值</strong></p>
-<p>比如如果<code>datas</code>是地址为05000h的数据段段名，oper1是该段中第一个变量名：</p>
-<div class="code-wrapper"><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">mov bx,seg oper1
-;相当于是mov bx,05000h<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+    .data
+    .p2align    2
+_hello:
+    .asciz  &quot;hello, world&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p><em>需要注意的是，在macOS中，大部分的系统调用都是可以通过0x80这个数来调用，所以使用<code>svc #0x80</code>即可。如果你想知道XNU内核所有的系统调用号，可以参考<a target="_blank" rel="noopener" href="https://github.com/apple/darwin-xnu/blob/main/bsd/kern/syscalls.master">这里</a>。</em></p>
 
             </div>
             <hr>
@@ -392,8 +675,6 @@ mov cx,length fee		;等同于mov cx,100<span aria-hidden="true" class="line-numb
                     
                       <a class="hover-with-bg" href="/tags/asm/">asm</a>
                     
-                      <a class="hover-with-bg" href="/tags/review/">review</a>
-                    
                   </div>
                 
               </div>
@@ -409,18 +690,12 @@ mov cx,length fee		;等同于mov cx,100<span aria-hidden="true" class="line-numb
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/01/01/%E6%AF%9B%E6%A6%82%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">毛概复习笔记</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/12/23/Oh-My-Zsh%E7%BE%8E%E5%8C%96%E7%BB%88%E7%AB%AF/">
-                        <span class="hidden-mobile">Oh-My-Zsh美化终端</span>
+                      <a href="/2022/11/19/Everyone-likes-Vue/">
+                        <span class="hidden-mobile">Everyone likes Vue</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
