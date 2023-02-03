@@ -24,7 +24,7 @@
 <meta property="og:description" content="Arm汇编指令汇总本指令汇总主要由此文章总结得出，故若有对指令细节不理解的地方，可将文章作为参考。 需要说明的是，和AT&amp;T风格的x86汇编相比，arm汇编的源操作数在右边，目的操作数在左边，而且运算指令基本上是需要指定目的地址的。(本文使用的是GUN风格的arm汇编，除此之外还有armasm风格的) 寄存器汇总 在AArch64架构下，有31个通用寄存器。这些通用寄存器可以作为大部分指令">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-01-11T07:12:16.000Z">
-<meta property="article:modified_time" content="2023-01-11T07:29:10.789Z">
+<meta property="article:modified_time" content="2023-02-03T12:12:37.624Z">
 <meta property="article:author" content="Rogers Kelamen">
 <meta property="article:tag" content="asm">
 <meta name="twitter:card" content="summary_large_image">
@@ -223,7 +223,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.7k 字
+      2.8k 字
     </span>
   
 
@@ -273,7 +273,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2023年1月11日 下午
+                  本文最后更新于：2023年2月3日 晚上
                 
               </p>
             
@@ -290,6 +290,8 @@
 <p>r19 ~ r28 : 被调用者保留的寄存器</p>
 <p>r29 : FP寄存器</p>
 <p>r30 : LR寄存器</p>
+<p>还有一种寄存器比较特殊，叫做零寄存器:</p>
+<p>wzr : 读取该寄存器的值，永远为0；向该寄存器写入数值将无效，也就是说无法向该寄存器写入数值</p>
 <h2 id="赋值指令"><a href="#赋值指令" class="headerlink" title="赋值指令"></a>赋值指令</h2><div class="table-container">
 <table>
 <thead>
