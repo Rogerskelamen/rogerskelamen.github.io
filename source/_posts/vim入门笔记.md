@@ -1,13 +1,13 @@
 ---
 title: Vim入门笔记
 date: 2020-12-21 22:51:10
+updated: 2023-01-01 21:41:00
 index_img: https://s2.loli.net/2022/03/27/NyTDUXWFqjLuM9r.png
 banner_img: https://s2.loli.net/2022/03/27/ptrzIUA62G74w1e.png
 author: Rogers Kelamen
 tags:
 - geek
 - IDE
-updated: 2020-3-11 19:17:00
 categories:
 - Vim
 ---
@@ -19,47 +19,72 @@ categories:
 
 ![](https://s2.loli.net/2022/03/26/JsL9PmvlH8RGuDA.jpg)
 
-
-
 # 键位简化
 
 > 将以上复杂的键位入门化
 
-| 按键         | 单词表示 | 作用                                    |
-| ------------ | -------- | --------------------------------------- |
-| <kbd>w</kbd> | word     | 向后一个词                              |
-| <kbd>b</kbd> | back     | 向前一个词                              |
-| <kbd>a</kbd> | append   | 在这个字符后写入                        |
-| <kbd>A</kbd> | 同上     | 在本行末开始写入                        |
-| <kbd>i</kbd> | insert   | 在光标位置插入                          |
-| <kbd>I</kbd> | 同上     | 在本行首开始写入                        |
-| <kbd>o</kbd> | open     | 创建下一空行并写入                      |
-| <kbd>O</kbd> | 同上     | 创建上一空行并写入                      |
-| <kbd>y</kbd> | yank     | 复制当前字符                            |
-| <kbd>c</kbd> | change   | 删除当前字符并写入                      |
-| <kbd>d</kbd> | delete   | <u>剪切</u>当前字符                     |
-| <kbd>p</kbd> | paste    | 将剪切板上的内容粘贴                    |
-| <kbd>f</kbd> | find     | 将光标移至“f”按键之后的字符（就近原则） |
-| <kbd>g</kbd> | go       | 将光标移动到一个位置（动作键）          |
+| 按键         | 单词表示   | 作用                                        |
+| ------------ | --------   | ---------------------------------------     |
+| <kbd>w</kbd> | word       | 向后一个词                                  |
+| <kbd>b</kbd> | back       | 向前一个词                                  |
+| <kbd>a</kbd> | append     | 在这个字符后写入                            |
+| <kbd>A</kbd> | 同上       | 在本行末开始写入                            |
+| <kbd>i</kbd> | insert     | 在光标位置插入                              |
+| <kbd>I</kbd> | 同上       | 在本行首开始写入                            |
+| <kbd>o</kbd> | open       | 创建下一空行并写入                          |
+| <kbd>O</kbd> | 同上       | 创建上一空行并写入                          |
+| <kbd>y</kbd> | yank       | 复制当前字符                                |
+| <kbd>Y</kbd> | 同上       | 复制当前字符及其行后内容                    |
+| <kbd>c</kbd> | change     | 根据之后的方向删除当前字符并写入            |
+| <kbd>C</kbd> | 同上       | 删除当前字符及其行后内容并写入              |
+| <kbd>d</kbd> | delete     | <u>剪切</u>当前字符                         |
+| <kbd>D</kbd> | 同上       | <u>剪切</u>当前字符及其行后内容             |
+| <kbd>s</kbd> | substitute | 删除当前字符并进入插入模式                  |
+| <kbd>s</kbd> | 同上       | 删除当前行并进入插入模式                    |
+| <kbd>x</kbd> | 暂未知     | 删除光标所在字符                            |
+| <kbd>x</kbd> | 暂未知     | 删除光标所在位置的前一个字符                |
+| <kbd>p</kbd> | paste      | 将剪切板上的内容粘贴                        |
+| <kbd>f</kbd> | find       | 将光标移至“f”按键之后的字符（向后查找最近） |
+| <kbd>F</kbd> | 同上       | 将光标移至“F”按键之后的字符（向前查找最近） |
+| <kbd>g</kbd> | go         | 将光标移动到一个位置（动作键）              |
 
 
 
-<font size=4>**常用键位组合**：</font>
+<font size=4>**常用键位组合：**</font>
 
 <kbd>dd</kbd>：删除当前行
+
 <kbd>gg</kbd>：跳转到<u>文本</u>首行
+
 <kbd>G</kbd>：跳转到<u>文本</u>末尾行
+
 <kbd>ciw</kbd>：更改光标所在单词的内容（change in word）
+
 <kbd>ci"</kbd>：删除光标所在双引号中的内容并写入
+
 <kbd>yi"</kbd>：类比上面的，有复制光标所在双引号中的内容
+
 <kbd>zz</kbd>：使视野居中
-<kbd>df*</kbd>：找到指定字符并从光标处一直删除到那个字符（\*为任意字符）
+
+<kbd>df\*</kbd>：找到指定字符并从光标处一直删除到那个字符（\*为任意字符）
+
 <kbd>ggvG=</kbd>：格式化文档（对你没听错）
+
 <kbd>Ctrl</kbd>+<kbd>o</kbd>：回到上一次更改的位置（<u>**可跨文件**</u>）
+
 <kbd>Ctrl</kbd>+<kbd>i</kbd>：回到回到后上次更改的位置（<u>**可跨文件**</u>）
+
 <kbd>gf</kbd>：直接用vim打开光标所在的这个目录文件
+
 <kbd>Ctrl</kbd>+<kbd>a</kbd>：若当前字符是数字，这个数字加1
+
 <kbd>Ctrl</kbd>+<kbd>x</kbd>：若当前字符是数字，这个数字减1
+
+<kbd>Ctrl</kbd>+<kbd>]</kbd>：如果当前光标位于标识符上，跳转到帮助文档的相应页上
+
+<kbd>\*</kbd>：正向搜索光标所在标识符
+
+<kbd>\#</kbd>：反向搜索光标所在标识符
 
 # vim指令
 
@@ -880,4 +905,4 @@ figlet -f smslant vim
 
 ```vim
 :%TOhtml
-`
+```

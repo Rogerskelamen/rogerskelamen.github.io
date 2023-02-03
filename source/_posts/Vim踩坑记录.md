@@ -1,7 +1,7 @@
 ---
 title: Vim踩坑记录
 date: 2021-08-15 10:42:16
-updated: 2021-12-04 20:32:00
+updated: 2023-01-02 17:48:00
 author: Rogers Kelamen
 index_img: https://s2.loli.net/2022/03/26/c4MLy7XxoNkTQ8C.png
 categories:
@@ -112,3 +112,63 @@ sudo add-apt-repository ppa:jonathonf/vim
 
 2. go和rua的依赖，你可以通过查看health详情来看一下到底怎么操作
 
+## Vim on Mac OS
+
+2023年1月2日，更新了Mac OS到12.6.2，于是自动更新了终端上的Vim，水果将其更新为了vim@9.0 (听说支持vimscript9，速度会有飞跃式提升)。
+
+于是就打算重新配置一下Vim（毕竟我一直都在使用NeoVim，好久没有使用原生Vim了），但是这个Vim我满怀欣悦试着去从零开始配置，结果慢慢发现它相较于NeoVim好多feature都没有。真是头疼啊
+
+其version如下：
+
+```vim
+VIM - Vi IMproved 9.0 (2022 Jun 28, compiled Nov 13 2022 20:35:12)
+macOS version - arm64
+Included patches: 1-639
+Compiled by root@apple.com
+Normal version without GUI.  Features included (+) or not (-):
++acl               +file_in_path      -mouse_urxvt       -tag_any_white
+-arabic            +find_in_path      +mouse_xterm       -tcl
++autocmd           +float             +multi_byte        -termguicolors
++autochdir         +folding           +multi_lang        +terminal
+-autoservername    -footer            -mzscheme          +terminfo
+-balloon_eval      +fork()            +netbeans_intg     +termresponse
+-balloon_eval_term -gettext           +num64             +textobjects
+-browse            -hangul_input      +packages          +textprop
+++builtin_terms    +iconv             +path_extra        +timers
++byte_offset       +insert_expand     -perl              +title
++channel           +ipv6              +persistent_undo   -toolbar
++cindent           +job               +popupwin          +user_commands
+-clientserver      +jumplist          +postscript        -vartabs
++clipboard         -keymap            +printer           +vertsplit
++cmdline_compl     +lambda            -profile           +vim9script
++cmdline_hist      -langmap           -python            +viminfo
++cmdline_info      +libcall           -python3           +virtualedit
++comments          +linebreak         +quickfix          +visual
+-conceal           +lispindent        +reltime           +visualextra
++cryptv            +listcmds          -rightleft         +vreplace
++cscope            +localmap          +ruby/dyn          +wildignore
++cursorbind        -lua               +scrollbind        +wildmenu
++cursorshape       +menu              +signs             +windows
++dialog_con        +mksession         +smartindent       +writebackup
++diff              +modify_fname      -sodium            -X11
++digraphs          +mouse             -sound             -xfontset
+-dnd               -mouseshape        +spell             -xim
+-ebcdic            -mouse_dec         +startuptime       -xpm
+-emacs_tags        -mouse_gpm         +statusline        -xsmp
++eval              -mouse_jsbterm     -sun_workshop      -xterm_clipboard
++ex_extra          -mouse_netterm     +syntax            -xterm_save
++extra_search      +mouse_sgr         +tag_binary
+-farsi             -mouse_sysmouse    -tag_old_static
+   system vimrc file: "$VIM/vimrc"
+     user vimrc file: "$HOME/.vimrc"
+ 2nd user vimrc file: "~/.vim/vimrc"
+      user exrc file: "$HOME/.exrc"
+       defaults file: "$VIMRUNTIME/defaults.vim"
+  fall-back for $VIM: "/usr/share/vim"
+Compilation: gcc -c -I. -Iproto -DHAVE_CONFIG_H   -DMACOS_X_UNIX  -g -O2 -U_FORTIFY_SOUR
+CE -D_FORTIFY_SOURCE=1
+Linking:
+gcc   -L/usr/local/lib -o vim        -lm -lncurses  -liconv -framework Cocoa
+```
+
+使用`has('termguicolors')`和`has('unnamedplus')`查看一下结果两个都是0，也就是说Mac最新的Vim连24bit true color和共享系统剪切板的支持都没有，真是欲哭无泪啊。不过还是可以体验一把最原始的Vim Style，试着配完吧🧐。
