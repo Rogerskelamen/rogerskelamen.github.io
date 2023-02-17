@@ -16,19 +16,48 @@
   <meta name="description" content="">
   <meta name="author" content="Rogers Kelamen">
   <meta name="keywords" content="blog">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="归档">
-<meta property="og:url" content="https://rokelamen.top/archives/2021/page/3/index.html">
+  <meta name="description" content="文本文件和二进制文件的区别你是否遇到过这种情景：当你编译完一个c文件之后，你发现有个地方仍需进行小修改，于是你使用vim重新打开.c源文件，但是不幸的是，你一不小心忘记在文件名上加上.c。于是结果你用vim打开了刚刚编译好的二进制文件，当然里面都是一堆你完全看不懂的乱码，但是你很好奇，为什么它是乱码，它不应该是充满了0和1么? 回答这个问题之前，首先来想一下另一个问题： How does text">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文本文件、二进制文件和乱码">
+<meta property="og:url" content="https://rokelamen.top/2023/02/17/%E6%96%87%E6%9C%AC%E6%96%87%E4%BB%B6%E3%80%81%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6%E5%92%8C%E4%B9%B1%E7%A0%81/index.html">
 <meta property="og:site_name" content="RO&#39;s Blog">
+<meta property="og:description" content="文本文件和二进制文件的区别你是否遇到过这种情景：当你编译完一个c文件之后，你发现有个地方仍需进行小修改，于是你使用vim重新打开.c源文件，但是不幸的是，你一不小心忘记在文件名上加上.c。于是结果你用vim打开了刚刚编译好的二进制文件，当然里面都是一堆你完全看不懂的乱码，但是你很好奇，为什么它是乱码，它不应该是充满了0和1么? 回答这个问题之前，首先来想一下另一个问题： How does text">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-02-17T14:57:25.000Z">
+<meta property="article:modified_time" content="2023-02-17T15:01:25.952Z">
 <meta property="article:author" content="Rogers Kelamen">
-<meta property="article:tag" content="blog">
+<meta property="article:tag" content="miscellaneous">
 <meta name="twitter:card" content="summary_large_image">
   
-  <title>归档| RO&#39;s Blog</title>
+  <title>文本文件、二进制文件和乱码| RO&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-solarizedlight.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -55,7 +84,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -163,22 +192,65 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('https://s2.loli.net/2022/03/26/YIBOukjNeHPbZw8.jpg') no-repeat center center;
+         style="background: url('https://s2.loli.net/2022/03/26/DZpUEW8izknQALM.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Time will tell">
+            <span class="h2" id="subtitle" title="文本文件、二进制文件和乱码">
               
             </span>
 
             
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Rogers Kelamen
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2023-02-17 22:57" pubdate>
+        2023年2月17日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      775 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      2 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
           </div>
 
-          
-            <div class="scroll-down-bar">
-              <i class="iconfont icon-arrowdown"></i>
-            </div>
           
         </div>
       </div>
@@ -187,94 +259,127 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 58 篇文章</p>
-  <hr>
-  
-  
-    
       
-      <p class="h5">2021</p>
-    
-    <a href="/2021/07/22/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">机器学习</span>
-      <time style="float: right;">07-22</time>
-    </a>
-  
-    
-    <a href="/2021/03/22/linux%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">linux课程笔记</span>
-      <time style="float: right;">03-22</time>
-    </a>
-  
-    
-    <a href="/2021/03/11/Vim%E6%9D%82%E9%A1%B9%E8%AE%B0%E5%BD%95/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Vim杂项记录</span>
-      <time style="float: right;">03-11</time>
-    </a>
-  
-    
-    <a href="/2021/03/10/ubuntu%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Ubuntu使用注意事项</span>
-      <time style="float: right;">03-10</time>
-    </a>
-  
-    
-    <a href="/2021/03/03/C-%E5%9F%BA%E7%A1%80%E6%B3%A8%E6%84%8F%E7%82%B9/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">C#基础注意点</span>
-      <time style="float: right;">03-03</time>
-    </a>
-  
-    
-    <a href="/2021/02/27/Java%E5%86%8D%E5%AD%A6%E6%B3%A8%E6%84%8F%E7%82%B9/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Java再学注意点</span>
-      <time style="float: right;">02-27</time>
-    </a>
-  
-    
-    <a href="/2021/01/22/LaTeX%E5%85%A5%E9%97%A8/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">LaTeX入门</span>
-      <time style="float: right;">01-22</time>
-    </a>
-  
-    
-    <a href="/2021/01/19/MATLAB%E5%AD%A6%E4%B9%A0/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">MATLAB学习</span>
-      <time style="float: right;">01-19</time>
-    </a>
-  
-    
-    <a href="/2021/01/01/%E6%AF%9B%E6%A6%82%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">毛概复习笔记</span>
-      <time style="float: right;">01-01</time>
-    </a>
-  
-</div>
 
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">文本文件、二进制文件和乱码</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2023年2月17日 晚上
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="文本文件和二进制文件的区别"><a href="#文本文件和二进制文件的区别" class="headerlink" title="文本文件和二进制文件的区别"></a>文本文件和二进制文件的区别</h1><p>你是否遇到过这种情景：当你编译完一个c文件之后，你发现有个地方仍需进行小修改，于是你使用vim重新打开<code>.c</code>源文件，但是不幸的是，你一不小心忘记在文件名上加上<code>.c</code>。于是结果你用vim打开了刚刚编译好的二进制文件，当然里面都是一堆你完全看不懂的乱码，但是你很好奇，为什么它是乱码，它不应该是充满了0和1么?</p>
+<p>回答这个问题之前，首先来想一下另一个问题：</p>
+<p><em>How does text editor work?</em></p>
+<p>本质上来说，不管是vim也好，emacs也罢，甚至是Windows上的记事本，他们都是文本编辑器。而文本编辑器最大的特点就是能<strong>显示和编辑字符</strong>。</p>
+<p>回头来看一下我们的<code>.c</code>源文件，仔细想一下，本来源文件中的内容应该就是字符对应的ascii码(<em>假如你的编辑器支持unicode的话，就是对应的unicode码</em>)，也就是说我们看到的内容是“文本编辑器想让我们看到的”，技术原理上来说就是vim将字符码转码变成了我们看到的内容。所以文件的真实内容其实是(<em>计算机视角</em>):</p>
+<div class="code-wrapper"><pre class="line-numbers language-text" data-language="text"><code class="language-text">0x69 0x6e 0x74 0x20 0x6e 0x3b ...
+# 上面这段转码之后变成int n;
+# 实际上没有0x这个符号也没有空格，但是为了可读性在此加上<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<p>那么前面的问题就简单了。既然文本编辑器是无情的转码工具，那么使用vim打开的二进制文件内容就是将01转化为了相应的ascii/utf-8，而在二进制中最常出现的字符<code>^@</code>的utf-8编码就是000。</p>
+<h1 id="乱码"><a href="#乱码" class="headerlink" title="乱码"></a>乱码</h1><p>所以归根到底，很多乱码问题实际上都是由于对内容进行了错误的转码。比如在Windows早期(Windows 7以前)，记事本的编码格式默认是gbk，所以如果是utf-8书写的内容，用记事本打开一定会乱码，这个时候就千万不能保存，否则就是将乱码内容进行错误的编码再写入，相当于原本内容直接变成垃圾信息。</p>
+<p>这里推荐去看一下这个<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1cB4y177QR">科普视频</a>，可以加深理解</p>
 
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/archives/2021/page/2/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/archives/2021/">1</a><a class="page-number" href="/archives/2021/page/2/#board">2</a><span class="page-number current">3</span>
-    </span>
-  </nav>
-
-
-
-
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/miscellaneous/">miscellaneous</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/02/16/%E5%80%BC%E5%BE%97%E5%85%B3%E6%B3%A8%E7%9A%84%E5%8D%9A%E5%AE%A2/">
+                        <span class="hidden-mobile">值得关注的博客</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"2RbCqGEaklHVj7Gj6dtd2kM4-gzGzoHsz","appKey":"kdFD4FmNeIpaTMK269nEqhxx","path":"window.location.pathname","placeholder":"say something...","avatar":"mp","meta":["nick","mail","link"],"requiredFields":["nick","mail"],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://2rbcqgea.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"2RbCqGEaklHVj7Gj6dtd2kM4-gzGzoHsz","appkey":"kdFD4FmNeIpaTMK269nEqhxx"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
 
     
@@ -427,6 +532,19 @@
 
 
 
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
 
 
 
@@ -452,6 +570,13 @@
 
 
 
+
+  <script  src="https://cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({"theme":"default"});
+    }
+  </script>
 
 
 
