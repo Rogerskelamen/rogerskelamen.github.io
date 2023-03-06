@@ -1,0 +1,768 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s2.loli.net/2022/03/27/FQiLXx1NBeS3MTw.png">
+  <link rel="icon" href="https://s2.loli.net/2022/03/27/FQiLXx1NBeS3MTw.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Rogers Kelamen">
+  <meta name="keywords" content="blog">
+  <meta name="description" content="Flutter开发技巧 首先是必知必会模版  import &#39;package:flutter&#x2F;material.dart&#39;;  void main() &amp;#123;   runApp(MyApp()); &amp;#125;  &#x2F;&#x2F; ignore: use_key_in_widget_constructors class MyApp extends StatelessWidget &amp;#123;   @ov">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flutter开发技巧">
+<meta property="og:url" content="https://rokelamen.top/2023/03/06/Flutter%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7/index.html">
+<meta property="og:site_name" content="RO&#39;s Blog">
+<meta property="og:description" content="Flutter开发技巧 首先是必知必会模版  import &#39;package:flutter&#x2F;material.dart&#39;;  void main() &amp;#123;   runApp(MyApp()); &amp;#125;  &#x2F;&#x2F; ignore: use_key_in_widget_constructors class MyApp extends StatelessWidget &amp;#123;   @ov">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/03/06/Z2MeDyr8lCULi3V.png">
+<meta property="og:image" content="https://s2.loli.net/2023/03/06/ijuOGVpFSEcvDtJ.png">
+<meta property="article:published_time" content="2023-03-06T09:32:25.000Z">
+<meta property="article:modified_time" content="2023-03-06T09:39:49.904Z">
+<meta property="article:author" content="Rogers Kelamen">
+<meta property="article:tag" content="mobile">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s2.loli.net/2023/03/06/Z2MeDyr8lCULi3V.png">
+  
+  <title>Flutter开发技巧| RO&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-solarizedlight.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"rokelamen.top","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"0d7560f90f7a21d6a9e7635611dac094","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"2RbCqGEaklHVj7Gj6dtd2kM4-gzGzoHsz","app_key":"kdFD4FmNeIpaTMK269nEqhxx","server_url":"https://2rbcqgea.lc-cn-n1-shared.com","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>RO&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://s2.loli.net/2023/03/06/4DGoxE5iSHPyt7k.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Flutter开发技巧">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Rogers Kelamen
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2023-03-06 17:32" pubdate>
+        2023年3月6日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.4k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      11 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Flutter开发技巧</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2023年3月6日 下午
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="Flutter开发技巧"><a href="#Flutter开发技巧" class="headerlink" title="Flutter开发技巧"></a>Flutter开发技巧</h1><blockquote>
+<p>首先是必知必会模版</p>
+</blockquote>
+<div class="code-wrapper"><pre class="line-numbers language-dart" data-language="dart"><code class="language-dart"><span class="token keyword">import</span> <span class="token string">'package:flutter/material.dart'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token function">runApp</span><span class="token punctuation">(</span><span class="token function">MyApp</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// ignore: use_key_in_widget_constructors</span>
+<span class="token keyword">class</span> <span class="token class-name">MyApp</span> <span class="token keyword">extends</span> <span class="token class-name">StatelessWidget</span> <span class="token punctuation">&#123;</span>
+  <span class="token metadata symbol">@override</span>
+  Widget <span class="token function">build</span><span class="token punctuation">(</span>BuildContext context<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token function">MaterialApp</span><span class="token punctuation">(</span>
+      title<span class="token punctuation">:</span> <span class="token string">'Ro\'s App'</span><span class="token punctuation">,</span>
+      theme<span class="token punctuation">:</span> <span class="token function">ThemeData</span><span class="token punctuation">(</span>primarySwatch<span class="token punctuation">:</span> Colors<span class="token punctuation">.</span>blue<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      home<span class="token punctuation">:</span> <span class="token function">MyHomePage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// ignore: use_key_in_widget_constructors</span>
+<span class="token keyword">class</span> <span class="token class-name">MyHomePage</span> <span class="token keyword">extends</span> <span class="token class-name">StatefulWidget</span> <span class="token punctuation">&#123;</span>
+  <span class="token metadata symbol">@override</span>
+  _MyHomePageState <span class="token function">createState</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">_MyHomePageState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">_MyHomePageState</span> <span class="token keyword">extends</span> <span class="token class-name">State</span><span class="token operator">&lt;</span>MyHomePage<span class="token operator">></span> <span class="token punctuation">&#123;</span>
+  <span class="token metadata symbol">@override</span>
+  Widget <span class="token function">build</span><span class="token punctuation">(</span>BuildContext context<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token function">Scaffold</span><span class="token punctuation">(</span>
+      appBar<span class="token punctuation">:</span> <span class="token function">AppBar</span><span class="token punctuation">(</span>
+        title<span class="token punctuation">:</span> <span class="token keyword">const</span> <span class="token function">Text</span><span class="token punctuation">(</span><span class="token string">'Welcome to My App'</span><span class="token punctuation">)</span>
+      <span class="token punctuation">)</span><span class="token punctuation">,</span>
+      body<span class="token punctuation">:</span> <span class="token keyword">const</span> <span class="token function">Center</span><span class="token punctuation">(</span>
+        child<span class="token punctuation">:</span> <span class="token function">Text</span><span class="token punctuation">(</span>
+          <span class="token string">'Hello World!'</span><span class="token punctuation">,</span>
+          style<span class="token punctuation">:</span> <span class="token function">TextStyle</span><span class="token punctuation">(</span>
+            fontSize<span class="token punctuation">:</span> <span class="token number">30</span><span class="token punctuation">,</span>
+            fontWeight<span class="token punctuation">:</span> FontWeight<span class="token punctuation">.</span>bold
+          <span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h2 id="这个组件我应该怎么写"><a href="#这个组件我应该怎么写" class="headerlink" title="这个组件我应该怎么写?"></a>这个组件我应该怎么写?</h2><blockquote>
+<p>我们都知道，写flutter的过程就是调用不同的构造函数的过程，实现不同的样式和功能则是在构造器中传入了不同的参数。很多时候，我们需要做的就是不断地向构造器中传入参数</p>
+<p>但是我们不知道有哪些参数怎么办？</p>
+</blockquote>
+<p>请善用你的IDE，以我的VS code为例，你可以将鼠标移动到某个组件的构造器上（对于dart来说就是一个类），然后你就可以看到这个构造器的所有参数名和类型，像这样：</p>
+<p><img src="https://s2.loli.net/2023/03/06/Z2MeDyr8lCULi3V.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>同理，你可以将鼠标移动到哪个参数上，这样你就知道该参数的类型（90%以上又是一个类），这时候你就可以直接写出另一个构造器当作传参了，就像这样：</p>
+<p><img src="https://s2.loli.net/2023/03/06/ijuOGVpFSEcvDtJ.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><em>你要是英语没问题，基本上就可以慢慢写(tui ce)出来了</em></p>
+<h2 id="我的HTML盒子呢"><a href="#我的HTML盒子呢" class="headerlink" title="我的HTML盒子呢?"></a>我的HTML盒子呢?</h2><blockquote>
+<p>很多前端童鞋开始上手flutter（比如说我），看到这种“后端形式的样式布局”，不知道如何下手，自己熟悉的盒子模型变成了一个个构造器，那么到底怎么用盒子的思维布局呢?</p>
+</blockquote>
+<h3 id="1-盒子就是Container"><a href="#1-盒子就是Container" class="headerlink" title="1. 盒子就是Container"></a>1. 盒子就是Container</h3><p>当你使用到<code>Container</code>这个组件时，你会感到熟悉感，它拥有width和height。没错，很大程度上Container就是用来当作盒子(容器)的</p>
+<blockquote>
+<p>这里直接给到一个案例吧，懂得都懂</p>
+</blockquote>
+<div class="code-wrapper"><pre class="line-numbers language-dart" data-language="dart"><code class="language-dart"><span class="token function">Container</span><span class="token punctuation">(</span>
+  width<span class="token punctuation">:</span> <span class="token number">300</span><span class="token punctuation">,</span>
+  height<span class="token punctuation">:</span> <span class="token number">300</span><span class="token punctuation">,</span>
+  margin<span class="token punctuation">:</span> <span class="token keyword">const</span> EdgeInsets<span class="token punctuation">.</span><span class="token function">all</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  padding<span class="token punctuation">:</span> <span class="token keyword">const</span> EdgeInsets<span class="token punctuation">.</span><span class="token function">all</span><span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  decoration<span class="token punctuation">:</span> <span class="token function">BoxDecoration</span><span class="token punctuation">(</span>
+    border<span class="token punctuation">:</span> Border<span class="token punctuation">.</span><span class="token function">all</span><span class="token punctuation">(</span>color<span class="token punctuation">:</span> Colors<span class="token punctuation">.</span>black45<span class="token punctuation">,</span> width<span class="token punctuation">:</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    borderRadius<span class="token punctuation">:</span> <span class="token keyword">const</span> BorderRadius<span class="token punctuation">.</span><span class="token function">all</span><span class="token punctuation">(</span>Radius<span class="token punctuation">.</span><span class="token function">circular</span><span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    color<span class="token punctuation">:</span> Colors<span class="token punctuation">.</span>blue
+  <span class="token punctuation">)</span><span class="token punctuation">,</span>
+  child<span class="token punctuation">:</span> <span class="token function">Text</span><span class="token punctuation">(</span>_text<span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>需要解释一下：</p>
+<ul>
+<li><p>margin, padding:</p>
+<p>是我们前端理解的那个没错，但是都是一种EdgInset类型（边界值）</p>
+</li>
+<li><p>decoration:</p>
+<p>所有的样式改变都在这个下面，一般是一个BoxDecoration类型（毕竟是“盒子”嘛），专门来设置比如背景颜色（color），边框（border）等</p>
+</li>
+</ul>
+<h4 id="SizedBox"><a href="#SizedBox" class="headerlink" title="SizedBox"></a>SizedBox</h4><p>如果你只想设置一个“盒子”的大小，采用<code>SizedBox</code>比较方便也更为合理</p>
+<h3 id="2-文字样式"><a href="#2-文字样式" class="headerlink" title="2. 文字样式"></a>2. 文字样式</h3><blockquote>
+<p>首先所有的文字都是使用<code>Text</code>组件进行构造的，在<code>Text</code>组件的参数中，有一个属性叫做<code>style</code>，专门用来管理文字样式</p>
+</blockquote>
+<div class="code-wrapper"><pre class="line-numbers language-dart" data-language="dart"><code class="language-dart"><span class="token function">Text</span><span class="token punctuation">(</span>
+  <span class="token string">'Hello world'</span><span class="token punctuation">,</span>
+  style<span class="token punctuation">:</span> <span class="token function">TextStyle</span><span class="token punctuation">(</span>
+    fontSize<span class="token punctuation">:</span> <span class="token number">30</span><span class="token punctuation">,</span>
+    fontWeight<span class="token punctuation">:</span> FontWeight<span class="token punctuation">.</span>bold
+  <span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h1 id="踩坑记录"><a href="#踩坑记录" class="headerlink" title="踩坑记录"></a>踩坑记录</h1><h2 id="CupertinoPageScaffold"><a href="#CupertinoPageScaffold" class="headerlink" title="CupertinoPageScaffold"></a>CupertinoPageScaffold</h2><p>这是Cupertino的页面框架组件，对应于Material的<code>Scaffold</code>。如果你使用navigationBar并且正继续填补child参数，你会发现，你写的组件都不见了(如果wrap上Center可能还可以看见)，这是因为Cupertino的Scaffold实现没有把navigationBar作为页面组件填充到页面中，而是作为一个浮动的组件浮空在页面上部分，所以你的child组件是被navigationBar挡住而看不见的。</p>
+<p><strong>解决办法</strong>：<u>通常情况下需要在child中包裹一层SafeArea，这样就可以自动适配系统布局，你的child就会被“挤到”navigationBar下面了(于是也就看得见了)</u></p>
+<p><em>更多信息参看<a target="_blank" rel="noopener" href="https://api.flutter.dev/flutter/cupertino/CupertinoPageScaffold-class.html">官方组件说明</a></em></p>
+<h2 id="SingleSliver"><a href="#SingleSliver" class="headerlink" title="SingleSliver"></a>SingleSliver</h2><blockquote>
+<p>这并不是什么flutter的内置组件名，而是我对于一个需求的描述。</p>
+</blockquote>
+<p>很多时候，我们可能用到<a target="_blank" rel="noopener" href="https://book.flutterchina.club/chapter6/custom_scrollview.html#_6-10-1-customscrollview">CustomScrollView</a>来合并两个不同的Sliver组件，有时候我们想在两个Sliver组件中加上一个单独的组件，这样这个SingleSliver就可以跟着它上下两个组件一起无缝滚动了。但问题在于，flutter的内置Sliver组件基本上都是List或者是包含多个组件的集合体，怎么才能将一个单独的组件变为Sliver呢？</p>
+<p><strong>解决方法</strong>：<u>使用SliverToBoxAdapter这个内置组件</u></p>
+<div class="code-wrapper"><pre class="line-numbers language-dart" data-language="dart"><code class="language-dart"><span class="token function">Scaffold</span><span class="token punctuation">(</span>
+  body<span class="token punctuation">:</span> <span class="token function">CustomScrollView</span><span class="token punctuation">(</span>
+    slivers<span class="token punctuation">:</span> <span class="token operator">&lt;</span>Widget<span class="token operator">></span><span class="token punctuation">[</span>
+      <span class="token function">SliverToBoxAdapter</span><span class="token punctuation">(</span>
+        child<span class="token punctuation">:</span> <span class="token function">Container</span><span class="token punctuation">(</span>
+          child<span class="token punctuation">:</span> <span class="token function">Text</span><span class="token punctuation">(</span><span class="token string">'This is a single widget'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token punctuation">)</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h1 id="第三方库使用记录"><a href="#第三方库使用记录" class="headerlink" title="第三方库使用记录"></a>第三方库使用记录</h1><h2 id="1-http"><a href="#1-http" class="headerlink" title="1. http"></a>1. <a target="_blank" rel="noopener" href="https://pub.dev/packages/http"><code>http</code></a></h2><p>首先展示一下http的官方案例：</p>
+<div class="code-wrapper"><pre class="line-numbers language-dart" data-language="dart"><code class="language-dart"><span class="token keyword">import</span> <span class="token string">'package:http/http.dart'</span> <span class="token operator">as</span> http<span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> url <span class="token operator">=</span> Uri<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span><span class="token string">'https://example.com/whatsit/create'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> response <span class="token operator">=</span> <span class="token keyword">await</span> http<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> body<span class="token punctuation">:</span> <span class="token punctuation">&#123;</span><span class="token string">'name'</span><span class="token punctuation">:</span> <span class="token string">'doodle'</span><span class="token punctuation">,</span> <span class="token string">'color'</span><span class="token punctuation">:</span> <span class="token string">'blue'</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">print</span><span class="token punctuation">(</span><span class="token string">'Response status: $&#123;response.statusCode&#125;'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">print</span><span class="token punctuation">(</span><span class="token string">'Response body: $&#123;response.body&#125;'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">print</span><span class="token punctuation">(</span><span class="token keyword">await</span> http<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span>Uri<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span><span class="token string">'https://example.com/foobar.txt'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>获取数据的思路是：</p>
+<ol>
+<li><p>使用flutter原生的Uri类型解析一个url</p>
+</li>
+<li><p>异步方式使用http的post（应该也可以get）发送请求，返回的类型是一个<code>Future&lt;Response&gt;</code></p>
+</li>
+<li><p>可以直接用<code>response.body</code>得到请求数据的字符串</p>
+</li>
+</ol>
+<p>一般数据请求并渲染步骤：</p>
+<div class="code-wrapper"><pre class="line-numbers language-dart" data-language="dart"><code class="language-dart"><span class="token function">ElevatedButton</span><span class="token punctuation">(</span>
+  onPressed<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">async</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">var</span> url <span class="token operator">=</span> Uri<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span><span class="token string">'http://39.98.122.169:8888/tags/hot/4'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> response <span class="token operator">=</span> <span class="token keyword">await</span> http<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> res <span class="token operator">=</span> <span class="token function">jsonDecode</span><span class="token punctuation">(</span>utf8<span class="token punctuation">.</span><span class="token function">decode</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span>bodyBytes<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      _text <span class="token operator">=</span> res<span class="token punctuation">[</span><span class="token string">'data'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'id'</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  child<span class="token punctuation">:</span> <span class="token keyword">const</span> <span class="token function">Text</span><span class="token punctuation">(</span>
+    <span class="token string">'click me'</span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<ol>
+<li><p>解析url并发送get请求</p>
+</li>
+<li><p>获取到的<code>Future&lt;Response&gt;</code>解码为dart的dynamic对象</p>
+</li>
+<li><p>因为dart是强类型语言，所以不能使用res.data的方式获取属性，而使用res[‘data’]这种方式</p>
+</li>
+</ol>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/">开发技术</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/mobile/">mobile</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/02/17/%E6%96%87%E6%9C%AC%E6%96%87%E4%BB%B6%E3%80%81%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6%E5%92%8C%E4%B9%B1%E7%A0%81/">
+                        <span class="hidden-mobile">文本文件、二进制文件和乱码</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"2RbCqGEaklHVj7Gj6dtd2kM4-gzGzoHsz","appKey":"kdFD4FmNeIpaTMK269nEqhxx","path":"window.location.pathname","placeholder":"say something...","avatar":"mp","meta":["nick","mail","link"],"requiredFields":["nick","mail"],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://2rbcqgea.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"2RbCqGEaklHVj7Gj6dtd2kM4-gzGzoHsz","appkey":"kdFD4FmNeIpaTMK269nEqhxx"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+
+  <!-- 自己设置一个记录网站运行时间的方法 -->
+  <span id="sitetime" style="font-size: 14px; font-family: Consolas;font-weight: normal; color: #aaa;"></span>
+  <script language=javascript>
+    function siteTime(){
+      window.setTimeout("siteTime()", 1000);
+      var seconds = 1000;
+      var minutes = seconds * 60;
+      var hours = minutes * 60;
+      var days = hours * 24;
+      var years = days * 365;
+      var today = new Date();
+      var todayYear = today.getFullYear();
+      var todayMonth = today.getMonth()+1;
+      var todayDate = today.getDate();
+      var todayHour = today.getHours();
+      var todayMinute = today.getMinutes();
+      var todaySecond = today.getSeconds();
+      /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+      year - 作为date对象的年份，为4位年份值
+      month - 0-11之间的整数，做为date对象的月份
+      day - 1-31之间的整数，做为date对象的天数
+      hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+      minutes - 0-59之间的整数，做为date对象的分钟数
+      seconds - 0-59之间的整数，做为date对象的秒数
+      microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+      var t1 = Date.UTC(2020,10,18,15,00,00); //北京时间2020-10-18 00:00:00
+      var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+      var diff = t2-t1;
+      var diffYears = Math.floor(diff/years);
+      // var diffDays = Math.floor((diff/days)-diffYears*365);
+      // 直接用日来记录，不用年了，太low啦
+      var diffDays = Math.floor((diff/days));
+      var diffHours = Math.floor((diff-(diffDays)*days)/hours);
+      var diffMinutes = Math.floor((diff-(diffDays)*days-diffHours*hours)/minutes);
+      var diffSeconds = Math.floor((diff-(diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+      document.getElementById("sitetime").innerHTML=" 小破站已勉强运行了 "+/*diffYears+" 年 "+*/diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+    }
+    siteTime();
+  </script>
+  <!-- 自己设置一个记录网站运行时间的方法 -->
+
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({"theme":"default"});
+    }
+  </script>
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0d7560f90f7a21d6a9e7635611dac094";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
