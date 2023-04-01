@@ -1,6 +1,7 @@
 ---
 title: Vim插件使用记录
 date: 2021-08-11 15:17:51
+updated: 2023-03-11 22:48:00
 author: Rogers Kelamen
 index_img: https://s2.loli.net/2022/03/26/eNMlnxka6qQtfKU.png
 tags:
@@ -119,7 +120,7 @@ Plug 'preservim/nerdtree'
 
 可以通过绑定的键位来调出`NERDTree`，比如我的就是<kbd>Ctrl+b</kbd>(<del>和VS Code一样</del>)，然后按出之后就可以调出`NERDTree`了。
 
-![invoke nerdtree](https://s2.loli.net/2022/03/26/3PoFdWb7fX18LEw.png)
+![invoke nerdtree](https://gitee.com/rogerskelamen/mdpic/raw/master/img/20210811145254.png)
 
 *还是不错的。*
 
@@ -191,3 +192,37 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 推荐安装[vim-table-mode](https://github.com/dhruvasagar/vim-table-mode)
 
 *用来格式化表格的工具插件，同样是绑定键位食用*
+
+## [polyglot](https://github.com/sheerun/vim-polyglot)
+
+> 这个玩意简直就是增强vim或者是nvim的神器，官方是这么形容这个玩意的:
+
+> One to rule them all, one to find them, one to bring them all and in the darkness bind them.
+
+### Installation
+
+```vim
+set nocompatible " 一定要确保自己开启了这个
+
+call plug#begin()
+
+Plug 'sheerun/vim-polyglot'
+
+call plug#end()
+```
+
+### Usage
+
+怎么使用？当你再次打开你的neovim开始写代码时，你会发现很多的不一样，你觉得自己又行了
+
+### Configuration
+
+*事实上，`polyglot`它的功能太过于强大，以至于将markdown文件的很多显示更新了，尽管这是一个很好的事，但是因为它渲染的东西太多了，当你的markdown文件太大的时候，很可能那些效果就无效了，这样我们还不如关闭polyglot对md的渲染*
+
+```vim
+" ==============
+" 设置polyglot
+" ==============
+let g:polyglot_disabled = ['markdown']    " 禁用polyglot在markdow中的使用
+```
+

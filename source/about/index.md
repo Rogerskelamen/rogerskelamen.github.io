@@ -16,7 +16,17 @@ layout: about
 
 ### Avatar
 
-我的头像(avatar)是[Xenon](https://cytus.fandom.com/zh/wiki/Xenon?variant=zh)，我比较喜欢的角色之一。其人设为系统安全管理员(programer)和热爱音乐的音乐制作人，充满正义感，会弹奏吉他(恰巧我也会一点)，头盔造型灵感估计来自于[Daft Punk](https://zh.wikipedia.org/wiki/%E5%82%BB%E6%9C%8B%E5%85%8B)(我最喜欢的电子乐团体，没有之一)。种种特征塑造成了我心中的完美人设，故将X哥作为理想勉励自己。
+我的头像(avatar)是[CytusII](https://rayark.com/g/cytus2/)中的[Xenon](https://cytus.fandom.com/zh/wiki/Xenon?variant=zh)，我比较喜欢的角色之一。其人设为系统安全管理员(programer)和热爱音乐的音乐制作人，充满正义感，会弹奏吉他(恰巧我也会一点)，头盔造型灵感估计来自于[Daft Punk](https://zh.wikipedia.org/wiki/%E5%82%BB%E6%9C%8B%E5%85%8B)(我最喜欢的电子乐团体，没有之一)。种种特征塑造成了我心中的完美人设，故将X哥作为理想勉励自己。
+
+### What is a Hacker <a href='http://www.catb.org/hacker-emblem/'><img src='https://s2.loli.net/2023/03/27/koZis7SlTLFVOKA.png' width="32" alt='hacker emblem' /></a>
+
+> 黑客(Hackers)文化最早可以追溯到第一台分时系统小型机和最早的[ARPAnet](https://zh.wikipedia.org/zh-sg/ARPANET)实验中的那批专业程序员。是黑客建造了因特网(Internet)；是黑客创造了现在看到的Unix操作系统；是黑客使得如今互联网能够顺利运行。
+
+> 另有一群人大肆宣称他们自己为黑客，其实不然。那些人(大多数都是青年男性)只是在享受骇入别人电脑或是电话系统时得到的乐趣。真正的黑客管他们这群人叫"骇客"(crackers)并且不想跟他们扯上任何关系。
+
+> 两者最本质的区别就是：黑客创造互联网中的一切，而骇客则极力破坏它们
+
+> ——以上均译自*[How To Become A Hacker](http://www.catb.org/esr/faqs/hacker-howto.html) Written by [Raymond](https://zh.wikipedia.org/wiki/%E5%9F%83%E9%87%8C%E5%85%8B%C2%B7%E9%9B%B7%E8%92%99)*
 
 ### 🤟My favorite
 
