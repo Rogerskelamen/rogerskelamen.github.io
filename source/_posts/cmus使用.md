@@ -4,6 +4,8 @@ date: 2021-07-25 09:56:04
 index_img: https://s2.loli.net/2022/03/26/fDEPzu537QZBimy.png
 tags:
 - geek
+categories:
+- 工具
 ---
 
 # the Usage of Cmus

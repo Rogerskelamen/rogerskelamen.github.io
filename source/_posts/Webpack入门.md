@@ -6,7 +6,7 @@ index_img: https://s2.loli.net/2022/03/26/GXilsYQH6ZcJF4t.png
 banner_img: https://s2.loli.net/2022/03/26/pj1OSTbiahoCAIJ.png
 tags:
 - js
-categoris:
+categories:
 - 前端
 ---
 

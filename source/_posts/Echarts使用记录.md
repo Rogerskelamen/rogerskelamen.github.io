@@ -5,7 +5,7 @@ index_img: https://s2.loli.net/2022/04/08/ByFEo8i3DVXfkHY.png
 author: Rogers Kelamen
 tags:
 - js
-category:
+categories:
 - 前端
 ---
 

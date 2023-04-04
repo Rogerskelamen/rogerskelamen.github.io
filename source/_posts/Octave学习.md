@@ -5,10 +5,10 @@ banner_img: https://s2.loli.net/2022/03/26/gCQI3Ur7JSufMFW.png
 index_img: https://s2.loli.net/2022/03/26/y749utOG82qvhVC.png
 author: Rogers Kelamen
 math: true
-categories:
-- 编程语言
 tags:
 - MCM
+categories:
+- 编程语言
 ---
 
 # Octave入门

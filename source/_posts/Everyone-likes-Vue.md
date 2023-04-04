@@ -8,7 +8,7 @@ banner_img: https://s2.loli.net/2022/11/20/JGEXUB7Al86IQqu.png
 tags:
 - vue
 - js
-category:
+categories:
 - 前端
 ---
 

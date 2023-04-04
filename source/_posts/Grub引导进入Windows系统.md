@@ -4,6 +4,8 @@ date: 2021-10-22 10:12:08
 author: Rogers Kelamen
 tags:
 - Linux
+categories:
+- 操作系统
 ---
 
 # Grub 进入Windows

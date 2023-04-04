@@ -8,7 +8,6 @@ banner_img: https://s2.loli.net/2022/03/26/WeBHgNGtlqyCpXa.png
 tags:
 - game
 - js
-- steam
 categories:
 - 游戏
 ---

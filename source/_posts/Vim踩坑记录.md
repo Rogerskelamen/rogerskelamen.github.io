@@ -4,10 +4,10 @@ date: 2021-08-15 10:42:16
 updated: 2023-01-02 17:48:00
 author: Rogers Kelamen
 index_img: https://s2.loli.net/2022/03/26/c4MLy7XxoNkTQ8C.png
-categories:
-- Vim
 tags:
 - geek
+categories:
+- Vim
 ---
 
 

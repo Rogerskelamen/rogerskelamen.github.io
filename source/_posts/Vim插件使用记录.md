@@ -102,7 +102,7 @@ Plug 'vim-airline/vim-airline'
     let g:airline_section_z = airline#section#create(['%{strftime("%m/%d %H:%M ")}', 'linenr', 'maxlinenr'])
     " let g:airline#extensions#tabline#enabled = 1
     ```
-    
+
 *这个东西主要配置你的airline显示什么内容*
 
 
