@@ -605,8 +605,6 @@
       
       <category>Windows</category>
       
-      <category>工具</category>
-      
     </categories>
     
     
@@ -779,6 +777,12 @@
     
     <content type="html"><![CDATA[<h1 id="Grub-进入Windows"><a href="#Grub-进入Windows" class="headerlink" title="Grub 进入Windows"></a>Grub 进入Windows</h1><blockquote><p>因为双系统删除了Ubuntu，果不其然出现了grub启动残留，导致每次不是直接进入Windows而是进入grub，对这种情况，还可以直接使用Grub挂载引导项(<em>命令行大法好</em>)</p></blockquote><p>可参考<a href="https://www.zhihu.com/question/66708983">链接🔗</a></p><h2 id="Steps"><a href="#Steps" class="headerlink" title="Steps"></a>Steps</h2><ol><li>首先设置(install)相应的模块:</li></ol><div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">insmod chaininsmod ntfs<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div><ol><li>然后设置进入boot的默认root：</li></ol><div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">set root&#x3D;(hd0,0)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div><p><em>记住逗号之间没有空格!</em></p><p>这里可以直接使用<code>Tab</code>补全</p><blockquote><p>什么意思？</p></blockquote><p>这个<code>hd0</code>是指那个磁盘（不是盘符），<code>0</code>是指哪个分区</p><p><strong>即一个是disk，一个是partition</strong></p><ol><li>使用<code>chainloader</code>指令载入Windows的boot</li></ol><div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">chainloader +1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div><p><em>当你出现Invalid EFI file path错误的时候，使用下面的一条，因为适用于Windows的GRUB条目适用于BIOS模式引导，但不适用于EFI模式引导。这是一个GRUB错误。</em></p><p><em>就是说这条命令只适合BIOS安装的系统，但是我是EFI+GPT安装的双系统，所以会出错。</em></p><div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">chainloader &#x2F;EFI&#x2F;Microsoft&#x2F;Boot&#x2F;bootmgfw.efi<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div><ol><li>最后boot</li></ol><div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">boot<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div><h2 id="diskpart"><a href="#diskpart" class="headerlink" title="diskpart"></a><code>diskpart</code></h2><p><code>diskpart</code>是Windows操作系统中提供的一个磁盘管理的命令行服务。(<em>在Windows下显得还有点良心</em>)</p><div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">list disk   # 查看磁盘select disk 0 # 选择0号磁盘list partition # 查看所选磁盘的分区select partition 1 # 选择1号分区delete partition override # 删除所选分区assign letter &#x3D; p # 给所选分区设置盘符取名为p<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>]]></content>
     
+    
+    <categories>
+      
+      <category>操作系统</category>
+      
+    </categories>
     
     
     <tags>
@@ -1173,8 +1177,6 @@
     <categories>
       
       <category>编程语言</category>
-      
-      <category>后端</category>
       
     </categories>
     
