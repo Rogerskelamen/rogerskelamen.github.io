@@ -330,6 +330,8 @@
       
       <category>前端</category>
       
+      <category>工具</category>
+      
     </categories>
     
     
@@ -449,7 +451,7 @@
     
     <categories>
       
-      <category>Linux</category>
+      <category>工具</category>
       
     </categories>
     
@@ -602,6 +604,8 @@
     <categories>
       
       <category>Windows</category>
+      
+      <category>工具</category>
       
     </categories>
     
@@ -822,7 +826,7 @@
     
     <categories>
       
-      <category>后端</category>
+      <category>游戏</category>
       
     </categories>
     
@@ -846,6 +850,12 @@
     
     <content type="html"><![CDATA[<h1 id="Mac-Note"><a href="#Mac-Note" class="headerlink" title="Mac Note"></a>Mac Note</h1><blockquote><p>This note is all about my experience when using the MacOS, it records every confusion and tip.</p></blockquote><h2 id="DS-Store"><a href="#DS-Store" class="headerlink" title=".DS_Store"></a><code>.DS_Store</code></h2><blockquote><p>Full name is <strong>Desktop Services Store</strong></p></blockquote><p>This file can be easily seen in many directories. And because of the prefix <code>.</code>, it obviously a hidden file. This file is desgined by Apple Comp, and created by <em>Finder</em> (a expoler system in MacOS)</p><p><strong>this is used to store the icon position and background color(you know, the signed color)</strong></p><p><em>similar to <code>desktop.ini</code> in Windows</em></p><h2 id="localized"><a href="#localized" class="headerlink" title=".localized"></a><code>.localized</code></h2><blockquote><p>At first, I was so confused about this file. Its size is 0 (empty file), it appears in some directories but not all.</p></blockquote><p><strong>this file is just a localized file, like its name, it does a job that translates your directories into your preferred language.</strong></p>]]></content>
     
+    
+    <categories>
+      
+      <category>操作系统</category>
+      
+    </categories>
     
     
     <tags>
@@ -1062,7 +1072,7 @@
     
     <categories>
       
-      <category>Linux</category>
+      <category>操作系统</category>
       
     </categories>
     
@@ -1112,7 +1122,7 @@
     
     <categories>
       
-      <category>Linux</category>
+      <category>操作系统</category>
       
     </categories>
     
@@ -1163,6 +1173,8 @@
     <categories>
       
       <category>编程语言</category>
+      
+      <category>后端</category>
       
     </categories>
     
@@ -1391,7 +1403,7 @@
     
     <categories>
       
-      <category>games</category>
+      <category>游戏</category>
       
     </categories>
     
