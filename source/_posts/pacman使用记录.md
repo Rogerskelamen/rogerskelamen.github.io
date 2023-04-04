@@ -4,10 +4,10 @@ date: 2022-02-13 17:16:28
 index_img: https://s2.loli.net/2022/03/26/5jJCSEHNDR1kF87.png
 banner_img: https://s2.loli.net/2022/03/26/cTHzde5ol3ZEVKs.png
 tags:
-- geek
+- package
 - arch
 categories:
-- Linux
+- 工具
 ---
 
 

@@ -7,7 +7,6 @@ banner_img: https://s2.loli.net/2022/03/27/ptrzIUA62G74w1e.png
 author: Rogers Kelamen
 tags:
 - geek
-- IDE
 categories:
 - Vim
 ---

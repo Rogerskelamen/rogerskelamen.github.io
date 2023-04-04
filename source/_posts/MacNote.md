@@ -5,6 +5,8 @@ author: Rogers Kelamen
 index_img: https://s2.loli.net/2022/03/26/59Fn6HjCLYx72GV.jpg
 tags:
 - Mac
+categories:
+- 操作系统
 ---
 
 

@@ -6,8 +6,9 @@ index_img: https://s2.loli.net/2022/03/26/4rR6AZIwx3Qtn7L.png
 banner_img: https://s2.loli.net/2022/03/26/2y3bR9daDHQrp4O.png
 tags:
 - game
+- python
 categories:
-- 后端
+- 游戏
 ---
 
 # pygame使用心得

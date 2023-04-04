@@ -7,7 +7,6 @@ author: Rogers Kelamen
 categories:
 - 编程语言
 tags:
-- aticle
 - MCM
 ---
 

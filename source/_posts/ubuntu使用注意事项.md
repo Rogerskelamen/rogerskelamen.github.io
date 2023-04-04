@@ -6,7 +6,7 @@ index_img: https://s2.loli.net/2022/03/26/L2DGcHowSeKM9qU.jpg
 tags:
 - Linux
 categories:
-- Linux
+- 操作系统
 ---
 
 

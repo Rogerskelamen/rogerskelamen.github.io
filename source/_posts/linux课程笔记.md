@@ -4,7 +4,7 @@ date: 2021-03-22 19:34:37
 tags:
 - Linux
 categories:
-- Linux
+- 操作系统
 ---
 
 # linux课程笔记

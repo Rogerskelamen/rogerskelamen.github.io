@@ -6,6 +6,8 @@ author: Rogers Kelamen
 date: 2021-01-22 21:53:26
 tags:
 - MCM
+categories:
+- 工具
 ---
 
 # 初识$\LaTeX$

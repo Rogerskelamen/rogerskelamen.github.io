@@ -2,13 +2,13 @@
 title: Oh-My-Zsh美化终端
 date: 2020-12-23 19:58:40
 author: Rogers Kelamen
+index_img: https://s2.loli.net/2022/03/26/1ct9GgOPh5wHxFq.png
+banner_img: https://s2.loli.net/2022/03/26/mqW2Jwr4bcoKGRd.png
 tags:
 - shell
 - geek
 categories:
 - zsh
-index_img: https://s2.loli.net/2022/03/26/1ct9GgOPh5wHxFq.png
-banner_img: https://s2.loli.net/2022/03/26/mqW2Jwr4bcoKGRd.png
 ---
 
 # Oh-My-Zsh美化终端

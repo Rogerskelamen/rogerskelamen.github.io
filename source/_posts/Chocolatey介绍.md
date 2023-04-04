@@ -5,7 +5,9 @@ index_img: https://s2.loli.net/2022/03/26/K4aVcsDjlE7rTP5.png
 banner_img: https://s2.loli.net/2022/03/26/2Y1sbw8rpZhJc6T.png
 categories:
 - Windows
+- 工具
 tags:
+- package
 - geek
 ---
 
