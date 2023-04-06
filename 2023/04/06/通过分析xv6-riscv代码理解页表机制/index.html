@@ -16,20 +16,20 @@
   <meta name="description" content="">
   <meta name="author" content="Rogers Kelamen">
   <meta name="keywords" content="blog">
-  <meta name="description" content="叠甲声明：很抱歉我没有系统性深入学习过爱因斯坦的相对论，对他的理论是处于一知半解的程度。我的部分说法确实会有和相对论类似的地方，但如果想要深究理论，那就只能道句慢走不送。如果你觉得我写的哪里有不对的地方，那一定是我错了，请继续相信你是对的。  你是否想过，时间作为我们主观感知出的一种抽象，其实并不是客观存在着。可能你认为时间绝对是真实的啊，毕竟日出日落，春夏秋冬这些自然现象都预示着时间的流逝。">
+  <meta name="description" content="通过分析xv6-riscv代码理解页表机制不得不说在之前我一直对于页表这一虚拟内存机制抱有不小的疑惑，今天仔细分析完xv6-riscv对于页表的实现代码(又是一段苦痛之路)，终于明朗了起来。 最早接触到页表应该是在上操作系统课程的时候，然而那个时候只讲原理没有实践，我顶多一知半解，甚至有时候连页表到底是操作系统对内存机制还是存储机制都傻傻分不清。 简单来说，页表是一种操作系统提供的虚拟内存机制，在">
 <meta property="og:type" content="article">
-<meta property="og:title" content="新时间观与如何活得更久">
-<meta property="og:url" content="https://rokelamen.top/2023/04/01/%E6%96%B0%E6%97%B6%E9%97%B4%E8%A7%82%E4%B8%8E%E5%A6%82%E4%BD%95%E6%B4%BB%E5%BE%97%E6%9B%B4%E4%B9%85/index.html">
+<meta property="og:title" content="通过分析xv6-riscv代码理解页表机制">
+<meta property="og:url" content="https://rokelamen.top/2023/04/06/%E9%80%9A%E8%BF%87%E5%88%86%E6%9E%90xv6-riscv%E4%BB%A3%E7%A0%81%E7%90%86%E8%A7%A3%E9%A1%B5%E8%A1%A8%E6%9C%BA%E5%88%B6/index.html">
 <meta property="og:site_name" content="RO&#39;s Blog">
-<meta property="og:description" content="叠甲声明：很抱歉我没有系统性深入学习过爱因斯坦的相对论，对他的理论是处于一知半解的程度。我的部分说法确实会有和相对论类似的地方，但如果想要深究理论，那就只能道句慢走不送。如果你觉得我写的哪里有不对的地方，那一定是我错了，请继续相信你是对的。  你是否想过，时间作为我们主观感知出的一种抽象，其实并不是客观存在着。可能你认为时间绝对是真实的啊，毕竟日出日落，春夏秋冬这些自然现象都预示着时间的流逝。">
+<meta property="og:description" content="通过分析xv6-riscv代码理解页表机制不得不说在之前我一直对于页表这一虚拟内存机制抱有不小的疑惑，今天仔细分析完xv6-riscv对于页表的实现代码(又是一段苦痛之路)，终于明朗了起来。 最早接触到页表应该是在上操作系统课程的时候，然而那个时候只讲原理没有实践，我顶多一知半解，甚至有时候连页表到底是操作系统对内存机制还是存储机制都傻傻分不清。 简单来说，页表是一种操作系统提供的虚拟内存机制，在">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-04-01T08:17:49.000Z">
-<meta property="article:modified_time" content="2023-04-01T08:21:17.706Z">
+<meta property="article:published_time" content="2023-04-06T10:01:39.000Z">
+<meta property="article:modified_time" content="2023-04-06T10:07:03.620Z">
 <meta property="article:author" content="Rogers Kelamen">
 <meta property="article:tag" content="miscellaneous">
 <meta name="twitter:card" content="summary_large_image">
   
-  <title>新时间观与如何活得更久| RO&#39;s Blog</title>
+  <title>通过分析xv6-riscv代码理解页表机制| RO&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -192,12 +192,12 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('https://s2.loli.net/2023/04/01/sl9jQ4Sx71uznUO.png') no-repeat center center;
+         style="background: url('https://s2.loli.net/2023/04/06/fP5AQpNavKeM2nX.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="新时间观与如何活得更久">
+            <span class="h2" id="subtitle" title="通过分析xv6-riscv代码理解页表机制">
               
             </span>
 
@@ -212,8 +212,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2023-04-01 16:17" pubdate>
-        2023年4月1日 下午
+      <time datetime="2023-04-06 18:01" pubdate>
+        2023年4月6日 晚上
       </time>
     </span>
   
@@ -223,7 +223,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.4k 字
+      1.5k 字
     </span>
   
 
@@ -232,7 +232,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4 分钟
+      5 分钟
     </span>
   
 
@@ -269,30 +269,28 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">新时间观与如何活得更久</h1>
+            <h1 style="display: none">通过分析xv6-riscv代码理解页表机制</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2023年4月1日 下午
+                  本文最后更新于：2023年4月6日 晚上
                 
               </p>
             
             <div class="markdown-body">
-              <blockquote>
-<p><strong>叠甲声明</strong>：很抱歉我没有系统性深入学习过爱因斯坦的相对论，对他的理论是处于一知半解的程度。我的部分说法确实会有和相对论类似的地方，但如果想要深究理论，那就只能道句慢走不送。如果你觉得我写的哪里有不对的地方，那一定是我错了，请继续相信你是对的。</p>
-</blockquote>
-<p>你是否想过，时间作为我们主观感知出的一种抽象，其实并不是客观存在着。可能你认为时间绝对是真实的啊，毕竟日出日落，春夏秋冬这些自然现象都预示着时间的流逝。</p>
-<p>但是你真的认真想过这些“自然现象”的本质吗？所有我们肉眼可以观测的“现象”本质上都是物质的状态变化，说得更本质一些，就是物质的运动(<em>所有的物质变化无非就是粒子的运动</em>)。日出日落是行星自转的运动，春夏秋冬变化是行星的公转运动。</p>
-<p>进一步思考之后，你会发现实际上时间是人脑为了感受物质运动而臆想出来的一种概念。你会进行反驳：但是时间和很多客观概念一样，都有单位和度量标准啊。那我们想一下什么是“一秒钟”：</p>
-<p>最开始我们祖先是没有对时间的概念的(<em>毕竟文明程度不高</em>)，但是渐渐他们感知到了最原始最影响着他们的变化：太阳的出现和消失。在老祖宗的概念里，太阳的出现意味着阳光，温暖，视线好，安全；而太阳的消失意味着黑夜，寒冷，漆黑，危险。于是肯定有那么一个族群长老提出：太阳从出现到消失，再到再次出现为一天。这是一种最为原始的规律和秩序，它标志着人类开始总结规律开启了长达几千几万年的与大自然斗争的历史，当然这也是时间诞生的起源。后来在每一天的基础上就有了时辰的划分，再到后来越分越细，直到现在基本单位“一秒钟”(<em>也就是1/86400天</em>)。</p>
-<p>说到这里，你可能还是没有明白，毕竟我们从小接受的世界观就是基于时间的，我们对时间的应用无处不在，以至于这种我们臆想的概念已经深入我们骨髓了。那么试想一下如果没有人类或者没有生命存在，这个宇宙是什么样的。所有的物质都根据物理学进行着十分自然的运动，我们在此定不定义时间根本对物质的变化没有任何影响(<em>试想一下像长度这样的其他物理量</em>)。也就是说，时间说白了就是我们为了更好的观测宇宙而发明出来的工具，而且我们人脑还非常善于运用这种工具。</p>
-<p>既然时间不存在，那我们的一生有多长呢？根据我们自己对于时间的认知观，人类平均寿命是80年左右。但是你确实是可以通过大脑对时间感知的控制而活得更长。</p>
-<p>你是不是在玩游戏的时候感觉时间过的飞快，但是在排队等待窗口服务的时候觉得时间过的很慢。其实是你大脑的活跃程度不同，在玩游戏的时候信息是一股一股传递给你的，你的五官接受着重复的刺激，于是大脑处于一种不用努力思考的放松状态。而你在无聊等待的时候，是大脑给你不断创造新的内容，让你度过这些无聊时间，所以大脑处于一种较为紧张的状态。(<em>当然要真的解释的话还有心理学“心流”的影响</em>)</p>
-<p>那么简单来说，如果你能够时刻将大脑处于一种主动处理信息的工作状态，就可以在主观上让“时间”变得更慢一些。结果很显然了，去学习新的知识，探索新的领域，体验新的感受就是我们最好的选择。不断获取新体验的过程，相当于在大脑中积累新的信息，当我们回忆起自己的过去的时候，就会觉得自己过的很“充实”，这样也会增强我们时间被延长了的主观感受。</p>
-<p>所以，不如现在开始去追寻自己认为有价值的事，去探索，去实践，因为这样不仅可以实现你的人生价值，更是可以延长你有限的生命。</p>
-<blockquote>
-<p>一个人的生命应当是这样度过的：当他回首往事时，不因虚度年华而悔恨，也不因碌碌无为而羞耻。<br>— <em>How the Steel was Tempered</em></p>
-</blockquote>
+              <h1 id="通过分析xv6-riscv代码理解页表机制"><a href="#通过分析xv6-riscv代码理解页表机制" class="headerlink" title="通过分析xv6-riscv代码理解页表机制"></a>通过分析xv6-riscv代码理解页表机制</h1><p>不得不说在之前我一直对于页表这一虚拟内存机制抱有不小的疑惑，今天仔细分析完xv6-riscv对于页表的实现代码(<em>又是一段苦痛之路</em>)，终于明朗了起来。</p>
+<p>最早接触到页表应该是在上操作系统课程的时候，然而那个时候只讲原理没有实践，我顶多一知半解，甚至有时候连页表到底是操作系统对内存机制还是存储机制都傻傻分不清。</p>
+<p>简单来说，页表是一种操作系统提供的虚拟内存机制，在没有页表的时候，操作系统中的所有进程(不管是内核进程还是用户进程)所用到的内存都是直接在物理内存(也就是DRAM)上操作的。有了页表之后，页表负责将每个进程的地址空间映射到特定物理内存中，这样每个进程的地址空间就能够隔离开来，每个进程不再操控实际的物理地址而是自己独一份的虚拟地址空间。每种操作系统或者cpu架构不同，页表的实现也不尽相同。</p>
+<p>那么接下来就根据xv6-riscv的页表实现来谈谈这一机制的奇妙之处吧。</p>
+<p>首先xv6-riscv是运行于Sv39 RISC-V上的，这意味着系统进程理论上的虚拟内存最大为39byte，也就是512GiB。这颗芯片最大可承载的地址线是56根，这意味着物理内存最大为56byte，反正大到现如今的科技基本上不可能实现就是了。</p>
+<p>页表原理呢，实际上也是很简单的，虚拟地址往物理地址映射的基本单位是一页，一页就是4KiB(<em>当然也有其他大小的方案</em>)，页表上存放上PTE(Page Table Entry)，每个占用64bit，一个PTE就可以根据它中间的44bit来确定一个物理页在哪(56-44=4K)。每个进程都有自己独有的页表，页表地址存储在satp(supervisor address translation protected)寄存器中，进程切换上下文的时候它也跟着换页表地址。这样就可以实现每个进程的地址空间隔离。</p>
+<p>假设我们每个进程都有只有一个页表，页表存储了所有映射的物理地址，那么这个页表就有2^27(39-12=27)个PTE，而一个PTE是8B，那么这个页表占用的空间就是1GiB！如果每个进程都这么存的话，光页表就把内存撑爆了。</p>
+<p>于是xv6-riscv设计出了动态的三级页表结构，将虚拟地址分别分配为9bit(pt2)+9bit(pt1)+9bit(pt0)+12bit(offset)，这样如果进程最多只用到0xfff的话(也就是前面三个页表的索引没有变化)，就只需要三个页表就行了，总占用为3*512*8=12KiB，也就是3个页就可以存储。</p>
+<p>xv6-riscv具体是什么样的一个页表结构我这里就不多赘述了，详细可以去看<a target="_blank" rel="noopener" href="https://pdos.csail.mit.edu/6.828/2021/xv6/book-riscv-rev2.pdf">官方手册</a></p>
+<p>你可能已经注意到了，这里所有的内存存储计算的基本粒度都是一页！这样我们就能非常方便地统一用一种方式处理物理内存(<em>其实就是kalloc</em>)。</p>
+<p>当xv6-riscv系统运行起来的时候，系统内核会调用main函数，然后执行kinit初始化物理内存并分配所有空闲的内存给到<code>kmem.freelist</code>这个链表(每个节点至少相距4K并都以4K对齐)；在main中继续会执行kvmmake建立最初的内核页表，映射所有的IO设备到前0x80000000中，然后调用<code>proc_mapstacks</code>为每个进程分配内核栈空间。</p>
+<p>kalloc和walk在页表机制中扮演着关键的角色，前者会根据<code>kmem.freelist</code>来找到空闲的物理地址，然后按要求分配页表或者是物理地址(<em>因为页表的大小也是4K</em>)；而后者会根据虚拟地址来找到最后一级的PTE，如果中间页表不存在也会分配出需要的中间页表(调用kalloc)。</p>
+<p>另一个比较重要的mappages函数，它主要作用就是将对应的虚拟地址映射到物理地址。通过上述三个函数，我们基本上就可以完成任何页表或者内存操作。</p>
 
             </div>
             <hr>
@@ -302,7 +300,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E9%9A%8F%E7%AC%94/">随笔</a>
+                      <a class="hover-with-bg" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
                     
                   </div>
                 
@@ -327,18 +325,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/04/06/%E9%80%9A%E8%BF%87%E5%88%86%E6%9E%90xv6-riscv%E4%BB%A3%E7%A0%81%E7%90%86%E8%A7%A3%E9%A1%B5%E8%A1%A8%E6%9C%BA%E5%88%B6/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">通过分析xv6-riscv代码理解页表机制</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/03/06/Flutter%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7/">
-                        <span class="hidden-mobile">Flutter开发技巧</span>
+                      <a href="/2023/04/01/%E6%96%B0%E6%97%B6%E9%97%B4%E8%A7%82%E4%B8%8E%E5%A6%82%E4%BD%95%E6%B4%BB%E5%BE%97%E6%9B%B4%E4%B9%85/">
+                        <span class="hidden-mobile">新时间观与如何活得更久</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
