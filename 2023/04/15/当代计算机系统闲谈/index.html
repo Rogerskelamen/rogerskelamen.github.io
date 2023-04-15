@@ -24,7 +24,7 @@
 <meta property="og:description" content="从沙漠中的一粒沙到南极企鹅Tux：当代计算机系统闲谈沙砾和Intel相信很多人都听说过，计算机芯片是用沙子造出来的。事实确实如此，通常如果想要得到硅晶圆，就需要通过碳粉还原反应将沙子中的二氧化硅转化为高纯度的单质硅，于是就有了“沙砾造芯片”的说法。那么抛开事实的戏剧性不谈，准确来说沙子中的硅元素才是造芯片的关键。 回想初三化学课知识，我们都知道硅元素是经典的半导体元素，但是它为什么因此就如此特殊？">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-04-15T09:27:03.000Z">
-<meta property="article:modified_time" content="2023-04-15T09:37:30.183Z">
+<meta property="article:modified_time" content="2023-04-15T09:41:38.464Z">
 <meta property="article:author" content="Rogers Kelamen">
 <meta property="article:tag" content="miscellaneous">
 <meta name="twitter:card" content="summary_large_image">
@@ -574,6 +574,48 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+
+  
 
 
 
