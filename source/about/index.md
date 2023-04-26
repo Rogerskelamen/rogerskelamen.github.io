@@ -20,7 +20,7 @@ layout: about
 
 ### What is a Hacker <a href='http://www.catb.org/hacker-emblem/'><img src='https://s2.loli.net/2023/03/27/koZis7SlTLFVOKA.png' width="32" alt='hacker emblem' /></a>
 
-> 黑客(Hackers)文化最早可以追溯到第一台分时系统小型机和最早的[ARPAnet](https://zh.wikipedia.org/zh-sg/ARPANET)实验中的那批专业程序员。是黑客建造了因特网(Internet)；是黑客创造了现在看到的Unix操作系统；是黑客使得如今互联网能够顺利运行。
+> 黑客(Hackers)文化最早可以追溯到第一台分时系统[小型机](https://zh.wikipedia.org/wiki/%E5%B0%8F%E5%9E%8B%E8%AE%A1%E7%AE%97%E6%9C%BA)和最早的[ARPAnet](https://zh.wikipedia.org/zh-sg/ARPANET)实验中的那批专业程序员。是黑客建造了因特网(Internet)；是黑客创造了现在看到的Unix操作系统；是黑客使得如今互联网能够顺利运行。
 
 > 另有一群人大肆宣称他们自己为黑客，其实不然。那些人(大多数都是青年男性)只是在享受骇入别人电脑或是电话系统时得到的乐趣。真正的黑客管他们这群人叫"骇客"(crackers)并且不想跟他们扯上任何关系。
 
@@ -32,17 +32,24 @@ layout: about
 
 电影：
 
-- [星际穿越](https://zh.wikipedia.org/wiki/%E6%98%9F%E9%99%85%E7%A9%BF%E8%B6%8A)
+- [星际穿越](https://zh.wikipedia.org/wiki/%E6%98%9F%E9%99%85%E7%A9%BF%E8%B6%8A) <img style="width: 60px;" src="https://s2.loli.net/2023/04/25/BLz3Z1rpSjRYo4W.png" />
 
-    *其他可以参见[我的电影推荐](https://rokelamen.top/2023/01/25/%E5%80%BC%E5%BE%97%E5%91%A8%E6%9C%AB%E6%B7%B1%E5%A4%9C%E8%A7%82%E7%9C%8B%E7%9A%84%E7%94%B5%E5%BD%B1/)*
+
+*(其他可以参见[我的电影推荐](https://rokelamen.top/2023/01/25/%E5%80%BC%E5%BE%97%E5%91%A8%E6%9C%AB%E6%B7%B1%E5%A4%9C%E8%A7%82%E7%9C%8B%E7%9A%84%E7%94%B5%E5%BD%B1/))*
 
 音乐团体或乐队：
 
-- [Daft Punk](https://zh.wikipedia.org/wiki/%E5%82%BB%E6%9C%8B%E5%85%8B)
+- [Daft Punk](https://zh.wikipedia.org/wiki/%E5%82%BB%E6%9C%8B%E5%85%8B) <img style="width: 60px;" src="https://s2.loli.net/2023/03/08/jCqAQ2ry5MfLVpt.png" />
 
-- [Linkin Park](https://zh.wikipedia.org/zh-cn/%E8%81%AF%E5%90%88%E5%85%AC%E5%9C%92)
 
-- [Imagine Dragon](https://zh.wikipedia.org/zh-cn/%E8%AC%8E%E5%B9%BB%E6%A8%82%E5%9C%98)
+- [Linkin Park](https://zh.wikipedia.org/zh-cn/%E8%81%AF%E5%90%88%E5%85%AC%E5%9C%92) <img style="width: 80px;" src="https://s2.loli.net/2023/04/25/51C2WyaIZXK4xgH.png" />
+
+
+- [Imagine Dragon](https://zh.wikipedia.org/zh-cn/%E8%AC%8E%E5%B9%BB%E6%A8%82%E5%9C%98) <img style="width: 60px;" src="https://s2.loli.net/2023/04/25/ITFBvjOC2Uiz3dD.png" />
+
+女歌手：
+
+- [Skylar Grey](https://zh.wikipedia.org/zh-tw/%E6%96%AF%E7%9B%96%E6%8B%89%C2%B7%E6%A0%BC%E8%95%BE) <img style="width: 60px;" src="https://s2.loli.net/2023/04/25/MtEnRwOaJLl42Dh.png" />
 
 喜欢的人物：
 

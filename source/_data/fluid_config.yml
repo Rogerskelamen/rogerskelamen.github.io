@@ -901,12 +901,6 @@ links:
       image: 'https://s2.loli.net/2022/05/12/auB4sEZvI9hrQgD.jpg'
     }
     - {
-      title: "Aping's Blog",
-      intro: '...',
-      link: 'https://lsk12345.github.io/',
-      image: 'https://lsk12345.github.io/img/avatar/fatpeople.jpg'
-    }
-    - {
       title: "Bins' Site",
       intro: '记录的一位大神的博客',
       link: 'https://dins.site/',
