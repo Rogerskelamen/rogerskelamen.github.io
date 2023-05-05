@@ -16,19 +16,48 @@
   <meta name="description" content="">
   <meta name="author" content="Rogers Kelamen">
   <meta name="keywords" content="blog">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="归档">
-<meta property="og:url" content="https://rokelamen.top/archives/2021/08/index.html">
+  <meta name="description" content="研究xv6-riscv新知汇总 按理来说，分页机制那一篇文章应该归到这里的第一个新知的。但是事实上，我到在现在才想起来汇总，惭愧啊，实在是怠惰了😅  Copy On Write写时复制，亦即COW(Copy On Write)，是一种在操作系统或者数据库等系统中常用到的策略。它的主要思想是，在多个进程或者线程请求同一段数据空间时，他们会共同指向这一段空间，也就是说他们共享这些数据。只有在其中一个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="研究xv6-riscv新知汇总">
+<meta property="og:url" content="https://rokelamen.top/2023/05/05/%E7%A0%94%E7%A9%B6xv6-riscv%E6%96%B0%E7%9F%A5%E6%B1%87%E6%80%BB/index.html">
 <meta property="og:site_name" content="RO&#39;s Blog">
+<meta property="og:description" content="研究xv6-riscv新知汇总 按理来说，分页机制那一篇文章应该归到这里的第一个新知的。但是事实上，我到在现在才想起来汇总，惭愧啊，实在是怠惰了😅  Copy On Write写时复制，亦即COW(Copy On Write)，是一种在操作系统或者数据库等系统中常用到的策略。它的主要思想是，在多个进程或者线程请求同一段数据空间时，他们会共同指向这一段空间，也就是说他们共享这些数据。只有在其中一个">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-05-05T08:49:11.000Z">
+<meta property="article:modified_time" content="2023-05-05T08:54:13.518Z">
 <meta property="article:author" content="Rogers Kelamen">
-<meta property="article:tag" content="blog">
+<meta property="article:tag" content="unix">
 <meta name="twitter:card" content="summary_large_image">
   
-  <title>归档| RO&#39;s Blog</title>
+  <title>研究xv6-riscv新知汇总| RO&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-solarizedlight.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -55,7 +84,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -163,22 +192,65 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('https://s2.loli.net/2022/03/26/YIBOukjNeHPbZw8.jpg') no-repeat center center;
+         style="background: url('https://s2.loli.net/2023/04/06/fP5AQpNavKeM2nX.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Time will tell">
+            <span class="h2" id="subtitle" title="研究xv6-riscv新知汇总">
               
             </span>
 
             
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Rogers Kelamen
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2023-05-05 16:49" pubdate>
+        2023年5月5日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      709 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      2 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
           </div>
 
-          
-            <div class="scroll-down-bar">
-              <i class="iconfont icon-arrowdown"></i>
-            </div>
           
         </div>
       </div>
@@ -187,70 +259,148 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 63 篇文章</p>
-  <hr>
-  
-  
-    
       
-      <p class="h5">2021</p>
-    
-    <a href="/2021/08/27/MacNote/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">MacNote</span>
-      <time style="float: right;">08-27</time>
-    </a>
-  
-    
-    <a href="/2021/08/18/Flask%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Flask数据库操作</span>
-      <time style="float: right;">08-18</time>
-    </a>
-  
-    
-    <a href="/2021/08/16/Ajax%E4%BB%A3%E7%A0%81%E8%AE%B0%E5%BD%95/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Ajax代码记录</span>
-      <time style="float: right;">08-16</time>
-    </a>
-  
-    
-    <a href="/2021/08/15/Vim%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Vim踩坑记录</span>
-      <time style="float: right;">08-15</time>
-    </a>
-  
-    
-    <a href="/2021/08/14/Flask%E5%85%A5%E9%97%A8/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Flask入门</span>
-      <time style="float: right;">08-14</time>
-    </a>
-  
-    
-    <a href="/2021/08/11/Vim%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Vim插件使用记录</span>
-      <time style="float: right;">08-11</time>
-    </a>
-  
-</div>
 
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">研究xv6-riscv新知汇总</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2023年5月5日 下午
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="研究xv6-riscv新知汇总"><a href="#研究xv6-riscv新知汇总" class="headerlink" title="研究xv6-riscv新知汇总"></a>研究xv6-riscv新知汇总</h1><blockquote>
+<p>按理来说，分页机制那一篇文章应该归到这里的第一个新知的。但是事实上，我到在现在才想起来汇总，惭愧啊，实在是怠惰了😅</p>
+</blockquote>
+<h2 id="Copy-On-Write"><a href="#Copy-On-Write" class="headerlink" title="Copy On Write"></a>Copy On Write</h2><p>写时复制，亦即COW(Copy On Write)，是一种在操作系统或者数据库等系统中常用到的策略。它的主要思想是，在多个进程或者线程请求同一段数据空间时，他们会共同指向这一段空间，也就是说他们共享这些数据。只有在其中一个进程/线程请求写入数据时，才将这段数据空间复制一份。这样在如今多数以读取数据为主的数据操作中，这种策略可以大量节省空间资源，同时提高操作效率。</p>
+<p>xv6-riscv在fork时会产生父子两个进程，采用的资源共享策略就是COW，我们来看看它是如何实现的：</p>
+<p>首先进程在fork之后，会产生一个子进程，这个进程的内存空间和父进程的一摸一样。具体来说就是页表和物理页都完全相同。然后因为此时还没有任何的写入操作，物理页中的flags中的<code>PTE_W=0</code>也就是只读的。</p>
+<p>当父子进程中的一个开始写一个页的时候，操作系统就触发一个缺页中断(page fault)，自然而然调用中断处理函数，这个处理函数(<code>handler</code>)做了这样几件事：</p>
+<ol>
+<li><p>使用空闲物理地址分配一个新的物理页</p>
+</li>
+<li><p>将新分配好的物理页映射到需要复制的页上(<em>具体用<code>walk</code>函数实现</em>)</p>
+</li>
+<li><p>使这个新的页的权限变为可写(<code>PT_W=1</code>)</p>
+</li>
+<li><p>还原到原来中断发生的指令上</p>
+</li>
+</ol>
+<p>然后指令继续运行，并在这一次写入成功(<em>当然写入的是新分配的物理地址</em>)</p>
+<p>需要注意但是，xv6-riscv在实现COW时创建了一种数据结构，这种数据结构用来存储一个页表被引用的次数：</p>
+<ul>
+<li><p>1代表没有fork，不需要copy</p>
+</li>
+<li><p>2就代表着fork发生了，需要注意写请求的出现</p>
+</li>
+</ul>
 
-
-
-
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/unix/">unix</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/04/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E8%B0%88/">
+                        <span class="hidden-mobile">从沙漠中的一粒沙到南极企鹅Tux：计算机系统漫谈</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"2RbCqGEaklHVj7Gj6dtd2kM4-gzGzoHsz","appKey":"kdFD4FmNeIpaTMK269nEqhxx","path":"window.location.pathname","placeholder":"say something...","avatar":"mp","meta":["nick","mail","link"],"requiredFields":["nick","mail"],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://2rbcqgea.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"2RbCqGEaklHVj7Gj6dtd2kM4-gzGzoHsz","appkey":"kdFD4FmNeIpaTMK269nEqhxx"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
 
     
@@ -403,6 +553,19 @@
 
 
 
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
 
 
 
@@ -428,6 +591,13 @@
 
 
 
+
+  <script  src="https://cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({"theme":"default"});
+    }
+  </script>
 
 
 
