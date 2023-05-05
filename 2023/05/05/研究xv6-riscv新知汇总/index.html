@@ -24,7 +24,7 @@
 <meta property="og:description" content="研究xv6-riscv新知汇总 按理来说，分页机制那一篇文章应该归到这里的第一个新知的。但是事实上，我到在现在才想起来汇总，惭愧啊，实在是怠惰了😅  Copy On Write写时复制，亦即COW(Copy On Write)，是一种在操作系统或者数据库等系统中常用到的策略。它的主要思想是，在多个进程或者线程请求同一段数据空间时，他们会共同指向这一段空间，也就是说他们共享这些数据。只有在其中一个">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-05-05T08:49:11.000Z">
-<meta property="article:modified_time" content="2023-05-05T08:54:13.518Z">
+<meta property="article:modified_time" content="2023-05-05T08:56:55.708Z">
 <meta property="article:author" content="Rogers Kelamen">
 <meta property="article:tag" content="unix">
 <meta name="twitter:card" content="summary_large_image">
@@ -296,7 +296,7 @@
 </li>
 </ol>
 <p>然后指令继续运行，并在这一次写入成功(<em>当然写入的是新分配的物理地址</em>)</p>
-<p>需要注意但是，xv6-riscv在实现COW时创建了一种数据结构，这种数据结构用来存储一个页表被引用的次数：</p>
+<p>需要注意的是，xv6-riscv在实现COW时创建了一种数据结构，这种数据结构用来存储一个页表被引用的次数：</p>
 <ul>
 <li><p>1代表没有fork，不需要copy</p>
 </li>
