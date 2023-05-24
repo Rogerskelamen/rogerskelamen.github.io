@@ -1,0 +1,955 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s2.loli.net/2022/03/27/FQiLXx1NBeS3MTw.png">
+  <link rel="icon" href="https://s2.loli.net/2022/03/27/FQiLXx1NBeS3MTw.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Rogers Kelamen">
+  <meta name="keywords" content="blog">
+  <meta name="description" content="从termcap到pager：探索ncursesIntro本篇文章的起因是我想要模仿GNU&#x2F;Linux的more或者less这样的pager写出一个代码阅读工具。本来自己尝试使用标准库纯粹从零开始写，但经过探索过后发现还是调用ncurses库更为科学合理一些(不然就要独自和终端控制字符死磕到底了)。由于本人在实现过程中经历了这样复杂的心路历程，所以文章结构不会是简单介绍ncurses的功能和使用，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从termcap到pager：探索ncurses">
+<meta property="og:url" content="https://rokelamen.top/2023/05/23/%E6%8E%A2%E7%B4%A2ncurses/index.html">
+<meta property="og:site_name" content="RO&#39;s Blog">
+<meta property="og:description" content="从termcap到pager：探索ncursesIntro本篇文章的起因是我想要模仿GNU&#x2F;Linux的more或者less这样的pager写出一个代码阅读工具。本来自己尝试使用标准库纯粹从零开始写，但经过探索过后发现还是调用ncurses库更为科学合理一些(不然就要独自和终端控制字符死磕到底了)。由于本人在实现过程中经历了这样复杂的心路历程，所以文章结构不会是简单介绍ncurses的功能和使用，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/05/24/bod6nDlSpCqrPHY.png">
+<meta property="article:published_time" content="2023-05-23T15:18:26.000Z">
+<meta property="article:modified_time" content="2023-05-24T03:13:49.989Z">
+<meta property="article:author" content="Rogers Kelamen">
+<meta property="article:tag" content="miscellaneous">
+<meta property="article:tag" content="linux">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s2.loli.net/2023/05/24/bod6nDlSpCqrPHY.png">
+  
+  <title>从termcap到pager：探索ncurses| RO&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-solarizedlight.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"rokelamen.top","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"0d7560f90f7a21d6a9e7635611dac094","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"2RbCqGEaklHVj7Gj6dtd2kM4-gzGzoHsz","app_key":"kdFD4FmNeIpaTMK269nEqhxx","server_url":"https://2rbcqgea.lc-cn-n1-shared.com","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>RO&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://s2.loli.net/2023/05/24/gvtzEriTJFuy4nm.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="从termcap到pager：探索ncurses">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Rogers Kelamen
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2023-05-23 23:18" pubdate>
+        2023年5月23日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      7.2k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      22 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">从termcap到pager：探索ncurses</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2023年5月24日 上午
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="从termcap到pager：探索ncurses"><a href="#从termcap到pager：探索ncurses" class="headerlink" title="从termcap到pager：探索ncurses"></a>从termcap到pager：探索ncurses</h1><h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>本篇文章的起因是我想要模仿GNU/Linux的more或者less这样的pager写出一个代码阅读工具。本来自己尝试使用标准库纯粹从零开始写，但经过探索过后发现还是调用ncurses库更为科学合理一些(<em>不然就要独自和终端控制字符死磕到底了</em>)。由于本人在实现过程中经历了这样复杂的心路历程，所以文章结构不会是简单介绍ncurses的功能和使用，而是从ncurses的起源，也就是ANSI转义字符开始，逐渐道出ncurses的由来，并最终使用ncurses实现一个简单的pager。</p>
+<h2 id="ANSI-escape-codes"><a href="#ANSI-escape-codes" class="headerlink" title="ANSI escape codes"></a>ANSI escape codes</h2><p>可能你对于<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-cn/ANSI%E8%BD%AC%E4%B9%89%E5%BA%8F%E5%88%97">ANSI转义字符</a>(ANSI escape codes)不太熟悉，但是这确实就是我们故事的开始。</p>
+<p>想想看，我们想要实现一个pager，那么最基础的几个功能得有吧：</p>
+<ul>
+<li><p>光标的移动</p>
+</li>
+<li><p>屏幕内容的更新(<em>或者简单来说就是翻页</em>)</p>
+</li>
+</ul>
+<p>而神奇的ANSI转义字符就可以帮助我们实现这些，e.g.</p>
+<div class="code-wrapper"><pre class="line-numbers language-txt" data-language="txt"><code class="language-txt">\033[1C<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>就是一段ANSI转义字符，而它的作用就是让光标向右移动一个字符</p>
+<p>这种特殊的字符格式一般是escape字符的转义(<em>oct:\033;hex:\u001b</em>)作为开头，然后是一个<code>[</code>，接着就是有各自功能的自定义字符。比如下面几种也是ANSI escape codes:</p>
+<div class="code-wrapper"><pre class="line-numbers language-txt" data-language="txt"><code class="language-txt"># 使字符变成红色
+\033[31m
+# 使字符背景变成蓝色
+\033[44m
+# 重置颜色
+\033[0m<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>这样一来，我们就知道实现pager肯定是需要这些特殊字符的。<u>关于ANSI escape codes的更多具体介绍和运用可以参考<a target="_blank" rel="noopener" href="https://www.cnblogs.com/rokelamen/p/16748739.html">我的另一篇文章</a></u></p>
+<h2 id="从头实现的困难"><a href="#从头实现的困难" class="headerlink" title="从头实现的困难"></a>从头实现的困难</h2><p>我们对于如何实现pager的基本操作已经有了思路，但是我们还需要解决一个问题。</p>
+<p>试想我们的pager程序，应该是用户输入一个字符(<em>屏幕中不显示</em>)然后程序立即调用相应的ANSI转义字符。但是现实情况是，我们的终端默认处于一种叫做canonical mode的模式中，在此模式下，用户往stdin中输入字符是自动显示到终端上，并且只有当我们按<kbd>Enter</kbd>之后，字符内容才会送到程序中去。这种模式的好处是如果用户输入错误可以使用<kbd>Backspace</kbd>来撤销已输入的字符，但显然这不是我们的pager程序想要的。</p>
+<p>于是我们得使用另一种叫做raw mode的模式，这种模式就是用户在终端输入字符后立即送往当前程序。不过说来容易做来难，我们没有特别的捷径来让终端转换到raw mode中，所以我们得手动操作。编写以下函数来手动转换:</p>
+<div class="code-wrapper"><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">static</span> <span class="token keyword">void</span>
+<span class="token function">enraw</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token function">tcgetattr</span><span class="token punctuation">(</span>STDIN_FILENO<span class="token punctuation">,</span> <span class="token operator">&amp;</span>orig_termios<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">struct</span> <span class="token class-name">termios</span> raw <span class="token operator">=</span> orig_termios<span class="token punctuation">;</span>
+  raw<span class="token punctuation">.</span>c_iflag <span class="token operator">&amp;=</span> <span class="token operator">~</span><span class="token punctuation">(</span>ICRNL <span class="token operator">|</span> IXON<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  raw<span class="token punctuation">.</span>c_lflag <span class="token operator">&amp;=</span> <span class="token operator">~</span><span class="token punctuation">(</span>ECHO <span class="token operator">|</span> ICANON <span class="token operator">|</span> IEXTEN <span class="token operator">|</span> ISIG<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">tcsetattr</span><span class="token punctuation">(</span>STDIN_FILENO<span class="token punctuation">,</span> TCSAFLUSH<span class="token punctuation">,</span> <span class="token operator">&amp;</span>raw<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>有了raw mode之后，我们可以简单实现一个Vim-like的文本输出程序(<em>输出对象是标准输出</em>):</p>
+<div class="code-wrapper"><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/* inspired by https://viewsourcecode.org/snaptoken/kilo/02.enteringRawMode.html
+ * keypress explanation:
+ * C-k/j/h/l: up/down/left/right
+ * C-q: quit the program
+ */</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;ctype.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;termios.h></span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name function">CTRL_KEY</span><span class="token expression"><span class="token punctuation">(</span>k<span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>k<span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token number">0x1f</span><span class="token punctuation">)</span></span></span>
+
+<span class="token keyword">static</span> <span class="token keyword">struct</span> <span class="token class-name">termios</span> orig_termios<span class="token punctuation">;</span>
+
+<span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">enraw</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">disraw</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">die</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">static</span> <span class="token keyword">void</span>
+<span class="token function">enraw</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">tcgetattr</span><span class="token punctuation">(</span>STDIN_FILENO<span class="token punctuation">,</span> <span class="token operator">&amp;</span>orig_termios<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token function">die</span><span class="token punctuation">(</span><span class="token string">"tcgetattr"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">atexit</span><span class="token punctuation">(</span>disraw<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// switch back to default canonical mode when program exits</span>
+
+  <span class="token keyword">struct</span> <span class="token class-name">termios</span> raw <span class="token operator">=</span> orig_termios<span class="token punctuation">;</span>
+  raw<span class="token punctuation">.</span>c_iflag <span class="token operator">&amp;=</span> <span class="token operator">~</span><span class="token punctuation">(</span>ICRNL <span class="token operator">|</span> IXON<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  raw<span class="token punctuation">.</span>c_lflag <span class="token operator">&amp;=</span> <span class="token operator">~</span><span class="token punctuation">(</span>ECHO <span class="token operator">|</span> ICANON <span class="token operator">|</span> IEXTEN <span class="token operator">|</span> ISIG<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">tcsetattr</span><span class="token punctuation">(</span>STDIN_FILENO<span class="token punctuation">,</span> TCSAFLUSH<span class="token punctuation">,</span> <span class="token operator">&amp;</span>raw<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token function">die</span><span class="token punctuation">(</span><span class="token string">"tcsetattr"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">static</span> <span class="token keyword">void</span>
+<span class="token function">disraw</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">tcsetattr</span><span class="token punctuation">(</span>STDIN_FILENO<span class="token punctuation">,</span> TCSAFLUSH<span class="token punctuation">,</span> <span class="token operator">&amp;</span>orig_termios<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token function">die</span><span class="token punctuation">(</span><span class="token string">"tcsetattr"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// error handler</span>
+<span class="token keyword">static</span> <span class="token keyword">void</span>
+<span class="token function">die</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>s<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token function">perror</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token function">write</span><span class="token punctuation">(</span>STDIN_FILENO<span class="token punctuation">,</span> <span class="token string">"\033[2J"</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// clear the screen</span>
+  <span class="token function">enraw</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// switch terminal to raw mode</span>
+
+  <span class="token keyword">char</span> c<span class="token punctuation">;</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token function">read</span><span class="token punctuation">(</span>STDIN_FILENO<span class="token punctuation">,</span> <span class="token operator">&amp;</span>c<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">1</span> <span class="token operator">&amp;&amp;</span> c <span class="token operator">!=</span> <span class="token function">CTRL_KEY</span><span class="token punctuation">(</span><span class="token string">'q'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">switch</span> <span class="token punctuation">(</span>c<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      <span class="token keyword">case</span> <span class="token function">CTRL_KEY</span><span class="token punctuation">(</span><span class="token string">'h'</span><span class="token punctuation">)</span><span class="token operator">:</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"\033[1D"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+      <span class="token keyword">case</span> <span class="token function">CTRL_KEY</span><span class="token punctuation">(</span><span class="token string">'j'</span><span class="token punctuation">)</span><span class="token operator">:</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"\033[1B"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+      <span class="token keyword">case</span> <span class="token function">CTRL_KEY</span><span class="token punctuation">(</span><span class="token string">'k'</span><span class="token punctuation">)</span><span class="token operator">:</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"\033[1A"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+      <span class="token keyword">case</span> <span class="token function">CTRL_KEY</span><span class="token punctuation">(</span><span class="token string">'l'</span><span class="token punctuation">)</span><span class="token operator">:</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"\033[1C"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+      <span class="token keyword">case</span> <span class="token string">'\r'</span><span class="token operator">:</span> <span class="token comment">// key enter is '\r', so we must translate it to '\n'</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+      <span class="token keyword">default</span><span class="token operator">:</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%c"</span><span class="token punctuation">,</span> c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token function">fflush</span><span class="token punctuation">(</span><span class="token constant">stdout</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>尽管我们确实可以就这么一直使用ANSI转义字符来完成各种终端控制指令，最终实现我们想要的程序，但是很明显其过程中会有海量细节等着我们，我们很难也不应该去应付这些琐碎的细节。并且另一个坏消息是，不同类型的终端有着不同的控制数据库(<em>早期由termcap管理</em>)，这意味着它们的ANSI转义字符的标准不一定是相同的，我们可能将面临编写多份代码来应对不同终端的兼容等问题。于是我们急需一个工具来拯救我们的头发，那就是ncurses。</p>
+<h2 id="NCURSES"><a href="#NCURSES" class="headerlink" title="NCURSES"></a>NCURSES</h2><p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-cn/Ncurses">ncurses</a>最早起源于curses工具(<em>cursor optimization</em>)，在unix早期使用curses就已经能解决前一节中的部分问题。后来System V Release 4.0(SVr4)发布后，ncurses作为curses的克隆库被开发出来，并加入了一些新的扩展特性。其中，ncurses的’n’就是’new’的意思。</p>
+<p>你可能在之前已经接触到了由ncurses编写的图形界面程序，比如当你想要看视频而为Linux安装视频解码器的时候，或者是当你写了一个新module想将其安装到Linux上去的时候，你都会看到一个类似下图的GUI：</p>
+<p><img src="https://s2.loli.net/2023/05/24/bod6nDlSpCqrPHY.png" srcset="/img/loading.gif" lazyload alt="menuconfig"></p>
+<p>想要自行学习或了解ncurses的话，可以去阅读<a target="_blank" rel="noopener" href="https://tldp.org/HOWTO/NCURSES-Programming-HOWTO/index.html">这篇HOWTO文章</a>，当然，本文接下来的ncurses介绍部分也是基于它的。</p>
+<p>那么我们可以试试运用一下ncurses，<strong>写一个Hello World</strong>，对ncurses有一个感性认识:</p>
+<div class="code-wrapper"><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;curses.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token function">initscr</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>              <span class="token comment">// initial curses mode</span>
+  <span class="token function">printw</span><span class="token punctuation">(</span><span class="token string">"hello, world"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// print hello world</span>
+  <span class="token function">refresh</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>              <span class="token comment">// print it one the real screen</span>
+  <span class="token function">getch</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                <span class="token comment">// wait for user input</span>
+  <span class="token function">endwin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>               <span class="token comment">// end curses mode</span>
+
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p><em>如果想要编译的话还要加上ncurses的链接库:</em></p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gcc hello.c -o hello -lncurses<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>这个<code>hello</code>程序会默认清空屏幕并且打印字符串<code>hello, world</code>，当你按下任意按键的时候程序退出。</p>
+<p>如果想要开启raw mode，只需要调用<code>raw()</code>就可以了，同时使用<code>noecho()</code>来不显示用户的输入。</p>
+<p>当我们想要移动光标时，就可以调用<code>move(row, col)</code>，它会将光标移动到第row行，第col列。所以我们可以仿照前一节的程序写一个功能一样的输出器:</p>
+<div class="code-wrapper"><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;curses.h></span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name function">KEY_CTRL</span><span class="token expression"><span class="token punctuation">(</span>k<span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>k<span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token number">0x1f</span><span class="token punctuation">)</span></span></span>
+
+<span class="token keyword">static</span> <span class="token keyword">int</span> x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">static</span> <span class="token keyword">int</span> y <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+<span class="token keyword">static</span> <span class="token keyword">void</span>
+<span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token function">initscr</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">raw</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// raw mode</span>
+  <span class="token function">noecho</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// switch to non-echo</span>
+  <span class="token function">keypad</span><span class="token punctuation">(</span>stdscr<span class="token punctuation">,</span> TRUE<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// enable function key(F1,Up/Down...)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">int</span> c<span class="token punctuation">;</span>
+  <span class="token keyword">int</span> row<span class="token punctuation">,</span> col<span class="token punctuation">;</span>
+  <span class="token function">getmaxyx</span><span class="token punctuation">(</span>stdscr<span class="token punctuation">,</span> row<span class="token punctuation">,</span> col<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// get size of screen</span>
+
+  <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>c <span class="token operator">=</span> <span class="token function">getch</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token function">KEY_CTRL</span><span class="token punctuation">(</span><span class="token string">'q'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>c <span class="token operator">==</span> <span class="token function">KEY_CTRL</span><span class="token punctuation">(</span><span class="token string">'h'</span><span class="token punctuation">)</span> <span class="token operator">||</span> c <span class="token operator">==</span> KEY_LEFT<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      x <span class="token operator">=</span> x <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">&lt;</span> <span class="token number">0</span> <span class="token operator">?</span> <span class="token number">0</span> <span class="token operator">:</span> x <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+      <span class="token function">move</span><span class="token punctuation">(</span>y<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>c <span class="token operator">==</span> <span class="token function">KEY_CTRL</span><span class="token punctuation">(</span><span class="token string">'j'</span><span class="token punctuation">)</span> <span class="token operator">||</span> c <span class="token operator">==</span> KEY_DOWN<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      y <span class="token operator">=</span> y <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">></span> col <span class="token operator">?</span> col <span class="token operator">:</span> y <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+      <span class="token function">move</span><span class="token punctuation">(</span>y <span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>c <span class="token operator">==</span> <span class="token function">KEY_CTRL</span><span class="token punctuation">(</span><span class="token string">'k'</span><span class="token punctuation">)</span> <span class="token operator">||</span> c <span class="token operator">==</span> KEY_UP<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      y <span class="token operator">=</span> y <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">&lt;</span> <span class="token number">0</span> <span class="token operator">?</span> <span class="token number">0</span> <span class="token operator">:</span> y <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+      <span class="token function">move</span><span class="token punctuation">(</span>y<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>c <span class="token operator">==</span> <span class="token function">KEY_CTRL</span><span class="token punctuation">(</span><span class="token string">'l'</span><span class="token punctuation">)</span> <span class="token operator">||</span> c <span class="token operator">==</span> KEY_RIGHT<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      x <span class="token operator">=</span> x <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">></span> row <span class="token operator">?</span> row <span class="token operator">:</span> x <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+      <span class="token function">move</span><span class="token punctuation">(</span>y<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+      <span class="token function">printw</span><span class="token punctuation">(</span><span class="token string">"%c"</span><span class="token punctuation">,</span> c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token function">refresh</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+
+  <span class="token function">endwin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>整体看起来简单了一些(<em>逻辑也清晰了一些</em>)，至少我们不必再去烦心于ANSI转义字符和终端模式的转换了。</p>
+<h2 id="实现一个简单的pager"><a href="#实现一个简单的pager" class="headerlink" title="实现一个简单的pager"></a>实现一个简单的pager</h2><p>想要实现一个pager，我们首先明确几个实现目标:</p>
+<ol>
+<li><p>程序需接受命令行中的第二个参数作为文件名，并给出相关的文件处理</p>
+</li>
+<li><p>程序需将文件内容存入某个ncurses缓存区中，然后根据需要展示部分的区域</p>
+</li>
+<li><p>程序需能够接受用户的动态输入，以便让用户控制程序行为</p>
+</li>
+</ol>
+<p>其中为了实现第二个目标，这里需引入一个新的ncurses概念pad(<em>curs_pad(3)</em>)。我们可以将文件的内容全部存储于一个pad中，然后通过<code>prefresh()</code>函数(<em>这里类似于<code>refresh</code></em>)将pad中的部分内容展示给stdscr。</p>
+<p><code>prefresh()</code>接受参数为：目标pad，需要pad的哪部份区域，展示在stdscr中的哪里</p>
+<p>比如这里有一个10x10的pad展示在stdscr特定区域的例子：</p>
+<div class="code-wrapper"><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;curses.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token keyword">int</span> i<span class="token punctuation">;</span>
+  WINDOW <span class="token operator">*</span>pad<span class="token punctuation">;</span>
+
+  <span class="token function">initscr</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  pad <span class="token operator">=</span> <span class="token function">newpad</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">mvaddstr</span><span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token string">"prefresh(pad, 0, 0, 0, 3, 9, 12);"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">refresh</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token function">waddstr</span><span class="token punctuation">(</span>pad<span class="token punctuation">,</span> <span class="token string">"ABCDEFGHIJ"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">waddstr</span><span class="token punctuation">(</span>pad<span class="token punctuation">,</span> <span class="token string">"ABCDEFGHIJ"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">waddstr</span><span class="token punctuation">(</span>pad<span class="token punctuation">,</span> <span class="token string">"ABCDEFGHIJ"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">waddstr</span><span class="token punctuation">(</span>pad<span class="token punctuation">,</span> <span class="token string">"ABCDEFGHIJ"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">waddstr</span><span class="token punctuation">(</span>pad<span class="token punctuation">,</span> <span class="token string">"ABCDEFGHIJ"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">waddstr</span><span class="token punctuation">(</span>pad<span class="token punctuation">,</span> <span class="token string">"ABCDEFGHIJ"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">waddstr</span><span class="token punctuation">(</span>pad<span class="token punctuation">,</span> <span class="token string">"ABCDEFGHIJ"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">waddstr</span><span class="token punctuation">(</span>pad<span class="token punctuation">,</span> <span class="token string">"ABCDEFGHIJ"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">waddstr</span><span class="token punctuation">(</span>pad<span class="token punctuation">,</span> <span class="token string">"ABCDEFGHIJ"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">waddstr</span><span class="token punctuation">(</span>pad<span class="token punctuation">,</span> <span class="token string">"ABCDEFGHIJ"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token function">prefresh</span><span class="token punctuation">(</span>pad<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token function">wgetch</span><span class="token punctuation">(</span>pad<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token function">delwin</span><span class="token punctuation">(</span>pad<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">endwin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>在此我需要解释一下为什么我们必须要使用pad这种策略，毕竟我们可以直接使用stdscr然后调用<code>scrl()</code>函数(<em>curs_scroll(3)</em>)简单地完成翻页。诚然，我们的主要目标就是滚动翻页，看似我在此复杂化了问题，但是真实情况是：如果使用<code>scrl()</code>函数，超出屏幕上下限的内容会因为滚动而丢失。<strong>注意，是永远丢失!</strong>实际上stdscr是不会自行保存所有打印内容的，所以我们必须找到一种绝对可以保证文本内容不会丢失的安全数据结构，于是便找到了pad。</p>
+<p>由此我们具备了所有编写pager的前置知识，下面就是愉快的编码了！</p>
+<div class="code-wrapper"><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/* a simple pager program with vim-like keymap
+ * help manual:
+ * q: quit program
+ * j: scroll one line down
+ * k: scroll one line up
+ * d: scroll half screen down
+ * u: scroll half screen up
+ * g: goto first line
+ * G: goto last line
+ */</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;curses.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
+
+<span class="token keyword">static</span> FILE <span class="token operator">*</span>fp<span class="token punctuation">;</span>
+<span class="token keyword">static</span> <span class="token keyword">int</span> mrow<span class="token punctuation">,</span> mcol<span class="token punctuation">;</span> <span class="token comment">// size of standard screen</span>
+
+<span class="token keyword">static</span> <span class="token keyword">void</span>
+<span class="token function">usage</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">*</span>cmd<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"usage: %s filename\n"</span><span class="token punctuation">,</span> cmd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">static</span> <span class="token keyword">void</span>
+<span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token function">initscr</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">raw</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// raw mode</span>
+  <span class="token function">noecho</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// switch to non-echo</span>
+  <span class="token function">keypad</span><span class="token punctuation">(</span>stdscr<span class="token punctuation">,</span> TRUE<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// enable function key(F1,Up/Down...)</span>
+  <span class="token function">getmaxyx</span><span class="token punctuation">(</span>stdscr<span class="token punctuation">,</span> mrow<span class="token punctuation">,</span> mcol<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// get size of standard screen</span>
+  <span class="token function">curs_set</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// turn cursor off</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span>argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>argc <span class="token operator">!=</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token function">usage</span><span class="token punctuation">(</span>argv<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>fp <span class="token operator">=</span> <span class="token function">fopen</span><span class="token punctuation">(</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">"r"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token constant">stderr</span><span class="token punctuation">,</span> <span class="token string">"%s: can't open file %s\n"</span><span class="token punctuation">,</span> argv<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token keyword">int</span> c<span class="token punctuation">;</span>
+  <span class="token keyword">int</span> lcnt <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>c <span class="token operator">=</span> <span class="token function">fgetc</span><span class="token punctuation">(</span>fp<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token constant">EOF</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>c <span class="token operator">==</span> <span class="token string">'\n'</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token comment">// it only fit to unix format text file(not DOS)</span>
+      lcnt<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+  <span class="token punctuation">&#125;</span>
+
+  <span class="token comment">// initialization</span>
+  <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  WINDOW <span class="token operator">*</span>pad <span class="token operator">=</span> <span class="token function">newpad</span><span class="token punctuation">(</span>lcnt<span class="token punctuation">,</span> mcol<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token function">rewind</span><span class="token punctuation">(</span>fp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>c <span class="token operator">=</span> <span class="token function">fgetc</span><span class="token punctuation">(</span>fp<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token constant">EOF</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token function">pechochar</span><span class="token punctuation">(</span>pad<span class="token punctuation">,</span> c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token function">fclose</span><span class="token punctuation">(</span>fp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">int</span> padrow <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token function">prefresh</span><span class="token punctuation">(</span>pad<span class="token punctuation">,</span> padrow<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> mrow <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">,</span> mcol <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>c <span class="token operator">=</span> <span class="token function">wgetch</span><span class="token punctuation">(</span>pad<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token string">'q'</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">switch</span> <span class="token punctuation">(</span>c<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      <span class="token keyword">case</span> <span class="token string">'j'</span><span class="token operator">:</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>padrow <span class="token operator">&lt;</span> lcnt <span class="token operator">-</span> mrow<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+          padrow<span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+      <span class="token keyword">case</span> <span class="token string">'k'</span><span class="token operator">:</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>padrow <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+          padrow<span class="token operator">--</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+      <span class="token keyword">case</span> <span class="token string">'d'</span><span class="token operator">:</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>padrow <span class="token operator">+</span> mrow<span class="token operator">/</span><span class="token number">2</span> <span class="token operator">&lt;=</span> lcnt <span class="token operator">-</span> mrow<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+          padrow <span class="token operator">+=</span> mrow<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span><span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+          padrow <span class="token operator">=</span> lcnt <span class="token operator">-</span> mrow<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+      <span class="token keyword">case</span> <span class="token string">'u'</span><span class="token operator">:</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>padrow <span class="token operator">>=</span> mrow<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+          padrow <span class="token operator">-=</span> mrow<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span><span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+          padrow <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+      <span class="token keyword">case</span> <span class="token string">'g'</span><span class="token operator">:</span>
+        padrow <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+      <span class="token keyword">case</span> <span class="token string">'G'</span><span class="token operator">:</span>
+        padrow <span class="token operator">=</span> lcnt <span class="token operator">-</span> mrow<span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+      <span class="token keyword">default</span><span class="token operator">:</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token function">prefresh</span><span class="token punctuation">(</span>pad<span class="token punctuation">,</span> padrow<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> mrow <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">,</span> mcol <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+
+  <span class="token comment">// clean up</span>
+  <span class="token function">delwin</span><span class="token punctuation">(</span>pad<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">endwin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>尽管这个pager看起来不错，但这个程序还存在一个缺陷，那就是当文件中一行的内容超过屏幕列数的话，超出的部分就无法显示了。简单来说就是没有wrap的功能。</p>
+<p>当然我不打算进一步改进了(<em>我对它还比较满意</em>)，你可以将此作为一个小练习以验证自己所学(<em>这并不困难！</em>)</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/miscellaneous/">miscellaneous</a>
+                    
+                      <a class="hover-with-bg" href="/tags/linux/">linux</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/05/05/%E7%A0%94%E7%A9%B6xv6-riscv%E6%96%B0%E7%9F%A5%E6%B1%87%E6%80%BB/">
+                        <span class="hidden-mobile">研究xv6-riscv新知汇总</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"2RbCqGEaklHVj7Gj6dtd2kM4-gzGzoHsz","appKey":"kdFD4FmNeIpaTMK269nEqhxx","path":"window.location.pathname","placeholder":"say something...","avatar":"mp","meta":["nick","mail","link"],"requiredFields":["nick","mail"],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://2rbcqgea.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"2RbCqGEaklHVj7Gj6dtd2kM4-gzGzoHsz","appkey":"kdFD4FmNeIpaTMK269nEqhxx"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+
+  <!-- 自己设置一个记录网站运行时间的方法 -->
+  <span id="sitetime" style="font-size: 14px; font-family: Consolas;font-weight: normal; color: #aaa;"></span>
+  <script language=javascript>
+    function siteTime(){
+      window.setTimeout("siteTime()", 1000);
+      var seconds = 1000;
+      var minutes = seconds * 60;
+      var hours = minutes * 60;
+      var days = hours * 24;
+      var years = days * 365;
+      var today = new Date();
+      var todayYear = today.getFullYear();
+      var todayMonth = today.getMonth()+1;
+      var todayDate = today.getDate();
+      var todayHour = today.getHours();
+      var todayMinute = today.getMinutes();
+      var todaySecond = today.getSeconds();
+      /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+      year - 作为date对象的年份，为4位年份值
+      month - 0-11之间的整数，做为date对象的月份
+      day - 1-31之间的整数，做为date对象的天数
+      hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+      minutes - 0-59之间的整数，做为date对象的分钟数
+      seconds - 0-59之间的整数，做为date对象的秒数
+      microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+      var t1 = Date.UTC(2020,10,18,15,00,00); //北京时间2020-10-18 00:00:00
+      var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+      var diff = t2-t1;
+      var diffYears = Math.floor(diff/years);
+      // var diffDays = Math.floor((diff/days)-diffYears*365);
+      // 直接用日来记录，不用年了，太low啦
+      var diffDays = Math.floor((diff/days));
+      var diffHours = Math.floor((diff-(diffDays)*days)/hours);
+      var diffMinutes = Math.floor((diff-(diffDays)*days-diffHours*hours)/minutes);
+      var diffSeconds = Math.floor((diff-(diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+      document.getElementById("sitetime").innerHTML=" 小破站已勉强运行了 "+/*diffYears+" 年 "+*/diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+    }
+    siteTime();
+  </script>
+  <!-- 自己设置一个记录网站运行时间的方法 -->
+
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({"theme":"default"});
+    }
+  </script>
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0d7560f90f7a21d6a9e7635611dac094";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
