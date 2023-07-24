@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>编程陷阱</title>
+    <link href="/2023/07/24/%E7%BC%96%E7%A8%8B%E9%99%B7%E9%98%B1/"/>
+    <url>/2023/07/24/%E7%BC%96%E7%A8%8B%E9%99%B7%E9%98%B1/</url>
+    
+    <content type="html"><![CDATA[<h1 id="防不胜防的编程陷阱"><a href="#防不胜防的编程陷阱" class="headerlink" title="防不胜防的编程陷阱"></a>防不胜防的编程陷阱</h1><blockquote><p>这里记录了很多本人在编程过程中偶然碰到的容易被忽视的bugs</p></blockquote><h2 id="文本文件风格"><a href="#文本文件风格" class="headerlink" title="文本文件风格"></a>文本文件风格</h2><p>总所周知，忽略兼容性永远是引发bug的第一把好手。很多情况下，我们在一个平台上开发的程序在另一个平台上运行大概率就会出现问题。那么同样，如果是文件风格的不同，也会引发难以察觉的bug。</p><h3 id="C程序读取文件"><a href="#C程序读取文件" class="headerlink" title="C程序读取文件"></a>C程序读取文件</h3><p>在计算机中，文件分为两大类——二进制文件和文本文件，我们日常能够去编辑的文件都是文本文件(<em>当然某些黑客能够自信地hack二进制文件</em>)。而文本文件主要又分为两种风格——dos风格和unix风格，前者是Windows系统，后者是Unix-like的所有操作系统。如果你使用的是vim编辑器的话，输入以下命令：</p><div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token punctuation">:</span>echo &amp;<span class="token builtin">ff</span> <span class="token comment">" short for fileformat</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div><p>就能查看当前的文件是什么文件风格的。</p><p>要说两种文件风格有什么不同之处，那主要就是行尾控制字符的不同。unix风格是LF(<em>line feed</em>)，dos风格是CRLF(<em>carriage return, line feed</em>)。事实上并不是我说的这么简单，详情请看<a href="https://stackoverflow.com/questions/1552749/difference-between-cr-lf-lf-and-cr-line-break-types">这个问题解答</a>。于是我们有了另一种分辨两种风格的方式，在你的shell中输入file指令(<em>当然你也可以直接在vim中输入</em>)：</p><div class="code-wrapper"><pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">file Add.asm<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div><p>如果它显示结果：</p><div class="code-wrapper"><pre class="line-numbers language-txt" data-language="txt"><code class="language-txt">Add.asm: ASCII text, with CRLF line terminators<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div><p>则说明这个文件是dos风格的文件。</p><p>由此，一个因文件风格引发的bug就诞生了。如果你在C程序中调用<code>fopen(filepath, &quot;r&quot;)</code>来读入一个文件的话，你就得在处理文件行尾时格外注意一下。如果是unix风格，就直接使用<code>\n</code>(<em>for newline or linefeed</em>)，dos风格就还需要额外使用<code>\r</code>(<em>for carriage return</em>)来判断一下，因为dos文件的行尾控制符是<code>\r\n</code>，很多情况下，你要是硬是使用unix格式打开，行尾就会显示为<code>^M</code>。</p><p><em>解释一下为什么存在CRLF：CR是用来控制文件读取头放置到行首的，而LF是控制跳转到新到一行，早期如果没有CR，跳转到新一行读取头还是会处在相同到列数上</em></p><h3 id="Python-file-tell"><a href="#Python-file-tell" class="headerlink" title="Python file.tell()"></a>Python <code>file.tell()</code></h3><p>你可能注意到了，像是python这样的更为高层级一些的编程语言在设计时就直接为我们解决了不同文件风格造成的烦恼。如果我们使用<code>open()</code>函数，只要我们读取文件内容，python内置库就会自动帮助我们避开换行符，只会给我们传递有效字符，这一点无疑让我们省去了不少麻烦。但是往往正是如此，我们就会默认忽视文件风格的差异，从而使bug更不容易被发现。比方说这个<a href="https://docs.python.org/2/library/stdtypes.html#file.tell"><code>file.tell()</code></a>函数。</p><p>这个函数是用来获取文件指针的位置的(<em>整型</em>)，但在极端情况下，它会返回一些反常的大数字。如果阅读它的<a href="https://docs.python.org/2/library/stdtypes.html#file.tell">文档</a>就会发现，如果是dos文件格式的文件中出现了unix格式的换行符(<em>也就是只有LR</em>)，那么就会造成上述的异常。使用binary mode(<code>&#39;rb&#39;</code>)可以避免这种问题。</p><p><em>说个题外话，当时找这个bug的时候真的苦痛</em></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>随笔</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>miscellaneous</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>如何学习计算机的某一技术</title>
     <link href="/2023/05/29/study-cs/"/>
     <url>/2023/05/29/study-cs/</url>
