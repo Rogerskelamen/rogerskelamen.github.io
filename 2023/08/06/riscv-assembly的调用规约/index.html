@@ -16,20 +16,20 @@
   <meta name="description" content="">
   <meta name="author" content="Rogers Kelamen">
   <meta name="keywords" content="blog">
-  <meta name="description" content="防不胜防的编程陷阱 这里记录了很多本人在编程过程中偶然碰到的容易被忽视的bugs  文本文件风格总所周知，忽略兼容性永远是引发bug的第一把好手。很多情况下，我们在一个平台上开发的程序在另一个平台上运行大概率就会出现问题。那么同样，如果是文件风格的不同，也会引发难以察觉的bug。 C程序读取文件在计算机中，文件分为两大类——二进制文件和文本文件，我们日常能够去编辑的文件都是文本文件(当然某些黑客能">
+  <meta name="description" content="riscv assembly的调用规约本来最开始学习riscv assembly的时候只是抱着简单了解学习的态度，但是学习过程中真的收获不少，该说不愧是riscv发源地吗(学习的是UC Berkeley的CS61C)，让我悟到了汇编编程的思路，其中calling convention(调用规约)给我留下了深刻印象。我要是早点接触到这个概念就好了，本科阶段的x86汇编真的让我学的晕头转向的(国内的教">
 <meta property="og:type" content="article">
-<meta property="og:title" content="防不胜防的编程陷阱">
-<meta property="og:url" content="https://rokelamen.top/2023/07/24/%E7%BC%96%E7%A8%8B%E9%99%B7%E9%98%B1/index.html">
+<meta property="og:title" content="riscv assembly的调用规约">
+<meta property="og:url" content="https://rokelamen.top/2023/08/06/riscv-assembly%E7%9A%84%E8%B0%83%E7%94%A8%E8%A7%84%E7%BA%A6/index.html">
 <meta property="og:site_name" content="RO&#39;s Blog">
-<meta property="og:description" content="防不胜防的编程陷阱 这里记录了很多本人在编程过程中偶然碰到的容易被忽视的bugs  文本文件风格总所周知，忽略兼容性永远是引发bug的第一把好手。很多情况下，我们在一个平台上开发的程序在另一个平台上运行大概率就会出现问题。那么同样，如果是文件风格的不同，也会引发难以察觉的bug。 C程序读取文件在计算机中，文件分为两大类——二进制文件和文本文件，我们日常能够去编辑的文件都是文本文件(当然某些黑客能">
+<meta property="og:description" content="riscv assembly的调用规约本来最开始学习riscv assembly的时候只是抱着简单了解学习的态度，但是学习过程中真的收获不少，该说不愧是riscv发源地吗(学习的是UC Berkeley的CS61C)，让我悟到了汇编编程的思路，其中calling convention(调用规约)给我留下了深刻印象。我要是早点接触到这个概念就好了，本科阶段的x86汇编真的让我学的晕头转向的(国内的教">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-07-24T04:06:57.000Z">
-<meta property="article:modified_time" content="2023-07-24T07:46:14.746Z">
+<meta property="article:published_time" content="2023-08-06T10:17:59.000Z">
+<meta property="article:modified_time" content="2023-08-06T10:22:19.830Z">
 <meta property="article:author" content="Rogers Kelamen">
-<meta property="article:tag" content="miscellaneous">
+<meta property="article:tag" content="asm">
 <meta name="twitter:card" content="summary_large_image">
   
-  <title>防不胜防的编程陷阱| RO&#39;s Blog</title>
+  <title>riscv assembly的调用规约| RO&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -192,12 +192,12 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('https://s2.loli.net/2023/07/24/Ilk1br8XyGwOfZv.png') no-repeat center center;
+         style="background: url('https://s2.loli.net/2023/08/06/dMuP2W7oVDfiet4.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="防不胜防的编程陷阱">
+            <span class="h2" id="subtitle" title="riscv assembly的调用规约">
               
             </span>
 
@@ -212,8 +212,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2023-07-24 12:06" pubdate>
-        2023年7月24日 中午
+      <time datetime="2023-08-06 18:17" pubdate>
+        2023年8月6日 晚上
       </time>
     </span>
   
@@ -223,7 +223,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.3k 字
+      1.9k 字
     </span>
   
 
@@ -232,7 +232,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4 分钟
+      6 分钟
     </span>
   
 
@@ -269,50 +269,65 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">防不胜防的编程陷阱</h1>
+            <h1 style="display: none">riscv assembly的调用规约</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2023年7月24日 下午
+                  本文最后更新于：2023年8月6日 晚上
                 
               </p>
             
             <div class="markdown-body">
-              <h1 id="防不胜防的编程陷阱"><a href="#防不胜防的编程陷阱" class="headerlink" title="防不胜防的编程陷阱"></a>防不胜防的编程陷阱</h1><blockquote>
-<p>这里记录了很多本人在编程过程中偶然碰到的容易被忽视的bugs</p>
+              <h1 id="riscv-assembly的调用规约"><a href="#riscv-assembly的调用规约" class="headerlink" title="riscv assembly的调用规约"></a>riscv assembly的调用规约</h1><p>本来最开始学习riscv assembly的时候只是抱着简单了解学习的态度，但是学习过程中真的收获不少，该说不愧是riscv发源地吗(学习的是UC Berkeley的CS61C)，让我悟到了汇编编程的思路，其中calling convention(调用规约)给我留下了深刻印象。我要是早点接触到这个概念就好了，本科阶段的x86汇编真的让我学的晕头转向的(国内的教材也是一言难尽)。下面是riscv的简单介绍。</p>
+<blockquote>
+<p>riscv是一种不同于传统x86和arm全新的指令集架构(ISA)，由UC Berkeley于2010发起创立。其指令集架构极其简单，因为其遵循极致的<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E7%B2%BE%E7%AE%80%E6%8C%87%E4%BB%A4%E9%9B%86%E8%AE%A1%E7%AE%97%E6%9C%BA">RISC</a>理念，核心指令只有50条左右，非常适合初学者理解学习。</p>
 </blockquote>
-<h2 id="文本文件风格"><a href="#文本文件风格" class="headerlink" title="文本文件风格"></a>文本文件风格</h2><p>总所周知，忽略兼容性永远是引发bug的第一把好手。很多情况下，我们在一个平台上开发的程序在另一个平台上运行大概率就会出现问题。那么同样，如果是文件风格的不同，也会引发难以察觉的bug。</p>
-<h3 id="C程序读取文件"><a href="#C程序读取文件" class="headerlink" title="C程序读取文件"></a>C程序读取文件</h3><p>在计算机中，文件分为两大类——二进制文件和文本文件，我们日常能够去编辑的文件都是文本文件(<em>当然某些黑客能够自信地hack二进制文件</em>)。而文本文件主要又分为两种风格——dos风格和unix风格，前者是Windows系统，后者是Unix-like的所有操作系统。如果你使用的是vim编辑器的话，输入以下命令：</p>
-<div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"><span class="token punctuation">:</span>echo &amp;<span class="token builtin">ff</span> <span class="token comment">" short for fileformat</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
-<p>就能查看当前的文件是什么文件风格的。</p>
-<p>要说两种文件风格有什么不同之处，那主要就是行尾控制字符的不同。unix风格是LF(<em>line feed</em>)，dos风格是CRLF(<em>carriage return, line feed</em>)。事实上并不是我说的这么简单，详情请看<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/1552749/difference-between-cr-lf-lf-and-cr-line-break-types">这个问题解答</a>。于是我们有了另一种分辨两种风格的方式，在你的shell中输入file指令(<em>当然你也可以直接在vim中输入</em>)：</p>
-<div class="code-wrapper"><pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">file Add.asm<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
-<p>如果它显示结果：</p>
-<div class="code-wrapper"><pre class="line-numbers language-txt" data-language="txt"><code class="language-txt">Add.asm: ASCII text, with CRLF line terminators<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
-<p>则说明这个文件是dos风格的文件。</p>
-<p>由此，一个因文件风格引发的bug就诞生了。如果你在C程序中调用<code>fopen(filepath, &quot;r&quot;)</code>来读入一个文件的话，你就得在处理文件行尾时格外注意一下。如果是unix风格，就直接使用<code>\n</code>(<em>for newline or linefeed</em>)，dos风格就还需要额外使用<code>\r</code>(<em>for carriage return</em>)来判断一下，因为dos文件的行尾控制符是<code>\r\n</code>，很多情况下，你要是硬是使用unix格式打开，行尾就会显示为<code>^M</code>。</p>
-<p><em>解释一下为什么存在CRLF：CR是用来控制文件读取头放置到行首的，而LF是控制跳转到新到一行，早期如果没有CR，跳转到新一行读取头还是会处在相同到列数上</em></p>
-<h3 id="Python-file-tell"><a href="#Python-file-tell" class="headerlink" title="Python file.tell()"></a>Python <code>file.tell()</code></h3><p>你可能注意到了，像是python这样的更为高层级一些的编程语言在设计时就直接为我们解决了不同文件风格造成的烦恼。如果我们使用<code>open()</code>函数，只要我们读取文件内容，python内置库就会自动帮助我们避开换行符，只会给我们传递有效字符，这一点无疑让我们省去了不少麻烦。但是往往正是如此，我们就会默认忽视文件风格的差异，从而使bug更不容易被发现。比方说这个<a target="_blank" rel="noopener" href="https://docs.python.org/2/library/stdtypes.html#file.tell"><code>file.tell()</code></a>函数。</p>
-<p>这个函数是用来获取文件指针的位置的(<em>整型</em>)，但在极端情况下，它会返回一些反常的大数字。如果阅读它的<a target="_blank" rel="noopener" href="https://docs.python.org/2/library/stdtypes.html#file.tell">文档</a>就会发现，如果是dos文件格式的文件中出现了unix格式的换行符(<em>也就是只有LR</em>)，那么就会造成上述的异常。使用binary mode(<code>&#39;rb&#39;</code>)可以避免这种问题。</p>
-<p><em>说个题外话，当时找这个bug的时候真的苦痛</em></p>
+<p>总之calling convention是很重要的概念而且经常被人忽视，所以在此编写文章加以记录。其他的内容比如寄存器或是指令的使用就不在此介绍，如有需要可以参考UC Berkeley的<a target="_blank" rel="noopener" href="https://inst.eecs.berkeley.edu/~cs61c/resources/riscvcard-large.pdf">greencard</a>加以学习了解。</p>
+<h2 id="规约简介"><a href="#规约简介" class="headerlink" title="规约简介"></a>规约简介</h2><p>其实调用规约在很多ISA的规范文档上都存在，比如intel的x86调用规约通常叫做<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/X86%E8%B0%83%E7%94%A8%E7%BA%A6%E5%AE%9A">cdecl</a>。简单解释一下调用规约为什么存在：</p>
+<p>每当你调用函数的时候(<em>其实就是跳转到另一段代码</em>)，你会在被调用的函数中使用部分寄存器(<em>比如s0, s1</em>)，而这些寄存器有可能在调用的函数中已经被使用了，那么你要是使用这些寄存器而不进行保存的话，原来调用的寄存器中的值就会被覆盖掉。于是我们得对两者都会使用的寄存器做保存，但是保存的工作到底是交给调用的函数还是被调用的函数呢？这就需要我们做出规约。</p>
+<h2 id="基本格式"><a href="#基本格式" class="headerlink" title="基本格式"></a>基本格式</h2><p>作为被调用者(callee)，我们需要保存的是所有的saved registers，也就是s0～s11；而作为调用者(caller)，需要保存的是所有的temporary registers(t0~t6)，ra和argument registers(a0~a7)。想要看有哪些寄存器是给被调用者保存还是给调用者保存，还是清参考<a target="_blank" rel="noopener" href="https://inst.eecs.berkeley.edu/~cs61c/resources/riscvcard-large.pdf">greencard</a>。</p>
+<p>比如现在我正在编写一个函数func，它使用到了s0和s1，而调用它的函数同时也用到了这两个寄存器，那么我就要在这个函数的开头和结尾进行保存:</p>
+<div class="code-wrapper"><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">addi sp, sp, -8
+sw s0, 0(sp)
+sw s1, 4(sp)
+...
+lw s0, 0(sp)
+lw s1, 4(sp)
+addi sp, sp, 8<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>同时，func函数也调用了另一个函数foo，函数foo用到了func函数中的t0，那么我就得将t0和ra也保存起来，方法和上面一样，不同的是需要在调用函数的前后编写套话(prologue,epilogue):</p>
+<div class="code-wrapper"><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">addi sp, sp, -8
+sw ra, 0(sp)
+sw t0, 4(sp)
+jal ra, foo
+lw t0, 0(sp)
+lw ra, 4(sp)
+addi sp, sp, 8<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>这个规约虽然看起来很简单，但是用起来就有些头疼了，比如只要调用者使用了saved register函数，那我都要在被调用者中保存吗？显然不是，这里提供一些注意事项：</p>
+<ol>
+<li><p><strong>如果saved registers在调用函数f之后没有再使用过，那么f就没有必要保存saved registers，同样也适用于temporary registers</strong></p>
+</li>
+<li><p><strong>如果这个函数既是调用者(caller)又是被调用者(callee)，那么就必须要保存ra</strong></p>
+</li>
+<li><p><strong>如果这个函数不再去调用任何函数，可以使用temporary registers来代替saved registers的使用，这样可以省去保存步骤</strong></p>
+</li>
+</ol>
+<p>当然，我们编程的环境复杂多变，可能会遇到上述tips也无法解决情形，那就需要自己去仔细分析，安排好caller和callee的寄存器保存。</p>
+<h1 id="使用U-type指令"><a href="#使用U-type指令" class="headerlink" title="使用U-type指令"></a>使用U-type指令</h1><p>U代表的是(Upper)，操作的是高位20位的立即数，这类指令(主要就是lui, auipc)弥补了我们不能表示32位立即数的缺点。值得注意的是，U-type指令只能操作高位，也就是说低位的12位需要我们自己加上，这就出现一个问题：低位数会被符号扩展(sign extension)导致结果数据不是我们想要的。比如:</p>
+<div class="code-wrapper"><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">lui x10, 0xDEADB
+addi x10, x10, 0xEEF<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<p>最终的x10内的数据会是0xDEAD<font color=red>A</font>EEF，因为addi指令中的0xEEF被符号扩展为0xFFFFFEEF，所以相加之后就会变成0xDEAD<font color=red>A</font>EEF，而我们预想的数据结果本该是0xDEAD<font color=red>B</font>EEF</p>
+<p>想要解决很简单，只要稍微在编写代码时思考一下，将高位20位的立即数加一(0xDEADC)即可。只是我们每次在单独使用U-type指令时，要多思索一下。</p>
 
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
                 
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/%E9%9A%8F%E7%AC%94/">随笔</a>
-                    
-                  </div>
-                
                 
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/miscellaneous/">miscellaneous</a>
+                      <a class="hover-with-bg" href="/tags/asm/">asm</a>
                     
                   </div>
                 
@@ -329,18 +344,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/08/06/riscv-assembly%E7%9A%84%E8%B0%83%E7%94%A8%E8%A7%84%E7%BA%A6/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">riscv assembly的调用规约</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/05/29/study-cs/">
-                        <span class="hidden-mobile">如何学习计算机的某一技术</span>
+                      <a href="/2023/07/24/%E7%BC%96%E7%A8%8B%E9%99%B7%E9%98%B1/">
+                        <span class="hidden-mobile">防不胜防的编程陷阱</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
