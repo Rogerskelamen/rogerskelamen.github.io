@@ -23,11 +23,13 @@
 <meta property="og:site_name" content="RO&#39;s Blog">
 <meta property="og:description" content="riscv assembly的调用规约本来最开始学习riscv assembly的时候只是抱着简单了解学习的态度，但是学习过程中真的收获不少，该说不愧是riscv发源地吗(学习的是UC Berkeley的CS61C)，让我悟到了汇编编程的思路，其中calling convention(调用规约)给我留下了深刻印象。我要是早点接触到这个概念就好了，本科阶段的x86汇编真的让我学的晕头转向的(国内的教">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/08/06/iIaG3ULfo2EBZz5.png">
 <meta property="article:published_time" content="2023-08-06T10:17:59.000Z">
-<meta property="article:modified_time" content="2023-08-06T10:22:19.830Z">
+<meta property="article:modified_time" content="2023-08-06T10:46:14.855Z">
 <meta property="article:author" content="Rogers Kelamen">
 <meta property="article:tag" content="asm">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s2.loli.net/2023/08/06/iIaG3ULfo2EBZz5.png">
   
   <title>riscv assembly的调用规约| RO&#39;s Blog</title>
 
@@ -286,6 +288,7 @@
 <h2 id="规约简介"><a href="#规约简介" class="headerlink" title="规约简介"></a>规约简介</h2><p>其实调用规约在很多ISA的规范文档上都存在，比如intel的x86调用规约通常叫做<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/X86%E8%B0%83%E7%94%A8%E7%BA%A6%E5%AE%9A">cdecl</a>。简单解释一下调用规约为什么存在：</p>
 <p>每当你调用函数的时候(<em>其实就是跳转到另一段代码</em>)，你会在被调用的函数中使用部分寄存器(<em>比如s0, s1</em>)，而这些寄存器有可能在调用的函数中已经被使用了，那么你要是使用这些寄存器而不进行保存的话，原来调用的寄存器中的值就会被覆盖掉。于是我们得对两者都会使用的寄存器做保存，但是保存的工作到底是交给调用的函数还是被调用的函数呢？这就需要我们做出规约。</p>
 <h2 id="基本格式"><a href="#基本格式" class="headerlink" title="基本格式"></a>基本格式</h2><p>作为被调用者(callee)，我们需要保存的是所有的saved registers，也就是s0～s11；而作为调用者(caller)，需要保存的是所有的temporary registers(t0~t6)，ra和argument registers(a0~a7)。想要看有哪些寄存器是给被调用者保存还是给调用者保存，还是清参考<a target="_blank" rel="noopener" href="https://inst.eecs.berkeley.edu/~cs61c/resources/riscvcard-large.pdf">greencard</a>。</p>
+<p><img src="https://s2.loli.net/2023/08/06/iIaG3ULfo2EBZz5.png" srcset="/img/loading.gif" lazyload alt="riscv calling convention"></p>
 <p>比如现在我正在编写一个函数func，它使用到了s0和s1，而调用它的函数同时也用到了这两个寄存器，那么我就要在这个函数的开头和结尾进行保存:</p>
 <div class="code-wrapper"><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">addi sp, sp, -8
 sw s0, 0(sp)
@@ -322,6 +325,13 @@ addi x10, x10, 0xEEF<span aria-hidden="true" class="line-numbers-rows"><span></s
             <hr>
             <div>
               <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a>
+                    
+                  </div>
                 
                 
                   <div class="post-meta">
