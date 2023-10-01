@@ -4,7 +4,7 @@ date: 2021-03-10 16:57:22
 updated: 2021-08-15 11:17:00
 index_img: https://s2.loli.net/2022/03/26/L2DGcHowSeKM9qU.jpg
 tags:
-- Linux
+- linux
 categories:
 - 操作系统
 ---

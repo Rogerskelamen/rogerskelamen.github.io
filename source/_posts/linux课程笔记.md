@@ -2,7 +2,7 @@
 title: linux课程笔记
 date: 2021-03-22 19:34:37
 tags:
-- Linux
+- linux
 categories:
 - 操作系统
 ---

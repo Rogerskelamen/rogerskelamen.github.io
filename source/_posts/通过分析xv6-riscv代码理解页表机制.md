@@ -5,6 +5,7 @@ index_img: https://s2.loli.net/2023/04/06/ZP47kibcG9mB1sF.png
 banner_img: https://s2.loli.net/2023/04/06/fP5AQpNavKeM2nX.png
 tags:
 - miscellaneous
+- unix
 categories:
 - 操作系统
 ---
