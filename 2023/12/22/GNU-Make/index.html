@@ -24,7 +24,7 @@
 <meta property="og:description" content="GNU Make我也不知道是什么时候接触到了make，大概最早可以追溯到第一次在Ubuntu双系统（本科Linux课程要求）上编写C程序，然后需要脚本级程序来简化编译。至此在我的编程生涯中，每每有C编程的地方，就有Makefile的身影。从那时开始，我个人一直认为Makefile就是一些简单的脚本规则的堆叠，甚至连编程都算不上，于是就没有必要去深究他的语法规则，更没有必要去整理一份笔记去记录Mak">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-12-22T08:26:10.000Z">
-<meta property="article:modified_time" content="2023-12-22T08:37:02.495Z">
+<meta property="article:modified_time" content="2024-05-08T13:42:00.000Z">
 <meta property="article:author" content="Rogers Kelamen">
 <meta property="article:tag" content="c">
 <meta property="article:tag" content="linux">
@@ -224,7 +224,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      7.3k 字
+      7.5k 字
     </span>
   
 
@@ -274,7 +274,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2023年12月22日 下午
+                  本文最后更新于：2024年5月8日 晚上
                 
               </p>
             
@@ -505,6 +505,18 @@ PLATFORM   <span class="token operator">=</span> <span class="token variable">$<
     <span class="token operator">@</span>echo CXXFLAGS <span class="token operator">=</span> <span class="token variable">$</span><span class="token punctuation">(</span>CXXFLAGS<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 <p>使用<code>make all</code>来查看这些内置变量</p>
 <p><strong>!!注：此列表并不全面，其他内置变量请自行RTFM!!</strong></p>
+<h3 id="特殊变量"><a href="#特殊变量" class="headerlink" title="特殊变量"></a>特殊变量</h3><ul>
+<li>$(@F): 表示目标文件的文件名部分（不包括路径）。</li>
+<li>$(^): 表示所有的依赖文件列表。</li>
+<li>$(&lt;): 表示第一个依赖文件。</li>
+<li>$(?): 表示所有比目标文件新的依赖文件列表。</li>
+<li>$(*): 表示目标文件名去除后缀的部分。</li>
+<li>$(\&lt;D): 表示第一个依赖文件的目录部分。</li>
+<li>$(^D): 表示所有依赖文件的目录部分。</li>
+<li>$(%D): 表示静态模式的目标文件的目录部分。</li>
+<li>$(@D): 表示目标文件的目录部分。</li>
+</ul>
+<p>这些特殊变量可用于构建规则中，以方便地获取目标文件、依赖文件等信息。</p>
 
             </div>
             <hr>
