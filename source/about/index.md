@@ -11,7 +11,7 @@ layout: about
 
 <a href="https://zh.wikipedia.org/wiki/%E8%99%9A%E6%8B%9F%E7%BB%88%E7%AB%AF"><img style="box-shadow: 0 0 8px #666; border-radius: 3px;" src="https://img.shields.io/badge/tag-tag-blueviolet?style=flat&logo=iterm2&label=终端重度患者" /></a>
 
-<a href="https://vuejs.org/"><img style="box-shadow: 0 0 8px #666; border-radius: 3px;" src="https://img.shields.io/badge/tag-tag-greenlight?style=flat&logo=vue.js&label=vue支持者" /></a>
+<a href="https://www.rust-lang.org/"><img style="box-shadow: 0 0 8px #666; border-radius: 3px;" src="https://img.shields.io/badge/tag-tag-red?style=flat&logo=rust&logoColor=red&label=rust传教士" /></a>
 </div>
 
 ### Avatar
