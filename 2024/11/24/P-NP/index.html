@@ -16,23 +16,20 @@
   <meta name="description" content="">
   <meta name="author" content="Rogers Kelamen">
   <meta name="keywords" content="blog">
-  <meta name="description" content="我为什么没有入局人工智能我的AI初印象人工智能大概是在我读大二的时候开始展露出它未来不可阻挡的趋势的。而在更早的时候，大概在2017年左右，AlphaGo系列打败世界围棋大师们的新闻逐渐传播开来并不断吸引世人的关注。我认为，那时是人工智能真正意义上被世界接受而逐渐盘活的转折点。这一事件的影响在我们民众心中无疑是震撼的，尤其是对我们这些东亚国家来说，围棋这一诞生于我们国家的古老而体现传统道家思想的智">
+  <meta name="description" content="重新认识P和NP问题作为科班出身的程序员，我在算法课上早早地就接触到了P和NP问题。当然，当时仅仅将其作为课程中到一个可考核的知识点，简单的了解了相关概念。说实话，在两次算法课的学习过程中，我都对这对概念只是混了个眼熟，原因是其解释无聊且和其他算法概念关联性很弱。但现在看来，显然不是那样庸俗简单，这两个名词其实融合着有关哲学的，古往今来智者和探索者的故事。 那么还是复习一下定义：  P问题代表该问">
 <meta property="og:type" content="article">
-<meta property="og:title" content="我为什么没有入局人工智能">
-<meta property="og:url" content="https://rokelamen.top/2024/05/03/%E6%88%91%E4%B8%BA%E4%BB%80%E4%B9%88%E6%B2%A1%E6%9C%89%E5%85%A5%E5%B1%80%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/index.html">
+<meta property="og:title" content="重新认识P和NP问题">
+<meta property="og:url" content="https://rokelamen.top/2024/11/24/P-NP/index.html">
 <meta property="og:site_name" content="RO&#39;s Blog">
-<meta property="og:description" content="我为什么没有入局人工智能我的AI初印象人工智能大概是在我读大二的时候开始展露出它未来不可阻挡的趋势的。而在更早的时候，大概在2017年左右，AlphaGo系列打败世界围棋大师们的新闻逐渐传播开来并不断吸引世人的关注。我认为，那时是人工智能真正意义上被世界接受而逐渐盘活的转折点。这一事件的影响在我们民众心中无疑是震撼的，尤其是对我们这些东亚国家来说，围棋这一诞生于我们国家的古老而体现传统道家思想的智">
+<meta property="og:description" content="重新认识P和NP问题作为科班出身的程序员，我在算法课上早早地就接触到了P和NP问题。当然，当时仅仅将其作为课程中到一个可考核的知识点，简单的了解了相关概念。说实话，在两次算法课的学习过程中，我都对这对概念只是混了个眼熟，原因是其解释无聊且和其他算法概念关联性很弱。但现在看来，显然不是那样庸俗简单，这两个名词其实融合着有关哲学的，古往今来智者和探索者的故事。 那么还是复习一下定义：  P问题代表该问">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://s2.loli.net/2024/05/03/IXtCjogUzR2W7xD.png">
-<meta property="og:image" content="https://s2.loli.net/2024/05/03/7SJKiWINfHaUlbO.png">
-<meta property="article:published_time" content="2024-05-03T09:22:21.000Z">
-<meta property="article:modified_time" content="2024-05-06T01:55:36.427Z">
+<meta property="article:published_time" content="2024-11-24T03:31:39.000Z">
+<meta property="article:modified_time" content="2024-11-24T03:41:08.463Z">
 <meta property="article:author" content="Rogers Kelamen">
 <meta property="article:tag" content="miscellaneous">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://s2.loli.net/2024/05/03/IXtCjogUzR2W7xD.png">
   
-  <title>我为什么没有入局人工智能| RO&#39;s Blog</title>
+  <title>重新认识P和NP问题| RO&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -195,12 +192,12 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('https://s2.loli.net/2024/05/06/69cOBftEUiS2ohs.png') no-repeat center center;
+         style="background: url('https://s2.loli.net/2022/03/26/DZpUEW8izknQALM.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="我为什么没有入局人工智能">
+            <span class="h2" id="subtitle" title="重新认识P和NP问题">
               
             </span>
 
@@ -215,8 +212,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2024-05-03 17:22" pubdate>
-        2024年5月3日 下午
+      <time datetime="2024-11-24 11:31" pubdate>
+        2024年11月24日 中午
       </time>
     </span>
   
@@ -226,7 +223,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.9k 字
+      1.5k 字
     </span>
   
 
@@ -235,7 +232,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6 分钟
+      5 分钟
     </span>
   
 
@@ -272,22 +269,33 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">我为什么没有入局人工智能</h1>
+            <h1 style="display: none">重新认识P和NP问题</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2024年5月6日 上午
+                  本文最后更新于：2024年11月24日 中午
                 
               </p>
             
             <div class="markdown-body">
-              <h1 id="我为什么没有入局人工智能"><a href="#我为什么没有入局人工智能" class="headerlink" title="我为什么没有入局人工智能"></a>我为什么没有入局人工智能</h1><h2 id="我的AI初印象"><a href="#我的AI初印象" class="headerlink" title="我的AI初印象"></a>我的AI初印象</h2><p>人工智能大概是在我读大二的时候开始展露出它未来不可阻挡的趋势的。而在更早的时候，大概在2017年左右，AlphaGo系列打败世界围棋大师们的新闻逐渐传播开来并不断吸引世人的关注。我认为，那时是人工智能真正意义上被世界接受而逐渐盘活的转折点。这一事件的影响在我们民众心中无疑是震撼的，尤其是对我们这些东亚国家来说，围棋这一诞生于我们国家的古老而体现传统道家思想的智慧运动，似乎被西方的科学通过某种不可思议的“邪术”而攻破了。在巨大的惊恐和后怕被平复后，我们便开始研究这种技术，并且想要比西方做的更好。而如今在ChatGPT引爆网络之后，AI的热度已如洪水般向着不可阻挡的方向前进着……</p>
-<h2 id="热门领域的更迭"><a href="#热门领域的更迭" class="headerlink" title="热门领域的更迭"></a>热门领域的更迭</h2><p>不少AI支持者已经指出了AI的各种各样好处，它可以帮你完成大部分文字工作，想创新点，归纳文章，你甚至可以自己问它（ChatGPT）它有什么优势。既然AI这么好，我为什么不研究AI，反而在读研究生时就早早抛弃它呢？首先需要理解的一点是，AI现如今是一个热门专业，它的热点不乏有资本家的炒作，媒体赚取流量的手段。上一个像这样在计算机领域热门的还是Java Web，他们本质上就是社会供不应求导致的人才需求量增加。然而热门领域一般不会持续太长，因为根据客观发展规律，供不应求这种现象迟早会得到解决（而且基本上要不了多久），所以你会看到计算机热门技术总是在不停的更迭。同时，我个人还相信一个定律——如果一个新兴事物如果火热到连外卖小哥都要参合，那基本上就离崩盘不远了。当然，这种相信也有我个人的叛逆精神夹杂其中，可能我就是不喜欢大家都在做的东西。</p>
-<h2 id="AI与学术"><a href="#AI与学术" class="headerlink" title="AI与学术"></a>AI与学术</h2><p>现如今只要涉及到计算机的学术研究，基本上就离不开人工智能。这导致我在读研前选择导师的时候很为难——想找一个不是研究人工智能的实验室简直像在考验我的信息检索能力。我个人认为计算机学术研究应该是百花齐放的，各种思潮各种技术都应该存在研究的价值，但是如今高校研究生的学术方向基本和人工智能脱不了干系（<em>至少我读研所在的学校是这样</em>）。不仅如此，人工智能的研究好像让如今的计算机学术研究背离了初衷。大家搞学术研究不是为了真正的创新成果，而是以发文为目的进行研究，一切以发文作为衡量标准。我相信这也不能全怪AI，毕竟这种风气很早就在中国学术界扎根了，但不能否认的是，人工智能的出现助长了这种风气走向失控局面。比方说，如果我想要发文的话，只需要选择一个最新的人工智能框架（顶会发表的那种），然后围绕这个框架多阅读一些文献，发现这个框架在某某方向还有改进的空间，或者其他人都还没有做过，我就可以以此为创新点做实验来发文了。这种论文为驱动的学术研究方式，是我所厌恶的，我不想在回忆我的研究生生涯的时候，看到的是一个只会生产垃圾论文的机器，所以我避开了AI方向。</p>
-<h2 id="AI背后的受益者"><a href="#AI背后的受益者" class="headerlink" title="AI背后的受益者"></a>AI背后的受益者</h2><p>从市场需求的角度上来看，高校教育选择人工智能并没有错，毕竟现在感觉只要是个互联网公司都要开设一个人工智能部门，导致市场上对AI人才需求量巨大，所以高校培养人工智能人才来弥补缺口是无可厚非的。但是人们没有认识到，除了人工智能的缺口扩大了，其实还有一个领域也是如此——那就是硬件领域。有人统计，美国互联网公司的所有招聘岗位，2022年有6%是硬件岗位，目前这个比例上升到了16%。也就是说，公司每招聘五个软件工程师，就会招聘一个硬件工程师。随着各个公司搭建起自己的AI，那么想要有更高的算力更好的性能，必然就需要更多的硬件工程师。<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1J2421N7Ry">英伟达</a>在近几年赚得盆满钵满，一跃成为影响AI走势的明星公司，就是因为其手握AI的核心硬件资源。在中国，我们硬件资源尤其是芯片资源收到美国的限制，我们对于硬件人才的需求量只会更大。这也是我在研究生阶段选择了硬件方向的原因之一。</p>
-<p><img src="https://s2.loli.net/2024/05/03/IXtCjogUzR2W7xD.png" srcset="/img/loading.gif" lazyload alt="在英伟达最新发布会上自信满满的老黄"></p>
-<h2 id="很搞笑，大概我也会被大模型取代"><a href="#很搞笑，大概我也会被大模型取代" class="headerlink" title="很搞笑，大概我也会被大模型取代"></a>很搞笑，大概我也会被大模型取代</h2><p>关于AI是否能彻底颠覆计算机行业的讨论不绝于耳。对于这一点我想说的是，不能高估也不要低估。在编写重复性，细节性的代码方面，AI带来的改变确实是颠覆性的。我只需要告诉我的需求，<a target="_blank" rel="noopener" href="https://github.com/features/copilot">copilot</a>就可以根据上下文生成对应的（<em>但不一定是正确的</em>）算法，省去了我编写代码的大部分无意义时间。但是那些炒作说AI的低代码可以完全取代普通的程序员，简直就是无稽之谈。我认为现阶段，只要强人工智能还未被创造出来，AI就还只是程序员的好帮手，而像是550W那样能自主生成操作系统建造月球基地的AI，我认为至少还有20年。Linus曾在最近的北美开源峰会中表示：<strong>不要期待人工智能会成为最后的那个答案</strong>。标题中的那段话就是他在峰会中所说的调侃话。AI的发展速度或许超乎人们想象，但是其本质仍然是人类发明的又一项工具，我们的前人已经制造了无数的成功的工具，而AI并不一定就是特别的那一个。</p>
-<p><img src="https://s2.loli.net/2024/05/03/7SJKiWINfHaUlbO.png" srcset="/img/loading.gif" lazyload alt="Linus在北美开源峰会中的访谈"></p>
+              <h1 id="重新认识P和NP问题"><a href="#重新认识P和NP问题" class="headerlink" title="重新认识P和NP问题"></a>重新认识P和NP问题</h1><p>作为科班出身的程序员，我在算法课上早早地就接触到了P和NP问题。当然，当时仅仅将其作为课程中到一个可考核的知识点，简单的了解了相关概念。说实话，在两次算法课的学习过程中，我都对这对概念只是混了个眼熟，原因是其解释无聊且和其他算法概念关联性很弱。但现在看来，显然不是那样庸俗简单，这两个名词其实融合着有关哲学的，古往今来智者和探索者的故事。</p>
+<p>那么还是复习一下定义：</p>
+<blockquote>
+<p>P问题代表该问题能够在多项式时间内得到解决，而NP问题表示该为题可以在非决定性多项式时间内解决</p>
+</blockquote>
+<p>需要注意的是NP并非不能在多项式时间内解决(Non-Polynomial)，而是非决定性多项式时间才能解决(Non-deterministic Polynomial)，更简单的解释是，NP问题可以在多项式时间内验证一个解是否正确。</p>
+<p>我们说，乘法计算就是P问题，问题规模变大，运算的复杂度也只是多项式形式增长。而数独问题，当数独的规模变大(数独矩阵变大)，得到解的复杂度是成指数级增长，而我们能够在多项式时间内验证你给我的一个解是不是数独的解，所以数独问题是NP问题。所以再进一步理解，P问题其实是时间复杂度可以表示为多项式时间，而不是指数时间，而NP问题则只能表示为指数时间。</p>
+<p>如果想要证明NP=P的这个目标，显然就需要找到一个算法，能够让一个NP问题的时间复杂度降到多项式时间。除此之外，实际上N问题和NP问题很难说有一个明确的边界，不过有一类NP问题在NP问题中算得上是“最难”的，肯定不是P问题，这种问题被称之为NP-Complete（NP完全）。由于NP完全问题绝对不属于P问题，那么能够让NP完全问题的时间复杂度降低为多项式时间，则就可以证明NP=P。</p>
+<p>回想一下算法课时所学的那些算法，他们的目标基本上都是想要降低时间复杂度，但是没有一款算法能够降低NP完全问题的时间复杂度。典型的旅行商问题就是一个NP完全，而我们学过的对其最优解的动态规划算法也只能将时间复杂度降为$O(2^n * n^2)$。如果哪一天，有人能够灵光一现，想到一个算法，能将旅行商问题的时间复杂度降到多项式时间，那么NP问题就等同于P问题了。</p>
+<p>看上去证明NP=P也不是那么难是吧。但事实上证明NP=P本身就是一个NP问题，也就是问题的解决方案变成了这个问题本身。所以很多研究者因此认为NP不可能等于P(81%)，我们不能通过数学推导或者天才的想法来得到NP=P（至少在现在这个数学框架下不行）。</p>
+<p>那么再回过头来，为什么我们要纠结于NP和P是否相等呢？或者说当NP=P时这个世界会发生什么变化？其实根据前面的定义来说，就是<u><strong>所有能够在多项式时间验证解的问题，都能在多项式时间内得到解</strong></u>。有了计算机的帮助，这就意味着现实世界很多问题都可以用计算机很快得到解决，我们不用去关心一个复杂问题是怎么得到解的，因为我们知道这些问题本质上就是P问题，一些喜欢研究问题解法的人可能会继续探索问题解决的过程，但这对于问题被解决这一事实没有任何影响。</p>
+<p>在这样的世界里，所有益智类游戏将失去探索的乐趣，因为最优解已经找到，这些游戏会变得像小学乘法一样只剩下公式化的解答。所有的科学学科都会得到长足发展，但大部分的加密算法将不再有效，数学的研究主题将变成“提出问题”而非“解决问题”，AI将会轻易通过图灵测试。最后，我们将无法想象这个新世界还会有哪些翻天覆地的变化……</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="http://www.matrix67.com/blog/archives/2552">http://www.matrix67.com/blog/archives/2552</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV11W411H7YU">https://www.bilibili.com/video/BV11W411H7YU</a></p>
+</li>
+</ul>
 
             </div>
             <hr>
@@ -298,8 +306,6 @@
                     <i class="iconfont icon-category"></i>
                     
                       <a class="hover-with-bg" href="/categories/%E9%9A%8F%E7%AC%94/">随笔</a>
-                    
-                      <a class="hover-with-bg" href="/categories/%E9%9A%8F%E7%AC%94/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
                     
                   </div>
                 
@@ -324,18 +330,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/11/24/P-NP/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">重新认识P和NP问题</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/01/05/%E8%8E%B7%E5%8F%96RISCV%E6%B1%87%E7%BC%96%E7%A8%8B%E5%BA%8F%E6%9C%BA%E5%99%A8%E7%A0%81/">
-                        <span class="hidden-mobile">获取RISC-V汇编程序的机器源码</span>
+                      <a href="/2024/05/03/%E6%88%91%E4%B8%BA%E4%BB%80%E4%B9%88%E6%B2%A1%E6%9C%89%E5%85%A5%E5%B1%80%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">
+                        <span class="hidden-mobile">我为什么没有入局人工智能</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
