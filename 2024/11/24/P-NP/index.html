@@ -24,7 +24,7 @@
 <meta property="og:description" content="重新认识P和NP问题作为科班出身的程序员，我在算法课上早早地就接触到了P和NP问题。当然，当时仅仅将其作为课程中到一个可考核的知识点，简单的了解了相关概念。说实话，在两次算法课的学习过程中，我都对这对概念只是混了个眼熟，原因是其解释无聊且和其他算法概念关联性很弱。但现在看来，显然不是那样庸俗简单，这两个名词其实融合着有关哲学的，古往今来智者和探索者的故事。 那么还是复习一下定义：  P问题代表该问">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-11-24T03:31:39.000Z">
-<meta property="article:modified_time" content="2024-11-24T03:41:08.463Z">
+<meta property="article:modified_time" content="2024-11-24T03:44:37.931Z">
 <meta property="article:author" content="Rogers Kelamen">
 <meta property="article:tag" content="miscellaneous">
 <meta name="twitter:card" content="summary_large_image">
@@ -580,6 +580,48 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+
+  
 
 
 
