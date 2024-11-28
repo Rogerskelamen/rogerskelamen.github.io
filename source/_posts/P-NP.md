@@ -1,5 +1,6 @@
 ---
 title: 重新认识P和NP问题
+math: true
 author: Rogers Kelamen
 date: 2024-11-24 11:31:39
 index_img: https://s2.loli.net/2024/11/24/y8cZR1UFIieDrCH.png
