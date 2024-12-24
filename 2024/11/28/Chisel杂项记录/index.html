@@ -24,7 +24,7 @@
 <meta property="og:description" content="Chisel杂项记录Module相关Module是chisel中经常用到的基本类，其作用有两个  作为父类构建一个chisel模块类 使用其单例类来为chisel模块创建上下文，从而在生成系统中构造模块层次  说到底其实就是一个作用：构造chisel模块 Module类的底层源码中拥有复杂的继承关系，涉及到的关键类如下：  BaseModule：最底层的抽象类，所有Module的父类 BlackB">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-11-28T11:49:09.000Z">
-<meta property="article:modified_time" content="2024-11-28T11:54:53.812Z">
+<meta property="article:modified_time" content="2024-12-24T04:42:20.398Z">
 <meta property="article:author" content="Rogers Kelamen">
 <meta property="article:tag" content="HDL">
 <meta name="twitter:card" content="summary_large_image">
@@ -223,7 +223,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      941 字
+      1.8k 字
     </span>
   
 
@@ -232,7 +232,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3 分钟
+      6 分钟
     </span>
   
 
@@ -273,7 +273,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2024年11月28日 晚上
+                  本文最后更新于：2024年12月24日 下午
                 
               </p>
             
@@ -292,8 +292,37 @@
 <li><code>Module</code>：最常用到的Chisel模块构造类</li>
 </ul>
 <p>除此之外<code>chisel3.experimental</code>包中还有<a target="_blank" rel="noopener" href="https://www.chisel-lang.org/docs/appendix/experimental-features#module-variants">更多用于特殊用途的Module类</a>（最新版本好像已经被删除）</p>
+<h2 id="Chisel有符号数据字面量"><a href="#Chisel有符号数据字面量" class="headerlink" title="Chisel有符号数据字面量"></a>Chisel有符号数据字面量</h2><p>有符号数据在Chisel中是SInt类型，如果随意使用SInt类型字面量，则可能会混淆数据位宽，这里有必要说明一下。</p>
+<p>和UInt类型字面量一样，SInt也遵循位宽为<u><strong>满足表示该数据的最小位宽</strong></u>，e.g.</p>
+<div class="code-wrapper"><pre class="line-numbers language-scala" data-language="scala"><code class="language-scala"><span class="token comment">// Copy from Chisel official document</span>
+<span class="token number">5.</span>S    <span class="token comment">// signed decimal 4-bit lit from Scala Int.</span>
+<span class="token operator">-</span><span class="token number">8.</span>S   <span class="token comment">// negative decimal 4-bit lit from Scala Int.</span>
+<span class="token number">5.</span>U    <span class="token comment">// unsigned decimal 3-bit lit from Scala Int.</span>
+
+<span class="token number">8.</span>U<span class="token punctuation">(</span><span class="token number">4.</span>W<span class="token punctuation">)</span> <span class="token comment">// 4-bit unsigned decimal, value 8.</span>
+<span class="token operator">-</span><span class="token number">152.</span>S<span class="token punctuation">(</span><span class="token number">32.</span>W<span class="token punctuation">)</span> <span class="token comment">// 32-bit signed decimal, value -152.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>也就是说SInt字面量在最高位<strong>补上一位符号位</strong>即可。这并不难以理解，但是在配合使用<code>MuxLookup</code>和<code>asUInt</code>时可能会让我们犯糊涂：</p>
+<div class="code-wrapper"><pre class="line-numbers language-scala" data-language="scala"><code class="language-scala">io<span class="token punctuation">.</span>out <span class="token operator">:</span><span class="token operator">=</span> MuxLookup<span class="token punctuation">(</span>io<span class="token punctuation">.</span>sel<span class="token punctuation">,</span> <span class="token number">0.</span>U<span class="token punctuation">)</span><span class="token punctuation">(</span>
+  Seq<span class="token punctuation">(</span>
+    <span class="token operator">-</span><span class="token number">2.</span>S<span class="token punctuation">.</span>asUInt <span class="token operator">-></span> <span class="token number">1.</span>U<span class="token punctuation">,</span>
+    <span class="token number">2.</span>U <span class="token operator">-></span> <span class="token number">2.</span>U
+  <span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>实际上<code>-2</code>和<code>2</code>都会被选择为<code>2.U</code>，这是因为两者的二进制编码都为<code>b10</code>，所以<strong>一定要在包含SInt的key上加上位宽定义</strong>。下面再看一个例子。</p>
+<div class="code-wrapper"><pre class="line-numbers language-scala" data-language="scala"><code class="language-scala">io<span class="token punctuation">.</span>out <span class="token operator">:</span><span class="token operator">=</span> MuxLookup<span class="token punctuation">(</span>io<span class="token punctuation">.</span>sel<span class="token punctuation">,</span> <span class="token number">0.</span>S<span class="token punctuation">)</span><span class="token punctuation">(</span> <span class="token comment">// io.out has 8.W</span>
+  Seq<span class="token punctuation">(</span>
+    <span class="token number">0.</span>U <span class="token operator">-></span> <span class="token operator">-</span><span class="token number">3.</span>S<span class="token punctuation">,</span> <span class="token comment">// change to -3.S(8.W) goes correct</span>
+    <span class="token number">1.</span>U <span class="token operator">-></span> <span class="token operator">-</span><span class="token number">2.</span>S<span class="token punctuation">,</span>
+    <span class="token number">2.</span>U <span class="token operator">-></span> <span class="token operator">-</span><span class="token number">1.</span>S<span class="token punctuation">,</span>
+    <span class="token number">3.</span>U <span class="token operator">-></span> <span class="token number">0.</span>S<span class="token punctuation">,</span>
+    <span class="token number">4.</span>U <span class="token operator">-></span> <span class="token number">1.</span>S<span class="token punctuation">,</span>
+    <span class="token number">5.</span>U <span class="token operator">-></span> <span class="token number">2.</span>S<span class="token punctuation">,</span>
+    <span class="token number">6.</span>U <span class="token operator">-></span> <span class="token number">3.</span>S<span class="token punctuation">,</span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">.</span>asUInt<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>这里面同样不会给负数扩展符号位，比如<code>-3</code>会被输出为<code>b0000_0101</code>(not <code>b1111_1101</code>)，但是如果为<strong>其中一个选项设置等于输出的位宽</strong>，就可以使所有选项位宽保持最大位宽。</p>
 <h2 id="Chisel仿真测试"><a href="#Chisel仿真测试" class="headerlink" title="Chisel仿真测试"></a>Chisel仿真测试</h2><p>在硬件设计过程中，仿真验证肯定是必不可少的，所以Chisel也准备了相关的仿真方法。</p>
-<p>早期Chisel官方使用的是<a target="_blank" rel="noopener" href="https://github.com/ucb-bar/chiseltest">chiseltest</a>这个官方scala包（<em>更早是iotesters</em>），不过由于Chisel开发决策的关系（<a target="_blank" rel="noopener" href="https://www.chisel-lang.org/docs/appendix/migrating-from-chiseltest">从Chisel 5开始，核心开发组将Chisel的生成用编译器从SFC换成了MFC</a>），用于Chisel的仿真测试改为使用Chisel内置的<a target="_blank" rel="noopener" href="https://github.com/chipsalliance/chisel/tree/v6.4.0/src/main/scala/chisel3/simulator">ChiselSim</a>方式，原本的ChiselTest已于2024年8月20日停止维护。</p>
+<p>早期Chisel官方使用的是<a target="_blank" rel="noopener" href="https://github.com/ucb-bar/chiseltest">chiseltest</a>这个官方scala包（<em>更早是iotesters</em>），不过由于Chisel开发决策的关系（<a target="_blank" rel="noopener" href="https://www.chisel-lang.org/docs/appendix/migrating-from-chiseltest">从Chisel 5开始，核心开发组将Chisel的生成用编译器从SFC换成了MFC</a>），用于Chisel的仿真测试改为使用Chisel内置的<a target="_blank" rel="noopener" href="https://github.com/chipsalliance/chisel/tree/v6.4.0/src/main/scala/chisel3/simulator">ChiselSim</a>方式，原本的ChiselTest已于2024年8月20日停止维护。（<em>你能看到的大部分Chisel官方相关项目停止维护都是因为ChiselTest</em>）</p>
 <p>下面稍微解释一下两种测试方式的不同：</p>
 <p><strong>ChiselTest</strong></p>
 <ul>
