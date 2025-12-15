@@ -2,7 +2,7 @@
 title: Everyone likes Vue
 author: Rogers Kelamen
 date: 2022-11-19 18:31:48
-updated: 2022-11-20 11:50:00
+updated: 2025-06-26 15:45:00
 index_img: https://s2.loli.net/2022/11/20/zMayOgbsrKV8CpB.png
 banner_img: https://s2.loli.net/2022/11/20/JGEXUB7Al86IQqu.png
 tags:
@@ -16,9 +16,9 @@ categories:
 
 Some docs you may need:
 - [vue official website](https://cn.vuejs.org/)
-- [vuetify -- a material design UI framework for vue](https://vuetifyjs.com/zh-Hans/) *(Note: for now vuetify doesn't support vue 3, but it's coming soon)*
+- [vuetify -- a material design UI framework for vue](https://vuetifyjs.com/zh-Hans/)
 - [nativescript-vue -- build your mobile app with vue](https://nativescript-vue.org/)
-- [bootstrap-vue -- vue with popular bootstrap](https://bootstrap-vue.org/) *(Note: the vue version is 2, which may be outdated)*
+- [bootstrap-vue -- vue with popular bootstrap](https://bootstrap-vue.org/)
 - [pinia -- the next generation of Vue data store management](https://pinia.vuejs.org/)
 
 ## Some Alias
@@ -34,7 +34,7 @@ Some docs you may need:
   This for data binding -- dynamically responsive to model
 
 One picture explains everything:
-![complete directive syntax](https://cn.vuejs.org/assets/directive.69c37117.png)
+![complete directive syntax](https://cn.vuejs.org/assets/directive.DtZKvoAo.png)
 
 *usually these two can handle most situations, except...*
 
@@ -175,11 +175,11 @@ export default {
 ```
 ## Life Tree of Vue
 
-![life circle](https://cn.vuejs.org/assets/lifecycle.16e4c08e.png)
+![life circle](https://cn.vuejs.org/assets/lifecycle_zh-CN.W0MNXI0C.png)
 
 ## Let's meet Vue Component
 
-![Vue Component](https://cn.vuejs.org/assets/components.7fbb3771.png)
+![Vue Component](https://cn.vuejs.org/assets/components.B1JZbf0_.png)
 
 If you want to import a child component, then you must [register it](https://cn.vuejs.org/guide/components/registration.html) in `components`:
 ```vue
